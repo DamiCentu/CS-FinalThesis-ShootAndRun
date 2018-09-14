@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 18f3716cc15c7b54f898dfba0e137c62
+timeCreated: 1536268951
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _mainbody_03___Default_Normal: {fileID: 2800000, guid: 912177baac7d0aa458d4a8266d39f083,
+      type: 3}
+  - _mainbody_03___Default_AlbedoTransparency: {fileID: 2800000, guid: dc7c5acda41d9ac4eaaa6dd0fbb406a8,
+      type: 3}
+  - _mask: {fileID: 2800000, guid: 8512b5973a488674f8e3e5e9222dd664, type: 3}
+  - _mainbody_03___Default_MetallicSmoothness: {fileID: 2800000, guid: d4d5d8f1a452da4429ae8d20b24578cc,
+      type: 3}
+  - _mainbody_03___Default_AO: {fileID: 2800000, guid: 9435703d78a1c2b48b7082d55be8c8f8,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

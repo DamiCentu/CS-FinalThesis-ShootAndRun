@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: Blinn-Phong Half Vector
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity Asset
+    Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=13500\n371;92;962;805;1073.5;255;1;True;False\nNode;AmplifyShaderEditor.ViewDirInputsCoordNode;1;-668.5,-85;Float;False;World;0;4;FLOAT3;FLOAT;FLOAT;FLOAT\nNode;AmplifyShaderEditor.WorldSpaceLightDirHlpNode;2;-689.5,99;Float;False;1;0;FLOAT;0.0;False;1;FLOAT3\nNode;AmplifyShaderEditor.SimpleAddOpNode;3;-365.5,-28;Float;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0.0,0,0;False;1;FLOAT3\nNode;AmplifyShaderEditor.NormalizeNode;4;-171.5,-14;Float;False;1;0;FLOAT3;0,0,0,0;False;1;FLOAT3\nNode;AmplifyShaderEditor.FunctionOutput;0;-6,-40;Float;False;True;XYZ;0;1;0;FLOAT3;0,0,0;False;0\nWireConnection;3;0;1;0\nWireConnection;3;1;2;0\nWireConnection;4;0;3;0\nWireConnection;0;0;4;0\nASEEND*/\n//CHKSM=F409A1FC9CC8342C2F2EA2849BEC1643C10F848D"
+  m_functionName: 
+  m_description: Calculates the halfway vector between view direction and light direction
+    in world space.

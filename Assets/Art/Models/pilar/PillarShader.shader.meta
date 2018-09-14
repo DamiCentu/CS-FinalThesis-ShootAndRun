@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 7c9a4a033d0dae44ca81e68a96309609
+timeCreated: 1536862644
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _pilar_pilar_Normal: {fileID: 2800000, guid: a275f134dcbea1744b81d6572905a930,
+      type: 3}
+  - _pilar_pilar_AlbedoTransparency: {fileID: 2800000, guid: b46406b840ca98f4c9f67ffac74f1a38,
+      type: 3}
+  - _pilar_pilar_Emission: {fileID: 2800000, guid: eaddf3dc7665fb64bbf73967c78f7ba6,
+      type: 3}
+  - _pilar_pilar_MetallicSmoothness: {fileID: 2800000, guid: 3190c05ab95a3ed4a8c11680d8f77b39,
+      type: 3}
+  - _pilar_pilar_AO: {fileID: 2800000, guid: 4ce85b5dfefcd3f4981eb2fa0fa411f7, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

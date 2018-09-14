@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 0de9d7a511c03ab4a85b6dc90ba51477
+timeCreated: 1536800932
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _grilla: {fileID: 2800000, guid: d688558bccf5b944e870e01aa8429c49, type: 3}
+  - _nivel2_nivel2_MetallicSmoothness: {fileID: 2800000, guid: 4ce7c87c0cdf6524eb3b0bb1ceee4fd4,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

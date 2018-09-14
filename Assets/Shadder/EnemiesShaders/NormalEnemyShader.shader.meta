@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 9c9e6a5a63b059c45b0eeb34a510b3ae
+timeCreated: 1535430179
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _enemigo1_DefaultMaterial_Normal: {fileID: 2800000, guid: e33b4aa7d1ef75541b95626dff33d263,
+      type: 3}
+  - _enemigo1_DefaultMaterial_AlbedoTransparency: {fileID: 2800000, guid: c3e7f5c598f6b5c48994701a5ebaa6c7,
+      type: 3}
+  - _enemigo1_DefaultMaterial_Emission: {fileID: 2800000, guid: da44abb8fd625fc41a55178dd58e59ed,
+      type: 3}
+  - _enemigo1_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: 35a1c321e52a0b84ab8822dde353befa,
+      type: 3}
+  - _enemigo1_DefaultMaterial_AO: {fileID: 2800000, guid: ba6b8f52a35aef745b5103f31f268d88,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

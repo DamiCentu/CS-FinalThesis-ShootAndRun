@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ExplocionGrilla 1
+  m_Shader: {fileID: 4800000, guid: 0de9d7a511c03ab4a85b6dc90ba51477, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _10552normal:
+        m_Texture: {fileID: 2800000, guid: 6a01f4bb0050c6c4db743972a5463c66, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 064fcecb745f6f64f8eda381dd6aa164, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Brick0207_NORM:
+        m_Texture: {fileID: 2800000, guid: 82f2c5a664ec0ef41963edab3b8f89ac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _grilla:
+        m_Texture: {fileID: 2800000, guid: d688558bccf5b944e870e01aa8429c49, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _nivel2_nivel2_MetallicSmoothness:
+        m_Texture: {fileID: 2800000, guid: 4ce7c87c0cdf6524eb3b0bb1ceee4fd4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _nivel2_nivel2sub_MetallicSmoothness:
+        m_Texture: {fileID: 2800000, guid: 70025563d6ffa5049944455a684c49a2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Float1: 14.48
+    - _Radius: 14.89
+    - _Tesellation: 2
+    - __dirty: 0
+    - _brillogrilla: 14.4
+    m_Colors:
+    - _HitWorldPos: {r: -1.47, g: 0, b: -14.41, a: 0}
+    - _ImpactVector: {r: -0, g: -1, b: -0, a: 0}

@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: d4cccc65af5ce1d42aff19420a07e8e3
+timeCreated: 1528393832
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Box010
+    100002: Box011
+    100004: Box012
+    100006: Box013
+    100008: Box014
+    100010: Box015
+    100012: Box016
+    100014: Box017
+    100016: Box018
+    100018: Box019
+    100020: Box020
+    100022: Box021
+    100024: Box022
+    100026: Box023
+    100028: Box024
+    100030: brazo
+    100032: brazo001
+    100034: cable 1
+    100036: cable 2
+    100038: cable 3
+    100040: cable 4
+    100042: //RootNode
+    100044: CATRigHub001
+    100046: CATRigHub001Gizmo
+    100048: CATRigHub002
+    100050: CATRigHub002Bone001
+    100052: CATRigHub002Bone001Bone001
+    100054: CATRigHub002Bone001Bone001Bone001
+    100056: CATRigHub002Bone001Bone001Bone001Gizmo
+    100058: CATRigHub002Bone001Bone001Bone002
+    100060: CATRigHub002Bone001Bone001Bone002Gizmo
+    100062: CATRigHub002Bone001Bone001Gizmo
+    100064: CATRigHub002Bone001Bone002
+    100066: CATRigHub002Bone001Bone002Gizmo
+    100068: CATRigHub002Bone001Gizmo
+    100070: CATRigHub002Bone002
+    100072: CATRigHub002Bone002Gizmo
+    100074: CATRigHub002Gizmo
+    100076: CATRigLArm1
+    100078: CATRigLArm1Gizmo
+    100080: CATRigLArm2
+    100082: CATRigLArm2Gizmo
+    100084: CATRigLArmCollarbone
+    100086: CATRigLArmCollarboneGizmo
+    100088: CATRigLArmPalm
+    100090: CATRigLLeg1
+    100092: CATRigLLeg2
+    100094: CATRigLLeg3
+    100096: CATRigLLegAnkle
+    100098: CATRigLLegPlatform
+    100100: CATRigLLegUpVectorNode
+    100102: CATRigRArm1
+    100104: CATRigRArm1Gizmo
+    100106: CATRigRArm2
+    100108: CATRigRArm2Gizmo
+    100110: CATRigRArmCollarbone
+    100112: CATRigRArmCollarboneGizmo
+    100114: CATRigRArmPalm
+    100116: CATRigRLeg1
+    100118: CATRigRLeg2
+    100120: CATRigRLeg3
+    100122: CATRigRLegAnkle
+    100124: CATRigRLegPlatform
+    100126: CATRigRLegUpVectorNode
+    100128: CATRigSpine
+    100130: Character001
+    100132: cilindro hombro
+    100134: cilindro hombro001
+    100136: cintura
+    100138: Cylinder009
+    100140: Cylinder010
+    100142: Cylinder011
+    100144: Cylinder012
+    100146: hombro
+    100148: hombro001
+    100150: mano
+    100152: mano001
+    100154: muslo
+    100156: muslo001
+    100158: Object005
+    100160: Object006
+    100162: ojo
+    100164: parte brazo
+    100166: parte brazo001
+    100168: parte pierna
+    100170: parte pierna001
+    100172: pecho
+    100174: pelvis
+    100176: pie
+    100178: pie001
+    100180: pierna
+    100182: pierna001
+    100184: rodilla
+    100186: rodilla001
+    100188: tobillo
+    100190: tobillo001
+    100192: wea de la pierna
+    100194: wea de la pierna001
+    400000: Box010
+    400002: Box011
+    400004: Box012
+    400006: Box013
+    400008: Box014
+    400010: Box015
+    400012: Box016
+    400014: Box017
+    400016: Box018
+    400018: Box019
+    400020: Box020
+    400022: Box021
+    400024: Box022
+    400026: Box023
+    400028: Box024
+    400030: brazo
+    400032: brazo001
+    400034: cable 1
+    400036: cable 2
+    400038: cable 3
+    400040: cable 4
+    400042: //RootNode
+    400044: CATRigHub001
+    400046: CATRigHub001Gizmo
+    400048: CATRigHub002
+    400050: CATRigHub002Bone001
+    400052: CATRigHub002Bone001Bone001
+    400054: CATRigHub002Bone001Bone001Bone001
+    400056: CATRigHub002Bone001Bone001Bone001Gizmo
+    400058: CATRigHub002Bone001Bone001Bone002
+    400060: CATRigHub002Bone001Bone001Bone002Gizmo
+    400062: CATRigHub002Bone001Bone001Gizmo
+    400064: CATRigHub002Bone001Bone002
+    400066: CATRigHub002Bone001Bone002Gizmo
+    400068: CATRigHub002Bone001Gizmo
+    400070: CATRigHub002Bone002
+    400072: CATRigHub002Bone002Gizmo
+    400074: CATRigHub002Gizmo
+    400076: CATRigLArm1
+    400078: CATRigLArm1Gizmo
+    400080: CATRigLArm2
+    400082: CATRigLArm2Gizmo
+    400084: CATRigLArmCollarbone
+    400086: CATRigLArmCollarboneGizmo
+    400088: CATRigLArmPalm
+    400090: CATRigLLeg1
+    400092: CATRigLLeg2
+    400094: CATRigLLeg3
+    400096: CATRigLLegAnkle
+    400098: CATRigLLegPlatform
+    400100: CATRigLLegUpVectorNode
+    400102: CATRigRArm1
+    400104: CATRigRArm1Gizmo
+    400106: CATRigRArm2
+    400108: CATRigRArm2Gizmo
+    400110: CATRigRArmCollarbone
+    400112: CATRigRArmCollarboneGizmo
+    400114: CATRigRArmPalm
+    400116: CATRigRLeg1
+    400118: CATRigRLeg2
+    400120: CATRigRLeg3
+    400122: CATRigRLegAnkle
+    400124: CATRigRLegPlatform
+    400126: CATRigRLegUpVectorNode
+    400128: CATRigSpine
+    400130: Character001
+    400132: cilindro hombro
+    400134: cilindro hombro001
+    400136: cintura
+    400138: Cylinder009
+    400140: Cylinder010
+    400142: Cylinder011
+    400144: Cylinder012
+    400146: hombro
+    400148: hombro001
+    400150: mano
+    400152: mano001
+    400154: muslo
+    400156: muslo001
+    400158: Object005
+    400160: Object006
+    400162: ojo
+    400164: parte brazo
+    400166: parte brazo001
+    400168: parte pierna
+    400170: parte pierna001
+    400172: pecho
+    400174: pelvis
+    400176: pie
+    400178: pie001
+    400180: pierna
+    400182: pierna001
+    400184: rodilla
+    400186: rodilla001
+    400188: tobillo
+    400190: tobillo001
+    400192: wea de la pierna
+    400194: wea de la pierna001
+    2100000: 03 - Default
+    4300000: pecho
+    4300002: cintura
+    4300004: pelvis
+    4300006: muslo
+    4300008: rodilla
+    4300010: parte pierna
+    4300012: pierna
+    4300014: wea de la pierna
+    4300016: pie
+    4300018: tobillo
+    4300020: cilindro hombro
+    4300022: parte brazo
+    4300024: Object005
+    4300026: hombro
+    4300028: brazo
+    4300030: mano
+    4300032: Box010
+    4300034: Cylinder009
+    4300036: Box014
+    4300038: Box012
+    4300040: Box013
+    4300042: Cylinder010
+    4300044: muslo001
+    4300046: parte pierna001
+    4300048: pie001
+    4300050: pierna001
+    4300052: rodilla001
+    4300054: tobillo001
+    4300056: wea de la pierna001
+    4300058: Box015
+    4300060: Box016
+    4300062: Cylinder011
+    4300064: Cylinder012
+    4300066: brazo001
+    4300068: cilindro hombro001
+    4300070: hombro001
+    4300072: mano001
+    4300074: parte brazo001
+    4300076: Object006
+    4300078: Box018
+    4300080: Box019
+    4300082: Box020
+    4300084: Box021
+    4300086: Box022
+    4300088: Box023
+    4300090: Box024
+    4300092: ojo
+    4300094: cable 2
+    4300096: Box017
+    4300098: cable 1
+    4300100: Box011
+    4300102: cable 3
+    4300104: cable 4
+    7400000: Fall
+    9500000: //RootNode
+    13700000: Box010
+    13700002: Box011
+    13700004: Box012
+    13700006: Box013
+    13700008: Box014
+    13700010: Box015
+    13700012: Box016
+    13700014: Box017
+    13700016: Box018
+    13700018: Box019
+    13700020: Box020
+    13700022: Box021
+    13700024: Box022
+    13700026: Box023
+    13700028: Box024
+    13700030: brazo
+    13700032: brazo001
+    13700034: cable 1
+    13700036: cable 2
+    13700038: cable 3
+    13700040: cable 4
+    13700042: cilindro hombro
+    13700044: cilindro hombro001
+    13700046: cintura
+    13700048: Cylinder009
+    13700050: Cylinder010
+    13700052: Cylinder011
+    13700054: Cylinder012
+    13700056: hombro
+    13700058: hombro001
+    13700060: mano
+    13700062: mano001
+    13700064: muslo
+    13700066: muslo001
+    13700068: Object005
+    13700070: Object006
+    13700072: ojo
+    13700074: parte brazo
+    13700076: parte brazo001
+    13700078: parte pierna
+    13700080: parte pierna001
+    13700082: pecho
+    13700084: pelvis
+    13700086: pie
+    13700088: pie001
+    13700090: pierna
+    13700092: pierna001
+    13700094: rodilla
+    13700096: rodilla001
+    13700098: tobillo
+    13700100: tobillo001
+    13700102: wea de la pierna
+    13700104: wea de la pierna001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Fall
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
