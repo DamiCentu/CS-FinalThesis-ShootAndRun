@@ -41,6 +41,7 @@ public class SectionNode : MonoBehaviour {
     List<PowerUpChaserEnemy> _allChasersActives = new List<PowerUpChaserEnemy>();
     List<MiniBossBehaviour> _allMiniBoss = new List<MiniBossBehaviour>();
     List<CubeEnemyBehaviour> _allCubeActives = new List<CubeEnemyBehaviour>();
+     List<MisilEnemy> _allMisilEnemiesActive= new List<MisilEnemy>();
 
     WaitForSeconds _waitBetweenWaves; 
 
@@ -167,7 +168,10 @@ public class SectionNode : MonoBehaviour {
             else if(param[2] is CubeEnemyBehaviour) {
                 Utility.RemoveFromListGeneric(_allCubeActives, (CubeEnemyBehaviour)param[2]);
             }
-
+            else if (param[2] is MisilEnemy)
+            {
+                Utility.RemoveFromListGeneric(_allMisilEnemiesActive, (MisilEnemy)param[2]);
+            }
             var absE = (AbstractEnemy)param[2];
             absE.UnSubscribeToIndicator();  
 
@@ -199,12 +203,14 @@ public class SectionNode : MonoBehaviour {
         Utility.DeactivateList(_allTurretsActives);
         Utility.DeactivateList(_allChasersActives);
         Utility.DeactivateList(_allCubeActives);
+        Utility.DeactivateList(_allMisilEnemiesActive);
 
         _allNormalActives.Clear();
         _allChargerActives.Clear();
         _allTurretsActives.Clear();
         _allChasersActives.Clear();
         _allCubeActives.Clear();
+        _allMisilEnemiesActive.Clear();
 
         Utility.DestroyAllInAndClearList(_allMiniBoss);
 
@@ -372,7 +378,11 @@ public class SectionNode : MonoBehaviour {
                     cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
                     _allCubeActives.Add(cu);
                     break;
-
+            case EnemiesManager.TypeOfEnemy.MisilEnemy:
+                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator() as MisilEnemy;
+                m.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                _allMisilEnemiesActive.Add(m);
+                break;
         }
     } 
     

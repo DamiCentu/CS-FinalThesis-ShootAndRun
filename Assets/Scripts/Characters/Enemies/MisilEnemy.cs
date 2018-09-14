@@ -8,31 +8,36 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     public LayerMask blockEnemyViewToPlayer;
 
     Flocking _flocking;
-    Animator _anim;
+   // Animator _anim;
 
     FollowPathBehaviour _followPathBehaviour;
 
     private void Update()
     {
-        if (_eIntegration != null && !_eIntegration.NotFinishedLoading)
+        print("A");
+        if (_eIntegration != null && !_eIntegration.NotFinishedLoading) {
+            print("B");
             _followPathBehaviour.OnUpdate();
+        }
     }
 
     void FixedUpdate()
     {
-        if (_flocking == null || _eIntegration == null || _anim == null)
-            return;
-
+        if (_flocking == null || _eIntegration == null ) { 
+            print("ALGO ES NULL");
+        return;
+    }
         if (!_eIntegration.NotFinishedLoading)
         {
             _flocking.OnFixedUpdate();
-            _anim.speed = SectionManager.instance.EnemiesMultiplicator;
+        //    _anim.speed = SectionManager.instance.EnemiesMultiplicator;
         }
-        else _anim.speed = 0f;
+      //  else _anim.speed = 0f;
     }
 
     public void OnHit(int damage)
     {
+        print("SSDASSAD");
         EnemiesManager.instance.ReturnMisilEnemyToPool(this);
         StopAllCoroutines();
         gameObject.SetActive(false);
@@ -42,8 +47,8 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     public MisilEnemy SetPosition(Vector3 pos)
     {
         transform.position = pos;
-        if (_anim == null)
-            _anim = GetComponent<Animator>();
+    //    if (_anim == null)
+     //       _anim = GetComponent<Animator>();
 
         _flocking.resetVelocity();
         return this;
