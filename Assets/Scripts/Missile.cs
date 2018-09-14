@@ -14,6 +14,10 @@ public class Missile: MonoBehaviour
     public GameObject prefabMark;
     GameObject mark;
     public float radius=2.8f;
+    public GameObject DecayMark;
+
+    public ParticleSystem DestroyParticle1;
+    public ParticleSystem DestroyParticle2;
 
     public void Set(Vector3 destination, float time) {
         t = 0;
@@ -23,7 +27,8 @@ public class Missile: MonoBehaviour
         this.transform.Rotate(Vector3.right, 90);
 
         CreateMark();
-
+        DestroyParticle1 = GameObject.Find("distorsionBoom").GetComponent<ParticleSystem>();
+        DestroyParticle2 = GameObject.Find("ExplotionBoom").GetComponent<ParticleSystem>();
     }
 
     private void CreateMark()
@@ -75,7 +80,17 @@ public class Missile: MonoBehaviour
         //print("chau misil");
   //      EventManager.instance.ExecuteEvent(Constants.MISILE_DESTROY);
         //print(this.gameObject);
-        Destroy(this.gameObject);
+        Destroy(this.gameObject,3);
+        DestroyParticle1.transform.position = this.transform.position;
+        DestroyParticle1.gameObject.SetActive(true);
+        DestroyParticle1.Play();
+        DestroyParticle2.transform.position = this.transform.position;
+        DestroyParticle2.gameObject.SetActive(true);
+        DestroyParticle2.Play();
+        Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
+        
         Destroy(mark);
+        gameObject.SetActive(false);
+        
     }
 }

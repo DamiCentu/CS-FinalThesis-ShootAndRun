@@ -80,7 +80,8 @@ public class BossExpansiveWave2 : MonoBehaviour, BossActions
     {
      
         _stayTimer += Time.deltaTime;
-        if ((_stayTimer * sparkleFactor)%1 <= 0.5f)
+        var sparkleSin = Math.Sin(_stayTimer * sparkleFactor);
+        if (sparkleSin > 0f)
         {
             circleMaker.Show(line, false);
         }

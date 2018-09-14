@@ -56,7 +56,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
         life -= damage;
         if (life < 0) {
 
-            EnemiesManager.instance.ReturnMisilEnemyToPool(this);
+         //   EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
             gameObject.SetActive(false);
             EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false });

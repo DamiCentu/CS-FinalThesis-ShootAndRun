@@ -147,3 +147,4 @@ MonoBehaviour:
   damage: 3
   prefabMark: {fileID: 1790217341205404, guid: deb4772f0686fe54f8ee4ac7aca3ade6, type: 2}
   radius: 2.8
+  DecayMark: {fileID: 100000, guid: 317d9f3f35818644b9567ecb843930a7, type: 3}
