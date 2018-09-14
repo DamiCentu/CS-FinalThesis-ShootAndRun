@@ -117,7 +117,7 @@ public  class Utility {
         return r;
     }
 
-    // devuelve una posicion dentro de un radio RANDOM, tirando raycast detectando algo de la mascara , va a buscar siempre la posicion mas alejada de los objetos a los que detecto
+    // devuelve una posicion dentro de un radio RANDOM, tirando raycast detectando algo de la mascara , vaes a buscar siempre la posicion mas alejada de los objetos a los que detecto
     public static Vector3 RandomVector3InRadiusCountingBoundaries(Vector3 actualPos, float maxDistanceRadius, LayerMask maskToDetect) {
 
         var pos = actualPos;
