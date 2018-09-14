@@ -1104,6 +1104,8 @@ MonoBehaviour:
   bossPrefab: {fileID: 1714327909508672, guid: 2fd013362e0f7aa41b734feff9864c97, type: 2}
   cubeEnemyPrefab: {fileID: 1462777438785268, guid: 32028b1d7fe90ed49a246e5f951e23b1,
     type: 2}
+  misilEnemyPrefab: {fileID: 1949953396845020, guid: f826a8714da36274885c48cb94000f57,
+    type: 2}
 --- !u!114 &114137004280052420
 MonoBehaviour:
   m_ObjectHideFlags: 1
