@@ -380,7 +380,8 @@ public class SectionNode : MonoBehaviour {
                     break;
             case EnemiesManager.TypeOfEnemy.MisilEnemy:
                 var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator() as MisilEnemy;
-                m.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+
+                m.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allMisilEnemiesActive.Add(m);
                 break;
         }

@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4154785504074186
 Transform:
   m_ObjectHideFlags: 1
@@ -141,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381398166273538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -48.16, y: -0.03999996, z: 7.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4963592097518288}
@@ -167,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864384890411740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -48.16, y: 1.006, z: 7.6}
+  m_LocalPosition: {x: 0, y: 1.21, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4963592097518288}
@@ -180,7 +180,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375935122299252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -48.16, y: -0.03999996, z: 7.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4296814175138530}
@@ -394,7 +394,14 @@ MonoBehaviour:
   whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
   blockEnemyViewToPlayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 263168
+  Missile: {fileID: 114443212749977324, guid: 841128146c649c240abf461696ad1a23, type: 2}
+  timeBetweenMissiles: 0.8
+  timeToBoom: 1.2
+  maxOffset: 3
+  _timer: 0
+  life: 10
+  spawnMissilesPosition: {fileID: 4406441645513406}
 --- !u!114 &114961241774417848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3931,7 +3938,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1755474050
+  randomSeed: -627086019
   InitialModule:
     serializedVersion: 3
     enabled: 1

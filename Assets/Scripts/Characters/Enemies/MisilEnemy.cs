@@ -6,51 +6,72 @@ using UnityEngine;
 public class MisilEnemy : AbstractEnemy, IHittable {
 
     public LayerMask blockEnemyViewToPlayer;
-
-    Flocking _flocking;
+    public Missile Missile;
+    public float timeBetweenMissiles;
+    public float timeToBoom;
+    public float maxOffset;
+    public float _timer=-20;
+  //  Flocking _flocking;
    // Animator _anim;
 
     FollowPathBehaviour _followPathBehaviour;
+    private LayerMask misileEnemyLayerMask;
+
+    public int life = 10;
+    private Transform target;
+    public  Transform spawnMissilesPosition;
 
     private void Update()
     {
         print("A");
         if (_eIntegration != null && !_eIntegration.NotFinishedLoading) {
             print("B");
-            _followPathBehaviour.OnUpdate();
+        
         }
     }
 
     void FixedUpdate()
     {
-        if (_flocking == null || _eIntegration == null ) { 
-            print("ALGO ES NULL");
-        return;
-    }
-        if (!_eIntegration.NotFinishedLoading)
+
+        _timer += Time.deltaTime;
+        if (_timer > timeBetweenMissiles)
         {
-            _flocking.OnFixedUpdate();
-        //    _anim.speed = SectionManager.instance.EnemiesMultiplicator;
+            DropMissile(target.position);
+            _timer = 0;
         }
-      //  else _anim.speed = 0f;
+    }
+
+    private void DropMissile(Vector3 playerPosition)
+    {
+        float xPosition = playerPosition.x + UnityEngine.Random.Range(-maxOffset, maxOffset);
+        float zPosition = playerPosition.z + UnityEngine.Random.Range(-maxOffset, maxOffset);
+        Vector3 destination = new Vector3(xPosition, playerPosition.y + 0.3f, zPosition);
+        //Missile mis= new Missile(destination, timeToBoom)
+        Missile mis = Instantiate(Missile, spawnMissilesPosition.position, Quaternion.FromToRotation(spawnMissilesPosition.position, destination));
+        mis.Set(destination, timeToBoom);
     }
 
     public void OnHit(int damage)
     {
-        print("SSDASSAD");
-        EnemiesManager.instance.ReturnMisilEnemyToPool(this);
-        StopAllCoroutines();
-        gameObject.SetActive(false);
-        EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false });
+        life -= damage;
+        if (life < 0) {
+
+            EnemiesManager.instance.ReturnMisilEnemyToPool(this);
+            StopAllCoroutines();
+            gameObject.SetActive(false);
+            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false });
+        }
     }
 
     public MisilEnemy SetPosition(Vector3 pos)
     {
         transform.position = pos;
-    //    if (_anim == null)
-     //       _anim = GetComponent<Animator>();
+        return this;
+    }
 
-        _flocking.resetVelocity();
+    public MisilEnemy SetTarget(Transform player)
+    {
+        target = player;
         return this;
     }
 
@@ -62,25 +83,13 @@ public class MisilEnemy : AbstractEnemy, IHittable {
         }
     }
 
-    public MisilEnemy SetTarget(Transform target)
-    {
-        if (_flocking == null)
-            _flocking = GetComponent<Flocking>();
 
-        if (_followPathBehaviour == null)
-            _followPathBehaviour = new FollowPathBehaviour(this, blockEnemyViewToPlayer, _flocking/*, true*/);
-
-        _followPathBehaviour.SetActualSectionNode(_actualSectionNode);
-
-        _flocking.target = target;
-        return this;
-    }
 
     private void OnTriggerEnter(Collider c)
     {
-        if (c.gameObject.layer != 12 && c.gameObject.layer != 13 && c.gameObject.layer != 14 && c.gameObject.layer != 0 && _flocking != null)
+/*        if (c.gameObject.layer != 12 && c.gameObject.layer != 13 && c.gameObject.layer != 14 && c.gameObject.layer != 0 && _flocking != null)
         {//enemy //powerup // enemybullet
-            _flocking.resetVelocity();
-        }
+         //   _flocking.resetVelocity();
+        }*/
     }
 }
