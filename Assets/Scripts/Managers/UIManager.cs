@@ -9,18 +9,57 @@ public class UIManager : MonoBehaviour {
     public SimpleHealthBar bossLife;
     public List<Image> lifeImages;
     public Text creditsText;
+    public Text tutorialText;
+    public float timeToDisapearTutoText = 4f;
 
     public static UIManager instance = null;
 
-    private void Start()
-    {
+    public const string TUTORIAL_MOVE = "Use W,A,S,D to move";
+    public const string TUTORIAL_DASH = "Use spacebar to dash";
+    public const string TUTORIAL_ULTIMATE = "Use alt to use your ULTIMATE!";
+    public const string TUTORIAL_SHOOT = "Use left click to shoot";
+    public const string TUTORIAL_SHOOT_SPECIAL = "Use right click to shoot your special weapon";
+    public const string TUTORIAL_PICK_POWER_UP = "Pick power ups to upgrade your champion";
+
+    WaitForSeconds _waitToDisapearTutoText;
+    HashSet<string> _hashToCompare = new HashSet<string>();
+
+    void Start() {
         EventManager.instance.SubscribeEvent(Constants.UPDATE_BOSS_LIFE, UpdateBossLife);
-        EventManager.instance.SubscribeEvent(Constants.UPDATE_PLAYER_LIFE, OnUpdatePlayerLife);
-        if (instance == null) 
+        EventManager.instance.SubscribeEvent(Constants.UI_UPDATE_PLAYER_LIFE, OnUpdatePlayerLife);
+        EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_RESTART, OnTutorialRestart);
+        EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_CHANGE, OnTutorialChange);
+        EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_DEACTIVATED, OnTutorialDeactivated);
+        if (instance == null) { 
             instance = this;
-   }
+        }
+        tutorialText.text = "";
+        _waitToDisapearTutoText = new WaitForSeconds(timeToDisapearTutoText);
+    }
 
+    private void OnTutorialRestart(object[] parameterContainer) {
+        _hashToCompare.Clear();
+    }
 
+    private void OnTutorialDeactivated(object[] parameterContainer) {
+        tutorialText.enabled = false;
+    }
+
+    private void OnTutorialChange(object[] parameterContainer) {
+        if(_hashToCompare.Contains((string) parameterContainer[0])) {
+            return;
+        }
+        _hashToCompare.Add((string)parameterContainer[0]);
+        tutorialText.enabled = true;
+        StopAllCoroutines();
+        tutorialText.text = (string)parameterContainer[0];
+        StartCoroutine(TextDisapearRoutine());
+    }
+
+    IEnumerator TextDisapearRoutine() {
+        yield return _waitToDisapearTutoText;
+        tutorialText.enabled = false;
+    } 
 
     private void UpdateBossLife(object[] parameterContainer) {
         if (bossLife == null)

@@ -43,9 +43,9 @@ public class CameraITween : MonoBehaviour {
     } 
 
     void FadeInCamera(object[] parameterContainer) {
-        print("lolo");
+        //print("lolo");
         if (!AllBlack) {
-            print("lala");
+            //print("lala");
             fadeIn = true;
             fadeOut = false;
             fadeTimer = 0;

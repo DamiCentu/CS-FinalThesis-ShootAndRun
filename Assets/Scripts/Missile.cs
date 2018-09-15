@@ -87,8 +87,9 @@ public class Missile: MonoBehaviour
         DestroyParticle2.transform.position = this.transform.position;
         DestroyParticle2.gameObject.SetActive(true);
         DestroyParticle2.Play();
-        Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
-        
+        if(DecayMark != null) { 
+            Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
+        }
         Destroy(mark);
         gameObject.SetActive(false);
         

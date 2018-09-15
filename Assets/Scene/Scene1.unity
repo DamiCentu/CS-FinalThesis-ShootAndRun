@@ -24744,6 +24744,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114728723547009796, guid: 41eaf938b405e0c4ba87bce9c330e7fe,
+        type: 2}
+      propertyPath: tutorialNode
+      value: 
+      objectReference: {fileID: 881025934}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41eaf938b405e0c4ba87bce9c330e7fe, type: 2}
   m_IsPrefabParent: 0
@@ -48245,6 +48250,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4501560172063068, guid: 23c040e6eeaa5494f8084fa9c2d87628,
     type: 2}
   m_PrefabInternal: {fileID: 880534967}
+--- !u!114 &881025934 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114047724634688206, guid: 41eaf938b405e0c4ba87bce9c330e7fe,
+    type: 2}
+  m_PrefabInternal: {fileID: 578158887}
+  m_Script: {fileID: 11500000, guid: f2e7ed98b67b45c49aecbe78c58155f4, type: 3}
 --- !u!1 &881524899
 GameObject:
   m_ObjectHideFlags: 0
@@ -53066,6 +53077,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &930051987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 930051988}
+  - component: {fileID: 930051990}
+  - component: {fileID: 930051989}
+  m_Layer: 5
+  m_Name: TutorialText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &930051988
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930051987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1720647823}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 850, y: 160}
+  m_SizeDelta: {x: 1600, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &930051989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930051987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 300
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: TutorialText
+--- !u!222 &930051990
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930051987}
 --- !u!1 &930219559
 GameObject:
   m_ObjectHideFlags: 0
@@ -100005,6 +100090,7 @@ RectTransform:
   - {fileID: 1223063845}
   - {fileID: 867331802}
   - {fileID: 2132329252}
+  - {fileID: 930051988}
   m_Father: {fileID: 0}
   m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120403,7 +120489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902be29b92e580b408deed6c5c243941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualNode: {fileID: 1838572741}
+  actualNode: {fileID: 881025934}
   waitTimeForNextNodeSectionWhenFinish: 4
   waitTimeForStartNode: 3
   timeToRestartAfterPlayerDead: 2
@@ -120468,6 +120554,8 @@ MonoBehaviour:
   - {fileID: 1542040427}
   - {fileID: 129840169}
   creditsText: {fileID: 69785970}
+  tutorialText: {fileID: 930051989}
+  timeToDisapearTutoText: 4
 --- !u!114 &1897167910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120485,7 +120573,7 @@ MonoBehaviour:
   shield: {fileID: 1204887788}
   cantidades: 03000000020000000400000001000000
   powerUps: []
-  defaultProbability: 0.1
+  defaultProbability: 0.09
 --- !u!114 &1897167911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129553,7 +129641,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 347e7200ae4ca894c8e750c42bba0781, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.86
+      value: -3.08
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 347e7200ae4ca894c8e750c42bba0781, type: 3}
       propertyPath: m_LocalPosition.z
