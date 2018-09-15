@@ -156,7 +156,7 @@ public class SectionNode : MonoBehaviour {
 
             else if (param[2] is PowerUpChaserEnemy) { 
                 Utility.RemoveFromListGeneric(_allChasersActives, (PowerUpChaserEnemy)param[2]);
-                if(TutorialBehaviour.instance != null) {
+                if(TutorialBehaviour.instance.IsTutorialNode) {
                     TutorialBehaviour.instance.GreenKilled = true;
                 }
             }
@@ -269,7 +269,7 @@ public class SectionNode : MonoBehaviour {
             StartCoroutine(WavesNodeRoutine());
         }
 
-        if (TutorialBehaviour.instance != null) {
+        if (TutorialBehaviour.instance.IsTutorialNode) {
             TutorialBehaviour.instance.RestartTutorial();
         } 
     }
@@ -306,13 +306,18 @@ public class SectionNode : MonoBehaviour {
     }
 
     IEnumerator WavesNodeRoutine() {
+        if (TutorialBehaviour.instance.IsTutorialNode) {
+            LootTableManager.instance.SetTutoProbavility();
+            EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT);
+        }
+
         SetWaves(SectionManager.WaveNumber.First);
         yield return _waitBetweenWaves;
 
         while (_dicQuantityInWave[SectionManager.WaveNumber.First] > 0)
             yield return null;
 
-        if (TutorialBehaviour.instance != null) {
+        if (TutorialBehaviour.instance.IsTutorialNode) {
             TutorialBehaviour.instance.FirstEnemyKIlled();
 
             while (!TutorialBehaviour.instance.GreenKilled) {
@@ -326,11 +331,19 @@ public class SectionNode : MonoBehaviour {
         while (_dicQuantityInWave[SectionManager.WaveNumber.Second] > 0)
             yield return null;
 
+        if (TutorialBehaviour.instance.IsTutorialNode) {
+            EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_ULTIMATE);
+        }
+
         SetWaves(SectionManager.WaveNumber.Third);
         yield return _waitBetweenWaves; 
 
         while (_dicQuantityInWave[SectionManager.WaveNumber.Third] > 0)
             yield return null; 
+
+        if (TutorialBehaviour.instance.IsTutorialNode) { 
+            EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_DEACTIVATED);
+        }
     }
 
     void SetWaves(SectionManager.WaveNumber wave) {
@@ -454,11 +467,7 @@ public class SectionNode : MonoBehaviour {
         var pUC = EnemiesManager.instance.GiveMeChaserEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenWaves).SetTimeAndRenderer() as PowerUpChaserEnemy;
         pUC.SetStart().SetPosition(pos).gameObject.SetActive(true);
 
-        _allChasersActives.Add(pUC);
-
-        //foreach (var c in _allChasersActives) {
-        //    c.OnPowerUpDropped();
-        //}
+        _allChasersActives.Add(pUC); 
     }
 
     public void SpawnMiniBoss(Vector3 pos, SectionManager.WaveNumber wave) {

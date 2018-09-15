@@ -41,7 +41,7 @@ public class Constants : MonoBehaviour
 
     public const string STARTED_SECTION = "started_section";
 
-    public const string UPDATE_PLAYER_LIFE = "player_life";
+    public const string UI_UPDATE_PLAYER_LIFE = "player_life";
 
     public const string GAME_OVER = "game_over";
 
@@ -60,4 +60,10 @@ public class Constants : MonoBehaviour
     public const string SEND_INFO = "send_info";
 
     public const string BLACK_SCREEN = "black_screen";
+
+    public const string UI_TUTORIAL_RESTART = "ui_tutorial_restart";
+    public const string UI_TUTORIAL_DEACTIVATED = "ui_tutorial_deactivated";
+    public const string UI_TUTORIAL_CHANGE = "ui_tutorial_change";
+
+
 }

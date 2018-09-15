@@ -82,6 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4792592024962402}
+  - component: {fileID: 114861642845491102}
   - component: {fileID: 95707538373388604}
   - component: {fileID: 114186017694983400}
   - component: {fileID: 135302157975719260}
@@ -556,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80c47a306fb2b43b2e336ec326e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  besrserkParticleS: {fileID: 198821961347152642}
+  berserkParticleS: {fileID: 0}
 --- !u!114 &114043482203764190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -683,6 +684,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114861642845491102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1253178501528302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05934bc225cc9b447b24d6739105469c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteTimeOnHit: 0.1
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114871077444905738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -694,14 +708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c087bfa685bcd048b18780e15fcd5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteTimeOnHit: 0.1
-  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
   hitsCanTake: 5
+  timeSplicingQuote: 0.001
+  timeToWayToTryFindPowerUp: 1
   blockEnemyViewToTarget:
     serializedVersion: 2
     m_Bits: 1024
-  timeSplicingQuote: 0.001
-  timeToWayToTryFindPowerUp: 1
 --- !u!114 &114910133131956394
 MonoBehaviour:
   m_ObjectHideFlags: 1

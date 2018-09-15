@@ -7,6 +7,7 @@ public class TutorialBehaviour : MonoBehaviour {
 
     public static TutorialBehaviour instance { get; private set; }
     bool _greenKilled;
+    public SectionNode tutorialNode;
 
     public bool GreenKilled { get { return _greenKilled; } set { _greenKilled = value; } }
 
@@ -18,15 +19,20 @@ public class TutorialBehaviour : MonoBehaviour {
 	} 
 
     public void RestartTutorial() {
+        EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_RESTART);
+        EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_MOVE);
         _greenKilled = false;
         LootTableManager.instance.SetTutoProbavility();
     }
 
     public void FirstEnemyKIlled() {
+        EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_PICK_POWER_UP);
         LootTableManager.instance.SetDefaultProbavility();
     }
 
     public void EndTutorial() {
      //   SceneManager.LoadScene("Menu");
     }
+
+    public bool IsTutorialNode { get { return tutorialNode == SectionManager.instance.actualNode; } }
 }

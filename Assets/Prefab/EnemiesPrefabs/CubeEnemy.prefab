@@ -52,6 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354549055382326}
+  - component: {fileID: 114338968675811290}
   - component: {fileID: 114365311741516040}
   - component: {fileID: 114831143480372890}
   - component: {fileID: 114303852542325536}
@@ -266,7 +267,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80c47a306fb2b43b2e336ec326e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  besrserkParticleS: {fileID: 198354988511843844}
+  berserkParticleS: {fileID: 0}
+--- !u!114 &114338968675811290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462777438785268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05934bc225cc9b447b24d6739105469c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteTimeOnHit: 0.1
+  whiteMat: {fileID: 0}
 --- !u!114 &114356435310825466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,8 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b15fc1f3dd22a4f9cb0f69e7823815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteTimeOnHit: 0.2
-  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
   blockEnemyViewToPlayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -310,8 +322,7 @@ MonoBehaviour:
   shotPos: {fileID: 4289286720952294}
   quantityOfShots: 5
   angleBetweenShots: 15
-  minRadiusOfOfEvade: 5
-  maxRadiusOfOfEvade: 7
+  radiusOfEvade: 7
   radiusOfTranformToFollowOnEvade: 2
 --- !u!114 &114377143480951538
 MonoBehaviour:
