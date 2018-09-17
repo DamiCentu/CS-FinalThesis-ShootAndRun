@@ -253,7 +253,12 @@ public class SectionNode : MonoBehaviour {
             }
         }
 
-        LootTableManager.instance.DestroyAllPowerUps();
+        IPowerUp[] powerUps = FindObjectsOfType<IPowerUp>();
+        foreach (IPowerUp powerUp in powerUps)
+        {
+            powerUp.gameObject.SetActive(false);
+        }
+
 
         GameObject p = EnemiesManager.instance.player;
         DropIfNeededPowerUpHelp(p.transform.position);

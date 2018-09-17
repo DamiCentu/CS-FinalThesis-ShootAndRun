@@ -123,10 +123,6 @@ public class LootTableManager : MonoBehaviour {
         else throw new Exception("hay 1 power up que no esta en la lista, si hay un error es porque el power up se esta eliminando en su trigger ENTERRR, borrar esa linea de codigo");
     }
 
-    public void DestroyAllPowerUps() {
-        Utility.DestroyAllInAndClearList(_allGamePowerUps);
-    }
-
     public bool ExistAPowerUp { get { return _allGamePowerUps.Count > 0; } }
 
     public GameObject ClosestPowerUp(Vector3 pos) { 

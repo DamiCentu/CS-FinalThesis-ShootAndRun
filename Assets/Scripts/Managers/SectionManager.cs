@@ -103,7 +103,7 @@ public class SectionManager : MonoBehaviour {
         while (actualNode != null) {
             EventManager.instance.ExecuteEvent(Constants.START_SECTION);
             yield return new WaitForSeconds(0.6f);
-            EventManager.instance.ExecuteEvent(Constants.BLACK_SCREEN); 
+            EventManager.instance.ExecuteEvent(Constants.BLACK_SCREEN);
             yield return new WaitForSeconds(waitTimeForStartNode-0.6f);
 
             if (actualNode.isBossNode) {
@@ -160,14 +160,10 @@ public class SectionManager : MonoBehaviour {
                     //yield return null;
                 }
                 InfoManager.instance.CountDown(waitTimeForNextNodeSectionWhenFinish);
-                yield return new WaitForSeconds(waitTimeForNextNodeSectionWhenFinish);
-                LootTableManager.instance.DestroyAllPowerUps();
+                yield return new WaitForSeconds(waitTimeForNextNodeSectionWhenFinish); 
             }
             actualNode = actualNode.next;
             EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
-            if(actualNode.next != null) {
-                EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_IN);
-            }
         }
 
         //if (TutorialBehaviour.instance != null) {
@@ -177,17 +173,17 @@ public class SectionManager : MonoBehaviour {
     }
 
 
-    // IEnumerator SearchPowerUpRoutine(float timeSplicingQuote) {
-    //    var wait = new WaitForEndOfFrame();
-    //    var start = Time.realtimeSinceStartup;
-    //    while (true) {
+     IEnumerator SearchPowerUpRoutine(float timeSplicingQuote) {
+        var wait = new WaitForEndOfFrame();
+        var start = Time.realtimeSinceStartup;
+        while (true) {
             
-    //        if (Time.realtimeSinceStartup - start > timeSplicingQuote) {
-    //            yield return wait;
-    //            start = Time.realtimeSinceStartup;
-    //        }
-    //    }
-    //}
+            if (Time.realtimeSinceStartup - start > timeSplicingQuote) {
+                yield return wait;
+                start = Time.realtimeSinceStartup;
+            }
+        }
+    }
 
     void OnDestroy() {
         EventManager.instance.DeleteEvent(Constants.ENEMY_DEAD);

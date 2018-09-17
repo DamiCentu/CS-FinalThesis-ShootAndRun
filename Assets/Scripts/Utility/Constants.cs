@@ -65,8 +65,5 @@ public class Constants : MonoBehaviour
     public const string UI_TUTORIAL_DEACTIVATED = "ui_tutorial_deactivated";
     public const string UI_TUTORIAL_CHANGE = "ui_tutorial_change";
 
-    public const string SOUND_FADE_IN = "sound_fade_in";
-    public const string SOUND_FADE_OUT = "sound_fade_out";
-
 
 }
