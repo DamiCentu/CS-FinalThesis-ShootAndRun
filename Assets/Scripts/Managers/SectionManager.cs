@@ -128,11 +128,6 @@ public class SectionManager : MonoBehaviour {
                 }
             }
             else {
-                if (TutorialBehaviour.instance.IsTutorialNode) { 
-                    //EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_ACTIVATED);
-                    EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_MOVE);
-                }
-
                 if (!actualNode.wavesStartAtTrigger) {
                     actualNode.StartNodeRoutine();
                 }
@@ -166,9 +161,9 @@ public class SectionManager : MonoBehaviour {
             EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
         }
 
-        //if (TutorialBehaviour.instance != null) {
-        //    TutorialBehaviour.instance.EndTutorial();
-        //}
+        if (TutorialBehaviour.instance != null) {
+            TutorialBehaviour.instance.EndTutorial();
+        }
         // throw new System.Exception("GAMEOVER");
     }
 

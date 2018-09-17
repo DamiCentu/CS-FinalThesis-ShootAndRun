@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4457987999890872}
-  - component: {fileID: 114278606474388722}
   - component: {fileID: 65961177774405394}
   - component: {fileID: 114459504284040048}
   - component: {fileID: 114871470901375864}
@@ -383,19 +382,6 @@ MonoBehaviour:
   tiltingTime: 0.05
   integrationParticles: {fileID: 198457176397476188}
   imageOffset: {x: 0, y: 0, z: 0}
---- !u!114 &114278606474388722
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1134545568090782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05934bc225cc9b447b24d6739105469c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whiteTimeOnHit: 0.1
-  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114431552790380196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80c47a306fb2b43b2e336ec326e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  berserkParticleS: {fileID: 0}
+  besrserkParticleS: {fileID: 198870379489247266}
 --- !u!114 &114748547994651438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,6 +503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a7348af9d793046b1f060b2f0dc4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteTimeOnHit: 0.1
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
   distanceToCharge: 15
   timeToStartCharging: 0.5
   timeToStartMovingAgain: 1.2

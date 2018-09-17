@@ -26,7 +26,7 @@ public class LifeUpdateManager : MonoBehaviour {
 
     IEnumerator UpdateRoutine() {
         yield return new WaitForSeconds(0.5f);
-        EventManager.instance.ExecuteEvent(Constants.UI_UPDATE_PLAYER_LIFE, new object[] { _currentLifes , _currentCredits });
+        EventManager.instance.ExecuteEvent(Constants.UPDATE_PLAYER_LIFE, new object[] { _currentLifes , _currentCredits });
     }
 
     void OnPlayerDead(object[] parameterContainer) {
@@ -39,11 +39,11 @@ public class LifeUpdateManager : MonoBehaviour {
             }
             else {
                 _currentLifes = maxLifes;
-                EventManager.instance.ExecuteEvent(Constants.UI_UPDATE_PLAYER_LIFE, new object[] { _currentLifes, _currentCredits });
+                EventManager.instance.ExecuteEvent(Constants.UPDATE_PLAYER_LIFE, new object[] { _currentLifes, _currentCredits });
             }
         }
         else { 
-            EventManager.instance.ExecuteEvent(Constants.UI_UPDATE_PLAYER_LIFE, new object[] { _currentLifes , _currentCredits });
+            EventManager.instance.ExecuteEvent(Constants.UPDATE_PLAYER_LIFE, new object[] { _currentLifes , _currentCredits });
         }
     } 
 }

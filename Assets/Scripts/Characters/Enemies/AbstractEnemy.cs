@@ -4,9 +4,19 @@ using UnityEngine;
 
 public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
     protected SectionManager.WaveNumber _actualWave;
-    protected SectionNode _actualSectionNode; 
+    protected SectionNode _actualSectionNode;
+    public float whiteTimeOnHit = .2f;
+    //public Material mainMat;
+    
+    public Material whiteMat;
 
-    OnHitWhiteFeedback _onHitWhiteFeedback;
+    Material mainMat;
+    WaitForSeconds _waitWhite;
+    SkinnedMeshRenderer[] _skinnedRnds;
+    MeshRenderer[] _meshRnds;
+
+    bool _hitRoutineRunning = false; 
+    IEnumerator _onHitRoutine;
 
     protected EnemiesIntegrationBehaviour _eIntegration;
 
@@ -44,16 +54,105 @@ public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
     }
 
     //settea el ponerse blanco cuando le pegan
-    public AbstractEnemy SetTimeAndRenderer() { 
-        if(_onHitWhiteFeedback == null) {
-            _onHitWhiteFeedback = GetComponent<OnHitWhiteFeedback>();
+    public AbstractEnemy SetTimeAndRenderer() {
+        _waitWhite = new WaitForSeconds(whiteTimeOnHit);
+
+        if(_skinnedRnds == null)
+            _skinnedRnds = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        if (_meshRnds == null)
+            _meshRnds = GetComponentsInChildren<MeshRenderer>();
+
+        //if (_skinnedRnds != null) { 
+        if (_skinnedRnds.Length > 0) { 
+            if(mainMat == null) { 
+                mainMat = _skinnedRnds[0].material;
+            }
+            foreach (var mt in _skinnedRnds) { 
+                mt.material = mainMat;
+            }
         }
 
-        _onHitWhiteFeedback.SetFeedback();
+        //if (_meshRnds != null) {
+        if (_meshRnds.Length > 0) {
+            if (mainMat == null)
+                mainMat = _meshRnds[0].material;
+            foreach (var mt in _meshRnds) 
+                mt.material = mainMat;
+        }
+
         return this;
-    } 
+    }
 
     protected void AbstractOnHitWhiteAction() {
-        _onHitWhiteFeedback.OnHit();
+        if(_hitRoutineRunning) {
+            StopCoroutine(_onHitRoutine);
+            ResetMat();
+        }
+
+        _onHitRoutine = OnHitRoutine();
+
+        StartCoroutine(_onHitRoutine); 
+    }
+
+    void ResetMat() {
+        if (_skinnedRnds != null) { 
+            foreach (var mt in _skinnedRnds) {
+                if (mt == null)
+                    continue;
+                mt.material = mainMat;
+            }
+        }
+
+        if (_meshRnds != null) { 
+            foreach (var mt in _meshRnds) {
+                if (mt == null)
+                    continue;
+                mt.material = mainMat;
+            }
+        }
+    }
+
+    void OnDisable() {
+        ResetMat();
+    }
+
+    IEnumerator OnHitRoutine() {
+        _hitRoutineRunning = true;
+
+        if (_skinnedRnds != null) { 
+            foreach (var mt in _skinnedRnds) {
+                if (mt == null)
+                    continue;
+                mt.material = whiteMat;
+            }
+        }
+
+        if (_meshRnds != null) { 
+            foreach (var mt in _meshRnds) {
+                if (mt == null)
+                    continue;
+                mt.material = whiteMat;
+            }
+        }
+
+        yield return _waitWhite;
+
+        if (_skinnedRnds != null) { 
+            foreach (var mt in _skinnedRnds) {
+                if (mt == null)
+                    continue;
+                mt.material = mainMat;
+            }
+        }
+
+        if (_meshRnds != null) { 
+            foreach (var mt in _meshRnds) {
+                if (mt == null)
+                    continue;
+                mt.material = mainMat;
+            }
+        }
+        _hitRoutineRunning = false;
     }
 }

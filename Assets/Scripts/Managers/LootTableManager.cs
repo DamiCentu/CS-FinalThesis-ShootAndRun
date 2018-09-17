@@ -12,7 +12,7 @@ public class LootTableManager : MonoBehaviour {
     public List<int> cantidades;
     public List<GameObject> powerUps;
     private float probability=0.2f;
-    public float defaultProbability = 0.09f;
+    public float defaultProbability = 0.1f;
     private int totalPowerUps;
     private int totalPowerAvailable;
     List<GameObject> _allGamePowerUps;
@@ -116,9 +116,6 @@ public class LootTableManager : MonoBehaviour {
         if (_allGamePowerUps.Contains(go)) { 
             _allGamePowerUps.Remove(go);
             Destroy(go);
-            if (TutorialBehaviour.instance.IsTutorialNode) {
-                EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT_SPECIAL);
-            }
         }
         else throw new Exception("hay 1 power up que no esta en la lista, si hay un error es porque el power up se esta eliminando en su trigger ENTERRR, borrar esa linea de codigo");
     }

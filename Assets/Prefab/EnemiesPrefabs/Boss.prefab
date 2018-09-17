@@ -1380,7 +1380,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4433862667923688}
-  - component: {fileID: 114175852473276476}
   - component: {fileID: 65401883261183492}
   - component: {fileID: 95926933492007598}
   - component: {fileID: 114624341752288140}
@@ -3668,19 +3667,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114175852473276476
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1714327909508672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05934bc225cc9b447b24d6739105469c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whiteTimeOnHit: 0.1
-  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114291904162217258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3875,6 +3861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435065c4b81b60b43974999291514d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteTimeOnHit: 0.05
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
   introTime: 0.5
   bossExpansiveWave: {fileID: 114640095791542094}
   bossExpansiveWave2: {fileID: 114291904162217258}
