@@ -18,29 +18,13 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _DummyTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Flowmap:
         m_Texture: {fileID: 2800000, guid: 440dc07194334e04e9a6643e288f67cd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseMaskCutout:
-        m_Texture: {fileID: 2800000, guid: 7f1cd443fabe3b34ab368f436b25ebf4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
         m_Texture: {fileID: 2800000, guid: 19486d1dd55ab3146b211e727b3b3ef7, type: 3}
         m_Scale: {x: 5, y: 5}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: 19486d1dd55ab3146b211e727b3b3ef7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _download2:
-        m_Texture: {fileID: 2800000, guid: c6e437bd751b46140b728b0e17496c3b, type: 3}
-        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
@@ -48,19 +32,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ChromaticAberration: 0.1
-    - _EdgeLength: 8.3
-    - _Float0: 0.79
+    - _Float0: 1.13
     - _Float1: 1.45
-    - _Float2: 0.78
-    - _Float3: 6
-    - _Smoothness: 0.79
-    - _Waves: 6.8
+    - _Float2: 0.43
     - __dirty: 0
-    - _depth: 2.25
     - _fuerzamarea: 0.95
-    - _powerfresnel: 0.43
     m_Colors:
-    - _Color0: {r: 0.26649007, g: 0.32342434, b: 0.3897059, a: 0}
-    - _Color1: {r: 0.012867644, g: 0.05076066, b: 0.125, a: 0}
     - _Vector0: {r: 0.01, g: 0, b: 0, a: 0}
     - _Vector1: {r: 0, g: 0.21, b: 0, a: 0}
