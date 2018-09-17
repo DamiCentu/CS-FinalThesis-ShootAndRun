@@ -183,8 +183,8 @@ public class Player : MonoBehaviour, IHittable
             container[0] = timeUlting;
             container[1] = maxTimeUlting;
             container[2] = id;
-            print(timeUlting);
-            print(maxTimeUlting);
+            //print(timeUlting);
+            //print(maxTimeUlting);
             EventManager.instance.ExecuteEvent(Constants.LEFT_TIME_ULTING, container);
         }
     }
@@ -286,6 +286,12 @@ public class Player : MonoBehaviour, IHittable
     {
 
         Vector2 vel = MyInputManager.instance.Move(control);
+
+        if(TutorialBehaviour.instance.IsTutorialNode) {
+            if(vel != Vector2.zero) { 
+                EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_DASH);
+            }
+        }
         float horizontalVel = vel.x;
         float verticalVel = vel.y;
 
@@ -477,7 +483,7 @@ public class Player : MonoBehaviour, IHittable
         object[] container = new object[1];
         container[0] = false;
         EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
-
+        EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_OUT);
     }
 
     private void FinishSpawn()

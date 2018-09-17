@@ -89,8 +89,16 @@ public  class Utility {
     }
 
     public static void DestroyAllInAndClearList<T>(List<T> list) where T : MonoBehaviour {
-        foreach (var n in list)
+        foreach (var n in list) { 
             UnityEngine.Object.Destroy(n.gameObject);
+        }
+        list.Clear();
+    }
+
+    public static void DestroyAllInAndClearList(List<GameObject> list) {
+        foreach (var n in list) { 
+            UnityEngine.Object.Destroy(n);
+        }
         list.Clear();
     }
 

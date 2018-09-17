@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: WaterShader
+  m_Shader: {fileID: 4800000, guid: 1c848ab98dc7e4e4a9c58404f0c095fe, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DummyTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flowmap:
+        m_Texture: {fileID: 2800000, guid: 440dc07194334e04e9a6643e288f67cd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseMaskCutout:
+        m_Texture: {fileID: 2800000, guid: 7f1cd443fabe3b34ab368f436b25ebf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 19486d1dd55ab3146b211e727b3b3ef7, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 19486d1dd55ab3146b211e727b3b3ef7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _download2:
+        m_Texture: {fileID: 2800000, guid: c6e437bd751b46140b728b0e17496c3b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ChromaticAberration: 0.1
+    - _EdgeLength: 8.3
+    - _Float0: 0.79
+    - _Float1: 1.45
+    - _Float2: 0.78
+    - _Float3: 6
+    - _Smoothness: 0.79
+    - _Waves: 6.8
+    - __dirty: 0
+    - _depth: 2.25
+    - _fuerzamarea: 0.95
+    - _powerfresnel: 0.43
+    m_Colors:
+    - _Color0: {r: 0.26649007, g: 0.32342434, b: 0.3897059, a: 0}
+    - _Color1: {r: 0.012867644, g: 0.05076066, b: 0.125, a: 0}
+    - _Vector0: {r: 0.01, g: 0, b: 0, a: 0}
+    - _Vector1: {r: 0, g: 0.21, b: 0, a: 0}
