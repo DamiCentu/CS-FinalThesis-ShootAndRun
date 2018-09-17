@@ -38,6 +38,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3ead72c53e6403a41adfb57d6fc1e235, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _maskBossShield:
+        m_Texture: {fileID: 2800000, guid: e5786154f0e886145b7301a2d5f4943d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _maskBosseye:
         m_Texture: {fileID: 2800000, guid: 803ec6ff54140904199ac541ea61cb40, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -51,6 +55,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Float2: 1
     - _SegundaFase: 0
+    - _Shield: 1
     - __dirty: 0
     m_Colors: []
