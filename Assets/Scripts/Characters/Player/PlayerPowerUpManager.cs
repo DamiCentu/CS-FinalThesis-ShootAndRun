@@ -170,7 +170,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         object[] conteiner = new object[4];
         conteiner[0]= PowerUpRangeNumber ;
         conteiner[1]= PowerUpDoubleShootNumber ;
-        conteiner[2] =PowerUpExtraDashNUmber;
+        conteiner[2] = PowerUpExtraDashNUmber;
         conteiner[3] = PowerUpShieldNumber;
         EventManager.instance.ExecuteEvent(Constants.QUANTITY_POWERUPS, conteiner);
         
