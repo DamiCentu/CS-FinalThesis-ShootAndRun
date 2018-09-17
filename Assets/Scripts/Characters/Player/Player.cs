@@ -478,7 +478,7 @@ public class Player : MonoBehaviour, IHittable
         object[] container = new object[1];
         container[0] = false;
         EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
-
+        EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_OUT);
     }
 
     private void FinishSpawn()

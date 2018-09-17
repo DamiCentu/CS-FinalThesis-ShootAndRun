@@ -47,6 +47,7 @@ public class CameraITween : MonoBehaviour {
         if (!AllBlack) {
             //print("lala");
             fadeIn = true;
+            
             fadeOut = false;
             fadeTimer = 0;
         }
@@ -62,7 +63,7 @@ public class CameraITween : MonoBehaviour {
         fadeOut = true;
         AllBlack = false;
         fadeTimer = 0;
-        timer = new Timer(timeToFade, StopFade);
+        timer = new Timer(timeToFade, StopFade); 
     }
 
     void StopFade() {
