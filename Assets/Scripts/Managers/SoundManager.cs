@@ -12,11 +12,16 @@ public class SoundManager : MonoBehaviour {
     public float timeToTransition=2;
     internal static SoundManager instance;
     public AudioSource spawnSound;
-    public AudioSource playerShootSound;
+    //public AudioSource[] playerShootAudioSources;
+    public AudioSource playerShootAudioSource;
     public AudioSource HigherRange;
     public AudioSource shield;
     public AudioSource ExtraDash;
     public AudioSource DoubleShoot;
+    public AudioSource enemyExplotion;
+    public AudioSource portalFadeIn;
+    public AudioSource portalFadeOut;
+    public AudioSource portalFadeLoop;
 
     void Awake()
     {
@@ -25,7 +30,58 @@ public class SoundManager : MonoBehaviour {
     }
     void Start () {
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
+        EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, OnEnemyDead);
+        EventManager.instance.SubscribeEvent(Constants.SOUND_FADE_OUT, OnSoundFadeOut);//fade out es cuando reaparece
+        EventManager.instance.SubscribeEvent(Constants.SOUND_FADE_IN, OnSoundFadeIn);//fade in es cuando esta ingresando al portal
+    }
 
+    void OnSoundFadeOut(object[] parameterContainer) {
+        portalFadeLoop.Stop();
+        portalFadeOut.Play();
+        //StartCoroutine(VolumeEffectRoutine(portalFadeOut, false));
+    }
+
+    void OnSoundFadeIn(object[] parameterContainer) {
+        portalFadeIn.Play();
+        //StartCoroutine(VolumeEffectRoutine(portalFadeIn, true));
+        StartCoroutine(PlayLoopSoundRoutine());
+    }
+    
+    IEnumerator VolumeEffectRoutine(AudioSource aS, bool ascending) {
+        var tempVol = aS.volume;
+        var time = 0f;
+        var halfClipTime = aS.clip.length /aS.pitch / 2;
+        if (ascending) { 
+            while (time < tempVol) {
+                if (aS.time < halfClipTime) { 
+                    aS.volume = Mathf.Lerp(0, tempVol, time / halfClipTime);
+                    time += Time.deltaTime * 1f;
+                }
+                yield return null;
+            }
+        }
+        else {
+            time = tempVol;
+            while (time > 0) {
+                if(aS.time > halfClipTime) { 
+                    aS.volume = Mathf.Lerp( tempVol,0, time / halfClipTime);
+                    time -= Time.deltaTime * 1f ;
+                }
+                yield return null;
+            }
+        }
+        aS.volume = tempVol;
+    }
+
+    IEnumerator PlayLoopSoundRoutine() {
+        while (portalFadeIn.isPlaying) { 
+            yield return null;
+        }
+        portalFadeLoop.Play(); 
+    } 
+
+    void OnEnemyDead(object[] parameterContainer) {
+        enemyExplotion.Play();
     }
 
     private void Default(object[] parameterContainer)
@@ -68,17 +124,14 @@ public class SoundManager : MonoBehaviour {
     {
         spawnSound.Play();
     }
-    internal void PlayPlayerShoot()
-    {
-        if (!playerShootSound.isPlaying) {
 
-            playerShootSound.Play();
-        }
-
+    internal void PlayPlayerShoot() { 
+        playerShootAudioSource.Play();
     }
+
     internal void StopPlayerShoot()
     {
-        playerShootSound.Play();
+        playerShootAudioSource.Stop();
     }
 
     internal void PlayHigherRange()
