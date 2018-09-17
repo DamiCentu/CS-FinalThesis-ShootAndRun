@@ -599,7 +599,7 @@ MonoBehaviour:
   rhAngle: 30
   raycastLayers:
     serializedVersion: 2
-    m_Bits: 263168
+    m_Bits: 787456
   avoidanceMultiplier: 50
   neighborhoodRadius: 1
   separationRadius: 1.8
@@ -713,7 +713,7 @@ MonoBehaviour:
   timeToWayToTryFindPowerUp: 1
   blockEnemyViewToTarget:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 525312
 --- !u!114 &114910133131956394
 MonoBehaviour:
   m_ObjectHideFlags: 1

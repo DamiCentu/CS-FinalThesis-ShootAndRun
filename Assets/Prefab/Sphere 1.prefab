@@ -212,7 +212,7 @@ MonoBehaviour:
   timer: 0
   hitLayers:
     serializedVersion: 2
-    m_Bits: 266240
+    m_Bits: 790528
   maxRange: 1.5
 --- !u!122 &122495699121022492
 Halo:

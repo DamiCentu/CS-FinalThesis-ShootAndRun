@@ -851,7 +851,7 @@ MonoBehaviour:
   laserMaxDistance: 100
   maskToCollide:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 525568
   sparksParticleS: {fileID: 198911708538971494}
   hitsCanTakeBurst: 10
   distanceToShoot: 30

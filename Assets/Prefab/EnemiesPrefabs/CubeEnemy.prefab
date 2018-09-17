@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockEnemyViewToPlayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 525312
   hitsCanTake: 5
   stoppedTime: 0.5
   radiusToAttack: 15
@@ -365,7 +365,7 @@ MonoBehaviour:
   rhAngle: 30
   raycastLayers:
     serializedVersion: 2
-    m_Bits: 263168
+    m_Bits: 787456
   avoidanceMultiplier: 50
   neighborhoodRadius: 1
   separationRadius: 1.8

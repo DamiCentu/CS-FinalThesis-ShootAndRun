@@ -448,7 +448,7 @@ MonoBehaviour:
   rhAngle: 20
   raycastLayers:
     serializedVersion: 2
-    m_Bits: 263168
+    m_Bits: 787456
   avoidanceMultiplier: 10
   neighborhoodRadius: 1
   separationRadius: 1.8
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_Bits: 29184
   blockEnemyViewToPlayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 525312
 --- !u!137 &137680974106369676
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
