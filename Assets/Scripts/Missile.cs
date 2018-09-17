@@ -80,17 +80,17 @@ public class Missile: MonoBehaviour
         //print("chau misil");
   //      EventManager.instance.ExecuteEvent(Constants.MISILE_DESTROY);
         //print(this.gameObject);
-        Destroy(this.gameObject,3);
         DestroyParticle1.transform.position = this.transform.position;
         DestroyParticle1.gameObject.SetActive(true);
         DestroyParticle1.Play();
         DestroyParticle2.transform.position = this.transform.position;
         DestroyParticle2.gameObject.SetActive(true);
         DestroyParticle2.Play();
-        Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
-        
+        GameObject g=Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
+        Destroy(g, 2);
         Destroy(mark);
         gameObject.SetActive(false);
+        Destroy(this.gameObject);
         
     }
 }

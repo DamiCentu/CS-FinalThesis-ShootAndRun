@@ -10,20 +10,34 @@ public class Settings : MonoBehaviour {
 
     public void SetEasy() {
         Configuration.instance.SetEasy();
-        StartGame();
+        Menu.instance.OpenUlt();
     }
 
     public void SetHard() {
         Configuration.instance.SetHard();
-        StartGame();
+        Menu.instance.OpenUlt();
     }
 
     public void SetMedium() {
         Configuration.instance.SetMedium();
+        Menu.instance.OpenUlt();
+    }
+    public void SetBerseker()
+    {
+        Configuration.instance.SetUltBerserker();
         StartGame();
     }
 
-    void StartGame() {
+    public void SetScatter()
+    {
+        Configuration.instance.SetUltScatter();
+        StartGame();
+    }
+    void StartGame()
+    {
         SceneManager.LoadScene("Scene1");
     }
+
+
+
 }

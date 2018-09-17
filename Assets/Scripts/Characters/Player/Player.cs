@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IHittable
     public int dashCount = 1;
     public int MaxDashCount = 1;
     
-    public enum Ults { SlowTime, Berserker}
+    public enum Ults { SlowTime, Berserker,Scatter}
     public Ults ult;
     public bool _gotShield;
     public GameObject shield;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour, IHittable
     private float maxTimeUlting;
     private bool _isUlting;
     public GameObject wings;
-
+    public ScatterUlt scatter;
 
     void Start () {
         _rb=this.GetComponent<Rigidbody>();
@@ -82,6 +82,7 @@ public class Player : MonoBehaviour, IHittable
         container[0] = false;
         EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
         _meshRends =  GetComponentsInChildren<Renderer>();
+        ult = Configuration.instance.playerUlt;
     }
    
     internal void ChangeUlt(Ults newUlt)
@@ -153,6 +154,10 @@ public class Player : MonoBehaviour, IHittable
                     maxTimeUlting = bersekerTime;
                     timeUlting = 0;
                     _isUlting = true;
+                    break;
+                case Ults.Scatter:
+                    print("modo Scatter");
+                    scatter.StarUlt();
                     break;
             }
 

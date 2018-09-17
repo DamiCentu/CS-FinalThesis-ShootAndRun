@@ -36,9 +36,9 @@ public class NormalBullet : IBullet {
         var dirFromPlayerToBullet = transform.position - pPos;
         if(Physics.Raycast(pPos, dirFromPlayerToBullet, out rh, dirFromPlayerToBullet.magnitude + 5f, hitLayers))
             EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_HERO_BULLET_HIT_NAME, rh.point });
-        //else
-        //    if(rh.collider != null && !rh.collider.isTrigger)
-        //        EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_HERO_BULLET_HIT_NAME, transform.position });
+        else
+           if(rh.collider != null && !rh.collider.isTrigger)
+                EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_HERO_BULLET_HIT_NAME, transform.position });
 
     }
     public void FixedUpdate()

@@ -9,11 +9,13 @@ public class BombBullet : IBullet {
 	Vector3 posOfCol = new Vector3();
 	bool _canDrawGizmo;
     private float timer;
-
+    public ParticleSystem DestroyParticle1;
+    public ParticleSystem DestroyParticle2;
     public void Start()
 	{
-		damage = 3;
-	}
+        DestroyParticle1 = GameObject.Find("distorsionBoom").GetComponent<ParticleSystem>();
+        DestroyParticle2 = GameObject.Find("ExplotionBoom").GetComponent<ParticleSystem>();
+    }
     public void FixedUpdate()
     {
         this.transform.position += this.transform.forward * speed;
@@ -42,6 +44,13 @@ public class BombBullet : IBullet {
             var col = GetComponent<Collider>();
             col.enabled = false;
             a.enabled = false;
+
+            DestroyParticle1.transform.position = this.transform.position;
+            DestroyParticle1.gameObject.SetActive(true);
+            DestroyParticle1.Play();
+            DestroyParticle2.transform.position = this.transform.position;
+            DestroyParticle2.gameObject.SetActive(true);
+            DestroyParticle2.Play();
             Destroy(this.gameObject);
         }
 	}

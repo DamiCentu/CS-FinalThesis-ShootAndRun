@@ -7,16 +7,25 @@ public class Menu : MonoBehaviour {
 
     public GameObject menuObjects;
     public GameObject settingsObjects;
-
-	void Start () {
+    public GameObject ultObject;
+    public static Menu instance;
+    void Start () {
         settingsObjects.SetActive(false);
+        ultObject.SetActive(false);
+        instance = this;
     }
 
     private void OpenSttings() {
         menuObjects.SetActive(false);
         settingsObjects.SetActive(true);
+        ultObject.SetActive(false);
     }
-
+    public void OpenUlt()
+    {
+        menuObjects.SetActive(false);
+        settingsObjects.SetActive(false);
+        ultObject.SetActive(true);
+    }
     public void CloseGame() {
         Application.Quit(); 
     }
@@ -29,9 +38,9 @@ public class Menu : MonoBehaviour {
     public void SetTwoPlayer() {
         Configuration.instance.SetTwoPlayer();
         OpenSttings();
-    } 
-
-    public void PlayTutorial() {
-        SceneManager.LoadScene("Tutorial");
     }
+
+    /* public void PlayTutorial() {
+         SceneManager.LoadScene("Tutorial");
+     }*/
 }

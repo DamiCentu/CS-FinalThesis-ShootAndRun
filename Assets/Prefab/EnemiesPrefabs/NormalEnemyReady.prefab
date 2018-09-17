@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80c47a306fb2b43b2e336ec326e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  besrserkParticleS: {fileID: 198243216667733366}
+  berserkParticleS: {fileID: 0}
 --- !u!114 &114572916823196368
 MonoBehaviour:
   m_ObjectHideFlags: 1

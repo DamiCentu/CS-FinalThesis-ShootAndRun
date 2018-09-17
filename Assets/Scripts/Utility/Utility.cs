@@ -121,14 +121,9 @@ public  class Utility {
     public static Vector3 RandomVector3InRadiusCountingBoundaries(Vector3 actualPos, float maxDistanceRadius, LayerMask maskToDetect) {
 
         var pos = actualPos;
-        Vector3 randomDirection = new Vector3(UnityEngine.Random.value, 0, UnityEngine.Random.value);
-        int directionMultiplier = UnityEngine.Random.Range(0, 1);
-
-        if (directionMultiplier == 0)
-            directionMultiplier = -1;
-        
-        randomDirection.Normalize();
-        randomDirection *= directionMultiplier;
+        float randomX = UnityEngine.Random.Range(-1f, 1f);
+        float randomZ = UnityEngine.Random.Range(-1f, 1f);
+        Vector3 randomDirection = new Vector3(randomX, 0, randomZ);
         float maxRange = 0f;
 
         var crossRamdomDirection = new Vector3(randomDirection.z,0,randomDirection.x);

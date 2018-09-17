@@ -16,6 +16,8 @@ public class Configuration : MonoBehaviour {
 
     public static Configuration instance = null;
 
+    public Player.Ults playerUlt;
+
     void Awake() {
         if (instance == null)
             instance = this; 
@@ -45,6 +47,17 @@ public class Configuration : MonoBehaviour {
     public bool Multiplayer() {
         return playerQuantity == PlayersQuantity.Two;
     }
+    public void SetUltBerserker()
+    {
+        playerUlt = Player.Ults.Berserker;
+        
+    }
+
+    public void SetUltScatter()
+    {
+        playerUlt = Player.Ults.Scatter;
+    }
+
 
     public int GetCreditsAmount() {
         if (dificulty == Dificulty.Easy) {

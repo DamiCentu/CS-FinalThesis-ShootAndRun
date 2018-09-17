@@ -3875,7 +3875,7 @@ MonoBehaviour:
   bossMisileAndShoot: {fileID: 114803065076108450}
   bossCharge: {fileID: 114031650971982536}
   bossChargeUpgrade: {fileID: 114955689905668874}
-  life: 10
+  life: 400
   timerActionsStage1:
   - 2
   - 10

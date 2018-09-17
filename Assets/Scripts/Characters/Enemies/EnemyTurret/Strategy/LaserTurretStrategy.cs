@@ -20,6 +20,8 @@ public class LaserTurretStrategy : ITurret {
                 rh.collider.GetComponent<IHittable>().OnHit(0);
             } 
         }
+
+
     } 
 
     public void SetHitsCanTake() { }

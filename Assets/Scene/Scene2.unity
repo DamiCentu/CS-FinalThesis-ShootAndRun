@@ -7617,6 +7617,10 @@ Prefab:
       propertyPath: _timer
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 1949953396845020, guid: f826a8714da36274885c48cb94000f57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f826a8714da36274885c48cb94000f57, type: 2}
   m_IsPrefabParent: 0
@@ -12361,7 +12365,7 @@ Prefab:
     - target: {fileID: 114963640923169824, guid: 2e16b0dc04e409749a3a8c5acb83495b,
         type: 2}
       propertyPath: typeOfEnemy
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4260448162448788, guid: 2e16b0dc04e409749a3a8c5acb83495b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -20263,6 +20267,10 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1987733940654052, guid: 36dba8e3531fa78438aa49dbf1ad8bee, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000784518794562, guid: 36dba8e3531fa78438aa49dbf1ad8bee, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
