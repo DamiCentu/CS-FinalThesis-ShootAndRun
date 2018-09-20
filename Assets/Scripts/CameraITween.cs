@@ -51,7 +51,7 @@ public class CameraITween : MonoBehaviour {
             fadeOut = false;
             fadeTimer = 0;
         }
-        timer = new Timer(timeToFade + 0.5f, FadeOutCamera);
+        timer = new Timer(timeToFade + 1f, FadeOutCamera);
     }
      
     void tweenOnUpdateCallBack(float newValue) {
@@ -63,7 +63,7 @@ public class CameraITween : MonoBehaviour {
         fadeOut = true;
         AllBlack = false;
         fadeTimer = 0;
-        timer = new Timer(timeToFade, StopFade); 
+        timer = new Timer(timeToFade-0.2f, StopFade); 
     }
 
     void StopFade() {

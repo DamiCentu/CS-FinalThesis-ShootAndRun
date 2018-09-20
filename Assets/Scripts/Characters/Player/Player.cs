@@ -466,7 +466,7 @@ public class Player : MonoBehaviour, IHittable
 
     private void Portal(object[] parameterContainer)
     {
-        Timer portalTimer = new Timer(2, FinishSpawn);
+        Timer portalTimer = new Timer(2.1f, FinishSpawn);
         timers.Add(portalTimer);
         spawned = false;
         spawnParticle1.transform.position = this.transform.position;
