@@ -41,7 +41,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         player.primaryGun = weapon;
     }
 
-    private void UpgradeShoot(object[] parameterContainer)
+    public void UpgradeShoot(object[] parameterContainer)
     {
         SoundManager.instance.PlayDoubleShoot();
         InfoManager.instance.Info("Double Shoot");
@@ -56,7 +56,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         ChangePrimaryWeapon(PrimaryWeaponManager.instance.GetPreviousPowerUp(player.primaryGun));
     }
 
-    private void UpdateRange(object[] parameterContainer)
+    public void UpdateRange(object[] parameterContainer)
     {
         PowerUpRangeNumber += (int)parameterContainer[0];
     }
@@ -69,7 +69,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         EventManager.instance.ExecuteEvent("PrimaryWeaponMoreRange", conteiner);
     }
 
-    private void AddRange()
+    public void AddRange()
     {
         SoundManager.instance.PlayHigherRange();
         InfoManager.instance.Info("Higher Range");
@@ -105,7 +105,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         //print("se me fue, estoy inmunerable");
     }
 
-    internal void ExtraDash()
+    public void ExtraDash()
     {
         SoundManager.instance.PlayExtraDash();
         InfoManager.instance.Info("Extra Dash");

@@ -12,6 +12,7 @@ public class BossCharge : MonoBehaviour,BossActions {
     private Boss boss;
     public bool upgrade;
     public float ExtraSpeedOfCharge=5;
+    public int count=3;
 
     void BossActions.Begin(Boss boss)
     {
@@ -32,7 +33,14 @@ public class BossCharge : MonoBehaviour,BossActions {
 
     private void StopCharging(object[] parameterContainer)
     {
-        _moving = false;
+        count--;
+        if (count > 0)
+        {
+            StartCoroutine(ChargeMethod());
+        }
+        else {
+            _moving = false;
+        }
     }
 
     IEnumerator ChargeMethod()
