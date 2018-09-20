@@ -3747,7 +3747,7 @@ MonoBehaviour:
   reduceTimeToShoot: 0.015
   extraRotationSpeed: 0
   shouldUpgrade: 1
-  movementSpeed: 2
+  movementSpeed: 5
 --- !u!114 &114405131690294372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3895,17 +3895,17 @@ MonoBehaviour:
   - 2.5
   - 3
   timerActionsStage2:
-  - 4
-  - 5.5
-  - 4
-  - 5.5
+  - 3
+  - 4.5
+  - 3
+  - 4.5
   - 10
   - 10
   - 3.5
   timerActionsStage3: []
   maxLifeToChangeStage:
-  - 250
-  - -10
+  - 399
+  - -100
   player: {fileID: 0}
   helthBar: {fileID: 0}
   col: {fileID: 0}
