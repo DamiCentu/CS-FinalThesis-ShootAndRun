@@ -3863,7 +3863,7 @@ MonoBehaviour:
   reduceTimeToShoot: 0.1
   extraRotationSpeed: 0
   shouldUpgrade: 0
-  movementSpeed: 0.5
+  movementSpeed: 3
 --- !u!114 &114624341752288140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3889,11 +3889,11 @@ MonoBehaviour:
   bossChargeUpgrade: {fileID: 114955689905668874}
   life: 400
   timerActionsStage1:
-  - 2
-  - 10
-  - 10
-  - 3.5
-  - 4
+  - 1.5
+  - 7
+  - 7
+  - 2.5
+  - 3
   timerActionsStage2:
   - 4
   - 5.5
@@ -3960,9 +3960,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4535d37ec127311418c8d73b495b9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToStartFall: 3.5
+  timeToStartFall: 2.5
   boss: {fileID: 114624341752288140}
-  TimeToMark: 2.5
+  TimeToMark: 2
   radius: 4
   hittableLayer:
     serializedVersion: 2

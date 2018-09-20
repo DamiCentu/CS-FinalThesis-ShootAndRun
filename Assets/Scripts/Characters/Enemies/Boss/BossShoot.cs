@@ -59,13 +59,10 @@ public class BossShoot: MonoBehaviour ,BossActions {
             Shoot(bossTransform.position+ offsetShoot);
             _timerShoot = 0;
         }
-        if (shouldUpgrade)
-        {
-            print("entre");
-            Vector3 target = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
-            boss.transform.LookAt(target);
-            this.transform.position += this.transform.forward * movementSpeed * Time.deltaTime;
-        }
+        Vector3 target = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
+        boss.transform.LookAt(target);
+        boss.transform.position += boss.transform.forward * movementSpeed * Time.deltaTime;
+
     }
 
     private void Shoot(Vector3 position)
