@@ -18,7 +18,7 @@ public class BossCharge : MonoBehaviour,BossActions {
     {
         EventManager.instance.SubscribeEvent(Constants.CHARGER_CRUSH,StopCharging);
         this.boss = boss;
-        StartCoroutine(ChargeMethod());
+        StartCoroutine(Wait());
         boss.SetAnimation("Shield", true);
         if (upgrade) {
             Upgrade();
@@ -36,16 +36,20 @@ public class BossCharge : MonoBehaviour,BossActions {
         count--;
         if (count > 0)
         {
+
             StartCoroutine(ChargeMethod());
         }
         else {
             _moving = false;
         }
     }
-
-    IEnumerator ChargeMethod()
+    IEnumerator Wait()
     {
         yield return new WaitForSeconds(timeToStartCharging);
+        StartCoroutine(ChargeMethod());
+    }
+    IEnumerator ChargeMethod()
+    {
         _moving = true;
         //Vector3 target = new Vector3(boss.player.transform.position.x, boss.player.transform.position.y, boss.player.transform.position.z);
         Vector3 targetPosition = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);

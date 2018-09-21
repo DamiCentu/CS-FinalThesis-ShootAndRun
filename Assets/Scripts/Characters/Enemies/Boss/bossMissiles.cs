@@ -15,6 +15,7 @@ public class bossMissiles : MonoBehaviour, BossActions{
     public float reduceTimeToBoom;
     public bool shouldUpgrade;
     Boss boss;
+    public LayerMask layer;
 
     void BossActions.Begin(Boss boss1)
     {
@@ -43,12 +44,13 @@ public class bossMissiles : MonoBehaviour, BossActions{
 
     private void DropMissile(Vector3 playerPosition)
     {
-        float xPosition = playerPosition.x + UnityEngine.Random.Range(-maxOffset, maxOffset);
-        float zPosition = playerPosition.z + UnityEngine.Random.Range(-maxOffset, maxOffset);
-        Vector3 destination = new Vector3(xPosition, playerPosition.y+0.3f, zPosition);
+   //     float xPosition = playerPosition.x + UnityEngine.Random.Range(-maxOffset, maxOffset);
+     //   float zPosition = playerPosition.z + UnityEngine.Random.Range(-maxOffset, maxOffset);
+        Vector3 destination = new Vector3(playerPosition.x, playerPosition.y+0.3f, playerPosition.z);
         //Missile mis= new Missile(destination, timeToBoom)
-        Missile mis=  Instantiate(Missile, spawnMissilesPosition.position, Quaternion.FromToRotation(spawnMissilesPosition.position,destination));
-        mis.Set(destination, timeToBoom);
+        Vector3 destinationInBoundries = Utility.RandomVector3InRadiusCountingBoundaries(destination, 3f,layer);
+        Missile mis=  Instantiate(Missile, spawnMissilesPosition.position, Quaternion.FromToRotation(spawnMissilesPosition.position, destinationInBoundries));
+        mis.Set(destinationInBoundries, timeToBoom);
     }
 
     public void Upgrade()

@@ -18,6 +18,7 @@ public class BossJump : MonoBehaviour, BossActions
     public Vector3 offsetMark;
     GameObject mark;
     private BoxCollider bossCollider;
+    public LayerMask layerToDetect;
 
     void BossActions.Begin(Boss boss)
     {
@@ -26,7 +27,8 @@ public class BossJump : MonoBehaviour, BossActions
         timerMark = new Timer(TimeToMark, Mark);
         this.boss= boss;
         boss.transform.LookAt(boss.player.transform.position);
-        positionToAim = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
+        Vector3 position = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
+        positionToAim= Utility.RandomVector3InRadiusCountingBoundaries(position, 5f, layerToDetect);
         boss.col.enabled = false;
 
     }
