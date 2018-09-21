@@ -49,11 +49,11 @@ Material:
     m_Floats:
     - _ChromaticAberration: 0.1
     - _EdgeLength: 8.3
-    - _Float0: 0.79
+    - _Float0: 0.27
     - _Float1: 1.45
     - _Float2: 0.86
     - _Float3: 6
-    - _Smoothness: 0.79
+    - _Smoothness: 0.8
     - _Waves: 6.8
     - __dirty: 0
     - _depth: 7.53
