@@ -15,7 +15,5 @@ public class EnemySpawnerAtBeginningOfNode : MonoBehaviour {
 
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, radiusOfDebugSphere);
-    }
-
-
+    } 
 }

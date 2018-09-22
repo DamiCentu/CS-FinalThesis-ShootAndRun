@@ -61,8 +61,7 @@ public class SectionNode : MonoBehaviour {
         StartCoroutine(BossRoutine());
     }
     
-    IEnumerator BossRoutine() {
-        _allSpawns[0].OnSpawn(timeBetweenWaves);
+    IEnumerator BossRoutine() { 
         yield return _waitBetweenWaves;
         bossOnScreen = Instantiate(EnemiesManager.instance.bossPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<Boss>();
         bossOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);

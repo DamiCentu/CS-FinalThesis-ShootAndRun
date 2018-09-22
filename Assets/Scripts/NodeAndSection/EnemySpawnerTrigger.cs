@@ -18,7 +18,6 @@ public class EnemySpawnerTrigger : MonoBehaviour {
 
     void Start() {
         if (typeOfTrigger == TypeOfTrigger.SpawnEnemiesPreSetted) {
-         //   if (!spawnWaves) { 
             _allTriggerSpawners = allTriggerSpawnersContainer.GetComponentsInChildren<EnemySpawner>();
         }
     }
@@ -37,18 +36,8 @@ public class EnemySpawnerTrigger : MonoBehaviour {
                 case TypeOfTrigger.SpawnEnemiesInPortal:
                     break;
 
-            }
-
+            } 
             gameObject.SetActive(false);
-
-            //if (spawnWaves) { 
-            //    nodeOfTriggering.StartNodeRoutine();
-            //}
-            //else { 
-            //    nodeOfTriggering.TriggerSpawn(_allTriggerSpawners);
-            //}
-            //gameObject.SetActive(false);
-            
         }
     }
 }
