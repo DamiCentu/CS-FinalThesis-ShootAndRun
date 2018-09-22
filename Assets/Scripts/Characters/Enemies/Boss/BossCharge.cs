@@ -12,7 +12,8 @@ public class BossCharge : MonoBehaviour,BossActions {
     private Boss boss;
     public bool upgrade;
     public float ExtraSpeedOfCharge=5;
-    public int count=3;
+    public DamagePath damagePath;
+    public LineRenderer line;
 
     void BossActions.Begin(Boss boss)
     {
@@ -33,19 +34,22 @@ public class BossCharge : MonoBehaviour,BossActions {
 
     private void StopCharging(object[] parameterContainer)
     {
-        count--;
-        if (count > 0)
-        {
-
-            StartCoroutine(ChargeMethod());
-        }
-        else {
-            _moving = false;
-        }
+        _moving = false;
+        damagePath.Stop();
+        boss.SetAnimation("Shield", false);
     }
     IEnumerator Wait()
     {
+        
+        line.SetPosition(0, boss.transform.position);
+        Vector3 targetPosition = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
+        boss.transform.LookAt(targetPosition);
+        Vector3 direction = (boss.player.transform.position - boss.transform.position).normalized;
+
+        line.SetPosition(1, boss.transform.position+direction *100);
+        line.gameObject.SetActive(true);
         yield return new WaitForSeconds(timeToStartCharging);
+        line.gameObject.SetActive(false);
         StartCoroutine(ChargeMethod());
     }
     IEnumerator ChargeMethod()
@@ -53,7 +57,8 @@ public class BossCharge : MonoBehaviour,BossActions {
         _moving = true;
         //Vector3 target = new Vector3(boss.player.transform.position.x, boss.player.transform.position.y, boss.player.transform.position.z);
         Vector3 targetPosition = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
-        boss.transform.LookAt(targetPosition);
+
+        damagePath.SpawnDirection(boss.transform.position, this.transform.forward);
         while (_moving)
         {
             boss.transform.position += boss.transform.forward * speedOfCharge * Time.deltaTime * SectionManager.instance.EnemiesMultiplicator;

@@ -69,7 +69,8 @@ public class Boss : AbstractEnemy, IHittable{
         stageActions.Add(new List<BossActions>());
 
         stageActions[0].Add(bossExpansiveWave);
-        stageActions[0].Add(bossMissile);
+        //      stageActions[0].Add(bossMissile); duraba 7
+        stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossShoot);
         stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossJump);
