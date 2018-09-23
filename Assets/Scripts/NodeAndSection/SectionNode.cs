@@ -7,6 +7,7 @@ public class SectionNode : MonoBehaviour {
     public SectionNode next;
 
     public float timeBetweenWaves = 2f;
+    public float timeBetweenSpawns = 1f;
 
     public Transform playerSpawnPoint;
 
@@ -43,9 +44,11 @@ public class SectionNode : MonoBehaviour {
     List<CubeEnemyBehaviour> _allCubeActives = new List<CubeEnemyBehaviour>();
      List<MisilEnemy> _allMisilEnemiesActive= new List<MisilEnemy>();
 
-    WaitForSeconds _waitBetweenWaves; 
+    WaitForSeconds _waitBetweenWaves;
+    WaitForSeconds _waitBetweenSpawns;
 
     int _enemiesRemaining = 0;
+    int _allQuantityInMultiEnemySpawners = 0;
     bool _bossAlive = true;
 
     int timesDead = 0;
@@ -94,6 +97,12 @@ public class SectionNode : MonoBehaviour {
 
         _allMapNodes = transform.GetComponentsInChildren<MapNode>();
 
+
+        foreach (var m in transform.GetComponentsInChildren<MultiEnemySpawner>()) {
+            _allQuantityInMultiEnemySpawners += m.quantityOfEnemies;
+        }
+        
+
         ConnectMapNodes(); 
 
         foreach (var spawn in _allSpawns) {
@@ -106,6 +115,7 @@ public class SectionNode : MonoBehaviour {
         }
 
         _waitBetweenWaves = new WaitForSeconds(timeBetweenWaves);
+        _waitBetweenSpawns = new WaitForSeconds(timeBetweenSpawns);
         EventManager.instance.AddEvent(Constants.BOSS_DESTROYED);
 
         EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, OnEnemyDead);
@@ -281,6 +291,19 @@ public class SectionNode : MonoBehaviour {
     {
         player.transform.position = playerSpawnPoint.position;
         player.gameObject.SetActive(true);
+    }
+
+    public void StartTriggerMultipleSpawnRoutine(int quantity,Vector3 pos) {
+        StartCoroutine(MultipleSpawnTriggerRoutine(quantity, pos));
+    }
+
+    IEnumerator MultipleSpawnTriggerRoutine(int quantity, Vector3 pos) {
+        for (int i = 0; i < quantity; i++) {
+            yield return _waitBetweenSpawns;
+            var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator() as NormalEnemyBehaviour;
+            n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(pos).gameObject.SetActive(true);
+            _allNormalActives.Add(n); 
+        }
     }
 
     public void StartNodeRoutine() { 
@@ -475,6 +498,7 @@ public class SectionNode : MonoBehaviour {
 
     public void SetEnemiesRemaining() {
         _enemiesRemaining = _allSpawns.Length;
+        _enemiesRemaining += _allQuantityInMultiEnemySpawners;
     } 
 
     public MapNode GetClosestMapNode(Vector3 pos) {

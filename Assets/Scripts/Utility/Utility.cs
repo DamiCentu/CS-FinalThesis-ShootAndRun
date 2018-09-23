@@ -83,10 +83,11 @@ public  class Utility {
         return (destiny - origen).sqrMagnitude < distance * distance;
     }
 
-    public static bool InSight(Vector3 pos,Vector3 targerPos, LayerMask mask) {
-        var dir = targerPos - pos;
-        return Physics.Raycast(pos, targerPos - pos, dir.magnitude, mask);
-    }
+    //public static bool NotInSight(Vector3 pos,Vector3 targerPos, LayerMask mask) {
+    //    var dir = targerPos - pos;
+    //    Debug.DrawLine(pos, pos += pos.normalized * dir.magnitude, Color.yellow, Time.deltaTime);
+    //    return Physics.Raycast(pos, dir, dir.magnitude, mask);
+    //}
 
     public static void DestroyAllInAndClearList<T>(List<T> list) where T : MonoBehaviour {
         foreach (var n in list) { 

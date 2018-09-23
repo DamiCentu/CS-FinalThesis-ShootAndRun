@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowPathBehaviour {
      
     MonoBehaviour _parentMono;
-    LayerMask _blockEnemyViewToTarger;
+    LayerMask _blockEnemyViewToTarget;
     Flocking _flocking;
     MapNode _closestMNToTarget;
     bool _coroutineRunning;
@@ -19,7 +19,7 @@ public class FollowPathBehaviour {
 
     public FollowPathBehaviour(MonoBehaviour parent, LayerMask blockEnemyViewToTarget, Flocking flocking/*, bool hasToFollowPlayer*/) {
         _parentMono = parent;
-        _blockEnemyViewToTarger = blockEnemyViewToTarget;
+        _blockEnemyViewToTarget = blockEnemyViewToTarget;
         _flocking = flocking;
         //HasToFollowPlayer = hasToFollowPlayer;
     }
@@ -48,24 +48,28 @@ public class FollowPathBehaviour {
     void Decision(Transform target) {
         if (target == null)
             return;
+        
+        var dir = target.position - _parentMono.transform.position; 
 
-        if(Utility.InSight(_parentMono.transform.position, target.position, _blockEnemyViewToTarger)) { 
+        if (Physics.Raycast(_parentMono.transform.position, dir, dir.magnitude,_blockEnemyViewToTarget)) {  
 
-                var c = _actualSectionNode.GetClosestMapNode(target.position);
+            Debug.DrawLine(_parentMono.transform.position, _parentMono.transform.position + dir.normalized * dir.magnitude , Color.red, Time.deltaTime);
+            var c = _actualSectionNode.GetClosestMapNode(target.position);
 
-                 if (_closestMNToTarget != c) {
-                    _parentMono.StopAllCoroutines();
-                    _coroutineRunning = false;
-                    _closestMNToTarget = c;
-                } 
-
-                if (!_coroutineRunning)
-                    _parentMono.StartCoroutine(FollowPathRoutine(ThetaStar.Run(_actualSectionNode.GetClosestMapNode(_parentMono.transform.position), _closestMNToTarget, _blockEnemyViewToTarger)));
-            }
-            else {
+            if (_closestMNToTarget != c) {
                 _parentMono.StopAllCoroutines();
                 _coroutineRunning = false;
-                _flocking.target = target;
+                _closestMNToTarget = c;
+            } 
+
+            if (!_coroutineRunning)
+                _parentMono.StartCoroutine(FollowPathRoutine(ThetaStar.Run(_actualSectionNode.GetClosestMapNode(_parentMono.transform.position), _closestMNToTarget, _blockEnemyViewToTarget)));
+        }
+        else {
+            Debug.DrawLine(_parentMono.transform.position, _parentMono.transform.position + dir.normalized * dir.magnitude , Color.green, Time.deltaTime);
+            _parentMono.StopAllCoroutines();
+            _coroutineRunning = false;
+            _flocking.target = target;
         }
     }
 

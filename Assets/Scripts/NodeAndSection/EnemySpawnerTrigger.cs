@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnerTrigger : MonoBehaviour {
+    [Header("TheNodeContainerOfTHIS")]
     public SectionNode nodeOfTriggering;
-    public bool spawnWaves = false;
+
+    [Header("ThisOnlyWorkWithSpawnEnemiesPreSetted")]
     public GameObject allTriggerSpawnersContainer;
+
+    [Header("ThisOnlyWorkWithSpawnEnemiesInPortal")]
+    public MultiEnemySpawner multiSpawner;
+
+    [Header("TypeOfTrigger")]
     public TypeOfTrigger typeOfTrigger;
 
     EnemySpawner[] _allTriggerSpawners;
@@ -34,6 +41,7 @@ public class EnemySpawnerTrigger : MonoBehaviour {
                     nodeOfTriggering.TriggerSpawn(_allTriggerSpawners);
                     break;
                 case TypeOfTrigger.SpawnEnemiesInPortal:
+                    nodeOfTriggering.StartTriggerMultipleSpawnRoutine(multiSpawner.GetRespectiveQuantityOfEnemyPerTrigger, multiSpawner.GetPositionWithOffset);
                     break;
 
             } 
