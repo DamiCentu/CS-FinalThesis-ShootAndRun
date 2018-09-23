@@ -13,7 +13,8 @@ public class NormalBullet : IBullet {
             Mathf.Clamp(lifeTime, lifeTime * multiplier, maxRange);
         }*/
 
-    void OnTriggerEnter(Collider c) { 
+    void OnTriggerEnter(Collider c) {
+        
         if ((hitLayers & 1 << c.gameObject.layer) == 1 << c.gameObject.layer) {
             IHittable ihittable = c.gameObject.GetComponent<IHittable>();
             //Debug.Log(c.gameObject.name);
@@ -29,6 +30,10 @@ public class NormalBullet : IBullet {
         if(c.gameObject.layer == 12) {//enemy
             EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_HERO_BULLET_HIT_NAME, transform.position });
             return;
+        }
+
+        if(c.gameObject.layer == 19) {
+            EventManager.instance.ExecuteEvent(Constants.SOUND_BULLET_HIT);
         }
 
         RaycastHit rh;

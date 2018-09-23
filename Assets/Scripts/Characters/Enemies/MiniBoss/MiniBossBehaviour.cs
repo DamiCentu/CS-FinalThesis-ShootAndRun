@@ -66,11 +66,16 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
 
         _waitToEndAttack = new WaitForSeconds(timeToEndAttack);
 
+        int count = 0;
         foreach (var l in _lineRendereders) { 
+            l.SetPosition(count ,transform.position);
+
+            count++;
+            if(l.positionCount == count) {
+                count = 0;
+            }
             l.enabled = false;
-        }
-        _lineRendereders[0].SetPosition(0, transform.position);
-        _lineRendereders[0].SetPosition(1, transform.position);
+        } 
 
         _followPathBehaviour.SetActualSectionNode(_actualSectionNode);
 

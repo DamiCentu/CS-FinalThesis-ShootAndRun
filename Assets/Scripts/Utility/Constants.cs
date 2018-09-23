@@ -67,6 +67,7 @@ public class Constants : MonoBehaviour
 
     public const string SOUND_FADE_IN = "sound_fade_in";
     public const string SOUND_FADE_OUT = "sound_fade_out";
+    public const string SOUND_BULLET_HIT = "bullet_hit";
 
 
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class OffScreenIndicatorManager : MonoBehaviour {
 
@@ -118,6 +120,7 @@ public class OffScreenIndicatorManager : MonoBehaviour {
     #region POOL METHODS
     GameObject ArrowFactoryMethod() {
         var a = Instantiate(arrowPrefab, parentOfArrows);
+        a.GetComponent<Image>().color = Color.red;
         a.gameObject.SetActive(false);
         return a;
     }

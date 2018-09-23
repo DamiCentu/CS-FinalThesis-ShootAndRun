@@ -27,6 +27,7 @@ public class OnHitWhiteFeedback : MonoBehaviour {
 
     //esto se llama cuando el enemigo es golpeado por algo
     public void OnHit() {
+        EventManager.instance.ExecuteEvent(Constants.SOUND_BULLET_HIT);
         _time = 0;
         _hitted = true;
         _alreadyChangedMat = false;

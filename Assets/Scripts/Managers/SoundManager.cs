@@ -11,8 +11,7 @@ public class SoundManager : MonoBehaviour {
     public Snapshot currentSnapshot;
     public float timeToTransition=2;
     internal static SoundManager instance;
-    public AudioSource spawnSound;
-    //public AudioSource[] playerShootAudioSources;
+    public AudioSource spawnSound; 
     public AudioSource playerShootAudioSource;
     public AudioSource HigherRange;
     public AudioSource shield;
@@ -22,6 +21,7 @@ public class SoundManager : MonoBehaviour {
     public AudioSource portalFadeIn;
     public AudioSource portalFadeOut;
     public AudioSource portalFadeLoop;
+    public AudioSource bulletHit;
 
     void Awake()
     {
@@ -33,6 +33,11 @@ public class SoundManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, OnEnemyDead);
         EventManager.instance.SubscribeEvent(Constants.SOUND_FADE_OUT, OnSoundFadeOut);//fade out es cuando reaparece
         EventManager.instance.SubscribeEvent(Constants.SOUND_FADE_IN, OnSoundFadeIn);//fade in es cuando esta ingresando al portal
+        EventManager.instance.SubscribeEvent(Constants.SOUND_BULLET_HIT, OnSoundBulletHit);
+    }
+
+    private void OnSoundBulletHit(object[] parameterContainer) {
+        bulletHit.Play();
     }
 
     void OnSoundFadeOut(object[] parameterContainer) {
@@ -80,7 +85,10 @@ public class SoundManager : MonoBehaviour {
         portalFadeLoop.Play(); 
     } 
 
-    void OnEnemyDead(object[] parameterContainer) {
+    void OnEnemyDead(object[] param) {
+        if ((bool)param[3] == true)
+            return;
+
         enemyExplotion.Play();
     }
 
