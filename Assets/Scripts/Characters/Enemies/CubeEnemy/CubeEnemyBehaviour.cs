@@ -166,7 +166,8 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         evade.OnEnter += x => {
             var r = Random.Range(minRadiusOfEvade, maxRadiusOfEvade);
             Debug.Log(r);
-            _transformToFollowOnEvade.transform.position = Utility.RandomVector3InRadiusCountingBoundaries(transform.position,r,blockEnemyViewToPlayer);
+            //_transformToFollowOnEvade.transform.position = Utility.RandomVector3InRadiusCountingBoundaries(transform.position,r,blockEnemyViewToPlayer);
+            _transformToFollowOnEvade.transform.position = Utility.BestVector3InRectDirectionsInRadiusCountingBoundaries(transform.position,_flocking.target.position, r, blockEnemyViewToPlayer);
             _flocking.target = _transformToFollowOnEvade.transform;
 
             imageTargetOnEvade.enabled = true;
@@ -194,6 +195,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
                 _uiLine.DeactivateLine();
             }
             imageTargetOnEvade.enabled = false;
+            _flocking.resetVelocity();
         };
     }
 
@@ -274,7 +276,9 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
             _uiLine.DeactivateLine();
         }
 
-        imageTargetOnEvade.enabled = false;
+        if(imageTargetOnEvade != null) { 
+            imageTargetOnEvade.enabled = false;
+        }
     }
 
     void OnDrawGizmos() {

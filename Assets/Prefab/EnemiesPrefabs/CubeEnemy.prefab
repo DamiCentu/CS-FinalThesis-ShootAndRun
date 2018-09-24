@@ -460,8 +460,8 @@ MonoBehaviour:
   shotPos: {fileID: 4289286720952294}
   quantityOfShots: 5
   angleBetweenShots: 15
-  minRadiusOfEvade: 7
-  maxRadiusOfEvade: 9
+  minRadiusOfEvade: 5
+  maxRadiusOfEvade: 7
   radiusOfTranformToFollowOnEvade: 1
   canv: {fileID: 223887459750635086}
   imageTargetOnEvade: {fileID: 114406674050987662}

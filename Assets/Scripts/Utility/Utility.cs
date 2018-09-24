@@ -126,62 +126,54 @@ public  class Utility {
         return r;
     }
 
-    public static Vector3 RandomVector3InRectDirectionsInRadiusCountingBoundaries(Vector3 actualPos, Vector3 targetPos, float maxDistanceRadius, LayerMask maskToDetect) {
+    public static Vector3 BestVector3InRectDirectionsInRadiusCountingBoundaries(Vector3 actualPos, Vector3 targetPos, float maxDistanceRadius, LayerMask maskToDetect) {
 
-        var pos = actualPos;
         var dirToPlayer = (targetPos - actualPos).normalized;
-        var r = UnityEngine.Random.Range(0, 1);
+
+        var distX = Vector3.Distance(new Vector3(targetPos.x, 0f, 0f), new Vector3(actualPos.x, 0f, 0f));
+        var distZ = Vector3.Distance(new Vector3(0f, 0f, targetPos.z), new Vector3(0f, 0f, actualPos.z)); 
 
         RaycastHit rhs;
-        if (r == 0) {
-            var finalDir = new Vector3();
-            if(dirToPlayer.x > 0) {
-                if (Physics.Raycast(pos, Vector3.right, out rhs, maxDistanceRadius, maskToDetect)) {
+        var finalDir = new Vector3();
 
+        if (distX > distZ) { 
+            if(dirToPlayer.x > 0) { 
+                if (Physics.Raycast(actualPos, Vector3.right, out rhs, maxDistanceRadius, maskToDetect)) {
+                    finalDir = -Vector3.right;
+                }
+                else {
+                    finalDir = Vector3.right;
+                }
+            }
+            else { // si la distancia es menor hay que hacer el chequeo igual para chequear boundaries
+                if (Physics.Raycast(actualPos, -Vector3.right, out rhs, maxDistanceRadius, maskToDetect)) {
+                    finalDir = Vector3.right;
+                }
+                else {
+                    finalDir = -Vector3.right;
                 }
             }
         }
-        float randomX = UnityEngine.Random.Range(-1f, 1f);
-        float randomZ = UnityEngine.Random.Range(-1f, 1f);
-        Vector3 randomDirection = new Vector3(randomX, 0, randomZ);
-        float maxRange = 0f;
-
-        var crossRamdomDirection = new Vector3(randomDirection.z,0,randomDirection.x);
-
-        RaycastHit rh;
-
-        var dir = new Vector3();
-
-        if(Physics.Raycast(pos, randomDirection, out rh, maxDistanceRadius, maskToDetect)) {
-            maxRange = rh.distance;
-            dir = randomDirection;
-            if(Physics.Raycast(pos, -randomDirection, out rh, maxDistanceRadius, maskToDetect)) {
-                if(maxRange < rh.distance) {
-                    dir = -randomDirection;
-                    maxRange = rh.distance;
+        else {//si la distancia en z en mayor a la de x
+            if(dirToPlayer.z > 0) { 
+                if (Physics.Raycast(actualPos, Vector3.forward, out rhs, maxDistanceRadius, maskToDetect)) {
+                    finalDir = -Vector3.forward;
                 }
-                if(Physics.Raycast(pos, crossRamdomDirection, out rh, maxDistanceRadius, maskToDetect)) {
-                    if(maxRange < rh.distance) {
-                        dir = crossRamdomDirection;
-                        maxRange = rh.distance;
-                    }
-                    if(Physics.Raycast(pos, -crossRamdomDirection, out rh, maxDistanceRadius, maskToDetect)) {
-                        if(maxRange < rh.distance) {
-                            dir = -crossRamdomDirection;
-                            maxRange = rh.distance;
-                        }
-
-                        pos += dir * maxRange;
-                    }
-                    else pos += -crossRamdomDirection * (maxDistanceRadius - 1f);
+                else {
+                    finalDir = Vector3.forward;
                 }
-                else pos += crossRamdomDirection * (maxDistanceRadius - 1f);
             }
-            else  pos += -randomDirection * (maxDistanceRadius - 1f);
-        }
-        else pos += randomDirection * (maxDistanceRadius - 1f);
+            else { // si la distancia es menor hay que hacer el chequeo igual para chequear boundaries
+                if (Physics.Raycast(actualPos, -Vector3.forward, out rhs, maxDistanceRadius, maskToDetect)) {
+                    finalDir = Vector3.forward;
+                }
+                else {
+                    finalDir = -Vector3.forward;
+                }
+            }
+        } 
 
-        return pos;
+        return actualPos + finalDir * maxDistanceRadius;
     }
 
     // devuelve una posicion dentro de un radio RANDOM, tirando raycast detectando algo de la mascara , vaes a buscar siempre la posicion mas alejada de los objetos a los que detecto
