@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using System; 
 
 public  class Utility {
 
@@ -126,6 +126,64 @@ public  class Utility {
         return r;
     }
 
+    public static Vector3 RandomVector3InRectDirectionsInRadiusCountingBoundaries(Vector3 actualPos, Vector3 targetPos, float maxDistanceRadius, LayerMask maskToDetect) {
+
+        var pos = actualPos;
+        var dirToPlayer = (targetPos - actualPos).normalized;
+        var r = UnityEngine.Random.Range(0, 1);
+
+        RaycastHit rhs;
+        if (r == 0) {
+            var finalDir = new Vector3();
+            if(dirToPlayer.x > 0) {
+                if (Physics.Raycast(pos, Vector3.right, out rhs, maxDistanceRadius, maskToDetect)) {
+
+                }
+            }
+        }
+        float randomX = UnityEngine.Random.Range(-1f, 1f);
+        float randomZ = UnityEngine.Random.Range(-1f, 1f);
+        Vector3 randomDirection = new Vector3(randomX, 0, randomZ);
+        float maxRange = 0f;
+
+        var crossRamdomDirection = new Vector3(randomDirection.z,0,randomDirection.x);
+
+        RaycastHit rh;
+
+        var dir = new Vector3();
+
+        if(Physics.Raycast(pos, randomDirection, out rh, maxDistanceRadius, maskToDetect)) {
+            maxRange = rh.distance;
+            dir = randomDirection;
+            if(Physics.Raycast(pos, -randomDirection, out rh, maxDistanceRadius, maskToDetect)) {
+                if(maxRange < rh.distance) {
+                    dir = -randomDirection;
+                    maxRange = rh.distance;
+                }
+                if(Physics.Raycast(pos, crossRamdomDirection, out rh, maxDistanceRadius, maskToDetect)) {
+                    if(maxRange < rh.distance) {
+                        dir = crossRamdomDirection;
+                        maxRange = rh.distance;
+                    }
+                    if(Physics.Raycast(pos, -crossRamdomDirection, out rh, maxDistanceRadius, maskToDetect)) {
+                        if(maxRange < rh.distance) {
+                            dir = -crossRamdomDirection;
+                            maxRange = rh.distance;
+                        }
+
+                        pos += dir * maxRange;
+                    }
+                    else pos += -crossRamdomDirection * (maxDistanceRadius - 1f);
+                }
+                else pos += crossRamdomDirection * (maxDistanceRadius - 1f);
+            }
+            else  pos += -randomDirection * (maxDistanceRadius - 1f);
+        }
+        else pos += randomDirection * (maxDistanceRadius - 1f);
+
+        return pos;
+    }
+
     // devuelve una posicion dentro de un radio RANDOM, tirando raycast detectando algo de la mascara , vaes a buscar siempre la posicion mas alejada de los objetos a los que detecto
     public static Vector3 RandomVector3InRadiusCountingBoundaries(Vector3 actualPos, float maxDistanceRadius, LayerMask maskToDetect) {
 
@@ -162,13 +220,13 @@ public  class Utility {
 
                         pos += dir * maxRange;
                     }
-                    else pos += -crossRamdomDirection * maxDistanceRadius;
+                    else pos += -crossRamdomDirection * (maxDistanceRadius - 1f);
                 }
-                else pos += crossRamdomDirection * maxDistanceRadius;
+                else pos += crossRamdomDirection * (maxDistanceRadius - 1f);
             }
-            else  pos += -randomDirection * maxDistanceRadius;
+            else  pos += -randomDirection * (maxDistanceRadius - 1f);
         }
-        else pos += randomDirection * maxDistanceRadius;
+        else pos += randomDirection * (maxDistanceRadius - 1f);
 
         return pos;
     }

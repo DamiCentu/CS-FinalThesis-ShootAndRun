@@ -114,7 +114,7 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable {
             _followPathBehaviour.HasToFollowPlayer = false;
 
             if (_uiLine != null) {
-                _uiLine.ActivateLine(p.transform);
+                _uiLine.ActivateLine(p.transform, Color.red);
             }
         };
 

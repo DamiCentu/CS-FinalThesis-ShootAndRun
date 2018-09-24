@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using FSMFUNCTIONAL;
 
 public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
@@ -12,17 +13,24 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     public Transform shotPos;
     public int quantityOfShots = 5;
     public float angleBetweenShots = 20f;
-    public float radiusOfEvade = 7f;
+    public float minRadiusOfEvade = 5f;
+    public float maxRadiusOfEvade = 7f;
     public float radiusOfTranformToFollowOnEvade = 2.5f;
+    public Canvas canv;
+    public Image imageTargetOnEvade;
+    public float speedToRotateImage = 60f;
+    public float tiltingTime = 0.05f;
 
+    float _tiltingTimer = 0;
     int _hitsRemaining = 0;
 
     //Animator _anim; 
+    MakeUILine _uiLine;
     Flocking _flocking;
     FollowPathBehaviour _followPathBehaviour;
     EventFSM<CubeInputs> _myFsm;
 
-    GameObject _transformToFollowOnEvade ;
+    GameObject _transformToFollowOnEvade ; 
 
     enum CubeInputs {
         InRadius, 
@@ -32,6 +40,13 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
 
     void Start() {
         _transformToFollowOnEvade = new GameObject("TransformToFollowOnCubeEvade");
+
+        canv.transform.parent = _transformToFollowOnEvade.transform;
+        canv.transform.localPosition = Vector3.zero;
+        imageTargetOnEvade.color = Color.yellow;
+        imageTargetOnEvade.enabled = false;
+
+        _uiLine = GetComponent<MakeUILine>();
         SetFsm();
     }
 
@@ -70,7 +85,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         SetStoppedFuncs(stopped);
         SetShootFuncs(shoot);
         SetEvadeFuncs(evade);
-        _myFsm = new EventFSM<CubeInputs>(evade);
+        _myFsm = new EventFSM<CubeInputs>(flocking);
     }
 
     void SetFlokingFuncs(State<CubeInputs> flocking) {
@@ -148,15 +163,25 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     void SetEvadeFuncs(State<CubeInputs> evade) {
-        evade.OnEnter += x => { 
-            _transformToFollowOnEvade.transform.position = Utility.RandomVector3InRadiusCountingBoundaries(transform.position, radiusOfEvade,blockEnemyViewToPlayer);
+        evade.OnEnter += x => {
+            var r = Random.Range(minRadiusOfEvade, maxRadiusOfEvade);
+            Debug.Log(r);
+            _transformToFollowOnEvade.transform.position = Utility.RandomVector3InRadiusCountingBoundaries(transform.position,r,blockEnemyViewToPlayer);
             _flocking.target = _transformToFollowOnEvade.transform;
+
+            imageTargetOnEvade.enabled = true;
+
+            if(_uiLine != null) { 
+                _uiLine.ActivateLine(_transformToFollowOnEvade.transform, Color.yellow);
+            }
         };
 
         evade.OnUpdate += () => {
             if(Utility.InRangeSquared(_flocking.target.position,transform.position, radiusOfTranformToFollowOnEvade)) {
                 SendInputToFSM(CubeInputs.FinishedEvade);
             }
+            //ImageTilting();
+            imageTargetOnEvade.transform.Rotate(Vector3.forward, speedToRotateImage * Time.deltaTime);
         };
 
         evade.OnFixedUpdate += () => {
@@ -165,6 +190,10 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
 
         evade.OnExit += x => {
             _flocking.target = EnemiesManager.instance.player.transform;
+            if(_uiLine != null) { 
+                _uiLine.DeactivateLine();
+            }
+            imageTargetOnEvade.enabled = false;
         };
     }
 
@@ -217,6 +246,10 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         if (_followPathBehaviour == null)
             _followPathBehaviour = new FollowPathBehaviour(this, blockEnemyViewToPlayer, _flocking/*, true*/);
 
+        if(_uiLine == null) {
+            _uiLine = GetComponent<MakeUILine>();
+        }
+
         _followPathBehaviour.SetActualSectionNode(_actualSectionNode);
 
         _flocking.target = target;
@@ -236,6 +269,12 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         if(_followPathBehaviour != null) { 
             _followPathBehaviour.OnDisable();
         }
+
+        if(_uiLine != null) {
+            _uiLine.DeactivateLine();
+        }
+
+        imageTargetOnEvade.enabled = false;
     }
 
     void OnDrawGizmos() {

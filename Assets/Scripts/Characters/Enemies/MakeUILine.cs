@@ -78,7 +78,7 @@ public class MakeUILine : MonoBehaviour {
         } 
     }
 
-    public void ActivateLine(Transform target) {
+    public void ActivateLine(Transform target, Color color) {
         _lineActive = true;
         _target = target;
 
@@ -94,7 +94,7 @@ public class MakeUILine : MonoBehaviour {
             if (dirMuliplied.magnitude > dist)
                 break;
             var a = GiveMeArrow();
-            a.GetComponent<Image>().color = Color.red;
+            a.GetComponent<Image>().color = color;
             a.SetActive(true);
             a.transform.localScale = new Vector3(arrowsScale, arrowsScale, 1f);
             a.transform.forward = new Vector3(dir.x,90, dir.z);
