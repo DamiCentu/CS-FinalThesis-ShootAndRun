@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MyShaders_Water
+  m_Shader: {fileID: 4800000, guid: b0c95dd7572f6b540b71934553b5108d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CubeMapReflection:
+        m_Texture: {fileID: 8900000, guid: bd2948015794d3d469d8deb0e74f0772, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DummyTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 31cff4fe6eecc7945a65e1774a4370e0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _raw_perlin:
+        m_Texture: {fileID: 2800000, guid: d57573ac4770a9a44897a1cf833c434c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tile:
+        m_Texture: {fileID: 2800000, guid: 08550fdd178f4be4a85cbb5e9494be9a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _waterNormals2:
+        m_Texture: {fileID: 2800000, guid: 93835ff14667c504b89373fb05deea0e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Attenuation: 1
+    - _DepthDistance: 4.65
+    - _DispIntensity: 0.57
+    - _EdgeLength: 29.6
+    - _FoamReach: 0.743
+    - _ReflectionIntensity: 1
+    - _TessPhongStrength: 1
+    - _Transparency: 1
+    - __dirty: 0
+    m_Colors:
+    - _FoamColor: {r: 0.50281143, g: 0.70643425, b: 0.7352941, a: 0}
+    - _SubSurfaceColor: {r: 0.055958044, g: 0.1261111, b: 0.33088237, a: 0}
+    - _WaterColor: {r: 0.023194198, g: 0.10643494, b: 0.24264705, a: 0}
