@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageTrigger : MonoBehaviour {
     public LayerMask layerThatDontAffect;
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (layerThatDontAffect != (layerThatDontAffect | (1 << other.gameObject.layer)))
         {
@@ -15,7 +15,7 @@ public class DamageTrigger : MonoBehaviour {
                 p.OnHit(1);
             }
             print("me choque");
-            EventManager.instance.ExecuteEvent(Constants.CHARGER_CRUSH);
+     //       EventManager.instance.ExecuteEvent(Constants.CHARGER_CRUSH);
 
         }
     }

@@ -16,6 +16,7 @@ public class bossMissiles : MonoBehaviour, BossActions{
     public bool shouldUpgrade;
     Boss boss;
     public LayerMask layer;
+    public float movementSpeed=5;
 
     void BossActions.Begin(Boss boss1)
     {
@@ -40,6 +41,8 @@ public class bossMissiles : MonoBehaviour, BossActions{
             DropMissile(playerPosition);
             _timer = 0;
         }
+        boss.transform.LookAt(playerPosition);
+        boss.transform.position += boss.transform.forward * movementSpeed * Time.deltaTime;
     }
 
     private void DropMissile(Vector3 playerPosition)

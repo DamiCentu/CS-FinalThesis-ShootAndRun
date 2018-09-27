@@ -13,7 +13,8 @@ public class Boss : AbstractEnemy, IHittable{
     public bossMissiles bossMissileUpgrade;
     public BossJump bossJump;
     public BossJump bossJump1;
-   // public bossMissiles bossMissile1;
+    public BossFollow bossFollow;
+    // public bossMissiles bossMissile1;
     public BossMisileAndShoot bossMisileAndShoot;
     public BossCharge bossCharge;
     public BossCharge bossChargeUpgrade;
@@ -71,8 +72,10 @@ public class Boss : AbstractEnemy, IHittable{
         stageActions[0].Add(bossExpansiveWave);
         //      stageActions[0].Add(bossMissile); duraba 7
         stageActions[0].Add(bossCharge);
-        stageActions[0].Add(bossShoot);
         stageActions[0].Add(bossCharge);
+        stageActions[0].Add(bossCharge);
+        stageActions[0].Add(bossMissile);
+        stageActions[0].Add(bossShoot);
         stageActions[0].Add(bossJump);
 
         stageActions[1].Add(bossJump);
@@ -106,6 +109,7 @@ public class Boss : AbstractEnemy, IHittable{
 
     internal void SetAnimation(string name, bool value)
     {
+        if (an == null) return;
         an.SetBool(name, value);
        
     }
@@ -214,7 +218,12 @@ public class Boss : AbstractEnemy, IHittable{
         if (layerThatDontAffectCharge != (layerThatDontAffectCharge | (1 << c.gameObject.layer)))
         {
             EventManager.instance.ExecuteEvent(Constants.CHARGER_CRUSH);
-
+            Player p = c.gameObject.GetComponent<Player>();
+            if (p != null)
+            {
+                p.OnHit(1);
+            }
+            print("me choque");
         }
 
     }

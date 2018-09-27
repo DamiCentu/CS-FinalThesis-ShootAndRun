@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -238,6 +239,8 @@ public class SectionNode : MonoBehaviour {
         StopAllEnemies();
         SpawnPlayerInSpawnPoint(EnemiesManager.instance.player);
 
+
+
         if (Configuration.instance != null) {
             if (Configuration.instance.Multiplayer())  {
                 SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
@@ -277,6 +280,8 @@ public class SectionNode : MonoBehaviour {
             TutorialBehaviour.instance.RestartTutorial();
         } 
     }
+
+
 
     private void DropIfNeededPowerUpHelp(Vector3 position) {
 

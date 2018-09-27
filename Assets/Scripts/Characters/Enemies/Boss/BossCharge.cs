@@ -14,6 +14,7 @@ public class BossCharge : MonoBehaviour,BossActions {
     public float ExtraSpeedOfCharge=5;
     public DamagePath damagePath;
     public LineRenderer line;
+    public LayerMask CollisionLayer;
 
     void BossActions.Begin(Boss boss)
     {
@@ -46,7 +47,11 @@ public class BossCharge : MonoBehaviour,BossActions {
         boss.transform.LookAt(targetPosition);
         Vector3 direction = (boss.player.transform.position - boss.transform.position).normalized;
 
-        line.SetPosition(1, boss.transform.position+direction *100);
+        RaycastHit info;
+        Physics.Raycast(boss.transform.position, direction, out info, CollisionLayer);
+
+
+        line.SetPosition(1, info.point);
         line.gameObject.SetActive(true);
         yield return new WaitForSeconds(timeToStartCharging);
         line.gameObject.SetActive(false);
@@ -61,7 +66,7 @@ public class BossCharge : MonoBehaviour,BossActions {
         damagePath.SpawnDirection(boss.transform.position, this.transform.forward);
         while (_moving)
         {
-            boss.transform.position += boss.transform.forward * speedOfCharge * Time.deltaTime * SectionManager.instance.EnemiesMultiplicator;
+            boss.transform.position += boss.transform.forward * speedOfCharge * Time.deltaTime;
             yield return null;
         }
         yield return new WaitForSeconds(timeToStartMovingAgain);
