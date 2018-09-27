@@ -8,7 +8,7 @@ public class BombBullet : IBullet {
     public LayerMask obstacleLayers;
 	Vector3 posOfCol = new Vector3();
 	bool _canDrawGizmo;
-    private float timer;
+    private float timerd;
     public ParticleSystem DestroyParticle1;
     public ParticleSystem DestroyParticle2;
     public void Start()
@@ -19,8 +19,8 @@ public class BombBullet : IBullet {
     public void FixedUpdate()
     {
         this.transform.position += this.transform.forward * speed;
-        timer += Time.deltaTime;
-        if (timer > lifeTime) {
+        timerd += Time.deltaTime;
+        if (timerd > lifeTime) {
             Destroy(this.gameObject);
         }
 

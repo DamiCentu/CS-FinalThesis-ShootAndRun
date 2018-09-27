@@ -86,6 +86,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         InfoManager.instance.Info("Shield");
         player._gotShield = true;
         player.shield.gameObject.SetActive(true);
+        print("active escudo");
         PowerUpShieldNumber++;
     }
 
@@ -102,7 +103,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
             player._isInvulnerable = false;
         });
         player.timers.Add(timer);
-        //print("se me fue, estoy inmunerable");
+        print("se me fue, estoy inmunerable");
     }
 
     public void ExtraDash()

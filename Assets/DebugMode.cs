@@ -13,7 +13,7 @@ public class DebugMode : MonoBehaviour {
         powerUpManager.ExtraDash();
         powerUpManager.AddRange();
         powerUpManager.AddRange();
-
+        powerUpManager.EnableShield(new object[1]);
     }
 
     // Update is called once per frame

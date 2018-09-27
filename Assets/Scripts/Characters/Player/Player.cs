@@ -40,7 +40,7 @@ public class Player : MonoBehaviour, IHittable
     
     public enum Ults { SlowTime, Berserker,Scatter}
     public Ults ult;
-    public bool _gotShield;
+    public bool _gotShield= false;
     public GameObject shield;
     public float InvulnerableTime=3;
     public float InvulnerableExtraTime = 0.5f;
@@ -73,9 +73,7 @@ public class Player : MonoBehaviour, IHittable
         EventManager.instance.SubscribeEvent("PlayerDead",Die);
 
         _isInvulnerable = false;
-        _gotShield = false;
         timerToUlt = ultTimer;
-        shield.gameObject.SetActive(false);
         an = this.GetComponent<Animator>();
         RefreshDashUI();
         object[] container = new object[1];
@@ -423,14 +421,15 @@ public class Player : MonoBehaviour, IHittable
                 IHittable o = c.GetComponent<IHittable>();
                 if(o!=null) o.OnHit(10);
             }
-            else if (_gotShield)
-            {
-                powerUpManager.DisableShield();
-            }
-            else if (!_isInvulnerable)
-            {
-                OnHit(1); //todo hacer la perdida de vida por eventos
-            }
+            OnHit(1);
+            /*        else if (_gotShield)
+                    {
+                        powerUpManager.DisableShield();
+                    }
+                    else if (!_isInvulnerable)
+                    {
+                        OnHit(1); //todo hacer la perdida de vida por eventos
+                    }*/
 
         }
 
@@ -451,11 +450,12 @@ public class Player : MonoBehaviour, IHittable
   
     public void OnHit(int damage)
     {
-         if (_gotShield)
-        {
-            powerUpManager.DisableShield();
-        }
-        else if (!_isInvulnerable&&!isDead&&!_inBerserkerMode) {
+        if (!_isInvulnerable&&!isDead&&!_inBerserkerMode) {
+            if (_gotShield)
+            {
+                powerUpManager.DisableShield();
+                return;
+            }
             EventManager.instance.ExecuteEvent(Constants.PLAYER_DEAD);
             isDead = true;
             object[] container = new object[1];
