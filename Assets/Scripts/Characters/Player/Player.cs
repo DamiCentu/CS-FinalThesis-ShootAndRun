@@ -443,7 +443,10 @@ public class Player : MonoBehaviour, IHittable
         DeadParticle.transform.position = this.transform.position;
         DeadParticle.gameObject.SetActive(true);
         DeadParticle.Play();
+        if (SectionManager.instance.actualNode.id != 0) {
+
         powerUpManager.CreateSoul();
+        }
         gameObject.SetActive(false);
         _isUlting = false;
     }

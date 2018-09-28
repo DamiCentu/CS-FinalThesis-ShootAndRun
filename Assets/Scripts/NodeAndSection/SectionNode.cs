@@ -240,7 +240,6 @@ public class SectionNode : MonoBehaviour {
         SpawnPlayerInSpawnPoint(EnemiesManager.instance.player);
 
 
-
         if (Configuration.instance != null) {
             if (Configuration.instance.Multiplayer())  {
                 SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
