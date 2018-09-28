@@ -15,20 +15,29 @@ public class DamagePath : MonoBehaviour {
      float _distanceToSpawn;
     private bool _shouldStopSpawning = true;
 
-    public void SpawnDirection(Vector3 spawnDirection, Vector3 direction) {
-        _startPosition = spawnDirection;
+    public void SpawnDirection(Vector3 spawnPos, Vector3 direction,float speed) {
+
         _direction = direction;
-        _shouldStopSpawning = false;
+
         particles = GameObject.Find(particlesName);
         if (particles == null) print("che es null!");
+        set(spawnPos, speed);
     }
 
-    public void SpawnPosition(Vector3 spawnDirection, Vector3 endPos)
+    public void SpawnPosition(Vector3 spawnPos, Vector3 endPos, float speed)
     {
-        _startPosition = spawnDirection;
-        _maxDistance = Vector3.Distance(spawnDirection, endPos);
-        _direction = endPos - spawnDirection;
+        _maxDistance = Vector3.Distance(spawnPos, endPos);
+        _direction = endPos - spawnPos;
+        set(spawnPos, speed);
+    }
+
+    private void set(Vector3 spawnPos, float speed)
+    {
         _shouldStopSpawning = false;
+        _startPosition = spawnPos;
+        _distanceTraveled = 0;
+        _distanceToSpawn = 0;
+        this.speed = speed;
     }
 
     // Update is called once per frame
@@ -51,5 +60,6 @@ public class DamagePath : MonoBehaviour {
 
     public void Stop() {
         _shouldStopSpawning = true;
+
     }
 }

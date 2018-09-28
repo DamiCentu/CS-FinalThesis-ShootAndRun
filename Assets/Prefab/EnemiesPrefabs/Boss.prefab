@@ -2267,7 +2267,6 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4929443902071348}
-  - {fileID: 4452602492591148}
   - {fileID: 4379642984297758}
   - {fileID: 4892881296920784}
   - {fileID: 4360665104186428}
@@ -2277,6 +2276,7 @@ Transform:
   - {fileID: 4662020788839228}
   - {fileID: 4875703908679890}
   - {fileID: 4939755488186338}
+  - {fileID: 4452602492591148}
   - {fileID: 4223496409152900}
   - {fileID: 4813636507638420}
   - {fileID: 4749192904196468}
@@ -2596,7 +2596,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4365168909215380
 Transform:
@@ -2663,7 +2663,7 @@ Transform:
   m_Children:
   - {fileID: 4846347629826960}
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4382922784829564
 Transform:
@@ -2803,7 +2803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 1
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4454560345675360
 Transform:
@@ -3173,7 +3173,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4650068876140636
 Transform:
@@ -3199,7 +3199,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4662020788839228
 Transform:
@@ -3212,7 +3212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4667428882332676
 Transform:
@@ -3461,7 +3461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4882422242261862
 Transform:
@@ -3474,7 +3474,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4890195681168520
 Transform:
@@ -3502,7 +3502,7 @@ Transform:
   m_Children:
   - {fileID: 4309427796392510}
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4899468056384682
 Transform:
@@ -3594,7 +3594,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178374206013398}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4960554247546718
 Transform:
@@ -3849,7 +3849,7 @@ MonoBehaviour:
   distanceToCharge: 200
   timeToStartCharging: 1
   timeToStartMovingAgain: 1
-  speedOfCharge: 40
+  speedOfCharge: 45
   upgrade: 0
   ExtraSpeedOfCharge: 5
   damagePath: {fileID: 114447357040163536}
@@ -3956,14 +3956,14 @@ MonoBehaviour:
   radius: 2
   numberShoot: 3
   bullet: {fileID: 1915447307310056, guid: 1996645a54051e140900f3e81be59cf6, type: 2}
-  timeToShoot: 0.05
+  timeToShoot: 0.04
   rotationSpeed: 2
   currentAngle: 0
   offsetShoot: {x: 0, y: 0, z: 0}
-  reduceTimeToShoot: 0.01
+  reduceTimeToShoot: 0.005
   extraRotationSpeed: 0
   shouldUpgrade: 1
-  movementSpeed: 4
+  movementSpeed: 5
 --- !u!114 &114405131690294372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4021,7 +4021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b706fbd2c937aba4f87504b37b13b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 40
   timeAlive: 3
   particlesName: fire
   maxDistanceToSpawn: 1
@@ -4048,7 +4048,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1024
-  movementSpeed: 5
+  movementSpeed: 7
 --- !u!114 &114492316833888006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4253,7 +4253,7 @@ MonoBehaviour:
   distanceToCharge: 200
   timeToStartCharging: 1
   timeToStartMovingAgain: 1
-  speedOfCharge: 15
+  speedOfCharge: 45
   upgrade: 1
   ExtraSpeedOfCharge: 10
   damagePath: {fileID: 114447357040163536}

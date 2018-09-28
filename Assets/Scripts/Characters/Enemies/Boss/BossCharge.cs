@@ -45,14 +45,19 @@ public class BossCharge : MonoBehaviour,BossActions {
         line.SetPosition(0, boss.transform.position);
         Vector3 targetPosition = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
         boss.transform.LookAt(targetPosition);
-        Vector3 direction = (boss.player.transform.position - boss.transform.position).normalized;
+        Vector3 direction = (targetPosition - boss.transform.position).normalized;
+
+        print(direction);
 
         RaycastHit info;
         Physics.Raycast(boss.transform.position, direction, out info, CollisionLayer);
 
 
         line.SetPosition(1, info.point);
+        line.gameObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         line.gameObject.SetActive(true);
+        print("length");
+        print(Vector3.Distance(boss.transform.position, targetPosition));
         yield return new WaitForSeconds(timeToStartCharging);
         line.gameObject.SetActive(false);
         StartCoroutine(ChargeMethod());
@@ -63,7 +68,7 @@ public class BossCharge : MonoBehaviour,BossActions {
         //Vector3 target = new Vector3(boss.player.transform.position.x, boss.player.transform.position.y, boss.player.transform.position.z);
         Vector3 targetPosition = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
 
-        damagePath.SpawnDirection(boss.transform.position, this.transform.forward);
+        damagePath.SpawnDirection(boss.transform.position, this.transform.forward,this.speedOfCharge);
         while (_moving)
         {
             boss.transform.position += boss.transform.forward * speedOfCharge * Time.deltaTime;
