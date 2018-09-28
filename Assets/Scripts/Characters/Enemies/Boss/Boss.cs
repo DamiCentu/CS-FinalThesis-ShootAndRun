@@ -109,7 +109,7 @@ public class Boss : AbstractEnemy, IHittable{
 
     internal void SetAnimation(string name, bool value)
     {
-        if (an == null) return;
+        if (an==null) return;
         an.SetBool(name, value);
        
     }

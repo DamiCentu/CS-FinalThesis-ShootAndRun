@@ -53,7 +53,7 @@ public class BossShoot: MonoBehaviour ,BossActions {
     {
         _timer += Time.deltaTime;
         _timerShoot += Time.deltaTime;
-        Shoot(bossTransform.position + offsetShoot);
+     
         //boss.LookAt(playerPosition); //TODO hacelro con lerp
         if (_timerShoot > timeToShoot) {
             Shoot(bossTransform.position+ offsetShoot);
@@ -67,17 +67,18 @@ public class BossShoot: MonoBehaviour ,BossActions {
 
     private void Shoot(Vector3 position)
     {
-        print("lala");
+
         currentAngle += rotationSpeed + UnityEngine.Random.Range(-1,1);
 
         float shootPositionX = position.x + (float)Math.Cos(currentAngle);
         float shootPositionz = position.z + (float)Math.Sin(currentAngle);
         Vector3 shootPosition = new Vector3(shootPositionX, position.y, shootPositionz);
         Vector3 rotation = shootPosition - position;
-
-
+        
         var s = EnemyBulletManager.instance.giveMeEnemyBullet();
         s.SetPos(shootPosition).SetDir(Quaternion.LookRotation(rotation)).gameObject.SetActive(true);
+
+        print(s);
 
     }
 

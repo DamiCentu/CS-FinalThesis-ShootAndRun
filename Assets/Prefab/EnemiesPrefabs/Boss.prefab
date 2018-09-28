@@ -3656,11 +3656,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714327909508672}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3309479, y: 3.4484792, z: 1.5594025}
-  m_Center: {x: -0.06021881, y: 0.42822552, z: -0.010787964}
+  m_Size: {x: 3.1804564, y: 3.4484792, z: 2.2142415}
+  m_Center: {x: -0.10021174, y: 0.42822552, z: -0.12957597}
 --- !u!95 &95926933492007598
 Animator:
   serializedVersion: 3
@@ -4091,7 +4091,7 @@ MonoBehaviour:
   radius: 2
   numberShoot: 3
   bullet: {fileID: 1915447307310056, guid: 1996645a54051e140900f3e81be59cf6, type: 2}
-  timeToShoot: 0.05
+  timeToShoot: 0.04
   rotationSpeed: 2
   currentAngle: 0
   offsetShoot: {x: 0, y: 0, z: 0}
