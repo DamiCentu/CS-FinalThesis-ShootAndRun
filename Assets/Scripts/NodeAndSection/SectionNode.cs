@@ -166,7 +166,7 @@ public class SectionNode : MonoBehaviour {
 
             else if (param[2] is PowerUpChaserEnemy) { 
                 Utility.RemoveFromListGeneric(_allChasersActives, (PowerUpChaserEnemy)param[2]);
-                if(TutorialBehaviour.instance.IsTutorialNode) {
+                if(TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
                     TutorialBehaviour.instance.GreenKilled = true;
                 }
             }
@@ -275,7 +275,7 @@ public class SectionNode : MonoBehaviour {
             StartCoroutine(WavesNodeRoutine());
         }
 
-        if (TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
             TutorialBehaviour.instance.RestartTutorial();
         } 
     }
@@ -327,7 +327,7 @@ public class SectionNode : MonoBehaviour {
     }
 
     IEnumerator WavesNodeRoutine() {
-        if (TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
             LootTableManager.instance.SetTutoProbavility();
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT);
         }
@@ -338,7 +338,7 @@ public class SectionNode : MonoBehaviour {
         while (_dicQuantityInWave[SectionManager.WaveNumber.First] > 0)
             yield return null;
 
-        if (TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) {
             TutorialBehaviour.instance.FirstEnemyKIlled();
 
             while (!TutorialBehaviour.instance.GreenKilled) {
@@ -352,7 +352,7 @@ public class SectionNode : MonoBehaviour {
         while (_dicQuantityInWave[SectionManager.WaveNumber.Second] > 0)
             yield return null;
 
-        if (TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) {
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_ULTIMATE);
         }
 
@@ -362,7 +362,7 @@ public class SectionNode : MonoBehaviour {
         while (_dicQuantityInWave[SectionManager.WaveNumber.Third] > 0)
             yield return null; 
 
-        if (TutorialBehaviour.instance.IsTutorialNode) { 
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) { 
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_DEACTIVATED);
         }
     }

@@ -285,7 +285,7 @@ public class Player : MonoBehaviour, IHittable
 
         Vector2 vel = MyInputManager.instance.Move(control);
 
-        if(TutorialBehaviour.instance.IsTutorialNode) {
+        if(TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
             if(vel != Vector2.zero) { 
                 EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_DASH);
             }

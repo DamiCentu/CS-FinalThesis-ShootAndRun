@@ -128,7 +128,7 @@ public class SectionManager : MonoBehaviour {
                 }
             }
             else {
-                if (TutorialBehaviour.instance.IsTutorialNode) { 
+                if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) { 
                     //EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_ACTIVATED);
                     EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_MOVE);
                 }
@@ -165,7 +165,7 @@ public class SectionManager : MonoBehaviour {
             }
             actualNode = actualNode.next;
             EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
-            if(actualNode.next != null) {
+            if(actualNode!=null && actualNode.next != null) {
                 EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_IN);
             }
         }

@@ -42,6 +42,10 @@ public class LootTableManager : MonoBehaviour {
         }
         totalPowerAvailable = totalPowerUps;
         probability = 1;
+
+        if (Configuration.instance.lvl == 2) {
+            probability = defaultProbability;
+        }
     }
 
     private void UpdatePowerUpQuantity(object[] parameterContainer)
@@ -116,7 +120,7 @@ public class LootTableManager : MonoBehaviour {
         if (_allGamePowerUps.Contains(go)) { 
             _allGamePowerUps.Remove(go);
             Destroy(go);
-            if (TutorialBehaviour.instance.IsTutorialNode) {
+            if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
                 EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT_SPECIAL);
             }
         }

@@ -11,6 +11,7 @@ public class Configuration : MonoBehaviour {
     public int creditsEasy = 10;
     public int creditsMedium = 5;
     public int creditsHard = 1;
+    public int lvl=1;
     
     public int Credits { get { return GetCreditsAmount(); } }
 
