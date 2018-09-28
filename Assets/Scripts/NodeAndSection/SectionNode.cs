@@ -427,20 +427,32 @@ public class SectionNode : MonoBehaviour {
             case EnemiesManager.TypeOfEnemy.Normal:
                 var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f) as NormalEnemyBehaviour;
                 n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnTransform.transform.position).gameObject.SetActive(true);
-                if (parent != null) n.transform.SetParent(parent);
+                if (parent != null)
+                {
+                    n.transform.SetParent(parent);
+                //    n.SetPosition(parent.position);
+                }
                 _allNormalActives.Add(n);
                 break;
 
             case EnemiesManager.TypeOfEnemy.Charger:
                 var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer() as ChargerEnemyBehaviour;
                 c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnTransform.transform.position).gameObject.SetActive(true);
-                if (parent != null) c.transform.SetParent(parent);
+                if (parent != null)
+                {
+                    c.transform.SetParent(parent);
+        //            c.SetPosition(parent.position);
+                }
                 _allChargerActives.Add(c);
                 break;
             case EnemiesManager.TypeOfEnemy.TurretBurst:
                 var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer() as EnemyTurretBehaviour;
                 t.SetPosition(spawnTransform.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
-                if (parent != null) t.transform.SetParent(parent);
+                if (parent != null)
+                {
+                    t.transform.SetParent(parent);
+          //          t.SetPosition(parent.position);
+                }
                 _allTurretsActives.Add(t);
                 break;
 
@@ -448,7 +460,11 @@ public class SectionNode : MonoBehaviour {
                 var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f) as EnemyTurretBehaviour;
                 tL.SetPosition(spawnTransform.transform.position).SetForward(spawnTransform.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
                 _allTurretsActives.Add(tL);
-                if (parent != null) tL.transform.SetParent(parent);
+                if (parent != null)
+                {
+                    tL.transform.SetParent(parent);
+               //     tL.SetPosition(parent.position);
+                }
                 break;
         }
     }
