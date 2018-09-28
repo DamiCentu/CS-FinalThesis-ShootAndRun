@@ -22,6 +22,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: b32fadcc3d3cf9c49bfb6f125c265f2f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TinColor:
+        m_Texture: {fileID: 2800000, guid: b32fadcc3d3cf9c49bfb6f125c265f2f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AlbedoTransparency:
         m_Texture: {fileID: 2800000, guid: c3e7f5c598f6b5c48994701a5ebaa6c7, type: 3}
         m_Scale: {x: 1, y: 1}
