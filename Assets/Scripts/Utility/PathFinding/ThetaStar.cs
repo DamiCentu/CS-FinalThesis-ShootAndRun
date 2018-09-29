@@ -87,7 +87,9 @@ public static class ThetaStar {
 
         var direction = adj.transform.position - previusCurrent.transform.position;
         var distance = Vector3.Distance(previusCurrent.transform.position, adj.transform.position);
-        Debug.DrawRay(previusCurrent.transform.position, direction, Color.green, 1f);
+        if (EnemiesManager.instance.showThetaStarPathWithGizmos) { 
+            Debug.DrawRay(previusCurrent.transform.position, direction, Color.green, 1f);
+        }
         //RaycastHit rh;
         if (!Physics.Raycast(previusCurrent.transform.position, direction, distance, layersOfRaycast))
             return true;

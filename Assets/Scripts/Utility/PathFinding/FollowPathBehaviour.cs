@@ -51,9 +51,11 @@ public class FollowPathBehaviour {
         
         var dir = target.position - _parentMono.transform.position; 
 
-        if (Physics.Raycast(_parentMono.transform.position, dir, dir.magnitude,_blockEnemyViewToTarget)) {  
+        if (Physics.Raycast(_parentMono.transform.position, dir, dir.magnitude,_blockEnemyViewToTarget)) {
 
-            Debug.DrawLine(_parentMono.transform.position, _parentMono.transform.position + dir.normalized * dir.magnitude , Color.red, Time.deltaTime);
+            if (!EnemiesManager.instance.showFollowPathGizmos) { 
+                Debug.DrawLine(_parentMono.transform.position, _parentMono.transform.position + dir.normalized * dir.magnitude , Color.red, Time.deltaTime);
+            }
             var c = _actualSectionNode.GetClosestMapNode(target.position);
 
             if (_closestMNToTarget != c) {
@@ -66,7 +68,9 @@ public class FollowPathBehaviour {
                 _parentMono.StartCoroutine(FollowPathRoutine(ThetaStar.Run(_actualSectionNode.GetClosestMapNode(_parentMono.transform.position), _closestMNToTarget, _blockEnemyViewToTarget)));
         }
         else {
-            Debug.DrawLine(_parentMono.transform.position, _parentMono.transform.position + dir.normalized * dir.magnitude , Color.green, Time.deltaTime);
+            if (!EnemiesManager.instance.showFollowPathGizmos) {
+                Debug.DrawLine(_parentMono.transform.position, _parentMono.transform.position + dir.normalized * dir.magnitude , Color.green, Time.deltaTime);
+            }
             _parentMono.StopAllCoroutines();
             _coroutineRunning = false;
             _flocking.target = target;

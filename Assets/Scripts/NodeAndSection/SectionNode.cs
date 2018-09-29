@@ -555,17 +555,7 @@ public class SectionNode : MonoBehaviour {
         } 
     } 
 
-    void OnDrawGizmos() {
-        if (_allMapNodes == null) return;
-        foreach (var node in _allMapNodes) {
-            if (node == null) return;
-            foreach (var adj in node.adjacent) {
-                if (adj == null) return;
-                Gizmos.color = Color.grey;
-                Gizmos.DrawLine(node.transform.position, adj.transform.position); 
-            } 
-        }
-
+    void OnDrawGizmos() { 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(onGizmosSafeZoneChaser, radiusToSetPowerUpChaser);
     }

@@ -10,7 +10,7 @@ public class EnemySpawnerTrigger : MonoBehaviour {
     public GameObject allTriggerSpawnersContainer;
 
     [Header("ThisOnlyWorkWithSpawnEnemiesInPortal")]
-    public MultiEnemySpawner multiSpawner;
+    public MultiEnemySpawner[] multiSpawners;
 
     [Header("TypeOfTrigger")]
     public TypeOfTrigger typeOfTrigger;
@@ -41,7 +41,9 @@ public class EnemySpawnerTrigger : MonoBehaviour {
                     nodeOfTriggering.TriggerSpawn(_allTriggerSpawners);
                     break;
                 case TypeOfTrigger.SpawnEnemiesInPortal:
-                    nodeOfTriggering.StartTriggerMultipleSpawnRoutine(multiSpawner.GetRespectiveQuantityOfEnemyPerTrigger, multiSpawner.GetPositionWithOffset);
+                    foreach (var multiSpawner in multiSpawners) {
+                        nodeOfTriggering.StartTriggerMultipleSpawnRoutine(multiSpawner.GetRespectiveQuantityOfEnemyPerTrigger, multiSpawner.GetPositionWithOffset);
+                    }
                     break;
 
             } 

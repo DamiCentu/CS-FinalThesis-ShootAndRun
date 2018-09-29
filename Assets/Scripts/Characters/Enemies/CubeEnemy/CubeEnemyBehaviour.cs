@@ -165,7 +165,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     void SetEvadeFuncs(State<CubeInputs> evade) {
         evade.OnEnter += x => {
             var r = Random.Range(minRadiusOfEvade, maxRadiusOfEvade);
-            Debug.Log(r);
+            //Debug.Log(r);
             //_transformToFollowOnEvade.transform.position = Utility.RandomVector3InRadiusCountingBoundaries(transform.position,r,blockEnemyViewToPlayer);
             _transformToFollowOnEvade.transform.position = Utility.BestVector3InRectDirectionsInRadiusCountingBoundaries(transform.position,_flocking.target.position, r, blockEnemyViewToPlayer);
             _flocking.target = _transformToFollowOnEvade.transform;

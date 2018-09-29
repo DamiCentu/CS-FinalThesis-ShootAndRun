@@ -6,6 +6,9 @@ using UnityEngine;
 public class EnemiesManager : MonoBehaviour {
     public static EnemiesManager instance { get; private set; }
 
+    public bool showThetaStarPathWithGizmos = false;
+    public bool showFollowPathGizmos = false;
+
     public GameObject player;
     public GameObject player2;
 
