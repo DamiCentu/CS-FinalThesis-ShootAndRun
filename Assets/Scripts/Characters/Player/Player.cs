@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IHittable
     public int dashCount = 1;
     public int MaxDashCount = 1;
     
-    public enum Ults { SlowTime, Berserker,Scatter}
+    public enum Ults { SlowTime, Berserker,Scatter,Spawn}
     public Ults ult;
     public bool _gotShield= false;
     public GameObject shield;
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour, IHittable
     private bool _isUlting;
     public GameObject wings;
     public ScatterUlt scatter;
+    public MinionsSpawn minionsSpawn;
 
     void Start () {
         _rb=this.GetComponent<Rigidbody>();
@@ -156,6 +157,10 @@ public class Player : MonoBehaviour, IHittable
                 case Ults.Scatter:
                     print("modo Scatter");
                     scatter.StarUlt();
+                    break;
+                case Ults.Spawn:
+                    print("modo Spawn");
+                    minionsSpawn.StarUlt();
                     break;
             }
 
