@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c2f030f7f28c92b41a73a831483c2ee2
-timeCreated: 1535429892
+timeCreated: 1538357707
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
@@ -8,6 +8,8 @@ ShaderImporter:
   - _enemigo2_DefaultMaterial_Normal: {fileID: 2800000, guid: c63ad25ddfb60b64eb9d7da0c7c61b5e,
       type: 3}
   - _enemigo2_DefaultMaterial_AlbedoTransparency: {fileID: 2800000, guid: 25eb7ab500daf3e42980e17ddf918569,
+      type: 3}
+  - _miniBoss_DefaultMaterial_Emission: {fileID: 2800000, guid: 5d4eac23a07ae39429fa5faff48193b9,
       type: 3}
   - _enemigo2_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: c9d5914ea7ddec24985652b4ad1b2f93,
       type: 3}
