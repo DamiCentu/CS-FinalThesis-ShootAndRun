@@ -8911,7 +8911,7 @@ MonoBehaviour:
   creditsMedium: 5
   creditsHard: 1
   lvl: 1
-  playerUlt: 3
+  playerUlt: 2
 --- !u!114 &114223815775409390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9721,7 +9721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 4
-  amount: 30
+  amount: 40
   line: {fileID: 120739008316433508}
   player: {fileID: 4083906271280234}
   ball: {fileID: 1517537820300420, guid: 1752fdf6238bca64d92ef66ab21f05ca, type: 2}

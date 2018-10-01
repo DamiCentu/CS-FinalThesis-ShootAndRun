@@ -45,7 +45,7 @@ public class ScatterUlt : MonoBehaviour {
             float dis = Vector3.Distance(balls[i].transform.position, balls[i+1].transform.position);
             Debug.Log(dir);
             Debug.Log(dis);
-            RaycastHit[] rhs = Physics.SphereCastAll(posiciones[i], 2, dir, dis, layerToHit);
+            RaycastHit[] rhs = Physics.SphereCastAll(posiciones[i], 4, dir, dis, layerToHit);
             foreach (RaycastHit rh in rhs)
             {
                 IHittable ihittable = rh.collider.gameObject.GetComponent<IHittable>();
