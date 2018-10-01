@@ -454,6 +454,16 @@ public class Player : MonoBehaviour, IHittable
         }
         gameObject.SetActive(false);
         _isUlting = false;
+
+        switch (ult)
+        {
+            case Ults.Scatter:
+                scatter.Stop();
+                break;
+            case Ults.Spawn:
+                minionsSpawn.Stop();
+                break;
+        }
     }
   
     public void OnHit(int damage)

@@ -72,4 +72,9 @@ public class ScatterUlt : MonoBehaviour {
         balls = new List<GameObject>();
         posiciones = new List<Vector3>();
     }
+
+    internal void Stop()
+    {
+        ResetBalls();
+    }
 }

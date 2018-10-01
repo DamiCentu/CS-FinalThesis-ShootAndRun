@@ -8,7 +8,7 @@ public class Minion : MonoBehaviour {
     public float radius;
     public LayerMask hittableLayers;
     public Transform shootPos;
-    public float minTimeTiShoot;
+    public float minTimeTiShoot=0.5f;
     Timer _timer;
     // Use this for initialization
     void Start () {
@@ -32,8 +32,8 @@ public class Minion : MonoBehaviour {
         }
         if (minDis < 10000)
         { // si encontro a algun enemigo dispara
-            var s = EnemyBulletManager.instance.giveMeEnemyBullet();
-            s.SetPos(shootPos.position).SetDir(Quaternion.LookRotation(transform.forward)).gameObject.SetActive(true);
+            NormalBullet b = BulletManager.instance.GetBulletFromPool();
+            BulletManager.instance.SetBullet(b, shootPos.position, transform.forward);
         }
     }
 
