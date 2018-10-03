@@ -47,7 +47,7 @@ public class BossCharge : MonoBehaviour,BossActions {
         boss.transform.LookAt(targetPosition);
         Vector3 direction = (targetPosition - boss.transform.position).normalized;
 
-        print(direction);
+        //print(direction);
 
         RaycastHit info;
         Physics.Raycast(boss.transform.position, direction, out info, CollisionLayer);
@@ -56,8 +56,8 @@ public class BossCharge : MonoBehaviour,BossActions {
         line.SetPosition(1, info.point);
         line.gameObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         line.gameObject.SetActive(true);
-        print("length");
-        print(Vector3.Distance(boss.transform.position, targetPosition));
+        //print("length");
+        //print(Vector3.Distance(boss.transform.position, targetPosition));
         yield return new WaitForSeconds(timeToStartCharging);
         line.gameObject.SetActive(false);
         StartCoroutine(ChargeMethod());

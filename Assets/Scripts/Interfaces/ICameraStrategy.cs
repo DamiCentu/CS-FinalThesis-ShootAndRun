@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICameraStrategy {
-    void OnFixedUpdate(); 
+    void OnFixedUpdate();
 }

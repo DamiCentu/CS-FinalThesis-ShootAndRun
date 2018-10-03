@@ -147,7 +147,7 @@ public class Player : MonoBehaviour, IHittable
                     break;
 
                 case Ults.Berserker:
-                    print("modo berseker");
+                    //print("modo berseker");
                     UpgradeStats();
                     timers.Add(new Timer(bersekerTime, RestoreStats));
                     maxTimeUlting = bersekerTime;
@@ -155,11 +155,11 @@ public class Player : MonoBehaviour, IHittable
                     _isUlting = true;
                     break;
                 case Ults.Scatter:
-                    print("modo Scatter");
+                    //print("modo Scatter");
                     scatter.StarUlt();
                     break;
                 case Ults.Spawn:
-                    print("modo Spawn");
+                    //print("modo Spawn");
                     minionsSpawn.StarUlt();
                     break;
             }

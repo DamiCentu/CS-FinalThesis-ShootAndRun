@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SectionManager : MonoBehaviour {
     public SectionNode actualNode;
@@ -14,6 +16,8 @@ public class SectionManager : MonoBehaviour {
     public float slowDuration = 3f;
     public int percentageOfEnemysToBerserk = 5;
     public float enemiesMultiplicatorOnBerserk = 1.3f;
+    public float timeAfterWinning = 2f;
+    public float timeAfterLosing = 2f;
 
     float _enemiesMultiplator = 1f; 
 
@@ -38,6 +42,7 @@ public class SectionManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.SLOW_TIME, AtSlowTime);
         EventManager.instance.SubscribeEvent(Constants.BERSERK, AtBerserk);
         EventManager.instance.SubscribeEvent(Constants.STOP_BERSERK, AtStopBerserk);
+        EventManager.instance.SubscribeEvent(Constants.GAME_OVER, OnGameOver);
 
         EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION);
 
@@ -174,20 +179,23 @@ public class SectionManager : MonoBehaviour {
         //    TutorialBehaviour.instance.EndTutorial();
         //}
         // throw new System.Exception("GAMEOVER");
+
+        StartCoroutine(WinRoutine());
     }
 
+    IEnumerator WinRoutine() {
+        yield return new WaitForSeconds(timeAfterWinning);
+        SceneManager.LoadScene("WinScene");
+    }
 
-    // IEnumerator SearchPowerUpRoutine(float timeSplicingQuote) {
-    //    var wait = new WaitForEndOfFrame();
-    //    var start = Time.realtimeSinceStartup;
-    //    while (true) {
-            
-    //        if (Time.realtimeSinceStartup - start > timeSplicingQuote) {
-    //            yield return wait;
-    //            start = Time.realtimeSinceStartup;
-    //        }
-    //    }
-    //}
+    private void OnGameOver(object[] parameterContainer) {
+        StartCoroutine(LoseRoutine());
+    }
+
+    IEnumerator LoseRoutine() {
+        yield return new WaitForSeconds(timeAfterLosing);
+        SceneManager.LoadScene("LoseScene");
+    }
 
     void OnDestroy() {
         EventManager.instance.DeleteEvent(Constants.ENEMY_DEAD);

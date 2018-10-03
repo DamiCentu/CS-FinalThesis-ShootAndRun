@@ -9,6 +9,12 @@ public  class Utility {
     public static int[] xMoveVector8 = new int[] { 0, 1, 1, 1, 0, -1, -1, -1 };
     public static int[] yMoveVector8 = new int[] { 1, 1, 0, -1, -1, -1, 0, 1 };
 
+    public static int[] xMoveVector4 = new int[] { 0, 1, 0,-1};
+    public static int[] yMoveVector4 = new int[] { 1, 0,-1, 0};
+
+    public static float[] xMoveFloatVector8 = new float[] { 0, 0.5f, 1, 0.5f, 0, -0.5f, -1, -0.5f };
+    public static float[] yMoveFloatVector8 = new float[] { 1, 0.5f, 0, -0.5f, -1, -0.5f, 0, 0.5f };
+
     //Trunca un vector a un largo máximo
     public static Vector3 Truncate(Vector3 vec, float maxMag) {
 		var mag = vec.magnitude;
@@ -177,7 +183,7 @@ public  class Utility {
     }
 
     // devuelve una posicion dentro de un radio RANDOM, tirando raycast detectando algo de la mascara , vaes a buscar siempre la posicion mas alejada de los objetos a los que detecto
-    public static Vector3 RandomVector3InRadiusCountingBoundaries(Vector3 actualPos, float maxDistanceRadius, LayerMask maskToDetect) {
+    public static Vector3 RandomVector3InRadiusCountingBoundariesInAnyDirection(Vector3 actualPos, float maxDistanceRadius, LayerMask maskToDetect) {
 
         var pos = actualPos;
         float randomX = UnityEngine.Random.Range(-1f, 1f);
@@ -223,8 +229,54 @@ public  class Utility {
         return pos;
     }
 
-    internal static void RandomVector3InRadiusCountingBoundaries(Vector3 position, int v, object misileEnemyLayerMask)
-    {
-        throw new NotImplementedException();
+    public static Vector3 RandomVector3InRadiusCountingBoundariesInRectDirection(Vector3 actualPos, float maxDistanceRadius, LayerMask maskToDetect) { 
+        var pos = actualPos;
+        int randomDir = UnityEngine.Random.Range(0, 4); 
+        Vector3 randomDirection = new Vector3(xMoveVector4[randomDir], 0, yMoveVector4[randomDir]);
+        float maxRange = 0f;
+
+        var crossRamdomDirection = new Vector3(randomDirection.z, 0, randomDirection.x);
+
+        RaycastHit rh;
+
+        var dir = new Vector3();
+
+        if (Physics.Raycast(pos, randomDirection, out rh, maxDistanceRadius, maskToDetect))
+        {
+            maxRange = rh.distance;
+            dir = randomDirection;
+            if (Physics.Raycast(pos, -randomDirection, out rh, maxDistanceRadius, maskToDetect))
+            {
+                if (maxRange < rh.distance)
+                {
+                    dir = -randomDirection;
+                    maxRange = rh.distance;
+                }
+                if (Physics.Raycast(pos, crossRamdomDirection, out rh, maxDistanceRadius, maskToDetect))
+                {
+                    if (maxRange < rh.distance)
+                    {
+                        dir = crossRamdomDirection;
+                        maxRange = rh.distance;
+                    }
+                    if (Physics.Raycast(pos, -crossRamdomDirection, out rh, maxDistanceRadius, maskToDetect))
+                    {
+                        if (maxRange < rh.distance)
+                        {
+                            dir = -crossRamdomDirection;
+                            maxRange = rh.distance;
+                        }
+
+                        pos += dir * maxRange;
+                    }
+                    else pos += -crossRamdomDirection * (maxDistanceRadius - 1f);
+                }
+                else pos += crossRamdomDirection * (maxDistanceRadius - 1f);
+            }
+            else pos += -randomDirection * (maxDistanceRadius - 1f);
+        }
+        else pos += randomDirection * (maxDistanceRadius - 1f);
+
+        return pos;
     }
 }

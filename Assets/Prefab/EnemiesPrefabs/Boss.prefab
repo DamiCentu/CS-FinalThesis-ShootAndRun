@@ -1438,7 +1438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1717152058503718
 GameObject:
   m_ObjectHideFlags: 1
@@ -4147,10 +4147,10 @@ MonoBehaviour:
   player: {fileID: 0}
   helthBar: {fileID: 0}
   col: {fileID: 0}
-  DeadParticle: {fileID: 0}
   layerThatDontAffectCharge:
     serializedVersion: 2
     m_Bits: 4294834943
+  bossCameraShakeTime: 2
 --- !u!114 &114640095791542094
 MonoBehaviour:
   m_ObjectHideFlags: 1

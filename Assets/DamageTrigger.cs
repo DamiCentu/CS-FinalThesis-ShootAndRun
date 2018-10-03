@@ -14,7 +14,7 @@ public class DamageTrigger : MonoBehaviour {
             {
                 p.OnHit(1);
             }
-            print("me choque");
+            //print("me choque");
      //       EventManager.instance.ExecuteEvent(Constants.CHARGER_CRUSH);
 
         }

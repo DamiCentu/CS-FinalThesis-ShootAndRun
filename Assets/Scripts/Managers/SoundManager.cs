@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour {
     public AudioSource portalFadeOut;
     public AudioSource portalFadeLoop;
     public AudioSource bulletHit;
+    public AudioSource bossExplotion;
 
     void Awake()
     {
@@ -34,6 +35,11 @@ public class SoundManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.SOUND_FADE_OUT, OnSoundFadeOut);//fade out es cuando reaparece
         EventManager.instance.SubscribeEvent(Constants.SOUND_FADE_IN, OnSoundFadeIn);//fade in es cuando esta ingresando al portal
         EventManager.instance.SubscribeEvent(Constants.SOUND_BULLET_HIT, OnSoundBulletHit);
+        EventManager.instance.SubscribeEvent(Constants.BOSS_DESTROYED, OnBossDestroyed);
+    }
+
+    private void OnBossDestroyed(object[] parameterContainer) {
+        bossExplotion.Play();
     }
 
     private void OnSoundBulletHit(object[] parameterContainer) {

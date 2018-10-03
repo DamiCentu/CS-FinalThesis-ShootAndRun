@@ -51,7 +51,7 @@ public class bossMissiles : MonoBehaviour, BossActions{
      //   float zPosition = playerPosition.z + UnityEngine.Random.Range(-maxOffset, maxOffset);
         Vector3 destination = new Vector3(playerPosition.x, playerPosition.y+0.3f, playerPosition.z);
         //Missile mis= new Missile(destination, timeToBoom)
-        Vector3 destinationInBoundries = Utility.RandomVector3InRadiusCountingBoundaries(destination, 3f,layer);
+        Vector3 destinationInBoundries = Utility.RandomVector3InRadiusCountingBoundariesInAnyDirection(destination, 3f,layer);
         Missile mis=  Instantiate(Missile, spawnMissilesPosition.position, Quaternion.FromToRotation(spawnMissilesPosition.position, destinationInBoundries));
         mis.Set(destinationInBoundries, timeToBoom);
     }

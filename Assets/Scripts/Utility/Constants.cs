@@ -19,15 +19,18 @@ public class Constants : MonoBehaviour
     public static string PARTICLE_RETURN_TO_POOL = "ReturnParticleToPool";
     public static string PARTICLE_ENEMY_EXPLOTION_NAME = "EnemyExplotionParticle";
     public static string PARTICLE_HERO_BULLET_HIT_NAME = "HeroBulletHit";
+    public static string PARTICLE_BOSS_EXPLOTION_NAME = "BossExplotionParticle";
 
     public static string CAMERA_ON_FOLLOW_PLAYER = "CameraFollowPlayer";
     public static string CAMERA_ON_BOSS = "CameraLookAtPlayer";
+    public static string CAMERA_STATIONARY = "CameraStationary";
 
     public static float ENEMIES_NORMAL_MULTIPLICATOR = 1f;
 
     public static string MISILE_DESTROY = "misileDestroy";
     public static string UPDATE_BOSS_LIFE = "update_boss_life";
     public static string BOSS_DESTROYED = "bossDestroyed";
+    public static string BOSS_CAMERA_LOOK_AT = "boss_camera_look_at";
 
     public static string START_SECTION = "start_section";
 
@@ -68,6 +71,7 @@ public class Constants : MonoBehaviour
     public const string SOUND_FADE_IN = "sound_fade_in";
     public const string SOUND_FADE_OUT = "sound_fade_out";
     public const string SOUND_BULLET_HIT = "bullet_hit";
+    //public const string SOUND_BOSS_EXPLOTION = "boss_explotion";
 
 
 }

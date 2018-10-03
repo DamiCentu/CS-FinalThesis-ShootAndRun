@@ -11,6 +11,10 @@ public class CameraBehaviour : MonoBehaviour {
     public float followSmoothSpeed = 0.1f;
     public Vector3 offset;
 
+    [Header("OnStationary")]
+    public float followSmoothSpeedStationary = 0.001f;
+    public Vector3 offsetStationary;
+
     [Header("BossCameraActivated?")]
     public bool cameraOnBossActivated;
 
@@ -22,41 +26,57 @@ public class CameraBehaviour : MonoBehaviour {
     public float smoothSpeedOnBoss;
 
     [Header("CameraShake")]
-    public float shakeDuration = 1f;
+    public float playerDeadShakeDuration = 1f;
     public float shakeAmount = 0.7f;
     public float decreaseFactor = 1.0f;
 
     float _shakeCountdown;   
     ICameraStrategy _strategyBehaviour;
+    StationaryPosStrategy _stationaryStrategy;
 
     Dictionary<string, ICameraStrategy> _allStrats = new Dictionary<string, ICameraStrategy>();
 
     const string ON_FOLLOW = "OnFollow";
     const string ON_BOSS_NODE = "OnBossNode";
+    const string ON_STATIONARY = "OnStationary";
 
     void Start() { 
         _allStrats.Add(ON_FOLLOW, new OnFollowPlayerStrategy(this));
         _allStrats.Add(ON_BOSS_NODE, new OnBossNodeStrategy(this));
 
+        _stationaryStrategy = new StationaryPosStrategy(this);
+        _allStrats.Add(ON_STATIONARY, _stationaryStrategy);
+
+
         _strategyBehaviour = _allStrats[ON_FOLLOW];
 
-        EventManager.instance.AddEvent(Constants.CAMERA_ON_FOLLOW_PLAYER);
-        EventManager.instance.AddEvent(Constants.CAMERA_ON_BOSS );
-        EventManager.instance.SubscribeEvent(Constants.CAMERA_ON_FOLLOW_PLAYER, OnFollow);
-        EventManager.instance.SubscribeEvent(Constants.CAMERA_ON_BOSS, OnLookAt);
+        EventManager.instance.SubscribeEvent(Constants.CAMERA_ON_FOLLOW_PLAYER, OnCameraFollowPlayer);
+        EventManager.instance.SubscribeEvent(Constants.CAMERA_ON_BOSS, OnCameraBoss);
+        EventManager.instance.SubscribeEvent(Constants.CAMERA_STATIONARY, OnCameraStationary);
 
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
-    } 
+        EventManager.instance.SubscribeEvent(Constants.BOSS_DESTROYED, OnBossDestroyed);
+    }
+
+    private void OnCameraStationary(object[] parameterContainer) { 
+        _stationaryStrategy.SetStationaryPos((Vector3)parameterContainer[0]); 
+        _strategyBehaviour = _allStrats[ON_STATIONARY];
+    }
+
+    private void OnBossDestroyed(object[] parameterContainer) {
+        _shakeCountdown = (float)parameterContainer[0];
+        StartCoroutine(ShakeRoutine()); 
+    }
 
     void FixedUpdate() { 
         _strategyBehaviour.OnFixedUpdate();
     } 
 
-    void OnFollow(params object[] param) { 
+    void OnCameraFollowPlayer(params object[] param) { 
         _strategyBehaviour = _allStrats[ON_FOLLOW];
     }
 
-    void OnLookAt(params object[] param) {
+    void OnCameraBoss(params object[] param) {
         if (!cameraOnBossActivated)
             return;
          
@@ -64,14 +84,14 @@ public class CameraBehaviour : MonoBehaviour {
     } 
 
     void OnPlayerDead(params object[] param) {
-        _shakeCountdown = shakeDuration;
+        _shakeCountdown = playerDeadShakeDuration;
         StartCoroutine(ShakeRoutine());
     } 
 
     IEnumerator ShakeRoutine() {
         while (_shakeCountdown > 0)  {
              
-            if(_shakeCountdown < shakeDuration/2)
+            if(_shakeCountdown < playerDeadShakeDuration/2)
                 transform.position = transform.position + UnityEngine.Random.insideUnitSphere * shakeAmount/3;
             else
                 transform.position = transform.position + UnityEngine.Random.insideUnitSphere * shakeAmount;

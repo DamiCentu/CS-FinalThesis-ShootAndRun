@@ -28,7 +28,7 @@ public class BossJump : MonoBehaviour, BossActions
         this.boss= boss;
         boss.transform.LookAt(boss.player.transform.position);
         Vector3 position = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
-        positionToAim= Utility.RandomVector3InRadiusCountingBoundaries(position, 5f, layerToDetect);
+        positionToAim= Utility.RandomVector3InRadiusCountingBoundariesInAnyDirection(position, 5f, layerToDetect);
         boss.col.enabled = false;
 
     }

@@ -454,7 +454,7 @@ MonoBehaviour:
   blockEnemyViewToPlayer:
     serializedVersion: 2
     m_Bits: 525312
-  hitsCanTake: 5
+  hitsCanTake: 10
   stoppedTime: 0.5
   radiusToAttack: 30
   shotPos: {fileID: 4289286720952294}

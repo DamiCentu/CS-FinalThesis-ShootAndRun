@@ -24,7 +24,7 @@ public class ScatterUlt : MonoBehaviour {
         for (int i = 0; i < amount; i++)
         {
             float distance = Random.Range(minRange, maxRange);
-            Vector3 pos = Utility.RandomVector3InRadiusCountingBoundaries(player.position, distance, layerToInstance);
+            Vector3 pos = Utility.RandomVector3InRadiusCountingBoundariesInAnyDirection(player.position, distance, layerToInstance);
             posiciones.Add(pos);
             GameObject b= Instantiate(ball, pos, this.transform.rotation);
             balls.Add(b);

@@ -8,6 +8,7 @@ TagManager:
   - ParticleBomb
   - EnemyExplotionParticle
   - HeroBulletHit
+  - BossExplotionParticle
   layers:
   - Default
   - TransparentFX

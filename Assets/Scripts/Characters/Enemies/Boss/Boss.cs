@@ -38,9 +38,11 @@ public class Boss : AbstractEnemy, IHittable{
     public SimpleHealthBar helthBar;
     bool introFinished=false;
     public BoxCollider col;
-    public ParticleSystem DeadParticle;
+    //public ParticleSystem DeadParticle;
     public LayerMask layerThatDontAffectCharge;
     private Renderer[] _meshRends;
+    public float bossCameraShakeTime = 2;
+
     void Awake()
     {
         maxLife = life;
@@ -56,7 +58,7 @@ public class Boss : AbstractEnemy, IHittable{
         transform.LookAt(player.transform.position);
 
         col = this.GetComponent<BoxCollider>();
-        DeadParticle =GameObject.Find("ParticleExplosion").GetComponent<ParticleSystem>();
+        //DeadParticle =GameObject.Find("ParticleExplosion").GetComponent<ParticleSystem>();
         UpdateBossLife();
         _meshRends = GetComponentsInChildren<Renderer>();
         ChangeShaderValue("_SegundaFase", 0);
@@ -187,11 +189,13 @@ public class Boss : AbstractEnemy, IHittable{
     }
 
     IEnumerator Dead() {
+        EventManager.instance.ExecuteEvent(Constants.CAMERA_STATIONARY, new object[] { transform.position });
         yield return new WaitForSeconds(2);
-        DeadParticle.transform.position = this.transform.position;
-        DeadParticle.gameObject.SetActive(true);
-        DeadParticle.Play();
-        EventManager.instance.ExecuteEvent(Constants.BOSS_DESTROYED);
+        //DeadParticle.transform.position = this.transform.position;
+        //DeadParticle.gameObject.SetActive(true);
+        //DeadParticle.Play();
+        EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_BOSS_EXPLOTION_NAME, transform.position });
+        EventManager.instance.ExecuteEvent(Constants.BOSS_DESTROYED , new object[] { bossCameraShakeTime });
         Destroy(this.gameObject);
     }
 

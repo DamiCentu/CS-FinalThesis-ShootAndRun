@@ -20,6 +20,7 @@ public class SectionNode : MonoBehaviour {
 
     public bool isBossNode;
 
+    public GameObject bossNodeWarningParticle;
     public Transform constantPointToLookAtOnBoss;
     public Transform cameraPosInLookAtOnBoos;
 
@@ -66,7 +67,16 @@ public class SectionNode : MonoBehaviour {
     }
     
     IEnumerator BossRoutine() { 
+        foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
+            p.Play();
+        }
+        //EventManager.instance.ExecuteEvent(Constants.BOSS_START, new object[]{ warningParticle});
         yield return _waitBetweenWaves;
+
+        foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
+            p.Stop();
+        }
+
         bossOnScreen = Instantiate(EnemiesManager.instance.bossPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<Boss>();
         bossOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
         bossOnScreen.gameObject.SetActive(true);
@@ -117,7 +127,6 @@ public class SectionNode : MonoBehaviour {
 
         _waitBetweenWaves = new WaitForSeconds(timeBetweenWaves);
         _waitBetweenSpawns = new WaitForSeconds(timeBetweenSpawns);
-        EventManager.instance.AddEvent(Constants.BOSS_DESTROYED);
 
         EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, OnEnemyDead);
         EventManager.instance.SubscribeEvent(Constants.POWER_UP_DROPED, OnPowerUpDropped);
@@ -230,8 +239,7 @@ public class SectionNode : MonoBehaviour {
             foreach (var misil in foundMisiles)
             {
                 misil.DestroyMissile();
-            }
-
+            } 
         }
     }
 
@@ -249,6 +257,7 @@ public class SectionNode : MonoBehaviour {
         EventManager.instance.ExecuteEvent(Constants.START_SECTION);
 
         if (isBossNode) {
+            
             SetBoss();
             //return;
         }
@@ -495,7 +504,7 @@ public class SectionNode : MonoBehaviour {
 
         var go = (GameObject)paramss[1];
 
-        var pos = Utility.RandomVector3InRadiusCountingBoundaries(go.transform.position,radiusToSetPowerUpChaser,objectToDetectConnectingNodes);
+        var pos = Utility.RandomVector3InRadiusCountingBoundariesInRectDirection(go.transform.position,radiusToSetPowerUpChaser,objectToDetectConnectingNodes);
 
         onGizmosSafeZoneChaser = pos;
 
