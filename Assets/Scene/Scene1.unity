@@ -44650,7 +44650,7 @@ MonoBehaviour:
   creditsMedium: 3
   creditsHard: 1
   lvl: 1
-  playerUlt: 1
+  playerUlt: 3
 --- !u!4 &633091888
 Transform:
   m_ObjectHideFlags: 0
@@ -142475,13 +142475,15 @@ MonoBehaviour:
   target: {fileID: 1258870400}
   followSmoothSpeed: 0.1
   offset: {x: 0, y: 23, z: -7}
+  followSmoothSpeedStationary: 0.001
+  offsetStationary: {x: 0, y: 0, z: 0}
   cameraOnBossActivated: 1
   cameraPivotOnBoss: {x: -113.75, y: 23, z: -98}
   cameraOffsetOnBoss: {x: 0, y: 23, z: -2}
   clampMovementX: 0.5
   clampMovementZ: 2
   smoothSpeedOnBoss: 0.05
-  shakeDuration: 1
+  playerDeadShakeDuration: 1
   shakeAmount: 0.7
   decreaseFactor: 1
 --- !u!114 &1921965780
