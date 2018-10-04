@@ -43,6 +43,12 @@ public class Boss : AbstractEnemy, IHittable{
     private Renderer[] _meshRends;
     public float bossCameraShakeTime = 2;
 
+
+
+    public void DeleteAll() {
+        actualAction.DeleteAll();
+    }
+
     void Awake()
     {
         maxLife = life;
@@ -187,6 +193,8 @@ public class Boss : AbstractEnemy, IHittable{
             }
         }
     }
+
+
 
     IEnumerator Dead() {
         EventManager.instance.ExecuteEvent(Constants.CAMERA_STATIONARY, new object[] { transform.position });

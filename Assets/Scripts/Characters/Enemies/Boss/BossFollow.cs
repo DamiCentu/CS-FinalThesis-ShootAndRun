@@ -22,7 +22,10 @@ public class BossFollow : MonoBehaviour,BossActions
     {
         
     }
+    void BossActions.DeleteAll()
+    {
 
+    }
     void BossActions.Update(Transform boss, Vector3 playerPosition)
     {
         boss.transform.LookAt(playerPosition);

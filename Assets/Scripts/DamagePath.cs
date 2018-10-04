@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class DamagePath : MonoBehaviour {
     public float maxDistanceToSpawn;
      float _distanceToSpawn;
     private bool _shouldStopSpawning = true;
+    private List<GameObject> AllGameObjects= new List<GameObject>();
 
     public void SpawnDirection(Vector3 spawnPos, Vector3 direction,float speed) {
 
@@ -40,6 +42,15 @@ public class DamagePath : MonoBehaviour {
         this.speed = speed;
     }
 
+    internal void DeleteAll()
+    {
+        foreach (var item in AllGameObjects)
+        {
+            if (item != null) Destroy(item);
+        }
+        AllGameObjects = new List<GameObject>();
+    }
+
     // Update is called once per frame
     void Update () {
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
@@ -52,6 +63,7 @@ public class DamagePath : MonoBehaviour {
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
                 GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);
                 p.gameObject.SetActive(true);
+                AllGameObjects.Add(p);
                Destroy(p.gameObject, timeAlive);
 
             }

@@ -30,7 +30,12 @@ public class BossJump2 : MonoBehaviour, BossActions
         boss.col.enabled = false;
 
     }
-
+    void BossActions.DeleteAll()
+    {
+        mark.SetActive(false);
+        boss.SetAnimation("Jump", false);
+        boss.col.enabled = true;
+    }
     void BossActions.Finish(Boss boss)
     {
         mark.SetActive(false);

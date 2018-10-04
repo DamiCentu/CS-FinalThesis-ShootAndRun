@@ -45,9 +45,6 @@ public class Missile: MonoBehaviour
 
     }
 
-
-  
-
     private void OnTriggerEnter(Collider c)
     {
         //print("asd");

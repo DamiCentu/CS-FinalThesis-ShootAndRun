@@ -29,6 +29,10 @@ public class BossExpansiveWave : MonoBehaviour, BossActions {
         line.gameObject.SetActive(false);
     }
 
+    void BossActions.DeleteAll()
+    {
+       ((BossActions)this).Finish(boss);
+    }
 
     void BossActions.Update(Transform bossTransform, Vector3 playerPosition)
     {

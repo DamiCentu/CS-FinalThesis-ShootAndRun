@@ -17,9 +17,12 @@ public class bossMissiles : MonoBehaviour, BossActions{
     Boss boss;
     public LayerMask layer;
     public float movementSpeed=5;
+    private List<Missile> misiles = new List<Missile>();
+
 
     void BossActions.Begin(Boss boss1)
     {
+        misiles = new List<Missile>();
         boss = boss1;
         if (shouldUpgrade) {
             Upgrade();
@@ -27,7 +30,14 @@ public class bossMissiles : MonoBehaviour, BossActions{
         _timer = 0;
         boss.SetAnimation("ShootAir", true);
     }
-
+    void BossActions.DeleteAll()
+    {
+        ((BossActions)this).Finish(boss);
+        foreach (var item in misiles)
+        {
+            if (item != null) Destroy(item);
+        }
+    }
     void BossActions.Finish(Boss boss)
     {
         boss.SetAnimation("ShootAir", false);
@@ -54,6 +64,7 @@ public class bossMissiles : MonoBehaviour, BossActions{
         Vector3 destinationInBoundries = Utility.RandomVector3InRadiusCountingBoundariesInAnyDirection(destination, 3f,layer);
         Missile mis=  Instantiate(Missile, spawnMissilesPosition.position, Quaternion.FromToRotation(spawnMissilesPosition.position, destinationInBoundries));
         mis.Set(destinationInBoundries, timeToBoom);
+        misiles.Add(mis);
     }
 
     public void Upgrade()

@@ -67,16 +67,17 @@ public class SectionNode : MonoBehaviour {
     }
     
     IEnumerator BossRoutine() { 
-        foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
-            p.Play();
+   /*     foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
+            if (p!=null)
+                p.Play();
         }
-        //EventManager.instance.ExecuteEvent(Constants.BOSS_START, new object[]{ warningParticle});
+        */
         yield return _waitBetweenWaves;
-
-        foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
-            p.Stop();
-        }
-
+        /*
+      foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
+          p.Stop();
+      }
+              */
         bossOnScreen = Instantiate(EnemiesManager.instance.bossPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<Boss>();
         bossOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
         bossOnScreen.gameObject.SetActive(true);
@@ -234,6 +235,7 @@ public class SectionNode : MonoBehaviour {
         Utility.DestroyAllInAndClearList(_allMiniBoss);
 
         if (isBossNode) {
+            bossOnScreen.DeleteAll();
             Destroy(bossOnScreen.gameObject);
             var foundMisiles = FindObjectsOfType<Missile>();
             foreach (var misil in foundMisiles)

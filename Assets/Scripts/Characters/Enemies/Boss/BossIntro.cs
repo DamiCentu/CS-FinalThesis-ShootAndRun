@@ -36,6 +36,12 @@ public class BossIntro : MonoBehaviour,BossActions
         timerMark = null;
     }
 
+    void BossActions.DeleteAll()
+    {
+        mark.SetActive(false);
+        boss.SetAnimation("Jump", false);
+    }
+
     void BossActions.Finish(Boss boss)
     {
         mark.SetActive(false);

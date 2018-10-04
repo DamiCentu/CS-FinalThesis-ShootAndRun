@@ -66694,12 +66694,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.029629208, y: 0.06489926, z: -0.0000010728836}
     m_Extent: {x: 0.06579499, y: 0.046558514, z: 0.1124496}
   m_DirtyAABB: 0
---- !u!114 &837819344 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114091439378999290, guid: 72e484cee0e6e7144b4e6e8bff2110b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 324481312}
-  m_Script: {fileID: 11500000, guid: f2e7ed98b67b45c49aecbe78c58155f4, type: 3}
 --- !u!1 &838903227
 GameObject:
   m_ObjectHideFlags: 0
@@ -81666,31 +81660,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114577324785568254, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+    - target: {fileID: 114891241620657486, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: info
+      propertyPath: player
       value: 
-      objectReference: {fileID: 2132329253}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: doubleShoot
-      value: 
-      objectReference: {fileID: 630726297}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: extraDash
-      value: 
-      objectReference: {fileID: 175436098}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: range
-      value: 
-      objectReference: {fileID: 1297725881}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 1204887788}
+      objectReference: {fileID: 1111301549}
     - target: {fileID: 114729869925523190, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
       propertyPath: bossLife
@@ -81731,21 +81705,41 @@ Prefab:
       propertyPath: tutorialText
       value: 
       objectReference: {fileID: 529369711}
-    - target: {fileID: 114171110015049646, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+    - target: {fileID: 114577324785568254, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: actualNode
+      propertyPath: info
       value: 
-      objectReference: {fileID: 837819344}
-    - target: {fileID: 114891241620657486, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+      objectReference: {fileID: 2132329253}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: player
+      propertyPath: doubleShoot
       value: 
-      objectReference: {fileID: 1111301549}
+      objectReference: {fileID: 630726297}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: extraDash
+      value: 
+      objectReference: {fileID: 175436098}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: range
+      value: 
+      objectReference: {fileID: 1297725881}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 1204887788}
     - target: {fileID: 114400327827844174, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
       propertyPath: tutorialNode
       value: 
       objectReference: {fileID: 1886309827}
+    - target: {fileID: 114171110015049646, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: actualNode
+      value: 
+      objectReference: {fileID: 1476110551}
     - target: {fileID: 1454301980968888, guid: 77fb7fa22fae4c149bcc8c78d4611208, type: 2}
       propertyPath: m_Name
       value: ManagersDestroyable
@@ -105209,19 +105203,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1653804700121832, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
-      propertyPath: m_Name
-      value: LVL (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 114245483051897446, guid: 72e484cee0e6e7144b4e6e8bff2110b1,
         type: 2}
       propertyPath: ball
       value: 
       objectReference: {fileID: 1258870400}
-    - target: {fileID: 114091439378999290, guid: 72e484cee0e6e7144b4e6e8bff2110b1,
-        type: 2}
-      propertyPath: next
-      value: 
+    - target: {fileID: 1653804700121832, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
+      propertyPath: m_Name
+      value: LVL (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
@@ -112491,6 +112480,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1476110551 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114622185657093174, guid: 72e484cee0e6e7144b4e6e8bff2110b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1387976353}
+  m_Script: {fileID: 11500000, guid: f2e7ed98b67b45c49aecbe78c58155f4, type: 3}
 --- !u!1 &1498117172
 GameObject:
   m_ObjectHideFlags: 0

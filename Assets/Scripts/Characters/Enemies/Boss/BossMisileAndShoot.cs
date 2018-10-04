@@ -28,11 +28,12 @@ public class BossMisileAndShoot : MonoBehaviour, BossActions
     public Transform spawnMissilesPosition;
     public float reduceTimeBetweenMissiles;
     public float reduceTimeToBoom;
+    private Boss boss;
 
 
     //private void Start()
     //{
-        //bulletManager = EnemyBulletManager.instance;
+    //bulletManager = EnemyBulletManager.instance;
     //}
 
 
@@ -40,6 +41,7 @@ public class BossMisileAndShoot : MonoBehaviour, BossActions
     {
         //     _timer = 0;
         _timer = 0;
+        this.boss = boss;
         boss.SetAnimation("ShootAir", true);
         _timerShoot = 0;
 
@@ -52,7 +54,10 @@ public class BossMisileAndShoot : MonoBehaviour, BossActions
         boss.SetAnimation("ShootAir", false);
     }
 
-
+    void BossActions.DeleteAll()
+    {
+        ((BossActions)this).Finish(boss);
+    }
 
     void BossActions.Update(Transform boss, Vector3 playerPosition)
     {

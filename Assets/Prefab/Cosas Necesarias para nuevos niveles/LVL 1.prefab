@@ -112998,7 +112998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  next: {fileID: 114622185657093174}
+  next: {fileID: 0}
   timeBetweenWaves: 1.5
   timeBetweenSpawns: 0.5
   playerSpawnPoint: {fileID: 4954896645054072}
@@ -113011,6 +113011,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   isBossNode: 0
+  bossNodeWarningParticle: {fileID: 0}
   constantPointToLookAtOnBoss: {fileID: 0}
   cameraPosInLookAtOnBoos: {fileID: 0}
   radiusToSetPowerUpChaser: 10
@@ -115199,6 +115200,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   isBossNode: 0
+  bossNodeWarningParticle: {fileID: 0}
   constantPointToLookAtOnBoss: {fileID: 0}
   cameraPosInLookAtOnBoos: {fileID: 0}
   radiusToSetPowerUpChaser: 10
@@ -115584,10 +115586,10 @@ MonoBehaviour:
   player: {fileID: 0}
   helthBar: {fileID: 0}
   col: {fileID: 0}
-  DeadParticle: {fileID: 0}
   layerThatDontAffectCharge:
     serializedVersion: 2
     m_Bits: 4294834943
+  bossCameraShakeTime: 2
 --- !u!114 &114397531912478858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115910,6 +115912,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   isBossNode: 0
+  bossNodeWarningParticle: {fileID: 0}
   constantPointToLookAtOnBoss: {fileID: 0}
   cameraPosInLookAtOnBoos: {fileID: 0}
   radiusToSetPowerUpChaser: 10
@@ -117719,6 +117722,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   isBossNode: 1
+  bossNodeWarningParticle: {fileID: 0}
   constantPointToLookAtOnBoss: {fileID: 4243639596504134}
   cameraPosInLookAtOnBoos: {fileID: 4706080081662432}
   radiusToSetPowerUpChaser: 10
@@ -119272,6 +119276,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   isBossNode: 0
+  bossNodeWarningParticle: {fileID: 0}
   constantPointToLookAtOnBoss: {fileID: 0}
   cameraPosInLookAtOnBoos: {fileID: 0}
   radiusToSetPowerUpChaser: 10
@@ -120763,6 +120768,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   isBossNode: 0
+  bossNodeWarningParticle: {fileID: 0}
   constantPointToLookAtOnBoss: {fileID: 0}
   cameraPosInLookAtOnBoos: {fileID: 0}
   radiusToSetPowerUpChaser: 10

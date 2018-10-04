@@ -48,6 +48,13 @@ public class BossJump : MonoBehaviour, BossActions
         //  boss.gameObject.GetComponent<Collider>().gameObject.SetActive(true);
     }
 
+    void BossActions.DeleteAll()
+    {
+        if(mark!=null)   mark.SetActive(false);
+        boss.SetAnimation("Jump", false);
+        boss.col.enabled = true;
+    }
+
     private void Mark()
     {
         boss.transform.position = positionToAim;

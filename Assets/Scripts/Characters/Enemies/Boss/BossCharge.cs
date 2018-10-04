@@ -31,7 +31,12 @@ public class BossCharge : MonoBehaviour,BossActions {
         boss.SetAnimation("Shield", false);
         EventManager.instance.UnsubscribeEvent(Constants.CHARGER_CRUSH, StopCharging);
     }
-
+    void BossActions.DeleteAll()
+    {
+        EventManager.instance.UnsubscribeEvent(Constants.CHARGER_CRUSH, StopCharging);
+        StopCharging(new object[0]);
+        damagePath.DeleteAll();
+    }
 
     private void StopCharging(object[] parameterContainer)
     {

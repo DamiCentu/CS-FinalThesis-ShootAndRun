@@ -36,10 +36,14 @@ public class BossShoot: MonoBehaviour ,BossActions {
         boss = bosss;
         _timer = 0;
         _timerShoot = 0;
-        boss.SetAnimation("Spin", true);
-        
-}
-
+        boss.SetAnimation("Spin", true);       
+    }
+    void BossActions.DeleteAll()
+    {
+        _timer = 0;
+        _timerShoot = 0;
+        boss.SetAnimation("Spin", false);
+    }
     void BossActions.Finish(Boss boss)
     {
         _timer = 0;
