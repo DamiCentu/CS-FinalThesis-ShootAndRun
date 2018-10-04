@@ -19,27 +19,27 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TextureSample1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f98b75fbffa36144b991e7ccfc3c3ef3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AO:
-        m_Texture: {fileID: 2800000, guid: ba6b8f52a35aef745b5103f31f268d88, type: 3}
+        m_Texture: {fileID: 2800000, guid: 79d08dcfe67c12e47ba0bca2dd0d4ea9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AlbedoTransparency:
-        m_Texture: {fileID: 2800000, guid: c3e7f5c598f6b5c48994701a5ebaa6c7, type: 3}
+        m_Texture: {fileID: 2800000, guid: a005df66142d2fe4ba581d607bdec72c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_Emission:
-        m_Texture: {fileID: 2800000, guid: da44abb8fd625fc41a55178dd58e59ed, type: 3}
+        m_Texture: {fileID: 2800000, guid: aa756a32999974542a4aaf3e14b77089, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_MetallicSmoothness:
-        m_Texture: {fileID: 2800000, guid: 35a1c321e52a0b84ab8822dde353befa, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0948b22f4859dde498b7ec797a07d98a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_Normal:
-        m_Texture: {fileID: 2800000, guid: e33b4aa7d1ef75541b95626dff33d263, type: 3}
+        m_Texture: {fileID: 2800000, guid: f6f6bafce6b938043bb561d31a2af573, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:

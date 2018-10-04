@@ -63,14 +63,14 @@ Shader "MyShaders/CubeEnemyShader"
 			o.Normal = UnpackNormal( tex2D( _enemigo1_DefaultMaterial_Normal, uv_enemigo1_DefaultMaterial_Normal ) );
 			float2 uv_enemigo1_DefaultMaterial_AlbedoTransparency = i.uv_texcoord * _enemigo1_DefaultMaterial_AlbedoTransparency_ST.xy + _enemigo1_DefaultMaterial_AlbedoTransparency_ST.zw;
 			o.Albedo = tex2D( _enemigo1_DefaultMaterial_AlbedoTransparency, uv_enemigo1_DefaultMaterial_AlbedoTransparency ).rgb;
+			float2 uv_enemigo1_DefaultMaterial_Emission = i.uv_texcoord * _enemigo1_DefaultMaterial_Emission_ST.xy + _enemigo1_DefaultMaterial_Emission_ST.zw;
+			float4 tex2DNode13 = tex2D( _enemigo1_DefaultMaterial_Emission, uv_enemigo1_DefaultMaterial_Emission );
 			float3 ase_worldPos = i.worldPos;
 			float3 ase_worldViewDir = normalize( UnityWorldSpaceViewDir( ase_worldPos ) );
 			float3 ase_worldNormal = WorldNormalVector( i, float3( 0, 0, 1 ) );
 			float fresnelNDotV18 = dot( ase_worldNormal, ase_worldViewDir );
 			float fresnelNode18 = ( 0.0 + 3.3 * pow( 1.0 - fresnelNDotV18, 1.6 ) );
-			float2 uv_enemigo1_DefaultMaterial_Emission = i.uv_texcoord * _enemigo1_DefaultMaterial_Emission_ST.xy + _enemigo1_DefaultMaterial_Emission_ST.zw;
-			float4 tex2DNode13 = tex2D( _enemigo1_DefaultMaterial_Emission, uv_enemigo1_DefaultMaterial_Emission );
-			float4 lerpResult23 = lerp( ( ( float4(1,0,0,0) * fresnelNode18 ) + tex2DNode13 ) , tex2DNode13 , _Berserker);
+			float4 lerpResult23 = lerp( tex2DNode13 , ( ( float4(1,0,0,0) * fresnelNode18 ) + tex2DNode13 ) , _Berserker);
 			o.Emission = lerpResult23.rgb;
 			float2 uv_enemigo1_DefaultMaterial_MetallicSmoothness = i.uv_texcoord * _enemigo1_DefaultMaterial_MetallicSmoothness_ST.xy + _enemigo1_DefaultMaterial_MetallicSmoothness_ST.zw;
 			o.Metallic = tex2D( _enemigo1_DefaultMaterial_MetallicSmoothness, uv_enemigo1_DefaultMaterial_MetallicSmoothness ).r;
@@ -167,31 +167,31 @@ Shader "MyShaders/CubeEnemyShader"
 }
 /*ASEBEGIN
 Version=13701
-117;200;846;619;2172.754;129.3551;1.974513;True;False
-Node;AmplifyShaderEditor.ColorNode;22;-1568.931,567.8758;Float;False;Constant;_Color2;Color 2;11;0;1,0,0,0;0;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
+691;145;668;571;951.5529;60.4781;1.356127;False;False
 Node;AmplifyShaderEditor.FresnelNode;18;-1323.528,633.6516;Float;False;Tangent;4;0;FLOAT3;0,0,0;False;1;FLOAT;0.0;False;2;FLOAT;3.3;False;3;FLOAT;1.6;False;1;FLOAT
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;21;-955.5446,299.0884;Float;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0.0,0,0,0;False;1;COLOR
+Node;AmplifyShaderEditor.ColorNode;22;-1568.931,567.8758;Float;False;Constant;_Color2;Color 2;11;0;1,0,0,0;0;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
 Node;AmplifyShaderEditor.SamplerNode;13;-891.151,494.4899;Float;True;Property;_enemigo1_DefaultMaterial_Emission;enemigo 1_DefaultMaterial_Emission;5;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_Emission.png;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.RangedFloatNode;2;-1344.141,215.1734;Float;False;Property;_reintegrateValue;reintegrateValue;1;0;0;0;2;0;1;FLOAT
-Node;AmplifyShaderEditor.SamplerNode;16;-1310.309,-63.07546;Float;True;Property;_TextureSample1;Texture Sample 1;2;0;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;21;-955.5446,299.0884;Float;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0.0,0,0,0;False;1;COLOR
 Node;AmplifyShaderEditor.RangedFloatNode;24;-880.6509,403.8881;Float;False;Property;_Berserker;Berserker;8;0;0;0;1;0;1;FLOAT
 Node;AmplifyShaderEditor.SimpleAddOpNode;20;-553.0276,213.6663;Float;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR
-Node;AmplifyShaderEditor.SamplerNode;11;-765.1556,-158.3182;Float;True;Property;_enemigo1_DefaultMaterial_AlbedoTransparency;enemigo 1_DefaultMaterial_AlbedoTransparency;3;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_AlbedoTransparency.png;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.LerpOp;17;-742.7573,65.89441;Float;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0.0,0,0,0;False;1;COLOR
-Node;AmplifyShaderEditor.SamplerNode;15;-712.047,1041.481;Float;True;Property;_enemigo1_DefaultMaterial_Normal;enemigo 1_DefaultMaterial_Normal;7;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_Normal.png;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;FLOAT3;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.SamplerNode;12;-359.6538,481.5426;Float;True;Property;_enemigo1_DefaultMaterial_AO;enemigo 1_DefaultMaterial_AO;4;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_AO.png;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
+Node;AmplifyShaderEditor.RangedFloatNode;2;-1344.141,215.1734;Float;False;Property;_reintegrateValue;reintegrateValue;1;0;0;0;2;0;1;FLOAT
+Node;AmplifyShaderEditor.SamplerNode;16;-1310.309,-63.07546;Float;True;Property;_TextureSample1;Texture Sample 1;2;0;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
 Node;AmplifyShaderEditor.SamplerNode;14;-862.1071,755.8836;Float;True;Property;_enemigo1_DefaultMaterial_MetallicSmoothness;enemigo 1_DefaultMaterial_MetallicSmoothness;6;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_MetallicSmoothness.png;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
 Node;AmplifyShaderEditor.LerpOp;23;-324.1194,183.5598;Float;False;3;0;COLOR;0.0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0.0,0,0,0;False;1;COLOR
+Node;AmplifyShaderEditor.SamplerNode;15;-712.047,1041.481;Float;True;Property;_enemigo1_DefaultMaterial_Normal;enemigo 1_DefaultMaterial_Normal;7;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_Normal.png;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;FLOAT3;FLOAT;FLOAT;FLOAT;FLOAT
+Node;AmplifyShaderEditor.SamplerNode;11;-765.1556,-158.3182;Float;True;Property;_enemigo1_DefaultMaterial_AlbedoTransparency;enemigo 1_DefaultMaterial_AlbedoTransparency;3;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_AlbedoTransparency.png;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
+Node;AmplifyShaderEditor.SamplerNode;12;-359.6538,481.5426;Float;True;Property;_enemigo1_DefaultMaterial_AO;enemigo 1_DefaultMaterial_AO;4;0;Assets/Art/texturas enemigos/araña/enemigo 1_DefaultMaterial_AO.png;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
+Node;AmplifyShaderEditor.LerpOp;17;-742.7573,65.89441;Float;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0.0,0,0,0;False;1;COLOR
 Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;0,0;Float;False;True;2;Float;ASEMaterialInspector;0;0;Standard;MyShaders/CubeEnemyShader;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;0;False;0;0;Custom;0.5;True;True;0;True;TransparentCutout;Transparent;All;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;False;0;255;255;0;0;0;0;0;0;0;0;False;2;15;10;25;False;0.5;True;0;Zero;Zero;0;Zero;Zero;OFF;OFF;0;False;0;0,0,0,0;VertexOffset;False;Cylindrical;False;Relative;0;;0;-1;-1;-1;0;0;0;False;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0.0;False;4;FLOAT;0.0;False;5;FLOAT;0.0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0.0;False;9;FLOAT;0.0;False;10;FLOAT;0.0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;21;0;22;0
 WireConnection;21;1;18;0
 WireConnection;20;0;21;0
 WireConnection;20;1;13;0
+WireConnection;23;0;13;0
+WireConnection;23;1;20;0
+WireConnection;23;2;24;0
 WireConnection;17;1;16;0
 WireConnection;17;2;2;0
-WireConnection;23;0;20;0
-WireConnection;23;1;13;0
-WireConnection;23;2;24;0
 WireConnection;0;0;11;0
 WireConnection;0;1;15;0
 WireConnection;0;2;23;0
@@ -199,4 +199,4 @@ WireConnection;0;3;14;0
 WireConnection;0;5;12;0
 WireConnection;0;10;17;0
 ASEEND*/
-//CHKSM=66E31EFB0B751DFD6B6F98A1393358B0E03E5E2C
+//CHKSM=11872D8C37996C5E6D29469B4EE0A12D7CF9DFF9

@@ -57,6 +57,6 @@ Material:
     m_Floats:
     - _Float2: 1
     - _SegundaFase: 0
-    - _Shield: 1
+    - _Shield: 0
     - __dirty: 0
     m_Colors: []
