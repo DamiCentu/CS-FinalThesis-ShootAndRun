@@ -126624,8 +126624,8 @@ MonoBehaviour:
   mouseLayerDetection:
     serializedVersion: 2
     m_Bits: 32768
-  cursorTexture: {fileID: 2800000, guid: 8da174483a8bd844f810ec55555b3fed, type: 3}
-  hotSpot: {x: 256, y: 256}
+  cursorTexture: {fileID: 2800000, guid: 4db38a9dd5cd2d44f8e5fb642cb7ef59, type: 3}
+  hotSpot: {x: 46.5, y: 46.5}
 --- !u!4 &1592289255
 Transform:
   m_ObjectHideFlags: 0
