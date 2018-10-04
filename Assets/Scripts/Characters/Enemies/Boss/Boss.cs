@@ -42,7 +42,8 @@ public class Boss : AbstractEnemy, IHittable{
     public LayerMask layerThatDontAffectCharge;
     private Renderer[] _meshRends;
     public float bossCameraShakeTime = 2;
-
+    public GameObject shield1;
+    public GameObject shield2;
 
 
     public void DeleteAll() {
@@ -51,6 +52,9 @@ public class Boss : AbstractEnemy, IHittable{
 
     void Awake()
     {
+        shield1= GameObject.Find("ShieldBoss1");
+        shield2=GameObject.Find("ShieldBoss2");
+
         maxLife = life;
         SetActions();
         actions = stageActions[stage];
