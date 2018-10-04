@@ -74510,7 +74510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a66694d773cd04b8110b7ea71ddc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifes: 1
+  maxLifes: 5
 --- !u!114 &1267301181
 MonoBehaviour:
   m_ObjectHideFlags: 0
