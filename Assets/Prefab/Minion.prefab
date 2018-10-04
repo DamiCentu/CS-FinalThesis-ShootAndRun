@@ -129,7 +129,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   shootPos: {fileID: 4722082585831956}
-  minTimeTiShoot: 0.2
+  minTimeTiShoot: 0.25
 --- !u!136 &136030323355975838
 CapsuleCollider:
   m_ObjectHideFlags: 1

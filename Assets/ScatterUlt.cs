@@ -57,6 +57,9 @@ public class ScatterUlt : MonoBehaviour {
                 }
 
             }
+            EnemyBulletManager.instance.ReturnAllBullets();
+
+
         }
         yield return new WaitForSeconds(1f);
         ResetBalls();

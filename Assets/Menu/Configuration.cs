@@ -34,6 +34,11 @@ public class Configuration : MonoBehaviour {
         playerQuantity = PlayersQuantity.Two;
     }
 
+    internal void SetSpawnMinions()
+    {
+        playerUlt = Player.Ults.Spawn;
+    }
+
     public void SetEasy() {
         dificulty = Dificulty.Easy;
     }

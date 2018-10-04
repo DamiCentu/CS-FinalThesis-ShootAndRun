@@ -33,6 +33,11 @@ public class Settings : MonoBehaviour {
         Configuration.instance.SetUltScatter();
         StartGame();
     }
+    public void SetSpawnMinions()
+    {
+        Configuration.instance.SetSpawnMinions();
+        StartGame();
+    }
     void StartGame()
     {
         SceneManager.LoadScene("Scene1");
