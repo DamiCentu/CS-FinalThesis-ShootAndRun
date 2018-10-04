@@ -12,7 +12,10 @@ public class LootTableManager : MonoBehaviour {
     public List<int> cantidades;
     public List<GameObject> powerUps;
     private float probability=0.2f;
-    public float defaultProbability = 0.09f;
+    public float easyDefaultProbability = 0.15f;
+    public float mediumDefaultProbability = 0.09f;
+    public float hardDefaultProbability = 0.05f;
+    public float defaultProbability;
     private int totalPowerUps;
     private int totalPowerAvailable;
     List<GameObject> _allGamePowerUps;
@@ -26,11 +29,21 @@ public class LootTableManager : MonoBehaviour {
 
     public void Start()
     {
-        EventManager.instance.SubscribeEvent(Constants.QUANTITY_POWERUPS, UpdatePowerUpQuantity);
-        EventManager.instance.AddEvent(Constants.POWER_UP_PICKED);
-        EventManager.instance.AddEvent(Constants.POWER_UP_DROPED);
-        EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, ShouldDropPowerUp);
-        EventManager.instance.SubscribeEvent(Constants.POWER_UP_PICKED,OnPowerUpPicked);
+        SetDefaultProbability();
+
+        SubscribeEvents();
+        ConfigurePowerUps();
+        probability = 1;
+
+
+        if (Configuration.instance.lvl == 2)
+        {
+            probability = defaultProbability;
+        }
+    }
+
+    private void ConfigurePowerUps()
+    {
         _allGamePowerUps = new List<GameObject>();
         powerUps.Add(range.gameObject);
         powerUps.Add(doubleShoot.gameObject);
@@ -41,10 +54,30 @@ public class LootTableManager : MonoBehaviour {
             totalPowerUps += item;
         }
         totalPowerAvailable = totalPowerUps;
-        probability = 1;
+    }
 
-        if (Configuration.instance.lvl == 2) {
-            probability = defaultProbability;
+    private void SubscribeEvents()
+    {
+        EventManager.instance.SubscribeEvent(Constants.QUANTITY_POWERUPS, UpdatePowerUpQuantity);
+        EventManager.instance.AddEvent(Constants.POWER_UP_PICKED);
+        EventManager.instance.AddEvent(Constants.POWER_UP_DROPED);
+        EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, ShouldDropPowerUp);
+        EventManager.instance.SubscribeEvent(Constants.POWER_UP_PICKED, OnPowerUpPicked);
+    }
+
+    private void SetDefaultProbability()
+    {
+        if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
+        {
+            defaultProbability = easyDefaultProbability;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Medium)
+        {
+            defaultProbability = mediumDefaultProbability;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
+        {
+            defaultProbability = hardDefaultProbability;
         }
     }
 
