@@ -43692,6 +43692,7 @@ GameObject:
   - component: {fileID: 65987011585076786}
   - component: {fileID: 95098002204429908}
   - component: {fileID: 114396218416542858}
+  - component: {fileID: 114829466546461780}
   m_Layer: 12
   m_Name: Boss
   m_TagString: Untagged
@@ -115716,10 +115717,10 @@ MonoBehaviour:
   life: 400
   timerActionsStage1:
   - 1.5
-  - 45
   - 2.5
   - 2.5
   - 2.5
+  - 8
   - 7
   - 3
   timerActionsStage2:
@@ -119541,6 +119542,17 @@ MonoBehaviour:
   radiusOfDebugSphere: 1.5
   sizeDebugCube: 1.5
   showGizmos: 1
+--- !u!114 &114829466546461780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971965806548244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25743edd57ec8ed468bf4d1d78271248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114829970864971562
 MonoBehaviour:
   m_ObjectHideFlags: 1

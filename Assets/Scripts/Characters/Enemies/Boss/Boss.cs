@@ -22,6 +22,12 @@ public class Boss : AbstractEnemy, IHittable{
     private List<List<BossActions>> stageActions = new List<List<BossActions>>();
     Animator an;
     public int life = 50;
+    public int lifeToChangeEasy = 150;
+    public int lifeToChangeMedium = 250;
+    public int lifeToChangeHard = 350;
+    public int lifeEasy = 300;
+    public int lifeMedium = 400;
+    public int lifeHard = 500;
     int maxLife = 50;
     public List<float> timerActionsStage1 = new List<float>();
     public List<float> timerActionsStage2 = new List<float>();
@@ -55,6 +61,20 @@ public class Boss : AbstractEnemy, IHittable{
     void Awake()
     {
         shield1= GameObject.Find("ShieldBoss1");
+        if (Configuration.instance.dificulty == Configuration.Dificulty.Easy) {
+            life = lifeEasy;
+            maxLifeToChangeStage[0] = lifeToChangeEasy;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Medium)
+        {
+            life = lifeMedium;
+            maxLifeToChangeStage[0] = lifeToChangeMedium;
+        }
+        else if  (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
+        {
+            life = lifeToChangeHard;
+            maxLifeToChangeStage[0] = lifeToChangeHard;
+        }
         shield2=GameObject.Find("ShieldBoss2");
         columna = GameObject.Find("Columna");
         maxLife = life;
@@ -74,6 +94,7 @@ public class Boss : AbstractEnemy, IHittable{
         UpdateBossLife();
         _meshRends = GetComponentsInChildren<Renderer>();
         ChangeShaderValue("_SegundaFase", 0);
+
     }
 
     private void SetActions()
@@ -85,10 +106,10 @@ public class Boss : AbstractEnemy, IHittable{
 
         stageActions[0].Add(bossExpansiveWave);
         //      stageActions[0].Add(bossMissile); duraba 7
+        stageActions[0].Add(bossCharge);
+        stageActions[0].Add(bossCharge);
+        stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossShoot);
-        stageActions[0].Add(bossCharge);
-        stageActions[0].Add(bossCharge);
-        stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossMissile);
         stageActions[0].Add(bossJump);
 

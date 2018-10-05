@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     private void OnBossDestroyed(object[] parameterContainer) {
-        bossExplotion.Play();
+    //    bossExplotion.Play();
     }
 
     private void OnSoundBulletHit(object[] parameterContainer) {

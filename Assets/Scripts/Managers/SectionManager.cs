@@ -23,15 +23,27 @@ public class SectionManager : MonoBehaviour {
 
     public float EnemiesMultiplicator { get { return _enemiesMultiplator; } } 
 
-    public float timeSplicingQuoteForSectionRoutine = 0.001f; 
+    public float timeSplicingQuoteForSectionRoutine = 0.001f;
 
-    void Awake() {
+    void Awake()
+    {
         Debug.Assert(FindObjectsOfType<SectionManager>().Length == 1);
         if (instance == null)
             instance = this;
     }
-
     void Start() {
+        if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
+        {
+            Constants.ENEMIES_NORMAL_MULTIPLICATOR = 0.8f;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Medium)
+        {
+            Constants.ENEMIES_NORMAL_MULTIPLICATOR = 1f;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
+        {
+            Constants.ENEMIES_NORMAL_MULTIPLICATOR = 1.2f;
+        }
         EventManager.instance.AddEvent(Constants.ENEMY_DEAD);
         EventManager.instance.AddEvent(Constants.PLAYER_DEAD);
         EventManager.instance.AddEvent(Constants.SLOW_TIME);
