@@ -10,12 +10,17 @@ public class Menu : MonoBehaviour {
     public GameObject ultObject;
     public static Menu instance;
     void Start () {
-        settingsObjects.SetActive(false);
-        ultObject.SetActive(false);
+        OpenMenu();
         instance = this;
     }
 
-    private void OpenSttings() {
+    public void OpenMenu() {
+        settingsObjects.SetActive(false);
+        ultObject.SetActive(false);
+        menuObjects.SetActive(true);
+    }
+
+    public void OpenSttings() {
         menuObjects.SetActive(false);
         settingsObjects.SetActive(true);
         ultObject.SetActive(false);
