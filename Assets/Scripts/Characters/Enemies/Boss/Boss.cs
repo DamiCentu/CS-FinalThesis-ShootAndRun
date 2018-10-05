@@ -44,7 +44,7 @@ public class Boss : AbstractEnemy, IHittable{
     public float bossCameraShakeTime = 2;
     public GameObject shield1;
     public GameObject shield2;
-
+    public GameObject columna;
 
     public void DeleteAll() {
         actualAction.DeleteAll();
@@ -54,7 +54,7 @@ public class Boss : AbstractEnemy, IHittable{
     {
         shield1= GameObject.Find("ShieldBoss1");
         shield2=GameObject.Find("ShieldBoss2");
-
+        columna = GameObject.Find("Columna");
         maxLife = life;
         SetActions();
         actions = stageActions[stage];
@@ -83,11 +83,11 @@ public class Boss : AbstractEnemy, IHittable{
 
         stageActions[0].Add(bossExpansiveWave);
         //      stageActions[0].Add(bossMissile); duraba 7
+        stageActions[0].Add(bossShoot);
         stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossCharge);
         stageActions[0].Add(bossMissile);
-        stageActions[0].Add(bossShoot);
         stageActions[0].Add(bossJump);
 
         stageActions[1].Add(bossJump);

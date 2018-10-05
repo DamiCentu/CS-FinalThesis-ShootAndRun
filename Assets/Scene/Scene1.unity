@@ -81623,10 +81623,6 @@ Prefab:
       propertyPath: m_Name
       value: LVL
       objectReference: {fileID: 0}
-    - target: {fileID: 1971965806548244, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
   m_IsPrefabParent: 0

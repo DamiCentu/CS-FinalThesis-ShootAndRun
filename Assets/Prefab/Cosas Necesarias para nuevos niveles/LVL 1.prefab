@@ -17791,7 +17791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4004937832313416}
   m_Layer: 0
-  m_Name: CATRigSpine
+  m_Name: Columna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43653,7 +43653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1972512825777920
 GameObject:
   m_ObjectHideFlags: 1
@@ -45283,7 +45283,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1404731728768870}
-  m_LocalRotation: {x: -7.1054235e-15, y: -1.1850022e-14, z: 2.842171e-14, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -72088,7 +72088,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813456693492150}
-  m_LocalRotation: {x: -0.2112824, y: 0.9767271, z: -0.03669291, w: 0.004186043}
+  m_LocalRotation: {x: -0.2579477, y: 0.9651063, z: -0.044797163, w: 0.005110602}
   m_LocalPosition: {x: -0.01081339, y: -0.00034803842, z: 0.7589187}
   m_LocalScale: {x: 0.99999917, y: 0.99999964, z: 1.0000014}
   m_Children:
@@ -115629,10 +115629,10 @@ MonoBehaviour:
   life: 400
   timerActionsStage1:
   - 1.5
+  - 45
   - 2.5
   - 2.5
   - 2.5
-  - 7
   - 7
   - 3
   timerActionsStage2:
@@ -115656,6 +115656,7 @@ MonoBehaviour:
   bossCameraShakeTime: 2
   shield1: {fileID: 1277770262689762}
   shield2: {fileID: 1715257297957028}
+  columna: {fileID: 1404731728768870}
 --- !u!114 &114397531912478858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119738,8 +119739,8 @@ MonoBehaviour:
   radius: 2
   numberShoot: 3
   bullet: {fileID: 1915447307310056, guid: 1996645a54051e140900f3e81be59cf6, type: 2}
-  timeToShoot: 0.04
-  rotationSpeed: 2
+  timeToShoot: 0.15
+  rotationSpeed: 270
   currentAngle: 0
   offsetShoot: {x: 0, y: 0, z: 0}
   reduceTimeToShoot: 0.1
