@@ -76,7 +76,7 @@ public class Boss : AbstractEnemy, IHittable{
             maxLifeToChangeStage[0] = lifeToChangeHard;
         }
         shield2=GameObject.Find("ShieldBoss2");
-        columna = GameObject.Find("Columna");
+        //columna = GameObject.Find("Columna");
         maxLife = life;
         SetActions();
         actions = stageActions[stage];
