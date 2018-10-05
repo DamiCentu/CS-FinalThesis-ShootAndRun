@@ -199,7 +199,7 @@ public class SectionManager : MonoBehaviour {
     IEnumerator WinRoutine() {
         SoundManager.instance.Victory();
         yield return new WaitForSeconds(timeAfterWinning);
-        SceneManager.LoadScene("WinScene");
+        SceneManager.LoadScene("VictoryScene");
     }
 
     private void OnGameOver(object[] parameterContainer) {
@@ -209,7 +209,7 @@ public class SectionManager : MonoBehaviour {
     IEnumerator LoseRoutine() {
         SoundManager.instance.GameOver();
         yield return new WaitForSeconds(timeAfterLosing);
-        SceneManager.LoadScene("LoseScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 
     void OnDestroy() {

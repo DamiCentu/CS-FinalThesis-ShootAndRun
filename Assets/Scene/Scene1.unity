@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c854cadd61fbf46a6c503e3572696e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dificulty: 0
+  dificulty: 2
   playerQuantity: 0
   creditsEasy: 5
   creditsMedium: 3
@@ -402,6 +402,16 @@ Prefab:
         type: 2}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: hardDefaultProbability
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: easyDefaultProbability
+      value: 0.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77fb7fa22fae4c149bcc8c78d4611208, type: 2}
