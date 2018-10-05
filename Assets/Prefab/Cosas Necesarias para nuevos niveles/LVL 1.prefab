@@ -111436,7 +111436,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971965806548244}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d4cccc65af5ce1d42aff19420a07e8e3, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 28f155f36642d3044b549077e250ac8c, type: 3}
   m_Controller: {fileID: 9100000, guid: 5374a3a91a859284498000f432c8f013, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -115715,6 +115715,12 @@ MonoBehaviour:
   bossCharge: {fileID: 114729520375275344}
   bossChargeUpgrade: {fileID: 114536759595613170}
   life: 400
+  lifeToChangeEasy: 150
+  lifeToChangeMedium: 250
+  lifeToChangeHard: 350
+  lifeEasy: 300
+  lifeMedium: 400
+  lifeHard: 500
   timerActionsStage1:
   - 1.5
   - 2.5

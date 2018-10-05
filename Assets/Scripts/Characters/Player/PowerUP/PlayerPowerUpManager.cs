@@ -8,12 +8,21 @@ public class PlayerPowerUpManager : MonoBehaviour {
     internal int PowerUpDoubleShootNumber = 0;
     internal int PowerUpExtraDashNUmber = 0;
     internal int PowerUpShieldNumber = 0;
+    public IShootable DoubleShoot;
 
     public void Start()
     {
         EventManager.instance.SubscribeEvent("UpgradeWeapon", UpgradeShoot);
         EventManager.instance.SubscribeEvent("PrimaryWeaponMoreRange", UpdateRange);
         EventManager.instance.SubscribeEvent(Constants.SOUL_RECOVER, SoulRecover);
+        if (Configuration.instance.dificulty == Configuration.Dificulty.Easy) {
+            PowerUpDoubleShootNumber++;
+            ChangePrimaryWeapon(DoubleShoot);
+            player.MaxDashCount++;
+            PowerUpExtraDashNUmber++;
+            player.RefreshDashUI();
+        }
+
     }
 
     private void SoulRecover(object[] parameterContainer)
