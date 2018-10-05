@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Soul
+  m_Shader: {fileID: 4800000, guid: 1f4ab9d3c81c9014dab864c3e0ebb47e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: f8a407f2abe0e564e9b29072a2cb2baf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Brillo: 2.41
+    - _EdgeLength: 4.4
+    - _Float0: 0.32
+    - _Float1: 0.56
+    - _Float2: 1.48
+    - _Float3: 0.61
+    - _Speed: 0.02
+    - _Strenght: 0.11
+    - __dirty: 0
+    - _noisetiling: 9.26
+    m_Colors:
+    - _Vector0: {r: 0, g: 0.07, b: 0, a: 0}
