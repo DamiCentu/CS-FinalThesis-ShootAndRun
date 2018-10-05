@@ -27,16 +27,19 @@ public class BossCharge : MonoBehaviour,BossActions {
         }
         boss.shield1.GetComponent<BoxCollider>().enabled=true ;
         boss.shield2.GetComponent<BoxCollider>().enabled = true;
+        boss.ChangeShaderValue("_Shield", 1);
     }
     void BossActions.Finish(Boss boss)
     {
         boss.SetAnimation("Shield", false);
+        boss.ChangeShaderValue("_Shield", 0);
         EventManager.instance.UnsubscribeEvent(Constants.CHARGER_CRUSH, StopCharging);
         boss.shield1.GetComponent<BoxCollider>().enabled = false;
         boss.shield2.GetComponent<BoxCollider>().enabled = false;
     }
     void BossActions.DeleteAll()
     {
+        boss.ChangeShaderValue("_Shield", 0);
         boss.shield1.GetComponent<BoxCollider>().enabled = false;
         boss.shield2.GetComponent<BoxCollider>().enabled = false;
         EventManager.instance.UnsubscribeEvent(Constants.CHARGER_CRUSH, StopCharging);

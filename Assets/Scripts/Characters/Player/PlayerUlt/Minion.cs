@@ -22,6 +22,7 @@ public class Minion : MonoBehaviour {
         float minDis = 10000;
         while (i < hitColliders.Length)
         {
+
             float dis = Vector3.Distance(transform.position, hitColliders[i].transform.position);
             if (dis < minDis)
             {

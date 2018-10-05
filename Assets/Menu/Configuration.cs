@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Configuration : MonoBehaviour {
     public enum Dificulty { Easy, Medium, Hard };
@@ -79,5 +80,36 @@ public class Configuration : MonoBehaviour {
         } 
 
         throw new Exception("la estas cagando");
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetUltBerserker();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetUltScatter();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SetSpawnMinions();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SetEasy();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SetMedium();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            SetHard();
+        }
     }
 }

@@ -259,11 +259,12 @@ public class Boss : AbstractEnemy, IHittable{
         }
         
     }
-    private void ChangeShaderValue(string name, float value)
+    public void ChangeShaderValue(string name, float value)
     {
         foreach (var item in _meshRends)
         {
             item.material.SetFloat(name, value);
         }
     }
+
 }

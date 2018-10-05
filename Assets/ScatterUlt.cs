@@ -48,6 +48,7 @@ public class ScatterUlt : MonoBehaviour {
             RaycastHit[] rhs = Physics.SphereCastAll(posiciones[i], 4, dir, dis, layerToHit);
             foreach (RaycastHit rh in rhs)
             {
+                if (rh.collider.gameObject == null) continue;
                 IHittable ihittable = rh.collider.gameObject.GetComponent<IHittable>();
                 Debug.Log(rh.collider.gameObject.name);
                 if (ihittable != null)
