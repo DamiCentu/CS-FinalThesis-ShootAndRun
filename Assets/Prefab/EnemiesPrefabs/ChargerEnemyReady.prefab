@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114117840142126506}
   - component: {fileID: 54450751109145714}
   - component: {fileID: 114642725879935366}
+  - component: {fileID: 114235520373800724}
   m_Layer: 12
   m_Name: ChargerEnemyReady
   m_TagString: Untagged
@@ -383,6 +384,17 @@ MonoBehaviour:
   tiltingTime: 0.05
   integrationParticles: {fileID: 198457176397476188}
   imageOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &114235520373800724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1134545568090782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25743edd57ec8ed468bf4d1d78271248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114278606474388722
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -23,7 +23,7 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
     public Transform shotSpawn;
     public GameObject shieldGO;
 
-    ITurret _currentTypeOfTurret;
+    public ITurret _currentTypeOfTurret;
 
     Dictionary<EnemiesManager.TypeOfEnemy, ITurret> _turretTypes = new Dictionary<EnemiesManager.TypeOfEnemy, ITurret>();
 

@@ -23,7 +23,9 @@ public class SoundManager : MonoBehaviour {
     public AudioSource portalFadeLoop;
     public AudioSource bulletHit;
     public AudioSource bossExplotion;
-
+    public AudioSource victory;
+    public AudioSource gameOver;
+    public AudioSource stageComplete;
     void Awake()
     {
         instance = this;
@@ -161,5 +163,20 @@ public class SoundManager : MonoBehaviour {
     internal void PlayExtraDash()
     {
         ExtraDash.Play();
+    }
+
+    internal void StageComplete()
+    {
+        stageComplete.Play();
+    }
+
+    internal void Victory()
+    {
+        victory.Play();
+    }
+
+    internal void GameOver()
+    {
+        gameOver.Play();
     }
 }

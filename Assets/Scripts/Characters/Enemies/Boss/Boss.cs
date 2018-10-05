@@ -45,7 +45,9 @@ public class Boss : AbstractEnemy, IHittable{
     public GameObject shield1;
     public GameObject shield2;
     public GameObject columna;
-
+    public Transform ShootPos1;
+    public Transform ShootPos2;
+    public Transform ShootPos3;
     public void DeleteAll() {
         actualAction.DeleteAll();
     }

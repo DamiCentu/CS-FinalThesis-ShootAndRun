@@ -20,17 +20,25 @@ public class Minion : MonoBehaviour {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, hittableLayers);
         int i = 0;
         float minDis = 10000;
-        while (i < hitColliders.Length)
-        {
 
-            float dis = Vector3.Distance(transform.position, hitColliders[i].transform.position);
+        var filteredColliders = new List<Collider>(hitColliders)
+            .FindAll(x => x.gameObject != null)
+            .FindAll(x => {
+                var enemyTurret = x.gameObject.GetComponent<EnemyTurretBehaviour>();
+                return enemyTurret == null || (enemyTurret != null && enemyTurret._currentTypeOfTurret.GetType() != typeof(LaserTurretStrategy));
+                });
+
+        foreach (var collider in filteredColliders)
+        {
+            float dis = Vector3.Distance(transform.position, collider.transform.position);
             if (dis < minDis)
             {
                 minDis = dis;
-                this.transform.LookAt(hitColliders[i].transform.position);
+                this.transform.LookAt(collider.transform.position);
             }
-            i++;
+
         }
+
         if (minDis < 10000)
         { // si encontro a algun enemigo dispara
             NormalBullet b = BulletManager.instance.GetBulletFromPool();

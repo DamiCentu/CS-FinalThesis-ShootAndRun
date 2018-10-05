@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 114891335043672032}
   - component: {fileID: 54917888245564258}
   - component: {fileID: 114211093221116826}
+  - component: {fileID: 114420992819540792}
   m_Layer: 12
   m_Name: NormalEnemyReady
   m_TagString: Untagged
@@ -581,6 +582,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   berserkParticleS: {fileID: 0}
+--- !u!114 &114420992819540792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797113771804920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25743edd57ec8ed468bf4d1d78271248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114572916823196368
 MonoBehaviour:
   m_ObjectHideFlags: 1

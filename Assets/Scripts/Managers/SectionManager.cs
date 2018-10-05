@@ -171,6 +171,7 @@ public class SectionManager : MonoBehaviour {
             actualNode = actualNode.next;
             EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
             if(actualNode!=null && actualNode.next != null) {
+                SoundManager.instance.StageComplete();
                 EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_IN);
             }
         }
@@ -184,6 +185,7 @@ public class SectionManager : MonoBehaviour {
     }
 
     IEnumerator WinRoutine() {
+        SoundManager.instance.Victory();
         yield return new WaitForSeconds(timeAfterWinning);
         SceneManager.LoadScene("WinScene");
     }
@@ -193,6 +195,7 @@ public class SectionManager : MonoBehaviour {
     }
 
     IEnumerator LoseRoutine() {
+        SoundManager.instance.GameOver();
         yield return new WaitForSeconds(timeAfterLosing);
         SceneManager.LoadScene("LoseScene");
     }

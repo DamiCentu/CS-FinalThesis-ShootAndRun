@@ -21,7 +21,7 @@ public class BossShoot : MonoBehaviour, BossActions
     public bool shouldUpgrade;
     Boss boss;
     public float movementSpeed = 2;
-    private Quaternion originalRotation;
+    
 
     private void Start()
     {
@@ -37,8 +37,8 @@ public class BossShoot : MonoBehaviour, BossActions
     {
         boss = bosss;
         _timer = 0;
-        _timerShoot = 0;
-        originalRotation = boss.columna.transform.localRotation;
+        _timerShoot = -1;
+
         boss.SetAnimation("Spin", true);
     }
     void BossActions.DeleteAll()
@@ -51,7 +51,6 @@ public class BossShoot : MonoBehaviour, BossActions
     {
         _timer = 0;
         _timerShoot = 0;
-        boss.columna.transform.localRotation = originalRotation;
         boss.SetAnimation("Spin", false);
     }
 
@@ -61,17 +60,10 @@ public class BossShoot : MonoBehaviour, BossActions
     {
         _timer += Time.deltaTime;
         _timerShoot += Time.deltaTime;
-        currentAngle = (rotationSpeed) * Time.deltaTime  ;
+        currentAngle = (rotationSpeed) * Time.deltaTime;
         //print("CurrentAngle" + currentAngle);
         boss.columna.transform.Rotate(Vector3.right, currentAngle);
-        //boss.LookAt(playerPosition); //TODO hacelro con lerp
-        if (_timerShoot > timeToShoot)
-        {
-            Shoot(bossTransform.position + offsetShoot, 60);
-            Shoot(bossTransform.position + offsetShoot, -60);
-            Shoot(bossTransform.position + offsetShoot, 180);
-            _timerShoot = 0;
-        }
+        
         Vector3 target = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
 
         Vector3 bossAnglePreLookAt = boss.transform.forward;
@@ -83,19 +75,27 @@ public class BossShoot : MonoBehaviour, BossActions
 
 
         boss.columna.transform.Rotate(Vector3.right, currentAngle);
-        boss.columna.transform.Rotate(Vector3.right, bossAngleDeltaDeg*1);
+        boss.columna.transform.Rotate(Vector3.right, bossAngleDeltaDeg*1f);
+        
 
         boss.transform.position += boss.transform.forward * movementSpeed * Time.deltaTime;
+        if (_timerShoot > timeToShoot)
+        {
+            Shoot(boss.ShootPos1.position);
+            Shoot(boss.ShootPos2.position);
+            Shoot(boss.ShootPos3.position);
+            _timerShoot = 0;
+        }
 
     }
 
-    private void Shoot(Vector3 position, float angle)
+    private void Shoot(Vector3 position)
     {
-
-        float shootPositionX = position.x + (float)Math.Cos(Mathf.Deg2Rad * angle + currentAngle);
-        float shootPositionz = position.z + (float)Math.Sin(Mathf.Deg2Rad * angle + currentAngle);
-        Vector3 shootPosition = new Vector3(shootPositionX, position.y, shootPositionz);
-        Vector3 rotation = shootPosition - position;
+     /*   float increasingAngle = _timer * rotationSpeed;
+        float shootPositionX = position.x + (float)Math.Cos(Mathf.Deg2Rad * angle + increasingAngle);
+        float shootPositionz = position.z + (float)Math.Sin(Mathf.Deg2Rad * angle + increasingAngle);*/
+        Vector3 shootPosition = new Vector3(position.x, boss.transform.position.y+offsetShoot.y, position.z);
+        Vector3 rotation = shootPosition - boss.transform.position+offsetShoot;
 
         var s = EnemyBulletManager.instance.giveMeEnemyBullet();
         s.SetPos(shootPosition).SetDir(Quaternion.LookRotation(rotation)).gameObject.SetActive(true);

@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 114315967604290622}
   - component: {fileID: 114279372196208232}
   - component: {fileID: 114118242521949598}
+  - component: {fileID: 114666770180669016}
   m_Layer: 12
   m_Name: MiniBossReady
   m_TagString: Untagged
@@ -586,6 +587,17 @@ MonoBehaviour:
   separationMult: 1
   drawFlockingGizmos: 0
   flockingEnabled: 0
+--- !u!114 &114666770180669016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546400618291670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25743edd57ec8ed468bf4d1d78271248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114828786385203864
 MonoBehaviour:
   m_ObjectHideFlags: 1
