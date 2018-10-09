@@ -10867,7 +10867,7 @@ MonoBehaviour:
   timer: 4
   amount: 4
   player: {fileID: 4083906271280234}
-  minion: {fileID: 0}
+  minion: {fileID: 1095072361523544, guid: b3a947f305384c74d84385d28d6bfc58, type: 2}
   lifeTime: 5
   distance: 3
 --- !u!114 &114991947900102656
@@ -148739,7 +148739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 152.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224105733530373608
@@ -149147,7 +149147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 152}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224561748853039722

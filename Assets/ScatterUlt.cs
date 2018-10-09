@@ -37,8 +37,10 @@ public class ScatterUlt : MonoBehaviour {
     IEnumerator SpawnRays()
     {
         yield return new WaitForSeconds(1f);
+        line.gameObject.SetActive(true);
         line.positionCount = amount;
         line.SetPositions(posiciones.ToArray());
+        
         for (int i = 0; i < amount - 1; i++)
         {
             Vector3 dir = balls[i + 1].transform.position - balls[i].transform.position;
@@ -63,6 +65,7 @@ public class ScatterUlt : MonoBehaviour {
 
         }
         yield return new WaitForSeconds(1f);
+            line.gameObject.SetActive(false);
         ResetBalls();
     }
 
