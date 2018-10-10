@@ -245,12 +245,14 @@ public class Player : MonoBehaviour, IHittable
 
     private void TryRotate()
     {
-        if (!_isDashing)
+        MyInputManager.instance.GetPlayerRotation(this.transform, control);
+  /*      if (!_isDashing)
             MyInputManager.instance.GetPlayerRotation(this.transform, control);
         else {
-            this.transform.rotation= Quaternion.FromToRotation(this.transform.position, this.transform.position+ dashDirection);
+            MyInputManager.instance.GetPlayerRotation(this.transform, control);
+               this.transform.rotation= Quaternion.FromToRotation(this.transform.position, this.transform.position+ dashDirection);
         }
-       
+       */
     }
 
     private void TryShoot()
@@ -427,14 +429,6 @@ public class Player : MonoBehaviour, IHittable
                 if(o!=null) o.OnHit(10);
             }
             OnHit(1);
-            /*        else if (_gotShield)
-                    {
-                        powerUpManager.DisableShield();
-                    }
-                    else if (!_isInvulnerable)
-                    {
-                        OnHit(1); //todo hacer la perdida de vida por eventos
-                    }*/
 
         }
 

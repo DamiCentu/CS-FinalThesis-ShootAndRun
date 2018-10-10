@@ -176,6 +176,7 @@ public class SectionManager : MonoBehaviour {
                     }
                     //yield return null;
                 }
+                SoundManager.instance.StageComplete();
                 InfoManager.instance.CountDown(waitTimeForNextNodeSectionWhenFinish);
                 yield return new WaitForSeconds(waitTimeForNextNodeSectionWhenFinish);
                 LootTableManager.instance.DestroyAllPowerUps();
@@ -183,7 +184,6 @@ public class SectionManager : MonoBehaviour {
             actualNode = actualNode.next;
             EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
             if(actualNode!=null && actualNode.next != null) {
-                SoundManager.instance.StageComplete();
                 EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_IN);
             }
         }
