@@ -160,6 +160,7 @@ public class EnemiesManager : MonoBehaviour {
         Charger,
         TurretBurst,
         TurretLaser,
+        MovingTurretLaser,
         PowerUpChaser,
         Cube,
         Boss

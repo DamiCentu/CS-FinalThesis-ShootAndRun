@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
     protected SectionManager.WaveNumber _actualWave;
-    protected SectionNode _actualSectionNode; 
+    protected SectionNode _actualSectionNode;
+    protected bool hasToDestroyThisToUnlockSomething = false;
 
     OnHitWhiteFeedback _onHitWhiteFeedback;
 
@@ -21,6 +22,11 @@ public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
 
     public AbstractEnemy SetActualNode(SectionNode node) {
         _actualSectionNode = node;
+        return this;
+    }
+
+    public AbstractEnemy SetIffHasToDestroyToOpenSomething(bool value) {
+        hasToDestroyThisToUnlockSomething = value;
         return this;
     }
 

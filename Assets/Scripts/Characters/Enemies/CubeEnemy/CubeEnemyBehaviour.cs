@@ -227,7 +227,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         if (_hitsRemaining <= 0) { 
             EnemiesManager.instance.ReturnCubeEnemyToPool(this);
             gameObject.SetActive(false);
-            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false });
+            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false, hasToDestroyThisToUnlockSomething });
         }
     } 
 

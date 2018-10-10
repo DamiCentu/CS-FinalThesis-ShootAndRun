@@ -19,9 +19,7 @@ public class LaserTurretStrategy : ITurret {
             if(rh.collider.gameObject.layer == 8) {
                 rh.collider.GetComponent<IHittable>().OnHit(0);
             } 
-        }
-
-
+        } 
     } 
 
     public void SetHitsCanTake() { }

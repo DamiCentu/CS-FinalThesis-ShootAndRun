@@ -279,4 +279,19 @@ public  class Utility {
 
         return pos;
     }
+
+    public static void ConnectMapNodes(MapNode[] allMapNodes, LayerMask objectToDetectConnectingNodes) { 
+        foreach (var actual in allMapNodes) {
+            foreach (var maybeAdjacent in allMapNodes) {
+                if (maybeAdjacent == actual)
+                    continue;
+
+                var direction = maybeAdjacent.transform.position - actual.transform.position;
+                var dirNormalized = direction.normalized;
+                var dirMag = direction.magnitude;
+                if (!Physics.Raycast(actual.transform.position, dirNormalized, dirMag, objectToDetectConnectingNodes))
+                    actual.adjacent.Add(maybeAdjacent);
+            }
+        } 
+    }
 }

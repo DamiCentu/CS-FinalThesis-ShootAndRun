@@ -248,7 +248,7 @@ public class Boss : AbstractEnemy, IHittable{
         {
             Vector3 position = Utility.SetYInVector3(p.transform.position,1); 
             
-            _actualSectionNode.SpawnEnemyAtPoint(position, type);
+            _actualSectionNode.SpawnEnemyAtPointNoCuentaParaTerminarNodoPeroTieneIntegracion(position, type);
         }
     }
     private void OnTriggerEnter(Collider c)

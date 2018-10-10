@@ -853,6 +853,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525568
   sparksParticleS: {fileID: 198911708538971494}
+  hitsCanTakeMovingLaser: 10
+  movingLaserMaxDistance: 100
+  startWaypointForMovingLaser: {fileID: 0}
+  speedOfLerp: 3
+  timeToWaitToInteract: 1.5
   hitsCanTakeBurst: 10
   distanceToShoot: 30
   timeToWaitBetweenShots: 4
