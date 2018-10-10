@@ -857,7 +857,7 @@ MonoBehaviour:
   movingLaserMaxDistance: 100
   startWaypointForMovingLaser: {fileID: 0}
   speedOfLerp: 3
-  timeToWaitToInteract: 1.5
+  timeToWaitToInteract: 5
   hitsCanTakeBurst: 10
   distanceToShoot: 30
   timeToWaitBetweenShots: 4
