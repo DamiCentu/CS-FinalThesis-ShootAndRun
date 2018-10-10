@@ -21,6 +21,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
             player.MaxDashCount++;
             PowerUpExtraDashNUmber++;
             player.RefreshDashUI();
+            RecalculatePowerUp();
         }
 
     }
@@ -44,6 +45,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
                 AddRange();
                 break;
         }
+                    RecalculatePowerUp();
     }
     private void ChangePrimaryWeapon(IShootable weapon)
     {
@@ -52,7 +54,13 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     public void UpgradeShoot(object[] parameterContainer)
     {
-        SoundManager.instance.PlayDoubleShoot();
+        if (PowerUpDoubleShootNumber == 0) {
+            SoundManager.instance.PlayDoubleShoot();
+        }
+        else 
+        {
+            SoundManager.instance.PlayQuadraShoot();
+        }
         InfoManager.instance.Info("Double Shoot");
         PowerUpDoubleShootNumber++;
         ChangePrimaryWeapon((IShootable)parameterContainer[0]);
@@ -67,6 +75,9 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     public void UpdateRange(object[] parameterContainer)
     {
+        if ((int)parameterContainer[0]>0) {
+            SoundManager.instance.PlayHigherRange();
+        }
         PowerUpRangeNumber += (int)parameterContainer[0];
     }
 
@@ -183,7 +194,6 @@ public class PlayerPowerUpManager : MonoBehaviour {
         conteiner[2] = PowerUpExtraDashNUmber;
         conteiner[3] = PowerUpShieldNumber;
         EventManager.instance.ExecuteEvent(Constants.QUANTITY_POWERUPS, conteiner);
-        
     }
 
 }

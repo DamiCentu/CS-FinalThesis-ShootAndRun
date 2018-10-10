@@ -68124,41 +68124,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114171110015049646, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+    - target: {fileID: 114891241620657486, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: actualNode
+      propertyPath: player
       value: 
-      objectReference: {fileID: 1886309827}
-    - target: {fileID: 114400327827844174, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+      objectReference: {fileID: 1111301549}
+    - target: {fileID: 114891241620657486, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: tutorialNode
+      propertyPath: bossPrefab
       value: 
-      objectReference: {fileID: 1886309827}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: doubleShoot
-      value: 
-      objectReference: {fileID: 630726297}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: extraDash
-      value: 
-      objectReference: {fileID: 175436098}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: range
-      value: 
-      objectReference: {fileID: 1297725881}
-    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 1204887788}
-    - target: {fileID: 114577324785568254, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: info
-      value: 
-      objectReference: {fileID: 2132329253}
+      objectReference: {fileID: 1806191818}
     - target: {fileID: 114729869925523190, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
       propertyPath: bossLife
@@ -68199,24 +68174,44 @@ Prefab:
       propertyPath: tutorialText
       value: 
       objectReference: {fileID: 529369711}
-    - target: {fileID: 114891241620657486, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+    - target: {fileID: 114577324785568254, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: player
+      propertyPath: info
       value: 
-      objectReference: {fileID: 1111301549}
-    - target: {fileID: 114891241620657486, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+      objectReference: {fileID: 2132329253}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
         type: 2}
-      propertyPath: bossPrefab
+      propertyPath: doubleShoot
       value: 
-      objectReference: {fileID: 1806191818}
+      objectReference: {fileID: 630726297}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: extraDash
+      value: 
+      objectReference: {fileID: 175436098}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: range
+      value: 
+      objectReference: {fileID: 1297725881}
+    - target: {fileID: 114532850480075070, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 1204887788}
+    - target: {fileID: 114400327827844174, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: tutorialNode
+      value: 
+      objectReference: {fileID: 1886309827}
+    - target: {fileID: 114171110015049646, guid: 77fb7fa22fae4c149bcc8c78d4611208,
+        type: 2}
+      propertyPath: actualNode
+      value: 
+      objectReference: {fileID: 1886309827}
     - target: {fileID: 1454301980968888, guid: 77fb7fa22fae4c149bcc8c78d4611208, type: 2}
       propertyPath: m_Name
       value: ManagersDestroyable
-      objectReference: {fileID: 0}
-    - target: {fileID: 114171110015049646, guid: 77fb7fa22fae4c149bcc8c78d4611208,
-        type: 2}
-      propertyPath: waitTimeForNextNodeSectionWhenFinish
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77fb7fa22fae4c149bcc8c78d4611208, type: 2}

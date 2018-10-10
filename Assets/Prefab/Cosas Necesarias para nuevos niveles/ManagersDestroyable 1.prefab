@@ -2453,6 +2453,7 @@ MonoBehaviour:
   victory: {fileID: 82933874538808244}
   gameOver: {fileID: 82985529518834390}
   stageComplete: {fileID: 82352635921694712}
+  quadraShoot: {fileID: 82654584922194260}
 --- !u!114 &114171110015049646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2465,7 +2466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualNode: {fileID: 0}
-  waitTimeForNextNodeSectionWhenFinish: 4
+  waitTimeForNextNodeSectionWhenFinish: 2
   waitTimeForStartNode: 3
   timeToRestartAfterPlayerDead: 2
   enemiesMultiplicatorOnSlow: 0.2
