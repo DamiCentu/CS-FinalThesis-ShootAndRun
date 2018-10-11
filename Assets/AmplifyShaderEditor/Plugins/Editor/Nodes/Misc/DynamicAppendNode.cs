@@ -22,7 +22,7 @@ namespace AmplifyShaderEditor
 	}
 
 	[Serializable]
-	[NodeAttributes( "Append", "Vector Operators", "Append channels to create a new component" )]
+	[NodeAttributes( "Append", "Vector Operators", "Append channels to create a new component", null, KeyCode.V )]
 	public sealed class DynamicAppendNode : ParentNode
 	{
 		private const string OutputTypeStr = "Output type";
@@ -33,7 +33,7 @@ namespace AmplifyShaderEditor
 
 		[SerializeField]
 		private int m_selectedOutputTypeInt = 2;
-		
+
 		private readonly string[] m_outputValueTypes ={ "Vector2",
 														"Vector3",
 														"Vector4",
@@ -41,6 +41,12 @@ namespace AmplifyShaderEditor
 
 		[SerializeField]
 		private int[] m_occupiedChannels = { -1, -1, -1, -1 };
+
+		[SerializeField]
+		private int m_maskId;
+
+		[SerializeField]
+		private Vector4 m_maskValue = Vector4.one;
 
 		protected override void CommonInit( int uniqueId )
 		{
@@ -54,13 +60,19 @@ namespace AmplifyShaderEditor
 			m_autoWrapProperties = true;
 			m_useInternalPortData = true;
 			m_hasLeftDropdown = true;
-			m_previewShaderGUID = "d80ac81aabf643848a4eaa76f2f88d65";
+			m_previewShaderGUID = "bfcd2919fe75bbf428fbbe583f463a9e";
 		}
 
-		void NewUpdateBehaviorConn( int portId , bool onLoading )
+		public override void OnEnable()
+		{
+			base.OnEnable();
+			m_maskId = Shader.PropertyToID( "_Mask" );
+		}
+
+		void NewUpdateBehaviorConn( int portId, bool onLoading )
 		{
 			InputPort inputPort = GetInputPortByUniqueId( portId );
-			int channelsRequired = UIUtils.GetChannelsAmount( onLoading?inputPort.DataType:inputPort.ConnectionType( 0 ) );
+			int channelsRequired = UIUtils.GetChannelsAmount( onLoading ? inputPort.DataType : inputPort.ConnectionType( 0 ) );
 			int availableChannels = UIUtils.GetChannelsAmount( m_selectedOutputType );
 
 			// Invalidate previously used channels
@@ -139,6 +151,8 @@ namespace AmplifyShaderEditor
 					m_inputPorts[ i ].Name = name;
 				}
 			}
+
+			CalculatePreviewData();
 		}
 
 		void UpdatePortTypes()
@@ -194,10 +208,10 @@ namespace AmplifyShaderEditor
 		{
 			base.OnInputPortConnected( portId, otherNodeId, otherPortId, activateNode );
 
-			if( m_containerGraph.ParentWindow.IsLoading && UIUtils.CurrentShaderVersion() < 13206 )
+			if( m_containerGraph.IsLoading && UIUtils.CurrentShaderVersion() < 13206 )
 				return;
 
-			NewUpdateBehaviorConn( portId , m_containerGraph.ParentWindow.IsLoading );
+			NewUpdateBehaviorConn( portId, m_containerGraph.IsLoading );
 			RenamePorts();
 
 		}
@@ -206,7 +220,7 @@ namespace AmplifyShaderEditor
 		{
 			base.OnInputPortDisconnected( portId );
 
-			if( m_containerGraph.ParentWindow.IsLoading && UIUtils.CurrentShaderVersion() < 13206 )
+			if( m_containerGraph.IsLoading && UIUtils.CurrentShaderVersion() < 13206 )
 				return;
 
 			NewUpdateBehaviorDisconn( portId );
@@ -217,10 +231,10 @@ namespace AmplifyShaderEditor
 		{
 			base.OnConnectedOutputNodeChanges( portId, otherNodeId, otherPortId, name, type );
 
-			if( m_containerGraph.ParentWindow.IsLoading && UIUtils.CurrentShaderVersion() < 13206 )
+			if( m_containerGraph.IsLoading && UIUtils.CurrentShaderVersion() < 13206 )
 				return;
 
-			NewUpdateBehaviorConn( portId, m_containerGraph.ParentWindow.IsLoading );
+			NewUpdateBehaviorConn( portId, m_containerGraph.IsLoading );
 			RenamePorts();
 		}
 
@@ -270,8 +284,8 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
-			if( m_outputPorts[ 0 ].IsLocalValue )
-				return m_outputPorts[ 0 ].LocalValue;
+			if( m_outputPorts[ 0 ].IsLocalValue( dataCollector.PortCategory ) )
+				return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
 			string result = string.Empty;
 			for( int i = 0; i < 4; i++ )
 			{
@@ -290,7 +304,7 @@ namespace AmplifyShaderEditor
 									result );
 
 			RegisterLocalVariable( 0, result, ref dataCollector, "appendResult" + OutputId );
-			return m_outputPorts[ 0 ].LocalValue;
+			return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
 		}
 
 		public override void ReadFromString( ref string[] nodeParams )
@@ -316,7 +330,11 @@ namespace AmplifyShaderEditor
 				case WirePortDataType.FLOAT4: m_selectedOutputTypeInt = 2; break;
 				case WirePortDataType.COLOR: m_selectedOutputTypeInt = 3; break;
 			}
-		}
+            for( int i = 0; i < 4; i++ )
+            {
+                m_inputPorts[i].FloatInternalData = Convert.ToSingle( GetCurrentParam( ref nodeParams ) );
+            }
+        }
 
 		public override void RefreshExternalReferences()
 		{
@@ -347,7 +365,7 @@ namespace AmplifyShaderEditor
 
 						m_containerGraph.DeleteConnection( true, UniqueId, reroutes[ i ].OldPortId, false, false, false );
 						m_containerGraph.CreateConnection( UniqueId, reroutes[ i ].NewPortId, nodeId, portId, false );
-						NewUpdateBehaviorConn( reroutes[ i ].NewPortId , true );
+						NewUpdateBehaviorConn( reroutes[ i ].NewPortId, true );
 					}
 				}
 
@@ -372,6 +390,80 @@ namespace AmplifyShaderEditor
 			}
 			SetupPorts();
 			m_sizeIsDirty = true;
+		}
+
+
+		void CalculatePreviewData()
+		{
+			switch( m_outputPorts[ 0 ].DataType )
+			{
+				default: m_maskValue = Vector4.zero; break;
+				case WirePortDataType.INT:
+				case WirePortDataType.FLOAT: m_maskValue = new Vector4( 1, 0, 0, 0 ); break;
+				case WirePortDataType.FLOAT2: m_maskValue = new Vector4( 1, 1, 0, 0 ); break;
+				case WirePortDataType.FLOAT3: m_maskValue = new Vector4( 1, 1, 1, 0 ); break;
+				case WirePortDataType.FLOAT4:
+				case WirePortDataType.COLOR: m_maskValue = Vector4.one; break;
+			}
+
+			m_previewMaterialPassId = -1;
+			switch( m_inputPorts[ 0 ].DataType )
+			{
+				case WirePortDataType.INT:
+				case WirePortDataType.FLOAT:
+				{
+					switch( m_inputPorts[ 1 ].DataType )
+					{
+						case WirePortDataType.FLOAT:
+						case WirePortDataType.INT:
+						{
+							if( m_inputPorts[ 2 ].DataType == WirePortDataType.FLOAT ||
+								m_inputPorts[ 2 ].DataType == WirePortDataType.INT )
+							{
+								m_previewMaterialPassId = 0;
+							}
+							else if( m_inputPorts[ 2 ].DataType == WirePortDataType.FLOAT2 )
+							{
+								m_previewMaterialPassId = 1;
+							}
+						}
+						break;
+						case WirePortDataType.FLOAT2: m_previewMaterialPassId = 2; break;
+						case WirePortDataType.FLOAT3: m_previewMaterialPassId = 3; break;
+					}
+					
+				}; break;
+				case WirePortDataType.FLOAT2:
+				{
+					if( m_inputPorts[ 2 ].DataType == WirePortDataType.FLOAT ||
+						m_inputPorts[ 2 ].DataType == WirePortDataType.INT )
+					{
+						m_previewMaterialPassId = 4;
+					}
+					else if( m_inputPorts[ 2 ].DataType == WirePortDataType.FLOAT2 )
+					{
+						m_previewMaterialPassId = 5;
+					}
+				}; break;
+				case WirePortDataType.FLOAT3: m_previewMaterialPassId = 6; break;
+				case WirePortDataType.FLOAT4:
+				case WirePortDataType.COLOR: m_previewMaterialPassId = 7; break;
+			}
+
+			if( m_previewMaterialPassId == -1 )
+			{
+				m_previewMaterialPassId = 0;
+				if( DebugConsoleWindow.DeveloperMode )
+				{
+					UIUtils.ShowMessage( "Could not find pass ID for append" , MessageSeverity.Error );
+				}
+			}
+		}
+
+		public override void SetPreviewInputs()
+		{
+			base.SetPreviewInputs();
+			PreviewMaterial.SetVector( m_maskId, m_maskValue );
 		}
 
 		public override void WriteToString( ref string nodeInfo, ref string connectionsInfo )

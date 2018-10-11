@@ -12,7 +12,7 @@ using UnityEngine;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Swizzle", "Vector Operators", "Swizzle components of vector types", null, KeyCode.None, true, false, null, null, "Tobias Pott - @TobiasPott" )]
+	[NodeAttributes( "Swizzle", "Vector Operators", "Swizzle components of vector types", null, KeyCode.Z, true, false, null, null, "Tobias Pott - @TobiasPott" )]
 	public sealed class SwizzleNode : SingleInputOp
 	{
 
@@ -266,8 +266,8 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
-			if ( m_outputPorts[ 0 ].IsLocalValue )
-				return m_outputPorts[ 0 ].LocalValue;
+			if ( m_outputPorts[ 0 ].IsLocalValue( dataCollector.PortCategory ) )
+				return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
 			
 			string value = string.Format( "({0}).", m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector ) );
 			int count = 0;

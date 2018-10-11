@@ -13,7 +13,7 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			m_currentInput = AvailableSurfaceInputs.WORLD_POS;
+			m_currentInput = SurfaceInputs.WORLD_POS;
 			m_drawPreviewAsSphere = true;
 			m_previewShaderGUID = "70d5405009b31a349a4d8285f30cf5d9";
 			InitialSetup();

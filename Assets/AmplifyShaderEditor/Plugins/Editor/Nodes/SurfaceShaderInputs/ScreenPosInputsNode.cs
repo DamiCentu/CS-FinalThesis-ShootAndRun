@@ -26,7 +26,7 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			m_currentInput = AvailableSurfaceInputs.SCREEN_POS;
+			m_currentInput = SurfaceInputs.SCREEN_POS;
 			InitialSetup();
 			m_textLabelWidth = 65;
 			m_autoWrapProperties = true;
@@ -34,7 +34,7 @@ namespace AmplifyShaderEditor
 			m_hasLeftDropdown = true;
 			m_previewShaderGUID = "a5e7295278a404175b732f1516fb68a6";
 
-			if( UIUtils.CurrentShaderVersion() <= 2400 )
+			if( UIUtils.CurrentWindow != null && UIUtils.CurrentWindow.CurrentGraph != null && UIUtils.CurrentShaderVersion() <= 2400 )
 				m_outputTypeInt = 1;
 
 			ConfigureHeader();
@@ -81,30 +81,41 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
-			if( m_outputPorts[ 0 ].IsLocalValue )
+			if( m_outputPorts[ 0 ].IsLocalValue( dataCollector.PortCategory ) )
 			{
-				return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
+				return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory ) );
 			}
 
-			if( dataCollector.IsFragmentCategory )
+			if( dataCollector.IsFragmentCategory && !dataCollector.UsingCustomScreenPos )
 				base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
 
 			string screenPos = string.Empty;
-			if( dataCollector.IsTemplate )
+			if( m_outputTypeInt == 0 )
 			{
-				screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
+				if( dataCollector.IsTemplate )
+				{
+					screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPosNormalized();
+				}
+				else
+				{
+					screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, m_currentPrecisionType, false );
+				}
 			}
 			else
 			{
-				screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, false );
+				if( dataCollector.IsTemplate )
+				{
+					screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
+				}
+				else
+				{
+					screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, false );
+				}
 			}
+			
+			
 
-			if( m_outputTypeInt == 0 )
-			{
-				screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, m_currentPrecisionType, false );
-			}
-
-			m_outputPorts[ 0 ].SetLocalValue( screenPos );
+			m_outputPorts[ 0 ].SetLocalValue( screenPos, dataCollector.PortCategory );
 			return GetOutputVectorItem( 0, outputId, screenPos );
 
 		}

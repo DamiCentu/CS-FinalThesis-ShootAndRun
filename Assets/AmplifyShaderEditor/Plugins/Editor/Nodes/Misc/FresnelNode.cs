@@ -26,8 +26,12 @@ namespace AmplifyShaderEditor
 			AddInputPort( WirePortDataType.FLOAT, false, "Scale" );
 			AddInputPort( WirePortDataType.FLOAT, false, "Power" );
 			AddOutputPort( WirePortDataType.FLOAT, "Out" );
+			m_inputPorts[ 1 ].AutoDrawInternalData = true;
+			m_inputPorts[ 2 ].AutoDrawInternalData = true;
+			m_inputPorts[ 3 ].AutoDrawInternalData = true;
 			m_autoWrapProperties = true;
 			m_drawPreviewAsSphere = true;
+			m_inputPorts[ 0 ].Vector3InternalData = Vector3.forward;
 			m_inputPorts[ 2 ].FloatInternalData = 1;
 			m_inputPorts[ 3 ].FloatInternalData = 5;
 			m_previewShaderGUID = "240145eb70cf79f428015012559f4e7d";
@@ -76,28 +80,35 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
-			if( m_outputPorts[ 0 ].IsLocalValue )
-				return m_outputPorts[ 0 ].LocalValue;
+			if( m_outputPorts[ 0 ].IsLocalValue( dataCollector.PortCategory ) )
+				return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
 
 			if( dataCollector.IsFragmentCategory )
-				dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( PrecisionType.Float, AvailableSurfaceInputs.WORLD_POS ), true );
+				dataCollector.AddToInput( UniqueId, SurfaceInputs.WORLD_POS );
 
 			string viewdir = GeneratorUtils.GenerateViewDirection( ref dataCollector, UniqueId, ViewSpace.World );
 
 			string normal = string.Empty;
 			if( m_inputPorts[ 0 ].IsConnected )
 			{
-				normal = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalvar, true );
+				normal = m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector );
 
 				if( dataCollector.IsFragmentCategory )
 				{
-					dataCollector.AddToInput( UniqueId, Constants.InternalData, false );
+					dataCollector.AddToInput( UniqueId, SurfaceInputs.INTERNALDATA, addSemiColon: false );
 
 					if( m_normalSpace == ViewSpace.Tangent )
 					{
-						dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
+						if( dataCollector.IsTemplate )
+						{
+							normal = dataCollector.TemplateDataCollectorInstance.GetWorldNormal( UniqueId, m_currentPrecisionType, normal, OutputId );
+						} else
+						{
+							normal = "WorldNormalVector( " + Constants.InputVarStr + " , " + normal + " )";
+						}
+						dataCollector.AddToInput( UniqueId, SurfaceInputs.WORLD_NORMAL, m_currentPrecisionType );
 						dataCollector.ForceNormal = true;
-						normal = "WorldNormalVector( " + Constants.InputVarStr + " , " + normal + " )";
+
 					}
 				}
 				else
@@ -113,17 +124,20 @@ namespace AmplifyShaderEditor
 			{
 				if( dataCollector.IsFragmentCategory )
 				{
-					dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
+					dataCollector.AddToInput( UniqueId, SurfaceInputs.WORLD_NORMAL, m_currentPrecisionType );
 					if( dataCollector.DirtyNormal )
-						dataCollector.AddToInput( UniqueId, Constants.InternalData, false );
+						dataCollector.AddToInput( UniqueId, SurfaceInputs.INTERNALDATA, addSemiColon: false );
 				}
 
-				normal = dataCollector.IsTemplate ? dataCollector.TemplateDataCollectorInstance.GetWorldNormal() : GeneratorUtils.GenerateWorldNormal( ref dataCollector, UniqueId );
+				normal = dataCollector.IsTemplate ? dataCollector.TemplateDataCollectorInstance.GetWorldNormal( m_currentPrecisionType ) : GeneratorUtils.GenerateWorldNormal( ref dataCollector, UniqueId );
+				normal = string.Format( "normalize( {0} )", normal );
+				if( dataCollector.DirtyNormal )
+					dataCollector.ForceNormal = true;
 			}
 
-			string bias = m_inputPorts[ 1 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT, ignoreLocalvar, true );
-			string scale = m_inputPorts[ 2 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT, ignoreLocalvar, true );
-			string power = m_inputPorts[ 3 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT, ignoreLocalvar, true );
+			string bias = m_inputPorts[ 1 ].GeneratePortInstructions( ref dataCollector );
+			string scale = m_inputPorts[ 2 ].GeneratePortInstructions( ref dataCollector );
+			string power = m_inputPorts[ 3 ].GeneratePortInstructions( ref dataCollector );
 
 			string fresnelNDotVLocalValue = "dot( " + normal + ", " + viewdir + " )";
 			string fresnelNDotVLocalVar = "fresnelNDotV" + OutputId;
@@ -133,7 +147,14 @@ namespace AmplifyShaderEditor
 			string result = string.Format( "( {0} + {1} * pow( 1.0 - {2}, {3} ) )", bias, scale, fresnelNDotVLocalVar, power );
 
 			RegisterLocalVariable( 0, result, ref dataCollector, fresnelFinalVar );
-			return m_outputPorts[ 0 ].LocalValue;
+			return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
+		}
+		
+		public override void PropagateNodeData( NodeData nodeData, ref MasterNodeDataCollector dataCollector )
+		{
+			base.PropagateNodeData( nodeData, ref dataCollector );
+			if( m_normalSpace == ViewSpace.Tangent && m_inputPorts[0].IsConnected )
+				dataCollector.DirtyNormal = true;
 		}
 
 		public override void ReadFromString( ref string[] nodeParams )

@@ -27,15 +27,9 @@ Shader "Hidden/FresnelNode"
 				float s = tex2D( _C, i.uv ).r;
 				float pw = tex2D( _D, i.uv ).r;
 
-				float2 p = 2 * i.uv - 1;
-				float r = sqrt( dot(p,p) );
-				r = saturate( r );
-
-				float2 uvs;
-				float f = ( 1 - sqrt( 1 - r ) ) / r;
-				uvs.x = p.x;
-				uvs.y = p.y;
-				float3 vertexPos = float3( uvs, ( f - 1 ) * 2 );
+				float2 xy = 2 * i.uv - 1;
+				float z = -sqrt(1-(dot(xy,xy)));
+				float3 vertexPos = normalize(float3(xy, z));
 				float3 normal = normalize(vertexPos);
 				float3 worldNormal = UnityObjectToWorldNormal(normal);
 				float3 worldViewDir = normalize(float3(0,0,-5) - vertexPos);
@@ -64,15 +58,9 @@ Shader "Hidden/FresnelNode"
 				float s = tex2D( _C, i.uv ).r;
 				float pw = tex2D( _D, i.uv ).r;
 
-				float2 p = 2 * i.uv - 1;
-				float r = sqrt( dot(p,p) );
-				r = saturate( r );
-
-				float2 uvs;
-				float f = ( 1 - sqrt( 1 - r ) ) / r;
-				uvs.x = p.x;
-				uvs.y = p.y;
-				float3 vertexPos = float3( uvs, ( f - 1 ) * 2 );
+				float2 xy = 2 * i.uv - 1;
+				float z = -sqrt(1-saturate(dot(xy,xy)));
+				float3 vertexPos = float3(xy, z);
 				float3 worldNormal = tex2D( _A, i.uv );
 				float3 worldViewDir = normalize(float3(0,0,-5) - vertexPos);
 
@@ -100,19 +88,13 @@ Shader "Hidden/FresnelNode"
 				float s = tex2D( _C, i.uv ).r;
 				float pw = tex2D( _D, i.uv ).r;
 
-				float2 p = 2 * i.uv - 1;
-				float r = sqrt( dot(p,p) );
-				r = saturate( r );
-
-				float2 uvs;
-				float f = ( 1 - sqrt( 1 - r ) ) / r;
-				uvs.x = p.x;
-				uvs.y = p.y;
-				float3 vertexPos = float3( uvs, ( f - 1 ) * 2 );
+				float2 xy = 2 * i.uv - 1;
+				float z = -sqrt(1-saturate(dot(xy,xy)));
+				float3 vertexPos = float3(xy, z);
 				float3 normal = normalize(vertexPos);
 				float3 worldNormal = UnityObjectToWorldNormal(normal);
 
-				float3 tangent = normalize(float3( (1-f)*2, p.y*0.01, p.x ));
+				float3 tangent = normalize(float3( -z, xy.y*0.01, xy.x ));
 				float3 worldPos = mul(unity_ObjectToWorld, float4(vertexPos,1)).xyz;
 				float3 worldTangent = UnityObjectToWorldDir(tangent);
 				float tangentSign = -1;

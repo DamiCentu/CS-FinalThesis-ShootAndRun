@@ -51,7 +51,10 @@ namespace AmplifyShaderEditor
 				Community = string.Empty;
 			else
 				FromCommunity = true;
-			CustomCategoryColor = customCategoryColor;
+
+            if( !string.IsNullOrEmpty( customCategoryColor ) )
+			    CustomCategoryColor = customCategoryColor;
+            
 			DeprecatedAlternativeType = deprecatedAlternativeType;
 			SortOrderPriority = sortOrderPriority;
 			NodeAvailabilityFlags = nodeAvailabilityFlags;

@@ -16,32 +16,8 @@ namespace AmplifyShaderEditor
 
 		private const string SamplerType = "tex2D";
 		private const string GrabTextureDefault = "_GrabTexture";
-		//private const string GrabVarStr = "grabScreenPos";
-
-		private const string ScreenPosStr = "screenPos";
 		private const string ScreenColorStr = "screenColor";
-		private readonly string ScreenPosOnFragStr = Constants.InputVarStr + "." + ScreenPosStr;
-
-		private readonly string[] HackInstruction = {   "#if UNITY_UV_STARTS_AT_TOP",
-														"float scale{0} = -1.0;",
-														"#else",
-														"float scale{0} = 1.0;",
-														"#endif",
-														"float halfPosW{1} = {0}.w * 0.5;",
-														"{0}.y = ( {0}.y - halfPosW{1} ) * _ProjectionParams.x* scale{1} + halfPosW{1};",
-														"{0}.w += 0.00000000001;",
-														"{0}.xyzw /= {0}.w;"
-														};
-
-
-		[SerializeField]
-		private bool m_isTextureFetched;
-
-		[SerializeField]
-		private string m_textureFetchedValue;
-
-		/////////////////////////////////////////////////////////
-
+		
 		[SerializeField]
 		private TexReferenceType m_referenceType = TexReferenceType.Object;
 
@@ -55,6 +31,9 @@ namespace AmplifyShaderEditor
 		private GUIStyle m_referenceIconStyle = null;
 
 		private ScreenColorNode m_referenceNode = null;
+
+		[SerializeField]
+		private bool m_normalize = false;
 
 		[SerializeField]
 		private bool m_useCustomGrab = false;
@@ -80,6 +59,8 @@ namespace AmplifyShaderEditor
 			m_drawAttributes = false;
 			m_showTitleWhenNotEditing = false;
 			m_textLabelWidth = 125;
+			m_showAutoRegisterUI = false;
+			m_globalDefaultBehavior = false;
 		}
 
 		protected override void OnUniqueIDAssigned()
@@ -111,7 +92,6 @@ namespace AmplifyShaderEditor
 			if( SoftValidReference )
 			{
 				m_content.text = m_referenceNode.TitleContent.text + Constants.InstancePostfixStr;
-				//m_additionalContent.text = m_referenceNode.AdditonalTitleContent.text;
 				SetAdditonalTitleText( m_referenceNode.AdditonalTitleContent.text );
 
 				if( m_referenceIconStyle == null )
@@ -170,7 +150,6 @@ namespace AmplifyShaderEditor
 		public override void DrawMainPropertyBlock()
 		{
 			EditorGUI.BeginChangeCheck();
-			//m_referenceType = ( TexReferenceType ) EditorGUILayout.EnumPopup( Constants.ReferenceTypeStr, m_referenceType );
 			m_referenceType = (TexReferenceType)EditorGUILayoutPopup( Constants.ReferenceTypeStr, (int)m_referenceType, Constants.ReferenceArrayLabels );
 			if( EditorGUI.EndChangeCheck() )
 			{
@@ -179,8 +158,6 @@ namespace AmplifyShaderEditor
 				{
 					UIUtils.RegisterScreenColorNode( this );
 					m_content.text = m_propertyInspectorName;
-					//SetAdditonalTitleText( string.Format( Constants.SubTitleVarNameFormatStr, GetPropertyValStr() ) );
-					//m_additionalContent.text = string.Format( Constants.PropertyValueLabel, GetPropertyValStr() );
 				}
 				else
 				{
@@ -188,8 +165,6 @@ namespace AmplifyShaderEditor
 					if( SoftValidReference )
 					{
 						m_content.text = m_referenceNode.TitleContent.text + Constants.InstancePostfixStr;
-						//m_additionalContent.text = m_referenceNode.AdditonalTitleContent.text;
-						//SetAdditonalTitleText( m_referenceNode.AdditonalTitleContent.text );
 					}
 				}
 				UpdateHeaderColor();
@@ -198,14 +173,15 @@ namespace AmplifyShaderEditor
 			if( m_referenceType == TexReferenceType.Object )
 			{
 				EditorGUI.BeginChangeCheck();
-				ShowPrecision();
 				m_useCustomGrab = EditorGUILayoutToggle( "Custom Grab Pass", m_useCustomGrab );
 				EditorGUI.BeginDisabledGroup( !m_useCustomGrab );
 				DrawMainPropertyBlockNoPrecision();
 				EditorGUI.EndDisabledGroup();
-				
+
+				m_normalize = EditorGUILayoutToggle( "Normalize", m_normalize );
 				if( EditorGUI.EndChangeCheck() )
 				{
+					UpdatePort();
 					if( m_useCustomGrab )
 					{
 						BeginPropertyFromInspectorCheck();
@@ -228,27 +204,22 @@ namespace AmplifyShaderEditor
 
 				m_referenceArrayId = EditorGUILayoutPopup( Constants.AvailableReferenceStr, m_referenceArrayId, arr );
 				GUI.enabled = guiEnabledBuffer;
+				EditorGUI.BeginChangeCheck();
+				m_normalize = EditorGUILayoutToggle( "Normalize", m_normalize );
+				if( EditorGUI.EndChangeCheck() )
+				{
+					UpdatePort();
+				}
 			}
 		}
 
-		public override void OnInputPortConnected( int portId, int otherNodeId, int otherPortId, bool activateNode = true )
-		{
-			base.OnInputPortConnected( portId, otherNodeId, otherPortId, activateNode );
-			UpdatePort();
-		}
-
-		public override void OnConnectedOutputNodeChanges( int inputPortId, int otherNodeId, int otherPortId, string name, WirePortDataType type )
-		{
-			base.OnConnectedOutputNodeChanges( inputPortId, otherNodeId, otherPortId, name, type );
-			UpdatePort();
-		}
 
 		private void UpdatePort()
 		{
-			WirePortDataType otherType = m_inputPorts[ 0 ].ExternalReferences[ 0 ].DataType;
-			if( otherType == WirePortDataType.FLOAT2 || otherType == WirePortDataType.FLOAT4 )
-				m_inputPorts[ 0 ].MatchPortToConnection();
-
+			if( m_normalize )
+				m_inputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT4, false );
+			else
+				m_inputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT2, false );
 		}
 
 		public override void DrawTitle( Rect titlePos )
@@ -273,8 +244,8 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
-			if( m_outputPorts[ 0 ].IsLocalValue )
-				return GetOutputColorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
+			if( m_outputPorts[ 0 ].IsLocalValue( dataCollector.PortCategory ) )
+				return GetOutputColorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory ) );
 
 			base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
 
@@ -287,14 +258,9 @@ namespace AmplifyShaderEditor
 
 			dataCollector.AddGrabPass( emptyName ? string.Empty : propertyName );
 
-			//if ( !m_inputPorts[ 0 ].IsConnected )
-			//{
-			//	string uvChannelDeclaration = IOUtils.GetUVChannelDeclaration( propertyName, -1, 0 );
-			//	dataCollector.AddToInput( m_uniqueId, uvChannelDeclaration, true );
-			//}
 			string valueName = SetFetchedData( ref dataCollector, ignoreLocalVar );
 
-			m_outputPorts[ 0 ].SetLocalValue( valueName );
+			m_outputPorts[ 0 ].SetLocalValue( valueName, dataCollector.PortCategory );
 			return GetOutputColorItem( 0, outputId, valueName );
 		}
 
@@ -302,11 +268,9 @@ namespace AmplifyShaderEditor
 		{
 			string propertyName = CurrentPropertyReference;
 
-			bool isProjecting = false;
-			if( m_inputPorts[ 0 ].DataType == WirePortDataType.FLOAT4 )
-				isProjecting = true;
+			bool isProjecting = m_normalize;
 
-			if( !m_inputPorts[ 0 ].IsConnected )
+			if( !m_inputPorts[ 0 ].IsConnected ) // to generate proper screen pos by itself
 				isProjecting = true;
 
 			if( ignoreLocalVar )
@@ -315,8 +279,8 @@ namespace AmplifyShaderEditor
 				return samplerValue;
 			}
 
-			if( m_isTextureFetched )
-				return m_textureFetchedValue;
+			if( m_outputPorts[0].IsLocalValue( dataCollector.PortCategory ) )
+				return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
 
 			string samplerOp = SamplerType + ( isProjecting ? "proj" : "" ) + "( " + propertyName + ", " + GetUVCoords( ref dataCollector, ignoreLocalVar, isProjecting ) + " )";
 
@@ -324,58 +288,31 @@ namespace AmplifyShaderEditor
 			return ScreenColorStr + OutputId;
 		}
 
-		public override void ResetOutputLocals()
-		{
-			base.ResetOutputLocals();
-			m_isTextureFetched = false;
-			m_textureFetchedValue = string.Empty;
-		}
-
-		public override void ResetOutputLocalsIfNot( MasterNodePortCategory category )
-		{
-			base.ResetOutputLocalsIfNot( category );
-			m_isTextureFetched = false;
-			m_textureFetchedValue = string.Empty;
-		}
-
 		public string GetUVCoords( ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar, bool isProjecting )
 		{
+			string result = string.Empty;
+
 			if( m_inputPorts[ 0 ].IsConnected )
 			{
-				string result = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, ( isProjecting ? WirePortDataType.FLOAT4 : WirePortDataType.FLOAT2 ), ignoreLocalVar, true );
-				if( isProjecting )
-					return "UNITY_PROJ_COORD( " + result + " )";
-				else
-					return result;
+				result = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, ( isProjecting ? WirePortDataType.FLOAT4 : WirePortDataType.FLOAT2 ), ignoreLocalVar, true );
 			}
 			else
 			{
-				string localVarName = string.Empty;
+				string customScreenPos = null;
 
 				if( dataCollector.IsTemplate )
-				{
-					localVarName = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
-				}
+					customScreenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
+
+				if( isProjecting )
+					result = GeneratorUtils.GenerateGrabScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, !dataCollector.UsingCustomScreenPos, customScreenPos );
 				else
-				{
-					dataCollector.AddToInput( UniqueId, "float4 " + ScreenPosStr, true );
-
-					localVarName = ScreenPosStr + OutputId;
-					string value = UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " + localVarName + " = " + ScreenPosOnFragStr + ";";
-					dataCollector.AddLocalVariable( UniqueId, value, true );
-				}
-
-				dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 0 ], true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 1 ], OutputId ), true );
-				dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 2 ], true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 3 ], OutputId ), true );
-				dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 4 ], true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 5 ], localVarName, OutputId ), true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 6 ], localVarName, OutputId ), true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 7 ], localVarName ), true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 8 ], localVarName ), true );
-				return "UNITY_PROJ_COORD( " + localVarName + " )";
+					result = GeneratorUtils.GenerateGrabScreenPositionNormalized( ref dataCollector, UniqueId, m_currentPrecisionType, !dataCollector.UsingCustomScreenPos, customScreenPos );
 			}
+
+			if( isProjecting && !dataCollector.IsLightweight )
+				return "UNITY_PROJ_COORD( " + result + " )";
+			else
+				return result;
 		}
 
 		public override void Destroy()
@@ -464,6 +401,11 @@ namespace AmplifyShaderEditor
 			{
 				m_useCustomGrab = true;
 			}
+
+			if( UIUtils.CurrentShaderVersion() > 14102 )
+			{
+				m_normalize = Convert.ToBoolean( GetCurrentParam( ref nodeParams ) );
+			}
 		}
 
 		public override void WriteToString( ref string nodeInfo, ref string connectionsInfo )
@@ -472,6 +414,7 @@ namespace AmplifyShaderEditor
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_referenceType );
 			IOUtils.AddFieldValueToString( ref nodeInfo, ( ( m_referenceNode != null ) ? m_referenceNode.UniqueId : -1 ) );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_useCustomGrab );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_normalize );
 		}
 
 		public override void RefreshExternalReferences()
@@ -492,6 +435,14 @@ namespace AmplifyShaderEditor
 						m_referenceNodeId = m_referenceNode.UniqueId;
 					}
 				}
+			}
+
+			if( UIUtils.CurrentShaderVersion() <= 14102 )
+			{
+				if( m_inputPorts[ 0 ].DataType == WirePortDataType.FLOAT4 )
+					m_normalize = true;
+				else
+					m_normalize = false;
 			}
 		}
 

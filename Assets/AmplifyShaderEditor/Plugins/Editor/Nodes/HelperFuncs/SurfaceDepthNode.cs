@@ -19,6 +19,7 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
+			AddInputPort( WirePortDataType.FLOAT3, false, "Vertex Position" );
 			AddOutputPort( WirePortDataType.FLOAT, "Depth" );
 			m_autoWrapProperties = true;
 			m_hasLeftDropdown = true;
@@ -68,13 +69,41 @@ namespace AmplifyShaderEditor
 		{
 			if( dataCollector.IsTemplate )
 			{
-				return dataCollector.TemplateDataCollectorInstance.GetEyeDepth();
+				if( m_inputPorts[ 0 ].IsConnected )
+				{
+					string space = string.Empty;
+					if( m_viewSpaceInt == 1 )
+						space = " * _ProjectionParams.w";
+
+					string varName = "customSurfaceDepth" + OutputId;
+					GenerateInputInVertex( ref dataCollector, 0, varName, false );
+					string instruction = "-UnityObjectToViewPos( " + varName + " ).z" + space;
+					if( dataCollector.IsLightweight )
+						instruction = "-TransformWorldToView(TransformObjectToWorld( " + varName + " )).z" + space;
+					string eyeVarName = "customEye" + OutputId;
+					dataCollector.TemplateDataCollectorInstance.RegisterCustomInterpolatedData( eyeVarName, WirePortDataType.FLOAT, m_currentPrecisionType, instruction );
+					return eyeVarName;
+				}
+				else
+				{
+					return dataCollector.TemplateDataCollectorInstance.GetEyeDepth( m_currentPrecisionType, true, MasterNodePortCategory.Fragment, m_viewSpaceInt );
+				}
 			}
 
 			if( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
 			{
+				string vertexVarName = string.Empty;
+				if( m_inputPorts[ 0 ].IsConnected )
+				{
+					vertexVarName = m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector );
+				}
+				else
+				{
+					vertexVarName = Constants.VertexShaderInputStr + ".vertex.xyz";
+				}
+
 				string vertexSpace = m_viewSpaceInt == 1 ? " * _ProjectionParams.w" : "";
-				string vertexInstruction = "-UnityObjectToViewPos( " + Constants.VertexShaderInputStr + ".vertex.xyz ).z" + vertexSpace;
+				string vertexInstruction = "-UnityObjectToViewPos( " + vertexVarName + " ).z" + vertexSpace;
 				dataCollector.AddVertexInstruction( "float " + m_vertexNameStr[ m_viewSpaceInt ] + " = " + vertexInstruction, UniqueId );
 
 				return m_vertexNameStr[ m_viewSpaceInt ];
@@ -85,28 +114,56 @@ namespace AmplifyShaderEditor
 
 			if( dataCollector.TesselationActive )
 			{
-				string eyeDepth = GeneratorUtils.GenerateScreenDepthOnFrag( ref dataCollector, UniqueId, m_currentPrecisionType );
-				if( m_viewSpaceInt == 1 )
+				if( m_inputPorts[ 0 ].IsConnected )
 				{
-					dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT, m_vertexNameStr[ 1 ], eyeDepth + " * _ProjectionParams.w" );
-					return m_vertexNameStr[ 1 ];
+					string space = string.Empty;
+					if( m_viewSpaceInt == 1 )
+						space = " * _ProjectionParams.w";
+
+					if( m_outputPorts[ 0 ].IsLocalValue( dataCollector.PortCategory ) )
+						return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
+
+					string value = m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector );
+					RegisterLocalVariable( 0, string.Format( "-UnityObjectToViewPos( {0} ).z", value ) + space, ref dataCollector, "customSurfaceDepth" + OutputId );
+					return m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory );
 				}
 				else
 				{
-					return eyeDepth;
+					string eyeDepth = GeneratorUtils.GenerateScreenDepthOnFrag( ref dataCollector, UniqueId, m_currentPrecisionType );
+					if( m_viewSpaceInt == 1 )
+					{
+						dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT, m_vertexNameStr[ 1 ], eyeDepth + " * _ProjectionParams.w" );
+						return m_vertexNameStr[ 1 ];
+					}
+					else
+					{
+						return eyeDepth;
+					}
 				}
 			}
 			else
 			{
+
 				string space = string.Empty;
 				if( m_viewSpaceInt == 1 )
 					space = " * _ProjectionParams.w";
 
-				dataCollector.AddToInput( UniqueId, "float " + m_vertexNameStr[ m_viewSpaceInt ], true );
-				string instruction = "-UnityObjectToViewPos( " + Constants.VertexShaderInputStr + ".vertex.xyz ).z" + space;
-				dataCollector.AddVertexInstruction( Constants.VertexShaderOutputStr + "." + m_vertexNameStr[ m_viewSpaceInt ] + " = " + instruction, UniqueId );
-
-				return Constants.InputVarStr + "." + m_vertexNameStr[ m_viewSpaceInt ];
+				if( m_inputPorts[ 0 ].IsConnected )
+				{
+					string varName = "customSurfaceDepth" + OutputId;
+					GenerateInputInVertex( ref dataCollector, 0, varName, false );
+					dataCollector.AddToInput( UniqueId, varName, WirePortDataType.FLOAT );
+					string instruction = "-UnityObjectToViewPos( " + varName + " ).z" + space;
+					dataCollector.AddVertexInstruction( Constants.VertexShaderOutputStr + "." + varName + " = " + instruction, UniqueId );
+					return Constants.InputVarStr + "." + varName;
+				}
+				else
+				{
+					dataCollector.AddToInput( UniqueId, m_vertexNameStr[ m_viewSpaceInt ], WirePortDataType.FLOAT );
+					string instruction = "-UnityObjectToViewPos( " + Constants.VertexShaderInputStr + ".vertex.xyz ).z" + space;
+					dataCollector.AddVertexInstruction( Constants.VertexShaderOutputStr + "." + m_vertexNameStr[ m_viewSpaceInt ] + " = " + instruction, UniqueId );
+					return Constants.InputVarStr + "." + m_vertexNameStr[ m_viewSpaceInt ];
+				}
 			}
 		}
 

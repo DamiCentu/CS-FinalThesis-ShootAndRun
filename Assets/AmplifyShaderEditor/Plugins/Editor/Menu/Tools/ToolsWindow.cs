@@ -76,7 +76,7 @@ namespace AmplifyShaderEditor
 
 
 		public ToolsMenuButton.ToolButtonPressed ToolButtonPressedEvt;
-		private GUIStyle m_toolbarButtonStyle;
+		//private GUIStyle m_toolbarButtonStyle;
 		private GUIStyle m_toggleStyle;
 		private GUIStyle m_borderStyle;
 
@@ -214,11 +214,11 @@ namespace AmplifyShaderEditor
 			m_areaLeft.x = m_transformedArea.x + TabX;
 			m_areaRight.x = m_transformedArea.x + m_transformedArea.width - 75 - TabX;
 
-			if ( m_toolbarButtonStyle == null )
-			{
-				m_toolbarButtonStyle = new GUIStyle( UIUtils.Button );
-				m_toolbarButtonStyle.fixedWidth = 100;
-			}
+			//if ( m_toolbarButtonStyle == null )
+			//{
+			//	m_toolbarButtonStyle = new GUIStyle( UIUtils.Button );
+			//	m_toolbarButtonStyle.fixedWidth = 100;
+			//}
 
 			if ( m_toggleStyle == null )
 			{

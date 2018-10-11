@@ -109,7 +109,7 @@ Shader "Hidden/SamplerNode"
 							c.rgb = UnpackScaleNormal( c, nscale );
 						} 
 
-						return tex2D( _Sampler, uvs);
+						return c;
 					}
 				}
 			}

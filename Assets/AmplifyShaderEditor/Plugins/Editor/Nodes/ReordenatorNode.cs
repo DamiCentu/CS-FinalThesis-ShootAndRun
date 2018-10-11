@@ -9,7 +9,7 @@ namespace AmplifyShaderEditor
 	public class ReordenatorNode : PropertyNode
 	{
 		[SerializeField]
-		private List<ParentNode> m_propertyList;
+		private List<PropertyNode> m_propertyList;
 
 		[SerializeField]
 		private string m_headerTitle = string.Empty;
@@ -22,7 +22,7 @@ namespace AmplifyShaderEditor
 
 		}
 
-		public void Init( string entryName, string entryInspectorName, List<ParentNode> list, bool register = true )
+		public void Init( string entryName, string entryInspectorName, List<PropertyNode> list, bool register = true )
 		{
 			m_propertyName = entryName;
 			m_propertyInspectorName = entryInspectorName;

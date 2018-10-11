@@ -144,15 +144,15 @@ namespace AmplifyShaderEditor
 			switch( m_selectedOutputType )
 			{
 				case WirePortDataType.FLOAT3x3:
-				result = "float3x3(" + m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalvar ) + ", "
-				+ m_inputPorts[ 1 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalvar ) + ", "
-				+ m_inputPorts[ 2 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalvar ) + ")";
+				result = "float3x3(" + m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector ) + ", "
+				+ m_inputPorts[ 1 ].GeneratePortInstructions( ref dataCollector ) + ", "
+				+ m_inputPorts[ 2 ].GeneratePortInstructions( ref dataCollector) + ")";
 				break;
 				case WirePortDataType.FLOAT4x4:
-				result = "float4x4(" + m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT4, ignoreLocalvar, true ) + ", "
-				+ m_inputPorts[ 1 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT4, ignoreLocalvar, true ) + ", "
-				+ m_inputPorts[ 2 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT4, ignoreLocalvar, true ) + ", "
-				+ m_inputPorts[ 3 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT4, ignoreLocalvar, true ) + ")";
+				result = "float4x4(" + m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector  ) + ", "
+				+ m_inputPorts[ 1 ].GeneratePortInstructions( ref dataCollector ) + ", "
+				+ m_inputPorts[ 2 ].GeneratePortInstructions( ref dataCollector ) + ", "
+				+ m_inputPorts[ 3 ].GeneratePortInstructions( ref dataCollector ) + ")";
 				break;
 			}
 

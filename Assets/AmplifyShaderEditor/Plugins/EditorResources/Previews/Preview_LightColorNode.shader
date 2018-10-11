@@ -10,9 +10,11 @@ Shader "Hidden/LightColorNode"
 			#include "UnityCG.cginc"
 			#include "Lighting.cginc"
 
+			float4 _EditorLightColor;
+
 			float4 frag(v2f_img i) : SV_Target
 			{
-				return _LightColor0;
+				return _EditorLightColor;
 			}
 			ENDCG
 		}
@@ -25,9 +27,11 @@ Shader "Hidden/LightColorNode"
 			#include "UnityCG.cginc"
 			#include "Lighting.cginc"
 
+			float4 _EditorLightColor;
+
 			float4 frag(v2f_img i) : SV_Target
 			{
-				return float4(_LightColor0.rgb, 0);
+				return float4(_EditorLightColor.rgb, 0);
 			}
 			ENDCG
 		}
@@ -40,9 +44,11 @@ Shader "Hidden/LightColorNode"
 			#include "UnityCG.cginc"
 			#include "Lighting.cginc"
 
+			float4 _EditorLightColor;
+
 			float4 frag(v2f_img i) : SV_Target
 			{
-				return _LightColor0.a;
+				return _EditorLightColor.a;
 			}
 			ENDCG
 		}

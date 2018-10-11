@@ -14,8 +14,9 @@ internal class ASEMaterialInspector : ShaderGUI
 	private const string PreviewModelPref = "ASEMI_PREVIEWMODEL";
 
 	private static MaterialEditor m_instance = null;
+    private static bool m_refreshOnUndo = false;
 
-	private bool m_initialized = false;
+    private bool m_initialized = false;
 	private double m_lastRenderedTime;
 	private PreviewRenderUtility m_previewRenderUtility;
 	private Mesh m_targetMesh;
@@ -30,8 +31,18 @@ internal class ASEMaterialInspector : ShaderGUI
 	private MethodInfo m_dragMethod = null;
 	private FieldInfo m_selectedField = null;
 	private FieldInfo m_infoField = null;
+    
 
-	public override void OnGUI( MaterialEditor materialEditor, MaterialProperty[] properties )
+    void UndoRedoPerformed()
+    {
+        m_refreshOnUndo = true;
+    }
+    
+    ~ASEMaterialInspector()
+    {
+        Undo.undoRedoPerformed -= UndoRedoPerformed;
+    }
+    public override void OnGUI( MaterialEditor materialEditor, MaterialProperty[] properties )
 	{
 		IOUtils.Init();
 		Material mat = materialEditor.target as Material;
@@ -45,7 +56,8 @@ internal class ASEMaterialInspector : ShaderGUI
 		{
 			Init();
 			m_initialized = true;
-		}
+            Undo.undoRedoPerformed += UndoRedoPerformed;
+        }
 
 		if( Event.current.type == EventType.Repaint &&
 			mat.HasProperty( IOUtils.DefaultASEDirtyCheckId ) &&
@@ -53,9 +65,7 @@ internal class ASEMaterialInspector : ShaderGUI
 		{
 			mat.SetInt( IOUtils.DefaultASEDirtyCheckId, 0 );
 			UIUtils.ForceUpdateFromMaterial();
-#if !UNITY_5_5_OR_NEWER
-			Event.current.Use();
-#endif
+			//Event.current.Use();
 		}
 
 
@@ -118,6 +128,12 @@ internal class ASEMaterialInspector : ShaderGUI
 								{
 									Texture value = mat.GetTexture( name );
 									valueStr = AssetDatabase.GetAssetPath( value );
+									Vector2 offset = mat.GetTextureOffset( name );
+									Vector2 scale = mat.GetTextureScale( name );
+									valueStr += IOUtils.VECTOR_SEPARATOR + scale.x.ToString() +
+										IOUtils.VECTOR_SEPARATOR + scale.y.ToString() +
+										IOUtils.VECTOR_SEPARATOR + offset.x.ToString() +
+										IOUtils.VECTOR_SEPARATOR + offset.y.ToString();
 								}
 								break;
 							}
@@ -203,7 +219,19 @@ internal class ASEMaterialInspector : ShaderGUI
 											break;
 											case UnityEditor.ShaderUtil.ShaderPropertyType.TexEnv:
 											{
-												mat.SetTexture( valuesArr[ 0 ], AssetDatabase.LoadAssetAtPath<Texture>( valuesArr[ 2 ] ) );
+												string[] texVals = valuesArr[ 2 ].Split( IOUtils.VECTOR_SEPARATOR );
+												if( texVals.Length != 5 )
+												{
+													Debug.LogWarning( "Material clipboard data is corrupted" );
+													validData = false;
+													break;
+												}
+												else
+												{
+													mat.SetTexture( valuesArr[ 0 ], AssetDatabase.LoadAssetAtPath<Texture>( texVals[ 0 ] ) );
+													mat.SetTextureScale( valuesArr[ 0 ], new Vector2( Convert.ToSingle( texVals[ 1 ] ), Convert.ToSingle( texVals[ 2 ] ) ) );
+													mat.SetTextureOffset( valuesArr[ 0 ], new Vector2( Convert.ToSingle( texVals[ 3 ] ), Convert.ToSingle( texVals[ 4 ] ) ) );
+												}
 											}
 											break;
 										}
@@ -270,11 +298,9 @@ internal class ASEMaterialInspector : ShaderGUI
 				}
 			}
 		}
-#if UNITY_5_5_2 || UNITY_5_5_3 || UNITY_5_5_4 || UNITY_5_5_5 || UNITY_5_6_OR_NEWER
-		EditorGUILayout.Space();
+
 		EditorGUILayout.Space();
 		materialEditor.RenderQueueField();
-#endif
 #if UNITY_5_6_OR_NEWER
 		materialEditor.EnableInstancingField();
 #endif
@@ -282,9 +308,11 @@ internal class ASEMaterialInspector : ShaderGUI
 		materialEditor.DoubleSidedGIField();
 #endif
 		materialEditor.LightmapEmissionProperty();
-		if( EditorGUI.EndChangeCheck() )
+		if( m_refreshOnUndo || EditorGUI.EndChangeCheck() )
 		{
-			string isEmissive = mat.GetTag( "IsEmissive", false, "false" );
+            m_refreshOnUndo = false;
+
+            string isEmissive = mat.GetTag( "IsEmissive", false, "false" );
 			if( isEmissive.Equals( "true" ) )
 			{
 				mat.globalIlluminationFlags &= (MaterialGlobalIlluminationFlags)3;
@@ -318,7 +346,7 @@ internal class ASEMaterialInspector : ShaderGUI
 
 		base.OnMaterialPreviewSettingsGUI( materialEditor );
 
-		if( ShaderUtil.hardwareSupportsRectRenderTexture )
+		if( UnityEditor.ShaderUtil.hardwareSupportsRectRenderTexture )
 		{
 			EditorGUI.BeginChangeCheck();
 			m_targetMesh = (Mesh)EditorGUILayout.ObjectField( m_targetMesh, typeof( Mesh ), false, GUILayout.MaxWidth( 120 ) );
@@ -378,7 +406,11 @@ internal class ASEMaterialInspector : ShaderGUI
 		if( m_previewRenderUtility == null )
 		{
 			m_previewRenderUtility = new PreviewRenderUtility();
+#if UNITY_2017_1_OR_NEWER
 			m_previewRenderUtility.cameraFieldOfView = 30f;
+#else
+			m_previewRenderUtility.m_CameraFieldOfView = 30f;
+#endif
 		}
 
 		if( m_previewGUIType == null )

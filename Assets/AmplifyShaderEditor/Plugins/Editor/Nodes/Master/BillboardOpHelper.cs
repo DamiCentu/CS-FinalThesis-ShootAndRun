@@ -32,7 +32,7 @@ namespace AmplifyShaderEditor
 		public static readonly string[] BillboardCommonInstructions = { "float3 forwardCamVec = -normalize ( UNITY_MATRIX_V._m20_m21_m22 )",
 																		"float3 rightCamVec = normalize( UNITY_MATRIX_V._m00_m01_m02 )",
 																		"float4x4 rotationCamMatrix = float4x4( rightCamVec, 0, upCamVec, 0, forwardCamVec, 0, 0, 0, 0, 1 )",
-																		"{0} = normalize( mul( {0}, rotationCamMatrix ))"};
+																		"{0} = normalize( mul( float4( {0} , 0 ), rotationCamMatrix ))"};
 
 		public static readonly string[] BillboardRotDependent = {   "//This unfortunately must be made to take non-uniform scaling into account",
 																	"//Transform to world coords, apply rotation and transform back to local",

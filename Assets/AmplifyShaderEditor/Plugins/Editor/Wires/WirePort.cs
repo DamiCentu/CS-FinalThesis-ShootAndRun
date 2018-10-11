@@ -271,6 +271,7 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+        public virtual void ChangePortId( int newId ) { }
 		public virtual void NotifyExternalRefencesOnChange() { }
 
 		public void UpdateInfoOnExternalConn( int nodeId, int portId, WirePortDataType type )

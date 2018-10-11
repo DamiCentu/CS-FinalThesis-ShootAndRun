@@ -27,6 +27,7 @@ namespace AmplifyShaderEditor
 			m_drawPreviewAsSphere = true;
 			m_outputPorts[ 4 ].Visible = false;
 			m_hasLeftDropdown = true;
+			m_autoWrapProperties = true;
 			m_previewShaderGUID = "a5c14f759dd021b4b8d4b6eeb85ac227";
 		}
 
@@ -75,7 +76,7 @@ namespace AmplifyShaderEditor
 
 			if ( dataCollector.MasterNodeCategory == AvailableShaderTypes.Template )
 			{
-				string vertexPos = dataCollector.TemplateDataCollectorInstance.GetVertexPosition( ( m_sizeOption == 0 ) ? WirePortDataType.FLOAT3 : WirePortDataType.FLOAT4 );
+				string vertexPos = dataCollector.TemplateDataCollectorInstance.GetVertexPosition( ( m_sizeOption == 0 ) ? WirePortDataType.FLOAT3 : WirePortDataType.FLOAT4, m_currentPrecisionType );
 				return GetOutputVectorItem( 0, outputId, vertexPos );
 			}
 

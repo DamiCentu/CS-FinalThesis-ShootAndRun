@@ -58,13 +58,15 @@ namespace AmplifyShaderEditor
 		private int m_selectedSizeY = 4;
 
 		[SerializeField]
-		private int m_selectedFormat = 1;
+		private TextureFormat m_selectedFormatEnum = TextureFormat.ARGB32;
+
+		[SerializeField]
+		private int m_quality = 100;
 
 		private int[] m_sizes = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192 };
 		private string[] m_sizesStr = { "32", "64", "128", "256", "512", "1024", "2048", "4096", "8192" };
-
-		private TextureFormat[] m_formats = { TextureFormat.ARGB32, TextureFormat.RGBA32, TextureFormat.RGB24, TextureFormat.Alpha8 };
-		private string[] m_formatsStr = { "ARGB32", "RGBA32", "RGB24", "Alpha8" };
+		private static Dictionary<int, int> MipCount = new Dictionary<int, int>() { { 32, 6 }, { 64, 7 }, { 128, 8 }, { 256, 9 }, { 512, 10 }, { 1024, 11 }, { 2048, 12 }, { 4096, 13 }, { 8192, 14 } };
+		private static List<TextureFormat> UncompressedFormats = new List<TextureFormat>() { TextureFormat.ARGB32, TextureFormat.RGBA32, TextureFormat.RGB24, TextureFormat.Alpha8 };
 
 		private GUIStyle m_contentStyle = null;
 		private GUIStyle m_pathButtonStyle = null;
@@ -83,10 +85,7 @@ namespace AmplifyShaderEditor
 				m_contentStyle.margin = new RectOffset( 6, 4, 5, 5 );
 			}
 
-			if( m_pathButtonStyle == null )
-			{
-				m_pathButtonStyle = new GUIStyle( "minibutton" );
-			}
+			m_pathButtonStyle = null;
 
 			if( m_allTextures == null )
 				m_allTextures = new List<Texture2D>();
@@ -130,6 +129,9 @@ namespace AmplifyShaderEditor
 
 		void OnGUI()
 		{
+			if( m_pathButtonStyle == null )
+				m_pathButtonStyle = "minibutton";
+
 			m_scrollPos = EditorGUILayout.BeginScrollView( m_scrollPos, GUILayout.Height( Screen.height ) );
 			float cachedWidth = EditorGUIUtility.labelWidth;
 			EditorGUIUtility.labelWidth = 100;
@@ -191,7 +193,20 @@ namespace AmplifyShaderEditor
 			m_wrapMode = (TextureWrapMode)EditorGUILayout.EnumPopup( "Wrap Mode", m_wrapMode );
 			m_filterMode = (FilterMode)EditorGUILayout.EnumPopup( "Filter Mode", m_filterMode );
 			m_anisoLevel = EditorGUILayout.IntSlider( "Aniso Level", m_anisoLevel, 0, 16 );
-			m_selectedFormat = EditorGUILayout.Popup( "Format", m_selectedFormat, m_formatsStr );
+
+			m_selectedFormatEnum = (TextureFormat)EditorGUILayout.EnumPopup( "Format", m_selectedFormatEnum );
+			if( m_selectedFormatEnum == TextureFormat.DXT1Crunched )
+			{
+				m_selectedFormatEnum = TextureFormat.DXT1;
+				Debug.Log( "Texture Array does not support crunched DXT1 format. Changing to DXT1..." );
+			}
+			else if( m_selectedFormatEnum == TextureFormat.DXT5Crunched )
+			{
+				m_selectedFormatEnum = TextureFormat.DXT5;
+				Debug.Log( "Texture Array does not support crunched DXT5 format. Changing to DXT5..." );
+			}
+
+			m_quality = EditorGUILayout.IntSlider( "Format Quality", m_quality, 0, 100 );
 			EditorGUILayout.Separator();
 			EditorGUILayout.LabelField( "Path and Name" );
 			EditorGUILayout.BeginHorizontal();
@@ -222,13 +237,32 @@ namespace AmplifyShaderEditor
 			EditorGUILayout.EndScrollView();
 		}
 
+		private void CopyToArray( ref Texture2D from, ref Texture2DArray to, int arrayIndex, int mipLevel, bool compressed = true )
+		{
+			if( compressed )
+			{
+				Graphics.CopyTexture( from, 0, mipLevel, to, arrayIndex, mipLevel );
+			}
+			else
+			{
+				to.SetPixels( from.GetPixels(), arrayIndex, mipLevel );
+				to.Apply();
+			}
+		}
+
 		private void BuildArray()
 		{
 			int sizeX = m_sizes[ m_selectedSizeX ];
 			int sizeY = m_sizes[ m_selectedSizeY ];
 
-			Texture2DArray textureArray = new Texture2DArray( sizeX, sizeY, m_allTextures.Count, m_formats[ m_selectedFormat ], m_mipMaps, m_linearMode );
-
+			Texture2DArray textureArray = new Texture2DArray( sizeX, sizeY, m_allTextures.Count, m_selectedFormatEnum, m_mipMaps, m_linearMode );
+			textureArray.wrapMode = m_wrapMode;
+			textureArray.filterMode = m_filterMode;
+			textureArray.anisoLevel = m_anisoLevel;
+			textureArray.Apply( false );
+			RenderTexture cache = RenderTexture.active;
+			RenderTexture rt = new RenderTexture( sizeX, sizeY, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default );
+			rt.Create();
 			for( int i = 0; i < m_allTextures.Count; i++ )
 			{
 				// build report
@@ -242,27 +276,44 @@ namespace AmplifyShaderEditor
 					m_message += m_allTextures[ i ].name + " changed dimensions\n";
 
 				// blit image to upscale or downscale the image to any size
-				RenderTexture rt = RenderTexture.GetTemporary( sizeX, sizeY, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default, 8 );
-				RenderTexture cache = RenderTexture.active;
 				RenderTexture.active = rt;
+
 				bool cachedsrgb = GL.sRGBWrite;
-				GL.sRGBWrite = true;
+				GL.sRGBWrite = !m_linearMode;
 				Graphics.Blit( m_allTextures[ i ], rt );
 				GL.sRGBWrite = cachedsrgb;
-				Texture2D t2d = new Texture2D( sizeX, sizeY );
-				t2d.ReadPixels( new Rect( 0, 0, sizeX, sizeY ), 0, 0 );
-				RenderTexture.active = cache;
-				RenderTexture.ReleaseTemporary( rt );
-				textureArray.SetPixels( t2d.GetPixels( 0 ), i, 0 );
+
+				Texture2D t2d = new Texture2D( sizeX, sizeY, TextureFormat.ARGB32, m_mipMaps, m_linearMode );
+				t2d.ReadPixels( new Rect( 0, 0, sizeX, sizeY ), 0, 0, m_mipMaps );
+				RenderTexture.active = null;
+
+				bool isCompressed = UncompressedFormats.FindIndex( x => x.Equals( m_selectedFormatEnum ) ) < 0;
+
+
+				if( isCompressed )
+				{
+					EditorUtility.CompressTexture( t2d, m_selectedFormatEnum, m_quality );
+					t2d.Apply( false );
+				}
+
+				if( m_mipMaps )
+				{
+					int maxSize = Mathf.Max( sizeX, sizeY );
+					for( int mip = 0; mip < MipCount[ maxSize ]; mip++ )
+					{
+						CopyToArray( ref t2d, ref textureArray, i, mip, isCompressed );
+					}
+				}
+				else
+				{
+					CopyToArray( ref t2d, ref textureArray, i, 0, isCompressed );
+				}
 			}
 
+			rt.Release();
+			RenderTexture.active = cache;
 			if( m_message.Length > 0 )
 				m_message = m_message.Substring( 0, m_message.Length - 1 );
-
-			textureArray.wrapMode = m_wrapMode;
-			textureArray.filterMode = m_filterMode;
-			textureArray.anisoLevel = m_anisoLevel;
-			textureArray.Apply();
 
 			string path = m_folderPath + m_fileName + ".asset";
 			Texture2DArray outfile = AssetDatabase.LoadMainAssetAtPath( path ) as Texture2DArray;

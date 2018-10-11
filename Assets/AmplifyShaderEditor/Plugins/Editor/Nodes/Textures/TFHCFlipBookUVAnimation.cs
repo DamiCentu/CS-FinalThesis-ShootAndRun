@@ -41,7 +41,9 @@ namespace AmplifyShaderEditor
 			AddInputPort( WirePortDataType.FLOAT, false, "Rows" );
 			AddInputPort( WirePortDataType.FLOAT, false, "Speed" );
 			AddInputPort( WirePortDataType.FLOAT, false, "Start Frame" );
-			AddOutputVectorPorts( WirePortDataType.FLOAT2, "UV" );
+            AddInputPort( WirePortDataType.FLOAT, false, "Time" );
+
+            AddOutputVectorPorts( WirePortDataType.FLOAT2, "UV" );
 			m_outputPorts[ 1 ].Name = "U";
 			m_outputPorts[ 2 ].Name = "V";
 			m_textLabelWidth = 125;
@@ -50,8 +52,25 @@ namespace AmplifyShaderEditor
 			m_previewShaderGUID = "04fe24be792bfd5428b92132d7cf0f7d";
 		}
 
+        public override void OnInputPortConnected( int portId, int otherNodeId, int otherPortId, bool activateNode = true )
+        {
+            base.OnInputPortConnected( portId, otherNodeId, otherPortId, activateNode );
+            if( portId == 5 )
+            {
+                m_previewMaterialPassId = 1;
+            }
+        }
 
-		public override void DrawProperties()
+        public override void OnInputPortDisconnected( int portId )
+        {
+            base.OnInputPortDisconnected( portId );
+            if( portId == 5 )
+            {
+                m_previewMaterialPassId = 0;
+            }
+        }
+
+        public override void DrawProperties()
 		{
 			base.DrawProperties();
 			EditorGUILayout.BeginVertical();
@@ -103,7 +122,9 @@ namespace AmplifyShaderEditor
 			string vcolsoffset = "float fbcolsoffset" + OutputId + " = 1.0f / " + columns + ";";
 			string vrowssoffset = "float fbrowsoffset" + OutputId + " = 1.0f / " + rows + ";";
 			string vcomment4 = "// Speed of animation";
-			string vspeed = "float fbspeed" + OutputId + " = _Time[1] * " + speed + ";";
+            string timer = m_inputPorts[ 5 ].IsConnected ? m_inputPorts[ 5 ].GeneratePortInstructions( ref dataCollector ) : "_Time[ 1 ]";
+
+            string vspeed = string.Format(  "float fbspeed{0} = {1} * {2};", OutputId,timer,speed);
 			string vcomment5 = "// UV Tiling (col and row offset)";
 			string vtiling = "float2 fbtiling" + OutputId + " = float2(fbcolsoffset" + OutputId + ", fbrowsoffset" + OutputId + ");";
 			string vcomment6 = "// UV Offset - calculate current tile linear index, and convert it to (X * coloffset, Y * rowoffset)";

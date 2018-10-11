@@ -9,11 +9,11 @@ namespace AmplifyShaderEditor
 	public class ToggleSwitchNode : PropertyNode
 	{
 		private const string InputPortName = "In ";
-		private const string CurrSelectedStr = "Toogle Value";
+		private const string CurrSelectedStr = "Toggle Value";
 		private const string LerpOp = "lerp({0},{1},{2})";
 
 		[SerializeField]
-		private string[] AvailableInputsLabels = { "0", "1" };
+		private string[] AvailableInputsLabels = { "In 0", "In 1" };
 
 		[SerializeField]
 		private int[] AvailableInputsValues = { 0, 1 };
@@ -26,7 +26,10 @@ namespace AmplifyShaderEditor
 
 		private int m_cachedPropertyId = -1;
 
+		private GUIContent m_popContent;
+
 		private Rect m_varRect;
+		private Rect m_imgRect;
 		private bool m_editing;
 
 		protected override void CommonInit( int uniqueId )
@@ -35,11 +38,14 @@ namespace AmplifyShaderEditor
 			AddInputPort( m_mainDataType, false, InputPortName + "0" );
 			AddInputPort( m_mainDataType, false, InputPortName + "1" );
 
-			AddOutputPort( m_mainDataType, m_inputPorts[ 0 ].Name );
-			m_insideSize.Set( 50, 25 );
+			AddOutputPort( m_mainDataType, " " );
+			m_insideSize.Set( 80, 25 );
 			m_currentParameterType = PropertyType.Property;
 			m_customPrefix = "Toggle Switch";
-			
+
+			m_popContent = new GUIContent();
+			m_popContent.image = UIUtils.PopupIcon;
+
 			m_availableAttribs.Clear();
 			m_availableAttribs.Add( new PropertyAttributes( "Toggle", "[Toggle]" ) );
 
@@ -48,6 +54,9 @@ namespace AmplifyShaderEditor
 			m_useVarSubtitle = true;
 			m_useInternalPortData = true;
 			m_previewShaderGUID = "beeb138daeb592a4887454f81dba2b3f";
+
+			m_allowPropertyDuplicates = true;
+			m_showAutoRegisterUI = false;
 		}
 
 		protected override void OnUniqueIDAssigned()
@@ -99,8 +108,9 @@ namespace AmplifyShaderEditor
 			m_inputPorts[ 0 ].ChangeType( m_mainDataType, false );
 			m_inputPorts[ 1 ].ChangeType( m_mainDataType, false );
 
-			m_outputPorts[ 0 ].ChangeProperties( m_currentSelectedInput == 0 ? m_inputPorts[ 0 ].Name : m_inputPorts[ 1 ].Name, m_mainDataType, false );
-			//m_outputPorts[ 0 ].ChangeType( m_mainDataType, false );
+
+			//m_outputPorts[ 0 ].ChangeProperties( m_out, m_mainDataType, false );
+			m_outputPorts[ 0 ].ChangeType( m_mainDataType, false );
 		}
 
 		public override void OnNodeLayout( DrawInfo drawInfo )
@@ -108,9 +118,15 @@ namespace AmplifyShaderEditor
 			base.OnNodeLayout( drawInfo );
 
 			m_varRect = m_remainingBox;
-			m_varRect.width = 40 * drawInfo.InvertedZoom;
-			m_varRect.height = 25 * drawInfo.InvertedZoom;
-			m_varRect.x += m_remainingBox.width * 0.5f - m_varRect.width * 0.5f;
+			m_varRect.width = 50 * drawInfo.InvertedZoom;
+			m_varRect.height = 16 * drawInfo.InvertedZoom;
+			m_varRect.x = m_remainingBox.xMax - m_varRect.width;
+			m_varRect.y += 1 * drawInfo.InvertedZoom;
+
+			m_imgRect = m_varRect;
+			m_imgRect.x = m_varRect.xMax - 16 * drawInfo.InvertedZoom;
+			m_imgRect.width = 16 * drawInfo.InvertedZoom;
+			m_imgRect.height = m_imgRect.width;
 		}
 
 		public override void DrawGUIControls( DrawInfo drawInfo )
@@ -155,7 +171,10 @@ namespace AmplifyShaderEditor
 				return;
 
 			if ( !m_editing && ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD4 )
-				GUI.Label( m_varRect, AvailableInputsLabels[ m_currentSelectedInput ], UIUtils.SwitchNodePopUp );
+			{
+				GUI.Label( m_varRect, AvailableInputsLabels[ m_currentSelectedInput ], UIUtils.GraphDropDown );
+				GUI.Label( m_imgRect, m_popContent, UIUtils.GraphButtonIcon );
+			}
 		}
 
 		public override void DrawMainPropertyBlock()
@@ -193,6 +212,11 @@ namespace AmplifyShaderEditor
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_currentSelectedInput );
 		}
 
+		public override void RefreshExternalReferences()
+		{
+			base.RefreshExternalReferences();
+			UpdateConnection();
+		}
 		public override string GetPropertyValue()
 		{
 			return "[Toggle]" + m_propertyName + "(\"" + m_propertyInspectorName + "\", Float) = " + m_currentSelectedInput;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /// A Task object represents a coroutine.  Tasks can be started, paused, and stopped.
 /// It is an error to attempt to start a task that has been stopped or which has
@@ -70,6 +71,11 @@ public class Task
 	}
 	
 	TaskManager.TaskState task;
+
+    public void Wait()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 class TaskManager : MonoBehaviour

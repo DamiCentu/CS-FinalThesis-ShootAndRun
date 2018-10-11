@@ -208,7 +208,7 @@ namespace AmplifyShaderEditor
 					//statusTask.Wait();
 					//if( Provider.CheckoutIsValid( statusTask.assetList[ 0 ] ) )
 					{
-						UnityEditor.VersionControl.Task checkoutTask = Provider.Checkout( loadedAsset, CheckoutMode.Both );
+						var checkoutTask = Provider.Checkout( loadedAsset, CheckoutMode.Both );
 						checkoutTask.Wait();
 					}
 				}
@@ -278,6 +278,21 @@ namespace AmplifyShaderEditor
 
 				//ASEFolderPath = AssetDatabase.GUIDToAssetPath( ASEFolderGUID );
 				//ASEResourcesPath = ASEFolderPath + ASEResourcesPath;
+			}
+		}
+
+		public static void UpdateSFandRefreshWindows( AmplifyShaderFunction function )
+		{
+			for( int i = 0; i < AllOpenedWindows.Count; i++ )
+			{
+				AllOpenedWindows[ i ].LateRefreshAvailableNodes();
+				if( AllOpenedWindows[ i ].IsShaderFunctionWindow )
+				{
+					if( AllOpenedWindows[ i ].OpenedShaderFunction == function )
+					{
+						AllOpenedWindows[ i ].UpdateTabTitle();
+					}
+				}
 			}
 		}
 

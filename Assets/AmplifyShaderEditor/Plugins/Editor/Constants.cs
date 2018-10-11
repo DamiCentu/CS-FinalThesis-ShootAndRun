@@ -23,7 +23,10 @@ namespace AmplifyShaderEditor
 		public static float NodeButtonDeltaX = 5;
 		public static float NodeButtonDeltaY = 11;
 
+		public readonly static string ReservedPropertyNameStr = "Property name '{0}' is reserved and cannot be used";
+		public readonly static string NumericPropertyNameStr = "Property name '{0}' is numeric thus cannot be used";
 		public readonly static string DeprecatedMessageStr = "Node '{0}' is deprecated. Use node '{1}' instead.";
+		public readonly static string UndoChangePropertyTypeNodesId = "Changing Property Types";
 		public readonly static string UndoChangeTypeNodesId = "Changing Nodes Types";
 		public readonly static string UndoMoveNodesId = "Moving Nodes";
 		public readonly static string UndoRegisterFullGrapId = "Register Graph";
@@ -31,6 +34,8 @@ namespace AmplifyShaderEditor
 		public readonly static string UndoRemoveNodeFromCommentaryId = "Remove node from Commentary";
 		public readonly static string UndoCreateDynamicPortId = "Create Dynamic Port";
 		public readonly static string UndoDeleteDynamicPortId = "Destroy Dynamic Port";
+		public readonly static string UndoRegisterNodeId = "Register Object";
+		public readonly static string UndoUnregisterNodeId = "Unregister Object";
 		public readonly static string UndoCreateNodeId = "Create Object";
 		public readonly static string UndoPasteNodeId = "Paste Object";
 		public readonly static string UndoDeleteNodeId = "Destroy Object";
@@ -70,8 +75,8 @@ namespace AmplifyShaderEditor
 		public readonly static Color PortTextColor = new Color( 1f, 1f, 1f, 0.5f );
 		public readonly static Color PortLockedTextColor = new Color( 1f, 1f, 1f, 0.35f );
 		public readonly static Color BoxSelectionColor = new Color( 1f, 1f, 1f, 0.5f );
-
-		public readonly static Color SpecialSelectionColor = new Color( 0.2f, 0.8f, 0.4f, 1f );
+		public readonly static Color SpecialRegisterLocalVarSelectionColor = new Color( 0.27f, 0.52f, 1.0f, 1f );
+		public readonly static Color SpecialGetLocalVarSelectionColor = new Color( 0.2f, 0.8f, 0.4f, 1f );
 		public readonly static Color NodeSelectedColor = new Color( 0.85f, 0.56f, 0f, 1f );
 		public readonly static Color NodeDefaultColor = new Color( 1f, 1f, 1f, 1f );
 		public readonly static Color NodeConnectedColor = new Color( 1.0f, 1f, 0.0f, 1f );
@@ -206,28 +211,50 @@ namespace AmplifyShaderEditor
 		public readonly static string VFaceVariable = "ASEVFace";
 		public readonly static string VFaceInput = "fixed ASEVFace : VFACE";
 
-
+		public readonly static string ColorVariable = "vertexColor";
+		public readonly static string ColorInput = "float4 vertexColor : COLOR";
 
 		public readonly static string NoStringValue = "None";
 		public readonly static string EmptyPortValue = "  ";
 
 		public readonly static string[] OverallInvalidChars = { "\r", "\n", "\\", " ", ".", ">", ",", "<", "\'", "\"", ";", ":", "[", "{", "]", "}", "=", "+", "`", "~", "/", "?", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-" };
 		public readonly static string[] ShaderInvalidChars = { "\r", "\n", "\\", "\'", "\"", };
+		public readonly static string[] EnumInvalidChars = { "\r", "\n", "\\", ".", ">", ",", "<", "\'", "\"", ";", ":", "[", "{", "]", "}", "=", "+", "`", "~", "/", "?", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-" };
+		public readonly static string[] AttrInvalidChars = { "\r", "\n", "\\", ".", ">", "<", "\'", "\"", ";", ":", "[", "{", "]", "}", "=", "+", "`", "~", "/", "?", "!", "@", "#", "$", "%", "^", "&", "*" };
 
 		public readonly static string[] WikiInvalidChars = { "#", "<", ">", "[", "]", "|", "{", "}", "%", "+", "?", "\\", "/", ",", ";", "." };
 
-		public readonly static Dictionary<string, string> UrlReplacementStringValues = new Dictionary<string, string>() { { " ", "_" } };
+		public readonly static Dictionary<string, string> UrlReplacementStringValues = new Dictionary<string, string>()
+		{
+			{ " = ", "Equals" },
+			{ " == ", "Equals" },
+			{ " != ", "NotEqual" },
+			{ " \u2260 ", "NotEqual" },
+			{ " > ", "Greater" },
+			{ " \u2265 " , "GreaterOrEqual" },
+			{ " >= ", "GreaterOrEqual" },
+			{ " < ", "Less" },
+			{ " \u2264 ", "LessOrEqual" },
+			{ " <= ", "LessOrEqual" },
+			{ " ", "_" },
+			{ "[", "" },
+			{ "]", "" }
+		};
 
-		public readonly static Dictionary<string, string> ReplacementStringValues = new Dictionary<string, string>() {  { " = ", "Equals" },
-																														{ " == ", "Equals" },
-																														{ " != ", "NotEqual" },
-																														{ " \u2260 ", "NotEqual" },
-																														{ " > ", "Greater" },
-																														{ " \u2265 ", "GreaterOrEqual" },
-																														{ " >= ", "GreaterOrEqual" },
-																														{ " < ", "Less" },
-																														{ " \u2264 ", "LessOrEqual" },
-																														{ " <= ", "LessOrEqual" }};
+		public readonly static Dictionary<string, string> ReplacementStringValues = new Dictionary<string, string>()
+		{
+			{ " = ", "Equals" },
+			{ " == ", "Equals" },
+			{ " != ", "NotEqual" },
+			{ " \u2260 ", "NotEqual" },
+			{ " > ", "Greater" },
+			{ " \u2265 ", "GreaterOrEqual" },
+			{ " >= ", "GreaterOrEqual" },
+			{ " < ", "Less" },
+			{ " \u2264 ", "LessOrEqual" },
+			{ " <= ", "LessOrEqual" }
+		};
+
 		public readonly static string InternalData = "INTERNAL_DATA";
 
 
