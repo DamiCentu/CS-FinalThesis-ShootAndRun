@@ -42,7 +42,11 @@ public class Settings : MonoBehaviour {
     {
         SceneManager.LoadScene("Scene1");
     }
-
+    public void NextLvl()
+    {
+        Configuration.instance.NextLvl();
+        SceneManager.LoadScene("Scene2");
+    }
 
 
 }

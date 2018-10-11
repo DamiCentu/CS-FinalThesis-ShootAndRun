@@ -199,7 +199,13 @@ public class SectionManager : MonoBehaviour {
     IEnumerator WinRoutine() {
         SoundManager.instance.Victory();
         yield return new WaitForSeconds(timeAfterWinning);
-        SceneManager.LoadScene("VictoryScene");
+        if (Configuration.instance.lvl == 1)
+        {
+            SceneManager.LoadScene("LvlComplete");
+        }
+        else {
+            SceneManager.LoadScene("VictoryScene");
+        }
     }
 
     private void OnGameOver(object[] parameterContainer) {

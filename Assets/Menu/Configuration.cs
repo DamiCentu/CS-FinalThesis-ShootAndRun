@@ -40,6 +40,11 @@ public class Configuration : MonoBehaviour {
         playerUlt = Player.Ults.Spawn;
     }
 
+    internal void NextLvl()
+    {
+        lvl = 2;
+    }
+
     public void SetEasy() {
         dificulty = Dificulty.Easy;
     }
