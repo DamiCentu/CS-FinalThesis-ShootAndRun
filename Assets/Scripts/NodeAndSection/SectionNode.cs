@@ -211,6 +211,8 @@ public class SectionNode : MonoBehaviour {
             else if (param[2] is FireEnemy)
             {
                 print("trato de sacar el fire enemy");
+                var e = (FireEnemy)param[2];
+                e.Stop();
                 Utility.RemoveFromListGeneric(_allFireEnemiesActive, (FireEnemy)param[2]);
             }
 
@@ -247,12 +249,17 @@ public class SectionNode : MonoBehaviour {
         _dicQuantityInWave[SectionManager.WaveNumber.Second] = 0;
         _dicQuantityInWave[SectionManager.WaveNumber.Third] = 0;
 
+        foreach (var e in _allFireEnemiesActive) {
+            e.Stop();
+        }
+
         Utility.DeactivateList(_allNormalActives);
         Utility.DeactivateList(_allChargerActives);
         Utility.DeactivateList(_allTurretsActives);
         Utility.DeactivateList(_allChasersActives);
         Utility.DeactivateList(_allCubeActives);
         Utility.DeactivateList(_allMisilEnemiesActive);
+        Utility.DeactivateList(_allFireEnemiesActive);
 
         _allNormalActives.Clear();
         _allChargerActives.Clear();
@@ -260,6 +267,7 @@ public class SectionNode : MonoBehaviour {
         _allChasersActives.Clear();
         _allCubeActives.Clear();
         _allMisilEnemiesActive.Clear();
+        _allFireEnemiesActive.Clear();
 
         Utility.DestroyAllInAndClearList(_allMiniBoss);
 

@@ -91,4 +91,9 @@ public class FireEnemy : AbstractEnemy, IHittable
                  //   _flocking.resetVelocity();
                 }*/
     }
+
+    internal void Stop()
+    {
+        damagePath.DeleteAll();
+    }
 }
