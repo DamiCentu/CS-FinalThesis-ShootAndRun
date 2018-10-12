@@ -48,6 +48,7 @@ public class SectionNode : MonoBehaviour {
     List<MiniBossBehaviour> _allMiniBoss = new List<MiniBossBehaviour>();
     List<CubeEnemyBehaviour> _allCubeActives = new List<CubeEnemyBehaviour>();
     List<MisilEnemy> _allMisilEnemiesActive = new List<MisilEnemy>();
+    List<FireEnemy> _allFireEnemiesActive = new List<FireEnemy>();
 
     WaitForSeconds _waitBetweenWaves;
     WaitForSeconds _waitBetweenSpawns;
@@ -207,6 +208,12 @@ public class SectionNode : MonoBehaviour {
             {
                 Utility.RemoveFromListGeneric(_allMisilEnemiesActive, (MisilEnemy)param[2]);
             }
+            else if (param[2] is FireEnemy)
+            {
+                print("trato de sacar el fire enemy");
+                Utility.RemoveFromListGeneric(_allFireEnemiesActive, (FireEnemy)param[2]);
+            }
+
             var absE = (AbstractEnemy)param[2];
             absE.UnSubscribeToIndicator();  
 
@@ -448,6 +455,12 @@ public class SectionNode : MonoBehaviour {
 
                 m.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allMisilEnemiesActive.Add(m);
+                break;
+            case EnemiesManager.TypeOfEnemy.FireEnemy:
+                var f = EnemiesManager.instance.GiveMeFireEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator() as FireEnemy;
+
+                f.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
+                _allFireEnemiesActive.Add(f);
                 break;
         }
     } 

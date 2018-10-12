@@ -20,6 +20,7 @@ public class EnemiesManager : MonoBehaviour {
     public GameObject bossPrefab;
     public GameObject cubeEnemyPrefab;
     public GameObject misilEnemyPrefab;
+    public GameObject fireEnemyPrefab;
 
     Pool<NormalEnemyBehaviour> _poolOfNormalEnemy;
     Pool<ChargerEnemyBehaviour> _poolOfChargerEnemy;
@@ -27,6 +28,7 @@ public class EnemiesManager : MonoBehaviour {
     Pool<PowerUpChaserEnemy> _poolOfChaserEnemy;
     Pool<CubeEnemyBehaviour> _poolOfCubeEnemy;
     Pool<MisilEnemy> _poolOfMisilEnemy;
+    Pool<FireEnemy> _poolOfFireEnemy;
 
     GameObject _normalContainer;
     GameObject _turretContainer;
@@ -34,6 +36,7 @@ public class EnemiesManager : MonoBehaviour {
     GameObject _chaserContainer;
     GameObject _cubeContainer;
     GameObject _misilContainer;
+    GameObject _fireContainer;
 
     void Awake() {
         Debug.Assert(FindObjectsOfType<EnemiesManager>().Length == 1);
@@ -46,6 +49,7 @@ public class EnemiesManager : MonoBehaviour {
         _chaserContainer = new GameObject("ChaserEnemyContainer");
         _cubeContainer = new GameObject("CubeEnemyContainer");
         _misilContainer = new GameObject("MisilEnemyCointener");
+        _fireContainer = new GameObject("FireEnemyCointener");
 
         _poolOfNormalEnemy = new Pool<NormalEnemyBehaviour>(30, NormalFactoryMethod, null,null,true);
         _poolOfChargerEnemy = new Pool<ChargerEnemyBehaviour>(10, ChargerFactoryMethod, null, null, true);
@@ -53,6 +57,7 @@ public class EnemiesManager : MonoBehaviour {
         _poolOfChaserEnemy = new Pool<PowerUpChaserEnemy>(5, ChaserFactoryMethod, null, null, true);
         _poolOfCubeEnemy = new Pool<CubeEnemyBehaviour>(5, CubeFactoryMethod, null, null, true);
         _poolOfMisilEnemy = new Pool<MisilEnemy>(5, MisilFactoryMethod, null, null, true);
+        _poolOfFireEnemy = new Pool<FireEnemy>(5, FireFactoryMethod, null, null, true);
     }
 
     #region NORMAL EnemyBehaviour methods
@@ -153,7 +158,24 @@ public class EnemiesManager : MonoBehaviour {
         _poolOfMisilEnemy.DisablePoolObject(enemy);
     }
     #endregion
-    
+    #region FireEnemy EnemyBehaviour methods
+    public FireEnemy FireFactoryMethod()
+    {
+        var a = Instantiate(fireEnemyPrefab.GetComponent<FireEnemy>(), _fireContainer.transform);
+        a.gameObject.SetActive(false);
+        return a;
+    }
+
+    public FireEnemy GiveMeFireEnemy()
+    {
+        return _poolOfFireEnemy.GetObjectFromPool();
+    }
+
+    public void ReturnFireEnemyToPool(FireEnemy enemy)
+    {
+        _poolOfFireEnemy.DisablePoolObject(enemy);
+    }
+    #endregion
 
     public enum TypeOfEnemy {
         Normal,
@@ -164,6 +186,7 @@ public class EnemiesManager : MonoBehaviour {
         PowerUpChaser,
         Cube,
         MisilEnemy,
+        FireEnemy,
         Boss
     } 
 }

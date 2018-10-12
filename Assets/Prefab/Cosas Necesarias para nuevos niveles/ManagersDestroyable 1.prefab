@@ -2633,3 +2633,5 @@ MonoBehaviour:
   bossPrefab: {fileID: 0}
   cubeEnemyPrefab: {fileID: 1462777438785268, guid: 32028b1d7fe90ed49a246e5f951e23b1,
     type: 2}
+  misilEnemyPrefab: {fileID: 1949953396845020, guid: f826a8714da36274885c48cb94000f57,
+    type: 2}

@@ -408,11 +408,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 263168
   Missile: {fileID: 114443212749977324, guid: 841128146c649c240abf461696ad1a23, type: 2}
-  timeBetweenMissiles: 3
+  timeBetweenMissiles: 2
   timeToBoom: 1.2
   maxOffset: 3
   _timer: 0
-  life: 10
+  life: 5
   target: {fileID: 0}
   spawnMissilesPosition: {fileID: 4406441645513406}
 --- !u!114 &114961241774417848
