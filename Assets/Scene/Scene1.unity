@@ -257,10 +257,6 @@ Prefab:
       propertyPath: m_Name
       value: LVL
       objectReference: {fileID: 0}
-    - target: {fileID: 1404731728768870, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
-      propertyPath: m_Name
-      value: CATRigSpine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72e484cee0e6e7144b4e6e8bff2110b1, type: 2}
   m_IsPrefabParent: 0
@@ -875,21 +871,6 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b681fd069cd7b274a9071168fb43d739, type: 2}
-    - target: {fileID: 224942033258565112, guid: e26897105d9f68c46ae4cddb5df72473,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 32.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224509311803291424, guid: e26897105d9f68c46ae4cddb5df72473,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 224096157801652634, guid: e26897105d9f68c46ae4cddb5df72473,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e26897105d9f68c46ae4cddb5df72473, type: 2}
   m_IsPrefabParent: 0

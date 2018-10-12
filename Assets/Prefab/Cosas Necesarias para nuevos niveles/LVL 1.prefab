@@ -17821,7 +17821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4004937832313416}
   m_Layer: 0
-  m_Name: CatRigSpine
+  m_Name: CATRigSpine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113130,6 +113130,7 @@ MonoBehaviour:
   - {fileID: 1950776450277132}
   - {fileID: 1498302269096038}
   - {fileID: 1578044125530514}
+  parentAllWallsThatNotLetThePlayerPass: {fileID: 0}
   wavesStartAtTrigger: 1
   objectToDetectConnectingNodes:
     serializedVersion: 2
@@ -114873,6 +114874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114312871180302712
@@ -115341,6 +115344,7 @@ MonoBehaviour:
   playerSpawnPoint: {fileID: 4562012770427086}
   triggerSpawners:
   - {fileID: 1758281455251344}
+  parentAllWallsThatNotLetThePlayerPass: {fileID: 0}
   wavesStartAtTrigger: 1
   objectToDetectConnectingNodes:
     serializedVersion: 2
@@ -115379,6 +115383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114376108350093942
@@ -116071,6 +116077,7 @@ MonoBehaviour:
   playerSpawnPoint: {fileID: 4390994440594768}
   triggerSpawners:
   - {fileID: 1740033488219546}
+  parentAllWallsThatNotLetThePlayerPass: {fileID: 0}
   wavesStartAtTrigger: 1
   objectToDetectConnectingNodes:
     serializedVersion: 2
@@ -116296,6 +116303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114450980540212604
@@ -117783,6 +117792,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114607370313910268
@@ -117903,6 +117914,7 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   playerSpawnPoint: {fileID: 4515072095032182}
   triggerSpawners: []
+  parentAllWallsThatNotLetThePlayerPass: {fileID: 0}
   wavesStartAtTrigger: 0
   objectToDetectConnectingNodes:
     serializedVersion: 2
@@ -118269,6 +118281,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114679887000528412
@@ -118706,7 +118720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   timeAlive: 3
-  particlesName: fire
+  particlesName: Ground fire
   maxDistanceToSpawn: 1
 --- !u!114 &114720171300290772
 MonoBehaviour:
@@ -118759,6 +118773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114728014461568360
@@ -119028,6 +119044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114773048725160126
@@ -119223,6 +119241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114802080405777794
@@ -119469,6 +119489,7 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   playerSpawnPoint: {fileID: 4587104711804278}
   triggerSpawners: []
+  parentAllWallsThatNotLetThePlayerPass: {fileID: 0}
   wavesStartAtTrigger: 0
   objectToDetectConnectingNodes:
     serializedVersion: 2
@@ -119606,6 +119627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114831790794690062
@@ -120325,6 +120348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114899804584457252
@@ -120421,6 +120446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114909035361146302
@@ -120990,6 +121017,7 @@ MonoBehaviour:
   triggerSpawners:
   - {fileID: 1050720693996710}
   - {fileID: 1539248840208758}
+  parentAllWallsThatNotLetThePlayerPass: {fileID: 0}
   wavesStartAtTrigger: 1
   objectToDetectConnectingNodes:
     serializedVersion: 2
@@ -121143,6 +121171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   typeOfEnemy: 3
+  hasToDestroyToUnlockSomething: 0
+  startTurretNode: {fileID: 0}
   radiusOfDebugSphere: 1.5
   showGizmos: 1
 --- !u!114 &114990519027303092

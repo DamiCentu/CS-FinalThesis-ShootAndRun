@@ -46,13 +46,14 @@ GameObject:
   - component: {fileID: 54583419016801952}
   - component: {fileID: 114164823022334450}
   - component: {fileID: 114537731913059038}
+  - component: {fileID: 114050777179922560}
   m_Layer: 12
   m_Name: FireEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1444410477430372
 GameObject:
   m_ObjectHideFlags: 1
@@ -249,6 +250,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114050777179922560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122991692429248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b706fbd2c937aba4f87504b37b13b8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  timeAlive: 3
+  particlesName: fire
+  distanceBetweenSpawns: 2
 --- !u!114 &114164823022334450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,8 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fa4cb493cb5934294ff3bf0c66574e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeDefault: 5
   life: 10
   target: {fileID: 0}
+  speed: 5
 --- !u!114 &114665069245459924
 MonoBehaviour:
   m_ObjectHideFlags: 1

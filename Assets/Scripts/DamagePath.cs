@@ -12,7 +12,7 @@ public class DamagePath : MonoBehaviour {
     public float timeAlive;
     GameObject particles;
     public string particlesName;
-    public float maxDistanceToSpawn;
+    public float distanceBetweenSpawns;
      float _distanceToSpawn;
     private bool _shouldStopSpawning = true;
     private List<GameObject> AllGameObjects= new List<GameObject>();
@@ -54,11 +54,11 @@ public class DamagePath : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
-            print("entre");
+
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
-            if (_distanceToSpawn > maxDistanceToSpawn) {
-                print("spawneo");
+            if (_distanceToSpawn > distanceBetweenSpawns) {
+
                 _distanceToSpawn = 0;
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
                 GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);
