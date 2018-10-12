@@ -53,6 +53,16 @@ public class Configuration : MonoBehaviour {
         dificulty = Dificulty.Hard;
     }
 
+    internal void SetLvl1()
+    {
+        lvl = 1;
+    }
+
+    internal void SetLvl2()
+    {
+        lvl = 2;
+    }
+
     public void SetMedium() {
         dificulty = Dificulty.Medium;
     }

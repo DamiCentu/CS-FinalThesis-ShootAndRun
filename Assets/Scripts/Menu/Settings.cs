@@ -40,7 +40,14 @@ public class Settings : MonoBehaviour {
     }
     void StartGame()
     {
-        SceneManager.LoadScene("Scene1");
+        if (Configuration.instance.lvl == 1)
+        {
+
+            SceneManager.LoadScene("Scene1");
+        }
+        else {
+            SceneManager.LoadScene("Scene2");
+        }
     }
     public void NextLvl()
     {

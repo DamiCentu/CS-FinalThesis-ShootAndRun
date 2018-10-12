@@ -44,6 +44,17 @@ public class Menu : MonoBehaviour {
         Configuration.instance.SetTwoPlayer();
         OpenSttings();
     }
+    public void SetLvl1()
+    {
+        Configuration.instance.SetLvl1();
+        OpenSttings();
+    }
+
+    public void SetLvl2()
+    {
+        Configuration.instance.SetLvl2();
+        OpenSttings();
+    }
 
     /* public void PlayTutorial() {
          SceneManager.LoadScene("Tutorial");
