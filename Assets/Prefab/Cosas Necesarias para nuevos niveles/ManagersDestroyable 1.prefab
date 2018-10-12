@@ -2635,3 +2635,5 @@ MonoBehaviour:
     type: 2}
   misilEnemyPrefab: {fileID: 1949953396845020, guid: f826a8714da36274885c48cb94000f57,
     type: 2}
+  fireEnemyPrefab: {fileID: 1122991692429248, guid: 7aea6076e9d2f9a419eb1398fca0cb9c,
+    type: 2}
