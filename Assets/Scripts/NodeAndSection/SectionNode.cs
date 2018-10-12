@@ -194,6 +194,7 @@ public class SectionNode : MonoBehaviour {
                     TutorialBehaviour.instance.GreenKilled = true;
                 }
             }
+
             else if (param[2] is MiniBossBehaviour) {
                 var e = (MiniBossBehaviour)param[2];
                 Utility.RemoveFromListGeneric(_allMiniBoss, e);
@@ -442,12 +443,12 @@ public class SectionNode : MonoBehaviour {
                     cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
                     _allCubeActives.Add(cu);
                     break;
-          /*  case EnemiesManager.TypeOfEnemy.MisilEnemy:
+            case EnemiesManager.TypeOfEnemy.MisilEnemy:
                 var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator() as MisilEnemy;
 
                 m.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allMisilEnemiesActive.Add(m);
-                break;*/
+                break;
         }
     } 
     

@@ -18,7 +18,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     private LayerMask misileEnemyLayerMask;
 
     public int life = 10;
-    private Transform target;
+    public Transform target;
     public  Transform spawnMissilesPosition;
 
     private void Update()
@@ -59,7 +59,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
          //   EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
             gameObject.SetActive(false);
-            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false });
+            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, true });
         }
     }
 

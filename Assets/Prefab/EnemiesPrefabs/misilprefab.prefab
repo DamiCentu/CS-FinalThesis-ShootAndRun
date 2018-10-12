@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 114687726033296830}
   - component: {fileID: 95097872693056246}
   - component: {fileID: 54971819720259548}
+  - component: {fileID: 114063843736671390}
   m_Layer: 12
   m_Name: misilprefab
   m_TagString: Untagged
@@ -167,7 +168,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864384890411740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.21, z: 0}
+  m_LocalPosition: {x: 0, y: 27.97, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4963592097518288}
@@ -195,7 +196,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949953396845020}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.04, z: 0}
+  m_LocalPosition: {x: 0, y: 1.04, z: 54.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4522188385001530}
@@ -277,6 +278,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114063843736671390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949953396845020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05934bc225cc9b447b24d6739105469c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteTimeOnHit: 0.1
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114415577248336108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -390,17 +404,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323aed7a488822e44ab2b0af7c9b32b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteTimeOnHit: 0.2
-  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
   blockEnemyViewToPlayer:
     serializedVersion: 2
     m_Bits: 263168
   Missile: {fileID: 114443212749977324, guid: 841128146c649c240abf461696ad1a23, type: 2}
-  timeBetweenMissiles: 0.8
+  timeBetweenMissiles: 3
   timeToBoom: 1.2
   maxOffset: 3
   _timer: 0
   life: 10
+  target: {fileID: 0}
   spawnMissilesPosition: {fileID: 4406441645513406}
 --- !u!114 &114961241774417848
 MonoBehaviour:
@@ -438,8 +451,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.8887558
+  m_Height: 2.8814747
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198474074758871736
