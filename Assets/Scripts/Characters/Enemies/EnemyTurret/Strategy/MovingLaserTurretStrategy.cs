@@ -90,6 +90,8 @@ public class MovingLaserTurretStrategy : ITurret {
             EventManager.instance.UnsubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
             EventManager.instance.UnsubscribeEvent(Constants.PLAYER_DEAD, OnPlayerCanMove);
             _canInteract = false;
+            _line.enabled = false;
+            _parent.sparksParticleS.gameObject.SetActive(false);
             _parent.gameObject.SetActive(false);
             return true;
         }
