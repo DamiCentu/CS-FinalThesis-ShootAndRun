@@ -212,9 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  layerThatDontAffectEnemyBullet:
+  layerThatAffectEnemyBullet:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 786688
 --- !u!135 &135542626448411106
 SphereCollider:
   m_ObjectHideFlags: 1

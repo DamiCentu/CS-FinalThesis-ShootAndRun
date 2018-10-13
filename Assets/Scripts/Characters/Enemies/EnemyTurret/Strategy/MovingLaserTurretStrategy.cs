@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,9 @@ public class MovingLaserTurretStrategy : ITurret {
     EnemyTurretBehaviour _parent;
     LineRenderer _line; 
 
-    int _hitsRemaining = 0; 
-    float _time = 0f;
+    int _hitsRemaining = 0;
+    bool _canInteract = false;
+    //float _time = 0f;
 
     public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line) { 
         _parent = parent;
@@ -36,8 +38,9 @@ public class MovingLaserTurretStrategy : ITurret {
         }
 
 
-        if(!WaitToStartMovement) {
-            _time += Time.deltaTime;
+        //if(!WaitToStartMovement) {
+        if (!_canInteract) {
+            //_time += Time.deltaTime;
             return;
         } 
 
@@ -63,16 +66,30 @@ public class MovingLaserTurretStrategy : ITurret {
         _line.enabled = true;
 
         _parent.transform.position = _parent.startWaypointForMovingLaser.transform.position;
-        _time = 0f;
+        //_time = 0f;
+
+        EventManager.instance.SubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
+        EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
     }
 
-    bool WaitToStartMovement{get { return _time > _parent.timeToWaitToInteract; } }
+    private void OnPlayerDead(object[] parameterContainer) { 
+        _canInteract = false;
+    }
+
+    private void OnPlayerCanMove(object[] parameterContainer) { 
+        _canInteract = true; 
+    }
+
+    //bool WaitToStartMovement{get { return _time > _parent.timeToWaitToInteract; } }
 
     public bool OnHitReturnIfDestroyed(int damage) {
         _hitsRemaining -= damage;
         _parent.StartHitRoutine();
         if (_hitsRemaining <= 0) { 
             EnemiesManager.instance.ReturnTurretEnemyToPool(_parent);
+            EventManager.instance.UnsubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
+            EventManager.instance.UnsubscribeEvent(Constants.PLAYER_DEAD, OnPlayerCanMove);
+            _canInteract = false;
             _parent.gameObject.SetActive(false);
             return true;
         }

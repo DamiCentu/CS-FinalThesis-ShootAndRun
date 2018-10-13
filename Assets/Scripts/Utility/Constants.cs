@@ -15,6 +15,8 @@ public class Constants : MonoBehaviour
     public static string UPDATE_DASH = "updateDash";
     public static string POWER_UP_DROPED = "PowerUpDropped";
 
+    public static string PLAYER_CAN_MOVE = "player_can_move";
+
     public static string PARTICLE_SET = "SetParticle";
     public static string PARTICLE_RETURN_TO_POOL = "ReturnParticleToPool";
     public static string PARTICLE_ENEMY_EXPLOTION_NAME = "EnemyExplotionParticle";

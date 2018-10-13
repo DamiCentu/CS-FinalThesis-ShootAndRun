@@ -429,35 +429,35 @@ public class SectionNode : MonoBehaviour {
 
     void SpawnEnemy(EnemySpawner spawnPoint, SectionManager.WaveNumber wave) {
          switch (spawnPoint.typeOfEnemy) {
-                case EnemiesManager.TypeOfEnemy.Normal:
-                    var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as NormalEnemyBehaviour;
-                    n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
-                    _allNormalActives.Add(n);
-                    break;
+            case EnemiesManager.TypeOfEnemy.Normal:
+                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as NormalEnemyBehaviour;
+                n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                _allNormalActives.Add(n);
+                break;
 
-                case EnemiesManager.TypeOfEnemy.Charger:
-                    var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as ChargerEnemyBehaviour;
-                    c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
-                    _allChargerActives.Add(c);
-                    break;
+            case EnemiesManager.TypeOfEnemy.Charger:
+                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as ChargerEnemyBehaviour;
+                c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                _allChargerActives.Add(c);
+                break;
 
-                case EnemiesManager.TypeOfEnemy.TurretBurst:
-                    var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as EnemyTurretBehaviour;
-                    t.SetPosition(spawnPoint.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
-                    _allTurretsActives.Add(t);
-                    break;
+            case EnemiesManager.TypeOfEnemy.TurretBurst:
+                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as EnemyTurretBehaviour;
+                t.SetPosition(spawnPoint.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
+                _allTurretsActives.Add(t);
+                break;
 
-                case EnemiesManager.TypeOfEnemy.TurretLaser:
-                    var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as EnemyTurretBehaviour;
-                    tL.SetPosition(spawnPoint.transform.position).SetForward(spawnPoint.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
-                    _allTurretsActives.Add(tL);
-                    break;
+            case EnemiesManager.TypeOfEnemy.TurretLaser:
+                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as EnemyTurretBehaviour;
+                tL.SetPosition(spawnPoint.transform.position).SetForward(spawnPoint.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
+                _allTurretsActives.Add(tL);
+                break;
 
-                case EnemiesManager.TypeOfEnemy.Cube:
-                    var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as CubeEnemyBehaviour;
-                    cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
-                    _allCubeActives.Add(cu);
-                    break;
+            case EnemiesManager.TypeOfEnemy.Cube:
+                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as CubeEnemyBehaviour;
+                cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                _allCubeActives.Add(cu);
+                break;
             case EnemiesManager.TypeOfEnemy.MisilEnemy:
                 var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator() as MisilEnemy;
 

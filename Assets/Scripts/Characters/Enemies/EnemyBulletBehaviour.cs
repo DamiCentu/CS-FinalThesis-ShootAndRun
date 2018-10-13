@@ -6,7 +6,7 @@ public class EnemyBulletBehaviour : MonoBehaviour {
 
     public float bulletSpeed = 5f;
 
-    public LayerMask layerThatDontAffectEnemyBullet;
+    public LayerMask layerThatAffectEnemyBullet;
 
     TrailRenderer _trail; 
 
@@ -37,7 +37,7 @@ public class EnemyBulletBehaviour : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider c) {
-        if(layerThatDontAffectEnemyBullet != (layerThatDontAffectEnemyBullet | (1 << c.gameObject.layer))) {
+        if(layerThatAffectEnemyBullet == (layerThatAffectEnemyBullet | (1 << c.gameObject.layer))) {
             _trail.Clear();
             _trail.enabled = false;
             EnemyBulletManager.instance.ReturnEnemyBulletToPool(this);

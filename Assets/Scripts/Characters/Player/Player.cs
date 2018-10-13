@@ -503,6 +503,7 @@ public class Player : MonoBehaviour, IHittable
         spawnParticle1.gameObject.SetActive(false);
         spawnParticle2.gameObject.SetActive(false);
         spawned = true;
+        EventManager.instance.ExecuteEvent(Constants.PLAYER_CAN_MOVE);
         isDead = false;
         dashCount = MaxDashCount;
         ActiveUI();
