@@ -11,10 +11,9 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     public float timeToBoom;
     public float maxOffset;
     public float _timer=-20;
-  //  Flocking _flocking;
+
    // Animator _anim;
 
-    FollowPathBehaviour _followPathBehaviour;
     private LayerMask misileEnemyLayerMask;
 
     public int life = 10;
@@ -54,9 +53,9 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     public void OnHit(int damage)
     {
         life -= damage;
-        if (life < 0) {
+        if (life <= 0) {
 
-         //   EnemiesManager.instance.ReturnMisilEnemyToPool(this);
+            EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
             gameObject.SetActive(false);
             EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, true });
@@ -77,19 +76,11 @@ public class MisilEnemy : AbstractEnemy, IHittable {
 
     void OnDisable()
     {
-        if (_followPathBehaviour != null)
-        {
-            _followPathBehaviour.OnDisable();
-        }
-    }
 
-
+    } 
 
     private void OnTriggerEnter(Collider c)
     {
-/*        if (c.gameObject.layer != 12 && c.gameObject.layer != 13 && c.gameObject.layer != 14 && c.gameObject.layer != 0 && _flocking != null)
-        {//enemy //powerup // enemybullet
-         //   _flocking.resetVelocity();
-        }*/
+
     }
 }

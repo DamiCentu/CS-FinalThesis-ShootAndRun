@@ -7,6 +7,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
     public float openColliderHeight = 5.7f;
     public float ClosedColliderHeight = 0f;
     public float radiusToStartLaser = 10f;
+    public float radiusToEndLaser = 15f;
     public float timeToStartAttack = 1f;
     public float timeToEndAttack = 1f;
 
@@ -183,7 +184,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         opening.OnUpdate += () => {
             _anim.speed = SectionManager.instance.EnemiesMultiplicator;
             _time += Time.deltaTime;
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToStartLaser)) { 
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndLaser)) { 
                 if (0.1f < _time) { // es el largo del clip de open y closing
                     SendInputToFSM(MiniBossInputs.FinishedOpening);
                 }
@@ -206,7 +207,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         closing.OnUpdate += () => {
             _anim.speed = SectionManager.instance.EnemiesMultiplicator;
             _time += Time.deltaTime;
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToStartLaser)) { 
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndLaser)) { 
                 SendInputToFSM(MiniBossInputs.InRange);
             }
             else {
@@ -243,7 +244,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
 
             _anim.speed = SectionManager.instance.EnemiesMultiplicator;
 
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToStartLaser)) { 
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndLaser)) { 
                 _currentDistanceOfAttack += Time.deltaTime * speedOfAttack * SectionManager.instance.EnemiesMultiplicator; 
                 if (_currentDistanceOfAttack > maxDistanceOfAttack) { 
                     _currentDistanceOfAttack = maxDistanceOfAttack;

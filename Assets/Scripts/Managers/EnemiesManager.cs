@@ -158,6 +158,7 @@ public class EnemiesManager : MonoBehaviour {
         _poolOfMisilEnemy.DisablePoolObject(enemy);
     }
     #endregion
+
     #region FireEnemy EnemyBehaviour methods
     public FireEnemy FireFactoryMethod()
     {
