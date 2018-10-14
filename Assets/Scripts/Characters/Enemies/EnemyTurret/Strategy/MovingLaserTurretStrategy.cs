@@ -76,7 +76,10 @@ public class MovingLaserTurretStrategy : ITurret {
         _canInteract = false;
     }
 
-    private void OnPlayerCanMove(object[] parameterContainer) { 
+    private void OnPlayerCanMove(object[] parameterContainer) {
+        //if (SectionManager.instance.actualNode != _parent.CurrentNode) {
+        //    return;
+        //}
         _canInteract = true; 
     }
 

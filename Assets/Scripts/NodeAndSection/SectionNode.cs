@@ -217,15 +217,11 @@ public class SectionNode : MonoBehaviour {
             }
 
             var absE = (AbstractEnemy)param[2];
-            absE.UnSubscribeToIndicator();  
+            absE.UnSubscribeToIndicator();
 
-            if ((bool)param[3] == true) { 
-                return;
-            }
-
-            //el verde no deberia hacer particulas si no le pega el player
-
-            EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_ENEMY_EXPLOTION_NAME, absE.transform.position });
+            if ((bool)param[3] == false) { //el verde no deberia hacer particulas si no le pega el player
+                EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_ENEMY_EXPLOTION_NAME, absE.transform.position });
+            } 
 
             if ((bool)param[4] == true) { // esto es para saber si se tiene que romper una pared o algo
                 _actualQuantityOfEnemiesThatHasThePlayerToDestroy--;

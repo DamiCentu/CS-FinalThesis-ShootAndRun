@@ -63,7 +63,7 @@ public class MakeUILine : MonoBehaviour {
         var dist = dir.magnitude;
         dir.Normalize();
 
-        for (int i = 0; i < _allArrows.Count; i++) {
+        for (int i = _allArrows.Count - 1; i >= 0  ; i--) {
             var a = _allArrows[i];
             var dirMuliplied = dir * i;
 

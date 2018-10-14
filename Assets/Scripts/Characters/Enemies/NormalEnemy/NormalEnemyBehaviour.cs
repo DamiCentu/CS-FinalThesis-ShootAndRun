@@ -12,7 +12,7 @@ public class NormalEnemyBehaviour : AbstractEnemy, IHittable {
     FollowPathBehaviour _followPathBehaviour;
 
     private void Update() {
-        if(_eIntegration != null && !_eIntegration.NotFinishedLoading)
+        if(_eIntegration != null && !_eIntegration.LoadingNotComplete)
             _followPathBehaviour.OnUpdate();
     }
 
@@ -20,7 +20,7 @@ public class NormalEnemyBehaviour : AbstractEnemy, IHittable {
         if (_flocking == null || _eIntegration == null || _anim == null)
             return;
 
-        if (!_eIntegration.NotFinishedLoading) { 
+        if (!_eIntegration.LoadingNotComplete) { 
             _flocking.OnFixedUpdate();
             _anim.speed = SectionManager.instance.EnemiesMultiplicator; 
         }

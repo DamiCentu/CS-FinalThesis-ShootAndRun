@@ -72,7 +72,7 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable {
         };
 
         integration.OnUpdate += () => {
-            if (!_eIntegration.NotFinishedLoading) {
+            if (!_eIntegration.LoadingNotComplete) {
                 SendInputToFSM(ChaserInputs.FinishedIntegration);
             } 
         }; 

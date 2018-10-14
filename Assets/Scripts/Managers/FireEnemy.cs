@@ -34,7 +34,7 @@ public class FireEnemy : AbstractEnemy, IHittable
     private void Update()
     {
             if (timer.CheckAndRun()) timer.Reset();
-        if (_eIntegration != null && !_eIntegration.NotFinishedLoading)
+        if (_eIntegration != null && !_eIntegration.LoadingNotComplete)
         {
 
         }

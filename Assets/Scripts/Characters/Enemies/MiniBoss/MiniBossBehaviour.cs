@@ -140,7 +140,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         };
 
         integration.OnUpdate += () => {
-            if (!_eIntegration.NotFinishedLoading) {
+            if (!_eIntegration.LoadingNotComplete) {
                 SendInputToFSM(MiniBossInputs.FinishedIntegration);
             } 
         }; 

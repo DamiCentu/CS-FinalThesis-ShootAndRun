@@ -39,7 +39,7 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour {
         MeshReintegration(); 
 	}
 
-    public bool NotFinishedLoading { get { return _reintergrate; } }
+    public bool LoadingNotComplete { get { return _reintergrate; } }
 
     public void SetReintergration(float timeToReintegrate) { 
         if(_skinnedRends == null)

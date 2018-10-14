@@ -18,19 +18,11 @@ public class MisilEnemy : AbstractEnemy, IHittable {
 
     public int life = 10;
     public Transform target;
-    public  Transform spawnMissilesPosition;
+    public  Transform spawnMissilesPosition; 
 
-    private void Update()
-    {
-        print("A");
-        if (_eIntegration != null && !_eIntegration.NotFinishedLoading) {
-            print("B");
-        
-        }
-    }
-
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
+        if (_eIntegration != null && _eIntegration.LoadingNotComplete) 
+            return;
 
         _timer += Time.deltaTime;
         if (_timer > timeBetweenMissiles)
@@ -58,7 +50,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
             EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
             gameObject.SetActive(false);
-            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, true });
+            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, true, hasToDestroyThisToUnlockSomething });
         }
     }
 

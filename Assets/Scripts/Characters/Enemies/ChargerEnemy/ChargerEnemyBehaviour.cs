@@ -33,7 +33,7 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     void Update() {
-        if (_eIntegration == null || _eIntegration.NotFinishedLoading)
+        if (_eIntegration == null || _eIntegration.LoadingNotComplete)
             return;
 
         if (!_charging)
@@ -41,7 +41,7 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     void FixedUpdate () {
-        if (_eIntegration == null || _eIntegration.NotFinishedLoading)
+        if (_eIntegration == null || _eIntegration.LoadingNotComplete)
             return;
 
         if (!_charging && _flocking != null) {

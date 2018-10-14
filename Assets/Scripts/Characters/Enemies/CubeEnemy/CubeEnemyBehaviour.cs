@@ -200,7 +200,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     private void Update() {
-        if(_eIntegration != null && !_eIntegration.NotFinishedLoading) {  
+        if(_eIntegration != null && !_eIntegration.LoadingNotComplete) {  
             _myFsm.Update();
             //Debug.Log(_flocking.target.name);
         } 
@@ -210,7 +210,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         if (_flocking == null || _eIntegration == null)// || _anim == null)
             return;
 
-        if (!_eIntegration.NotFinishedLoading) { 
+        if (!_eIntegration.LoadingNotComplete) { 
             _myFsm.FixedUpdate();
             //_anim.speed = SectionManager.instance.EnemiesMultiplicator; 
         }

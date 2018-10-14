@@ -34,8 +34,10 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
 
     Dictionary<EnemiesManager.TypeOfEnemy, ITurret> _turretTypes = new Dictionary<EnemiesManager.TypeOfEnemy, ITurret>();
 
+    public SectionNode CurrentNode { get { return _actualSectionNode; } }
+
     void Update() {
-        if (_eIntegration != null && !_eIntegration.NotFinishedLoading || _actualWave == SectionManager.WaveNumber.NoCuentaParaTerminarNodo)
+        if (_eIntegration != null && !_eIntegration.LoadingNotComplete || _actualWave == SectionManager.WaveNumber.NoCuentaParaTerminarNodo)
             _currentTypeOfTurret.OnUpdate();
     }
 
@@ -88,7 +90,7 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
 
     public void OnHit(int damage) {
         if(_currentTypeOfTurret.OnHitReturnIfDestroyed(damage)) { 
-            EventManager.instance.ExecuteEvent("EnemyDead", new object[] { _actualWave, _actualSectionNode, this, false, hasToDestroyThisToUnlockSomething });
+            EventManager.instance.ExecuteEvent("EnemyDead", new object[] { _actualWave, _actualSectionNode, this, false, hasToDestroyThisToUnlockSomething , false});  // si es true el ultimo parametro significa que el elemento no debe spawnear un power up
         }
     }
 
