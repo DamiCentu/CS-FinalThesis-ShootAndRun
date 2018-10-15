@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 7b5c97285e5362c47a9642e0762afeed
+timeCreated: 1539573941
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _gillacolores: {fileID: 2800000, guid: 97ab008093056ce47bd2a5b52c2d6d24, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
