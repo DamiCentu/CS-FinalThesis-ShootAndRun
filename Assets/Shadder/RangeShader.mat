@@ -20,8 +20,8 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Bias: 1.07
-    - _Power: 2.9
-    - _Scale: 3.3
+    - _Power: 1.78
+    - _Scale: 1.56
     - _Scanlines: 20.14
     - _Speed: 6.1
     - __dirty: 0

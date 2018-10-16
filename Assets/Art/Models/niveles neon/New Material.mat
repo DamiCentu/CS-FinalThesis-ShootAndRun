@@ -54,6 +54,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 0eda59326d02f1b43aab4ffe374e1e13, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _grilla:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -68,8 +72,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeLength: 2
-    - _Float0: 7.84
-    - _Float1: -0.05
+    - _Float0: 8.84
+    - _Float1: 0.25
     - _GlossMapScale: 1
     - _Glossiness: 0.56
     - _GlossyReflections: 1
@@ -83,7 +87,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _fuerza: 1
+    - _fuerza: 16.61
     m_Colors:
     - _Color: {r: 0.16176468, g: 0.16176468, b: 0.16176468, a: 1}
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
