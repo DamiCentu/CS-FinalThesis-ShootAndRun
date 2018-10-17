@@ -9,6 +9,7 @@ public class CreadorMapaModular : MonoBehaviour {
     public int x;
     public int z;
     public Transform initialPos;
+    public Transform parent;
     // Use this for initialization
     void Start () {
 		
@@ -24,7 +25,8 @@ public class CreadorMapaModular : MonoBehaviour {
                 for (int j = 0; j < z; j++)
                 {
 
-                    Instantiate(prefab,new Vector3(i,0,j)+ initialPos.position, initialPos.transform.rotation);
+                    GameObject p=Instantiate(prefab,new Vector3(i,0,j)+ initialPos.position, initialPos.transform.rotation);
+                    p.transform.parent = parent;
                 }
             }
 
