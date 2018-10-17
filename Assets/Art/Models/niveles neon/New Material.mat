@@ -72,8 +72,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeLength: 2
-    - _Float0: 8.84
-    - _Float1: 0.25
+    - _Float0: 22.17
+    - _Float1: 0.1
     - _GlossMapScale: 1
     - _Glossiness: 0.56
     - _GlossyReflections: 1
@@ -87,7 +87,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _fuerza: 16.61
+    - _fuerza: 5.65
     m_Colors:
     - _Color: {r: 0.16176468, g: 0.16176468, b: 0.16176468, a: 1}
     - _Color0: {r: 0, g: 0, b: 0, a: 0}

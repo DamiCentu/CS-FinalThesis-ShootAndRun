@@ -113,7 +113,7 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.01
+        neutralBlackIn: 0
         neutralWhiteIn: 7
         neutralBlackOut: 0
         neutralWhiteOut: 11.2
@@ -122,7 +122,7 @@ MonoBehaviour:
       basic:
         postExposure: 0
         temperature: 0
-        tint: -0
+        tint: 0
         hueShift: 0
         saturation: 1
         contrast: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
         mode: 1
         log:
           slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
+          power: {r: 0.7650362, g: 0.85561574, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
