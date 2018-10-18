@@ -1,18 +1,10 @@
 fileFormatVersion: 2
 guid: f7e3e93736afdb843b787cc6212ad498
-timeCreated: 1535429597
+timeCreated: 1539820161
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _torreta_DefaultMaterial_Normal: {fileID: 2800000, guid: 2dc5338ae6c539443b02501047d2ab82,
-      type: 3}
-  - _torreta_DefaultMaterial_AlbedoTransparency: {fileID: 2800000, guid: 05edc39ad8469ce4f9d438474873639b,
-      type: 3}
-  - _torreta_DefaultMaterial_Emission: {fileID: 2800000, guid: d283e879a8cb9f641aac575c09ab1e1f,
-      type: 3}
-  - _torreta_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: d7353f839fc7c7e40b1b6be2cb7bdba0,
-      type: 3}
   - _noise2: {fileID: 2800000, guid: f98b75fbffa36144b991e7ccfc3c3ef3, type: 3}
   userData: 
   assetBundleName: 

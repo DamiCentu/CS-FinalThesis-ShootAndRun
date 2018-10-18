@@ -9,7 +9,7 @@ Material:
   m_Name: ParticleEnemyShaderMaterial
   m_Shader: {fileID: 4800000, guid: 0f490f1aa4f41194bbe3de2538cc0f02, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -30,5 +30,5 @@ Material:
     - __dirty: 0
     m_Colors:
     - _NoiseSize: {r: 0, g: 0, b: 0, a: 0}
-    - _ParticleColor: {r: 0, g: 0, b: 0, a: 0}
+    - _ParticleColor: {r: 1, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

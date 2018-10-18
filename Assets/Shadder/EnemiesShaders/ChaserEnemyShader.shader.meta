@@ -1,15 +1,11 @@
 fileFormatVersion: 2
 guid: 592acb2e1b3929841bcf692c61a9be8b
-timeCreated: 1535430167
+timeCreated: 1539832964
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _enemigo1_DefaultMaterial_Normal: {fileID: 2800000, guid: e33b4aa7d1ef75541b95626dff33d263,
-      type: 3}
-  - _enemigo1_DefaultMaterial_AlbedoTransparency: {fileID: 2800000, guid: c3e7f5c598f6b5c48994701a5ebaa6c7,
-      type: 3}
-  - _enemigo1_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: 35a1c321e52a0b84ab8822dde353befa,
+  - _enemigo1_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: c2af3352aa127584da11627efc38e89a,
       type: 3}
   - _noise2: {fileID: 2800000, guid: f98b75fbffa36144b991e7ccfc3c3ef3, type: 3}
   userData: 

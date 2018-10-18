@@ -31,15 +31,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AlbedoTransparency:
-        m_Texture: {fileID: 2800000, guid: c3e7f5c598f6b5c48994701a5ebaa6c7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 092478f911ee00c45a66660f4a5ec239, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_Emission:
-        m_Texture: {fileID: 2800000, guid: da44abb8fd625fc41a55178dd58e59ed, type: 3}
+        m_Texture: {fileID: 2800000, guid: f8fe0c59129aca54199760bac498fcd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_MetallicSmoothness:
-        m_Texture: {fileID: 2800000, guid: 35a1c321e52a0b84ab8822dde353befa, type: 3}
+        m_Texture: {fileID: 2800000, guid: c2af3352aa127584da11627efc38e89a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_Normal:
@@ -51,7 +51,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Berserker: 1
+    - _Berserker: 0
+    - _Brillo: 4
     - _Cutoff: 0.5
     - _Float0: 0.52
     - _Float2: 0.73

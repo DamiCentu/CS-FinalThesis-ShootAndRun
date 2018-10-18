@@ -1,18 +1,10 @@
 fileFormatVersion: 2
 guid: 63c95051439ae274d89a924bd6f365c7
-timeCreated: 1535429849
+timeCreated: 1539819802
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _rueda_DefaultMaterial_Normal: {fileID: 2800000, guid: 4f59dc9925c54ff46af5da8731246e8a,
-      type: 3}
-  - _rueda_DefaultMaterial_AlbedoTransparency: {fileID: 2800000, guid: 6b5c5176d6361734bb6ffb4dcecdce09,
-      type: 3}
-  - _rueda_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: ba5731c0e7be71b478f59d5db3c6c65c,
-      type: 3}
-  - _rueda_DefaultMaterial_AO: {fileID: 2800000, guid: 6613dc9ca4254c143890c4f96e5e0a93,
-      type: 3}
   - _noise2: {fileID: 2800000, guid: f98b75fbffa36144b991e7ccfc3c3ef3, type: 3}
   userData: 
   assetBundleName: 

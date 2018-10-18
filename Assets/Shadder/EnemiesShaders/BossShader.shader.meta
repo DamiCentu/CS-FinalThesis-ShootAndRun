@@ -1,19 +1,14 @@
 fileFormatVersion: 2
 guid: f66d8ff9a93e7d240b19d10bbe8b5721
-timeCreated: 1538680495
+timeCreated: 1539832326
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _boss_03Default_Normal: {fileID: 2800000, guid: 3ead72c53e6403a41adfb57d6fc1e235,
-      type: 3}
-  - _boss_03Default_AlbedoTransparency: {fileID: 2800000, guid: 1a27054a9059d184dac93ae263dbb583,
-      type: 3}
-  - _maskBosseye: {fileID: 2800000, guid: 803ec6ff54140904199ac541ea61cb40, type: 3}
-  - _texturaforcefield: {fileID: 2800000, guid: aa7d7a2dbe29d6e4b9038d7d0ef6ec6b,
+  - _boss_03Default_AlbedoTransparency: {fileID: 2800000, guid: 1aa8aeccd8aa8f34ea74037f615b0f7f,
       type: 3}
   - _maskBossShield: {fileID: 2800000, guid: e5786154f0e886145b7301a2d5f4943d, type: 3}
-  - _boss_03Default_AO: {fileID: 2800000, guid: eba8491110e50be4c892fdd2b250f502,
+  - _boss_03Default_AO: {fileID: 2800000, guid: d5a2621fd75a57c4c8ebadea0a583905,
       type: 3}
   userData: 
   assetBundleName: 

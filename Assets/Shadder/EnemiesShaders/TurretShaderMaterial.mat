@@ -31,11 +31,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _torreta_DefaultMaterial_AlbedoTransparency:
-        m_Texture: {fileID: 2800000, guid: 05edc39ad8469ce4f9d438474873639b, type: 3}
+        m_Texture: {fileID: 2800000, guid: a4d068f71d44dca4fb94a72f099a647a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _torreta_DefaultMaterial_Emission:
-        m_Texture: {fileID: 2800000, guid: d283e879a8cb9f641aac575c09ab1e1f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9c2759cef7dcb13469270845be029ce2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _torreta_DefaultMaterial_MetallicSmoothness:
