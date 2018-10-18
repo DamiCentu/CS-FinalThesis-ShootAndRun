@@ -48,6 +48,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Berserker: 0
+    - _Brillo: 3
     - _Cutoff: 0.5
     - __dirty: 0
     - _reintegrateValue: 2
