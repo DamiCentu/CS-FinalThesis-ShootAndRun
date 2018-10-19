@@ -12,7 +12,7 @@ public class BossBehaviour : MonoBehaviour {
     public int lifeHard = 500;
     public List<float> maxLifeToChangeStage = new List<float>();
 
-
+    /*
     public BossBehaviour(Boss boss) {
         if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
         {
@@ -99,5 +99,5 @@ public class BossBehaviour : MonoBehaviour {
             action.Upgrade();
         }
     }
-
+    */
 }
