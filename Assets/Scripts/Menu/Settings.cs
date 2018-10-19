@@ -43,7 +43,7 @@ public class Settings : MonoBehaviour {
         if (Configuration.instance.lvl == 1)
         {
 
-            SceneManager.LoadScene("Scene1");
+            SceneManager.LoadScene("nivel prueba");
         }
         else {
             SceneManager.LoadScene("Scene2");

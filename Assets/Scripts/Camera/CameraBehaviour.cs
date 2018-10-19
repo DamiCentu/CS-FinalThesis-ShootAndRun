@@ -39,6 +39,9 @@ public class CameraBehaviour : MonoBehaviour {
     const string ON_FOLLOW = "OnFollow";
     const string ON_BOSS_NODE = "OnBossNode";
     const string ON_STATIONARY = "OnStationary";
+    private float digitalGlitchIntensity=0.25f;
+    private float colorDrift = 0.25f;
+    private float scanLine = 0.25f;
 
     void Start() { 
         _allStrats.Add(ON_FOLLOW, new OnFollowPlayerStrategy(this));
@@ -85,6 +88,11 @@ public class CameraBehaviour : MonoBehaviour {
 
     void OnPlayerDead(params object[] param) {
         _shakeCountdown = playerDeadShakeDuration;
+        Kino.AnalogGlitch aGlitch = this.gameObject.GetComponent<Kino.AnalogGlitch>();
+        aGlitch.scanLineJitter = scanLine;
+        aGlitch.colorDrift = colorDrift;
+        Kino.DigitalGlitch glitch = this.gameObject.GetComponent<Kino.DigitalGlitch>();
+        glitch.intensity = digitalGlitchIntensity;
         StartCoroutine(ShakeRoutine());
     } 
 
@@ -99,6 +107,12 @@ public class CameraBehaviour : MonoBehaviour {
             _shakeCountdown -= Time.deltaTime * decreaseFactor;
 
             yield return null;
-        } 
+        }
+        yield return new WaitForSeconds(1f);
+        Kino.AnalogGlitch aGlitch = this.gameObject.GetComponent<Kino.AnalogGlitch>();
+        aGlitch.scanLineJitter = 0;
+        aGlitch.colorDrift = 0;
+        Kino.DigitalGlitch glitch = this.gameObject.GetComponent<Kino.DigitalGlitch>();
+        glitch.intensity = 0;
     } 
 }

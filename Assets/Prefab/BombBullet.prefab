@@ -233,4 +233,6 @@ MonoBehaviour:
     m_Bits: 20480
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 528384
+  DestroyParticle1: {fileID: 0}
+  DestroyParticle2: {fileID: 0}
