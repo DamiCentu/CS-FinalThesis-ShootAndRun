@@ -478,6 +478,15 @@ public class Player : MonoBehaviour, IHittable
 
     private void Portal(object[] parameterContainer)
     {
+
+        //FLOR ESTA FUNCION(portal) SE EJECTUTA 2 VECES Y HACE QUE EL EVENTO DENTRO DE FinishSpawn() SE EJECUTE 2 VECES
+        //GENERANDO EL PROBLEMA DE SPAWN ESE DE LA TORRETA QUE SE ESTA MOVIENDO
+        //LO QUE PASA ES LO SIGUIENTE: EN SECTIONMANAGER LLAMAS 2 VECES ESTO, LA PRIMERA AUNQUE PAREZCA RARO, 
+        //LO ESTAS USANDO PARA QUE APAREZCA EL PORTAL CUANDO TERMINA LA SECCION, (OLVIDATE DE DENTRO DE IF BOSS NODE)
+        //ENTONCESY LA OTRA VEZ, ES LA LEGIT, DONDE SE DEBERIA EJECTURAR EL EVENTO PLAYER_CAN_MOVE XQ SE DA POR ENTENDIDO QUE SALIO DEL PORTAL
+        //LO IDEAL SERIA SEPARAR EL PORTAL DE CUANDO APARECE DE CUANDO TERMINA ASI SE EJECUTA BIEN(RECORDA QUE EL START_SECTION DEL SECTION MANAGER EN LA LINEA 121 SIRVE PARA
+        //CUANDO TERMINA EL NODO "PONELE", TE VAS A DAR CUENTA SI LO TESTEAS LO QUE DIGO (EL BUG ES REPRODUCIBLE SI GANAS LA SECCION, PODES DEJARTE 1 SOLO ENEMIGO Y ALCANZA
+        //PARA GANARLA RAPIDO Y PASAS A LA SIGUIENTE)
         Timer portalTimer = new Timer(2.1f, FinishSpawn);
         timers.Add(portalTimer);
         spawned = false;
@@ -503,12 +512,12 @@ public class Player : MonoBehaviour, IHittable
         spawnParticle1.gameObject.SetActive(false);
         spawnParticle2.gameObject.SetActive(false);
         spawned = true;
-        EventManager.instance.ExecuteEvent(Constants.PLAYER_CAN_MOVE);
         isDead = false;
         dashCount = MaxDashCount;
         ActiveUI();
         timerToUlt = 0;
-        timerCooldownSpecial = 0;
+        timerCooldownSpecial = 0; 
+        EventManager.instance.ExecuteEvent(Constants.PLAYER_CAN_MOVE);
     }
 
     private void ActiveUI()

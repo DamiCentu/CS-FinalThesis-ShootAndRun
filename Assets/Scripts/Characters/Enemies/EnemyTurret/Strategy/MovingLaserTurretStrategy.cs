@@ -6,15 +6,17 @@ using UnityEngine;
 public class MovingLaserTurretStrategy : ITurret {  
 
     EnemyTurretBehaviour _parent;
-    LineRenderer _line; 
+    LineRenderer _line;
 
+    TurretWaypoint _start;
     int _hitsRemaining = 0;
     bool _canInteract = false;
     //float _time = 0f;
 
-    public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line) { 
+    public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line, TurretWaypoint start) { 
         _parent = parent;
-        _line = line; 
+        _line = line;
+        _start = start;
     }
 
     public void OnUpdate() {
@@ -77,10 +79,17 @@ public class MovingLaserTurretStrategy : ITurret {
     }
 
     private void OnPlayerCanMove(object[] parameterContainer) {
-        //if (SectionManager.instance.actualNode != _parent.CurrentNode) {
-        //    return;
-        //}
-        _canInteract = true; 
+        if (SectionManager.instance.actualNode != _parent.CurrentNode) {
+            return;
+        }
+        _parent.startWaypointForMovingLaser = _start;
+        _parent.transform.position = _start.transform.position;
+        _parent.StartCoroutine(CanMoveRoutine());
+    }
+
+    IEnumerator CanMoveRoutine() {
+        yield return new WaitForSeconds(1f);
+        _canInteract = true;
     }
 
     //bool WaitToStartMovement{get { return _time > _parent.timeToWaitToInteract; } }

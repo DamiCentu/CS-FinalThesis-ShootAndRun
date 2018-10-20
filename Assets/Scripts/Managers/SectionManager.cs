@@ -56,7 +56,7 @@ public class SectionManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.STOP_BERSERK, AtStopBerserk);
         EventManager.instance.SubscribeEvent(Constants.GAME_OVER, OnGameOver);
 
-        EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION);
+        EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque);
 
         //para que no me rompa las bolas
         if (actualNode == null)
@@ -108,7 +108,7 @@ public class SectionManager : MonoBehaviour {
 
     IEnumerator RestartSectionRoutine() {
         if (actualNode != null) {
-            EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION);
+            EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque);
             yield return new WaitForSeconds(timeToRestartAfterPlayerDead);
             actualNode.RestartSection();
          

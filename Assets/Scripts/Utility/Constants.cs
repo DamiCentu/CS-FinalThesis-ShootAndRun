@@ -44,7 +44,7 @@ public class Constants : MonoBehaviour
     public const string ULTIMATE_CHANGE = "ultimate_change";
     public const string SPECIAL_CHANGE = "special_change";
 
-    public const string STARTED_SECTION = "started_section";
+    public const string STARTED_SECTION_solo_escucha_camera_iTween_noseporque = "started_section";
 
     public const string UI_UPDATE_PLAYER_LIFE = "player_life";
 

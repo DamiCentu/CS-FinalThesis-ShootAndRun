@@ -71,7 +71,7 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
                     _turretTypes.Add(type, new LaserTurretStrategy(this, GetComponent<LineRenderer>()));
                     break;
                 case EnemiesManager.TypeOfEnemy.MovingTurretLaser:
-                    _turretTypes.Add(type, new MovingLaserTurretStrategy(this, GetComponent<LineRenderer>()));
+                    _turretTypes.Add(type, new MovingLaserTurretStrategy(this, GetComponent<LineRenderer>(),starter));
                     break; 
             }  
         }

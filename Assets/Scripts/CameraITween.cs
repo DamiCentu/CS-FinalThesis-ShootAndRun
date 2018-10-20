@@ -15,7 +15,7 @@ public class CameraITween : MonoBehaviour {
     bool AllBlack = true;
 
     void Start() {
-        EventManager.instance.SubscribeEvent(Constants.STARTED_SECTION, FadeInCamera);
+        EventManager.instance.SubscribeEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque, FadeInCamera);
         EventManager.instance.SubscribeEvent(Constants.BLACK_SCREEN, FadeInCamera);
         blackScreen.color = new Color(0, 0, 0, 1);
     }
