@@ -13,7 +13,7 @@ public class FireEnemy : AbstractEnemy, IHittable
     private Timer timer;
     public int life = 10;
     public Transform target;
-     DamagePath damagePath;
+    DamagePath damagePath;
     public float speed;
 
     private void Start()
@@ -24,8 +24,8 @@ public class FireEnemy : AbstractEnemy, IHittable
 
     private void Shoot()
     {
-        print("disparo!");
-        print("pos"+this.transform.position+ "this.transform.forward"+ this.transform.forward+ "speed" + speed);
+        //print("disparo!");
+        //print("pos"+this.transform.position+ "this.transform.forward"+ this.transform.forward+ "speed" + speed);
         Vector3 direct = target.position - this.transform.position;
         direct.y = 0;
         damagePath.SpawnDirection(this.transform.position+Vector3.up, direct.normalized, speed);
@@ -50,11 +50,11 @@ public class FireEnemy : AbstractEnemy, IHittable
 
     public void OnHit(int damage)
     {
-        print("auch");
+        //print("auch");
         life -= damage;
         if (life < 0)
         {
-            print("mori");
+            //print("mori");
             //   EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
             gameObject.SetActive(false);

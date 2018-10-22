@@ -29,6 +29,8 @@ public class MovingLaserTurretStrategy : ITurret {
 
             _line.SetPosition(0, _parent.shotSpawn.position);
             _line.SetPosition(1, rh.point);
+
+            _parent.sparksParticleS.gameObject.SetActive(true);
             _parent.sparksParticleS.transform.position = rh.point;
             _parent.sparksParticleS.transform.forward = -_parent.shotSpawn.forward;
             _parent.sparksParticleS.Play();
@@ -37,6 +39,7 @@ public class MovingLaserTurretStrategy : ITurret {
             var a = _parent.shotSpawn.forward * _parent.laserMaxDistance + _parent.shotSpawn.position;
             _line.SetPosition(0, _parent.shotSpawn.position);
             _line.SetPosition(1, a);
+            _parent.sparksParticleS.gameObject.SetActive(false);
         }
 
 

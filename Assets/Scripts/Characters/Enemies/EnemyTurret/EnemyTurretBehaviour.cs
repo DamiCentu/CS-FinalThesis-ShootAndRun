@@ -99,7 +99,9 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
     }
 
     private void OnDrawGizmos() {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, distanceToShoot);
+        if(_currentTypeOfTurret is BurstTurretStrategy) { 
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, distanceToShoot);
+        }
     }
 }

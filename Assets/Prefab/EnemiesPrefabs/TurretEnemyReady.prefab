@@ -848,10 +848,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsCanTakeLaser: 20
-  laserMaxDistance: 100
+  laserMaxDistance: 50
   maskToCollide:
     serializedVersion: 2
-    m_Bits: 525568
+    m_Bits: 524544
   sparksParticleS: {fileID: 198911708538971494}
   hitsCanTakeMovingLaser: 10
   movingLaserMaxDistance: 100

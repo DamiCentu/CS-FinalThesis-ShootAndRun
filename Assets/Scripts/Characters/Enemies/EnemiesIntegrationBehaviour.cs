@@ -62,6 +62,9 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour {
             _col.enabled = false;
             _reintergrate = true;
             RaycastHit rh;
+            //var a = GetComponent<EnemyTurretBehaviour>(); //debuggin
+            //if (a != null)
+            //    Debug.Log("");
             Physics.Raycast(transform.position, Vector3.down, out rh,10f, 1 << 15);//15 = floor 
             if(hudImage != null)
                 hudImage.transform.position = rh.point + imageOffset;

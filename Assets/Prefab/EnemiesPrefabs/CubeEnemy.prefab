@@ -455,7 +455,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 525312
   hitsCanTake: 10
-  stoppedTime: 0.5
+  stoppedTime: 1
   radiusToAttack: 30
   shotPos: {fileID: 4289286720952294}
   quantityOfShots: 5

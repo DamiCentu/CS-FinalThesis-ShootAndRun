@@ -26,7 +26,7 @@ public class MinionsSpawn: MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             currentAngle += 360/amount;
-            print(currentAngle);
+            //print(currentAngle);
 
             var angleRadians = Mathf.Deg2Rad * currentAngle;
 
