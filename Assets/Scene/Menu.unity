@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44535094, g: 0.48936075, b: 0.5436146, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -286,14 +286,14 @@ RectTransform:
   m_GameObject: {fileID: 79826346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 11.031093, y: 2.1066997, z: 2.1066997}
+  m_LocalScale: {x: 6.79, y: 2.1066997, z: 2.1066997}
   m_Children: []
   m_Father: {fileID: 1892463386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -283, y: -130}
+  m_AnchoredPosition: {x: 0, y: -78.08}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &79826348
@@ -315,7 +315,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 494d7893d68589d42b8b0948b4aba40e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d57e3945e609d946a15066283888675, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1685,7 +1685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &685461528
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -1800,7 +1800,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1072243154
+  randomSeed: 1130854788
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7033,7 +7033,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6811e969a6877804dac2808290953d2c, type: 2}
+  - {fileID: 2100000, guid: 8926ba6a00a3b88419157f751a0354d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7081,8 +7081,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1329388116}
   m_LocalRotation: {x: 0.00059284264, y: 0.70710754, z: -0.7071055, w: 0.000592865}
-  m_LocalPosition: {x: 216, y: 83, z: -54}
-  m_LocalScale: {x: 134.4622, y: 28.236689, z: 63.974556}
+  m_LocalPosition: {x: 254.0425, y: 76.39339, z: 9.7}
+  m_LocalScale: {x: 118.7, y: 28.236689, z: 63.974556}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -8206,7 +8206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1594959263
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -8321,7 +8321,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1924212575
+  randomSeed: -477347589
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12084,7 +12084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1647518631
 Light:
   m_ObjectHideFlags: 0
@@ -12675,7 +12675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -166, y: -75}
+  m_AnchoredPosition: {x: 0, y: -75}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1912832418
