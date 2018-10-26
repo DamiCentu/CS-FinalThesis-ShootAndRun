@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/LvlComplete.unity
     guid: 0519672a25ca4254194df1be2cc36b01
+  - enabled: 1
+    path: Assets/Scene/nivel prueba.unity
+    guid: c02af4bff5709824288b154e12d81745
