@@ -19,27 +19,35 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: b54633bb20c11aa47a0b116a9891d221, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0c3bac9ef367a42488da8587a565c864, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: fe8d3da10714c52478888b3314a0b8b7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: fa0fb82ba6d946d46ba4c14e3ab28413, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo2_DefaultMaterial_AO:
-        m_Texture: {fileID: 2800000, guid: bd1ee1d9504fbc44c8441f81667f7f8f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo2_DefaultMaterial_AlbedoTransparency:
-        m_Texture: {fileID: 2800000, guid: fc163e49a529fe04fae489557d9f66ba, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo2_DefaultMaterial_MetallicSmoothness:
-        m_Texture: {fileID: 2800000, guid: fc70ebe6322919a4babb2643b036dc0f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo2_DefaultMaterial_Normal:
-        m_Texture: {fileID: 2800000, guid: dd2d29cafc4636d44b95203ebe2d15fb, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _miniBoss_DefaultMaterial_Emission:
-        m_Texture: {fileID: 2800000, guid: 5d4eac23a07ae39429fa5faff48193b9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _noise2:
