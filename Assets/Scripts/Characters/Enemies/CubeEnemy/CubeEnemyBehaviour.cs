@@ -255,6 +255,10 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
         _followPathBehaviour.SetActualSectionNode(_actualSectionNode);
 
         _flocking.target = target;
+
+        if(_myFsm != null) {
+            SendInputToFSM(CubeInputs.NotInRadius);
+        }
         return this;
     }
 

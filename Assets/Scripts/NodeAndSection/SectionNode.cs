@@ -204,15 +204,10 @@ public class SectionNode : MonoBehaviour {
             else if(param[2] is CubeEnemyBehaviour) {
                 Utility.RemoveFromListGeneric(_allCubeActives, (CubeEnemyBehaviour)param[2]);
             }
-            else if (param[2] is MisilEnemy)
-            {
+            else if (param[2] is MisilEnemy) {
                 Utility.RemoveFromListGeneric(_allMisilEnemiesActive, (MisilEnemy)param[2]);
             }
-            else if (param[2] is FireEnemy)
-            {
-                print("trato de sacar el fire enemy");
-                var e = (FireEnemy)param[2];
-                e.Stop();
+            else if (param[2] is FireEnemy) {  
                 Utility.RemoveFromListGeneric(_allFireEnemiesActive, (FireEnemy)param[2]);
             }
 

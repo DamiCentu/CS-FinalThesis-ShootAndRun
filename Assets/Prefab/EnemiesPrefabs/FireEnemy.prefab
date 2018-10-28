@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  timeAlive: 3
+  timeAlive: 2
   particlesName: fire
   distanceBetweenSpawns: 2
 --- !u!114 &114164823022334450
@@ -413,7 +413,7 @@ MonoBehaviour:
   rhAngle: 20
   raycastLayers:
     serializedVersion: 2
-    m_Bits: 263168
+    m_Bits: 787456
   avoidanceMultiplier: 1
   neighborhoodRadius: 10
   separationRadius: 2
