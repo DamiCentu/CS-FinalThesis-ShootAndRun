@@ -54,6 +54,9 @@ public class FireEnemy : AbstractEnemy, IHittable {
 
     public FireEnemy SetPosition(Vector3 pos) {
         transform.position = pos;
+        if (timer != null) {
+            timer.Reset();
+        }
         return this;
     }
 

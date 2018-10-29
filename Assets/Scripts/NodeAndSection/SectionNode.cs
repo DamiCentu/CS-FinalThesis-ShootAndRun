@@ -549,10 +549,10 @@ public class SectionNode : MonoBehaviour {
     void OnPowerUpDropped(params object [] paramss) {
         if (id == 0) LootTableManager.instance.SetDefaultProbavility();
 
-        if ((SectionNode)paramss[0] != this || isBossNode && !spawnGreenEnemiesInBossNode)
-            return;
-
         var go = (GameObject)paramss[1];
+
+        if ((SectionNode)paramss[0] != this || isBossNode && !spawnGreenEnemiesInBossNode || Physics.Raycast(go.transform.position, EnemiesManager.instance.player.transform.position - go.transform.position, 100f, objectToDetectConnectingNodes))
+            return;
 
         var pos = Utility.RandomVector3InRadiusCountingBoundariesInRectDirection(go.transform.position,radiusToSetPowerUpChaser,objectToDetectConnectingNodes);
 

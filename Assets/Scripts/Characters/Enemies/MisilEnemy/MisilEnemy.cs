@@ -58,6 +58,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     public MisilEnemy SetPosition(Vector3 pos)
     {
         transform.position = pos;
+        _timer = 0;
         return this;
     }
 

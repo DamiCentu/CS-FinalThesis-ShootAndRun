@@ -330,6 +330,9 @@ MonoBehaviour:
   life: 10
   target: {fileID: 0}
   speed: 5
+  maskThatBlockVisionToPlayer:
+    serializedVersion: 2
+    m_Bits: 525312
 --- !u!114 &114665069245459924
 MonoBehaviour:
   m_ObjectHideFlags: 1
