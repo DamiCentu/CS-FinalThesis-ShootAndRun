@@ -551,7 +551,9 @@ public class SectionNode : MonoBehaviour {
 
         var go = (GameObject)paramss[1];
 
-        if ((SectionNode)paramss[0] != this || isBossNode && !spawnGreenEnemiesInBossNode || Physics.Raycast(go.transform.position, EnemiesManager.instance.player.transform.position - go.transform.position, 100f, objectToDetectConnectingNodes))
+        var dirToPlayer = EnemiesManager.instance.player.transform.position - go.transform.position;
+
+        if ((SectionNode)paramss[0] != this || isBossNode && !spawnGreenEnemiesInBossNode || Physics.Raycast(go.transform.position,dirToPlayer , dirToPlayer.magnitude, objectToDetectConnectingNodes))
             return;
 
         var pos = Utility.RandomVector3InRadiusCountingBoundariesInRectDirection(go.transform.position,radiusToSetPowerUpChaser,objectToDetectConnectingNodes);

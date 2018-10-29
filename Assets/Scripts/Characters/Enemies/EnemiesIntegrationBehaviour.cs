@@ -12,7 +12,7 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour {
     public float speedToRotateImage = 60f;
     public float tiltingTime = 0.05f;
     public ParticleSystem integrationParticles;
-    public Vector3 imageOffset;
+    //public Vector3 imageOffset;
 
     SkinnedMeshRenderer[] _skinnedRends;
     MeshRenderer[] _meshRends;
@@ -46,28 +46,28 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour {
             _skinnedRends = GetComponentsInChildren<SkinnedMeshRenderer>();
        
         if(_skinnedRends == null)
-            _meshRends = GetComponentsInChildren<MeshRenderer>(); 
+            _meshRends = GetComponentsInChildren<MeshRenderer>();
 
-        if(timeToReintegrate == 0) { 
+        _timer = 0f;
+        _tiltingTimer = 0f; 
+
+        if (timeToReintegrate == 0) { 
             SetValue(_meshRends, reintegrateMaxValue);
             SetValue(_skinnedRends, reintegrateMaxValue);
             ActivateOrDeactivateIntegration(false);
         }
-        else {
-            _timer = 0f;
-            _tiltingTimer = 0f;
+        else { 
             _timeToReintegrate = timeToReintegrate;
             if (_col == null)
                 _col = GetComponent<Collider>();
             _col.enabled = false;
             _reintergrate = true;
-            RaycastHit rh;
-            //var a = GetComponent<EnemyTurretBehaviour>(); //debuggin
-            //if (a != null)
-            //    Debug.Log("");
-            Physics.Raycast(transform.position, Vector3.down, out rh,10f, 1 << 15);//15 = floor 
-            if(hudImage != null)
-                hudImage.transform.position = rh.point + imageOffset;
+            //RaycastHit rh;
+            //Physics.Raycast(transform.position, Vector3.down, out rh,10f, Utility.LayerNumberToMask(15));//15 = floor 
+            if(hudImage != null) {
+                hudImage.enabled = true;
+                hudImage.transform.position = /*rh.point +*/ new Vector3(transform.position.x, EnemiesManager.instance.IntegrationImageYOffset, transform.position.z); 
+            }
             ActivateOrDeactivateIntegration(true);
         } 
     }

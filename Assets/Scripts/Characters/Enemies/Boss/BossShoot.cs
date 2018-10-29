@@ -71,7 +71,7 @@ public class BossShoot : MonoBehaviour, BossActions
         Vector3 bossAnglePostLookAt = boss.transform.forward;
 
         float bossAngleDeltaDeg = Vector3.SignedAngle(bossAnglePreLookAt, bossAnglePostLookAt, Vector3.up);
-        print(bossAngleDeltaDeg);
+        //print(bossAngleDeltaDeg);
 
 
         boss.columna.transform.Rotate(Vector3.right, currentAngle);
@@ -100,7 +100,7 @@ public class BossShoot : MonoBehaviour, BossActions
         var s = EnemyBulletManager.instance.giveMeEnemyBullet();
         s.SetPos(shootPosition).SetDir(Quaternion.LookRotation(rotation)).gameObject.SetActive(true);
 
-        print(s);
+        //print(s);
 
     }
 

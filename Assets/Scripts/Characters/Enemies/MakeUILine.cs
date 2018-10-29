@@ -8,7 +8,6 @@ public class MakeUILine : MonoBehaviour {
     public Transform parentOfArrows;
     public float distBetweenArrows = 0.5f;
     public float arrowsScale = 0.05f;
-    public float yPosOfArrows = -0.4f;
     public float tiltingTime = 0.05f;
 
     Pool<GameObject> _poolArrows;
@@ -21,6 +20,7 @@ public class MakeUILine : MonoBehaviour {
     Vector3 _startPos;
 
     float _tiltingTimer = 0;
+    float yPosOfArrows = 0f;
 
     void Awake() {
         _poolArrows = new Pool<GameObject>(15, ArrowFactoryMethod, null, null, true);
@@ -85,6 +85,12 @@ public class MakeUILine : MonoBehaviour {
         var dir = Utility.SetYInVector3(target.position, 1f) - Utility.SetYInVector3(transform.position, 1f);
         var dist = dir.magnitude;
         dir.Normalize();
+
+        RaycastHit rh;
+
+        Physics.Raycast(transform.position, Vector3.down, out rh, 20, Utility.LayerNumberToMask(15)); //floor
+
+        yPosOfArrows = rh.point.y + EnemiesManager.instance.UILineYOffset;
 
         _startQuat = parentOfArrows.rotation;
         _startPos = parentOfArrows.position; 

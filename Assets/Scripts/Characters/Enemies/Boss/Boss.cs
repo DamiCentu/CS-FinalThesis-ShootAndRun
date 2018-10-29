@@ -262,7 +262,7 @@ public class Boss : AbstractEnemy, IHittable{
             {
                 p.OnHit(1);
             }
-            print("me choque");
+            //print("me choque");
         }
 
     }
@@ -276,7 +276,7 @@ public class Boss : AbstractEnemy, IHittable{
             {
                 p.OnHit(1);
             }
-            print("me choque");
+            //print("me choque");
             EventManager.instance.ExecuteEvent(Constants.CHARGER_CRUSH);
 
         }

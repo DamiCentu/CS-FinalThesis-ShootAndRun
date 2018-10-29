@@ -6,6 +6,9 @@ using UnityEngine;
 public class EnemiesManager : MonoBehaviour {
     public static EnemiesManager instance { get; private set; }
 
+    public float UILineYOffset = 0f;
+    public float IntegrationImageYOffset = 0f;
+
     public bool showThetaStarPathWithGizmos = false;
     public bool showFollowPathGizmos = false;
 
