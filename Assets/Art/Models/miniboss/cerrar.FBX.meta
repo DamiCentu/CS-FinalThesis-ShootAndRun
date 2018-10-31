@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 817e3092118cbff419279aefcb7ddadd
+timeCreated: 1540947945
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: armadura frente
+    100002: armadura superior
+    100004: armadura trasera
+    100006: armadura trasera001
+    100008: Box032
+    100010: Box033
+    100012: Box034
+    100014: Box035
+    100016: Box036
+    100018: Box037
+    100020: CATRigHub006
+    100022: CATRigHub006Bone001
+    100024: CATRigHub006Bone002
+    100026: CATRigHub006Bone002Bone001
+    100028: CATRigHub006Bone002Bone002
+    100030: CATRigHub006Bone002Bone003
+    100032: CATRigHub006Bone002Bone004
+    100034: CATRigHub006Bone003
+    100036: CATRigHub006Bone004
+    100038: CATRigHub006Bone005
+    100040: CATRigHub006Bone006
+    100042: CATRigHub006Bone006Gizmo
+    100044: CATRigHub006Bone007
+    100046: CATRigHub006Bone007Gizmo
+    100048: CATRigHub006Bone008
+    100050: CATRigHub006Bone008Gizmo
+    100052: //RootNode
+    100054: Character006
+    100056: Cylinder013
+    100058: pata 1
+    100060: pata 2
+    100062: pata 3
+    100064: pata 4
+    400000: armadura frente
+    400002: armadura superior
+    400004: armadura trasera
+    400006: armadura trasera001
+    400008: Box032
+    400010: Box033
+    400012: Box034
+    400014: Box035
+    400016: Box036
+    400018: Box037
+    400020: CATRigHub006
+    400022: CATRigHub006Bone001
+    400024: CATRigHub006Bone002
+    400026: CATRigHub006Bone002Bone001
+    400028: CATRigHub006Bone002Bone002
+    400030: CATRigHub006Bone002Bone003
+    400032: CATRigHub006Bone002Bone004
+    400034: CATRigHub006Bone003
+    400036: CATRigHub006Bone004
+    400038: CATRigHub006Bone005
+    400040: CATRigHub006Bone006
+    400042: CATRigHub006Bone006Gizmo
+    400044: CATRigHub006Bone007
+    400046: CATRigHub006Bone007Gizmo
+    400048: CATRigHub006Bone008
+    400050: CATRigHub006Bone008Gizmo
+    400052: //RootNode
+    400054: Character006
+    400056: Cylinder013
+    400058: pata 1
+    400060: pata 2
+    400062: pata 3
+    400064: pata 4
+    2100000: No Name
+    4300000: Box032
+    4300002: armadura superior
+    4300004: armadura frente
+    4300006: pata 3
+    4300008: Box033
+    4300010: armadura trasera
+    4300012: Cylinder013
+    4300014: Box034
+    4300016: pata 1
+    4300018: pata 4
+    4300020: pata 2
+    4300022: armadura trasera001
+    4300024: Box035
+    4300026: Box036
+    4300028: Box037
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: armadura frente
+    13700002: armadura superior
+    13700004: armadura trasera
+    13700006: armadura trasera001
+    13700008: Box032
+    13700010: Box033
+    13700012: Box034
+    13700014: Box035
+    13700016: Box036
+    13700018: Box037
+    13700020: Cylinder013
+    13700022: pata 1
+    13700024: pata 2
+    13700026: pata 3
+    13700028: pata 4
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
