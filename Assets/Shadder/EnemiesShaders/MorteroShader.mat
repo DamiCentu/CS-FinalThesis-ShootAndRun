@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MorteroShader
+  m_Shader: {fileID: 4800000, guid: 8f7a5ab935e9e914d90a411d5a7deadb, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: aba2b3b491811134f95aef566b1cafc1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _noise2:
+        m_Texture: {fileID: 2800000, guid: f98b75fbffa36144b991e7ccfc3c3ef3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _torreta_DefaultMaterial_AlbedoTransparency:
+        m_Texture: {fileID: 2800000, guid: 647bce8a7177dc942988c9d64d8ca7ad, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _torreta_DefaultMaterial_Emission:
+        m_Texture: {fileID: 2800000, guid: b6edd6ae955d7904d8410055c59c1dd1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Berserker: 0
+    - _Brillo: 3
+    - _Cutoff: 0.5
+    - __dirty: 0
+    - _reintegrateValue: 2
+    m_Colors: []
