@@ -37,6 +37,8 @@ public abstract class AbstractBoss : AbstractEnemy
     public void Config()
     {
 
+        index = 0;
+        stage = 0;
         if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
         {
             life = lifeEasy;
@@ -55,8 +57,6 @@ public abstract class AbstractBoss : AbstractEnemy
         maxLife = life;
         actions = stageActions[stage];
         an = GetComponent<Animator>();
-        index = 0;
-        stage = 0;
         timerIntro = new Timer(introTime, FinishiIntro);
         actualAction = actions[0];
         actualAction.Begin(this);
@@ -171,7 +171,7 @@ public abstract class AbstractBoss : AbstractEnemy
     }
 
 
-    void Update()
+    protected void Update()
     {
         if (!introFinished)
         {

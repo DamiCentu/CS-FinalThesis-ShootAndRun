@@ -21,6 +21,8 @@ public class EnemiesManager : MonoBehaviour {
     public GameObject powerUpChaserPrefab;
     public GameObject miniBossPrefab;
     public GameObject bossPrefab;
+    public GameObject bossSerpentLeftPrefab;
+    public GameObject bossSerpentRightPrefab;
     public GameObject cubeEnemyPrefab;
     public GameObject misilEnemyPrefab;
     public GameObject fireEnemyPrefab;

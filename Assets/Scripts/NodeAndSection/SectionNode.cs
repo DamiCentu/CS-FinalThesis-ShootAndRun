@@ -65,29 +65,44 @@ public class SectionNode : MonoBehaviour {
 
 
     Boss bossOnScreen;
+    BossSerpent bossSerpentLeftOnScreen;
+    BossSerpent bossSerpentRightOnScreen;
     public int timesDeadTillPowerHelp = 3;
 
     public bool BossAlive { get { return _bossAlive; } }
 
     public void SetBoss() {
-        StartCoroutine(BossRoutine());
+        if (Configuration.instance.lvl == 1) {
+            StartCoroutine(BossRoutine());
+        }
+       else if (Configuration.instance.lvl == 2)
+        {
+            StartCoroutine(BossSerpentsRoutine());
+        }
     }
 
     IEnumerator BossRoutine() {
-        /*     foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
-                 if (p!=null)
-                     p.Play();
-             }
-             */
+
         yield return _waitBetweenWaves;
-        /*
-      foreach (var p in bossNodeWarningParticle.GetComponentsInChildren<ParticleSystem>()) {
-          p.Stop();
-      }
-              */
+
         bossOnScreen = Instantiate(EnemiesManager.instance.bossPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<Boss>();
         bossOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
         bossOnScreen.gameObject.SetActive(true);
+    }
+
+
+    IEnumerator BossSerpentsRoutine()
+    {
+
+        yield return _waitBetweenWaves;
+
+        bossSerpentLeftOnScreen = Instantiate(EnemiesManager.instance.bossSerpentLeftPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<BossSerpent>();
+        bossSerpentLeftOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
+        bossSerpentLeftOnScreen.gameObject.SetActive(true);
+
+        bossSerpentRightOnScreen = Instantiate(EnemiesManager.instance.bossSerpentRightPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<BossSerpent>();
+        bossSerpentRightOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
+        bossSerpentRightOnScreen.gameObject.SetActive(true);
     }
 
     public bool SectionCleared {
@@ -263,13 +278,21 @@ public class SectionNode : MonoBehaviour {
         Utility.DestroyAllInAndClearList(_allMiniBoss);
 
         if (isBossNode) {
-            bossOnScreen.DeleteAll();
-            Destroy(bossOnScreen.gameObject);
-            var foundMisiles = FindObjectsOfType<Missile>();
-            foreach (var misil in foundMisiles)
-            {
-                misil.DestroyMissile();
-            } 
+            if (Configuration.instance.lvl == 1) {
+                bossOnScreen.DeleteAll();
+                Destroy(bossOnScreen.gameObject);
+                var foundMisiles = FindObjectsOfType<Missile>();
+                foreach (var misil in foundMisiles)
+                {
+                    misil.DestroyMissile();
+                }
+            }
+            else if (Configuration.instance.lvl == 2) {
+                bossSerpentLeftOnScreen.DeleteAll();
+                Destroy(bossSerpentLeftOnScreen.gameObject);
+                bossSerpentRightOnScreen.DeleteAll();
+                Destroy(bossSerpentRightOnScreen.gameObject);
+            }
         }
     }
 
