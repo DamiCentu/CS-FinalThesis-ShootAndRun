@@ -55,13 +55,12 @@ public class DamagePath : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
-            print("spawnwo1");
+
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
-            print("_distanceToSpawn:" + _distanceToSpawn);
-            print("distanceBetweenSpawns:" + distanceBetweenSpawns);
+
             if (_distanceToSpawn > distanceBetweenSpawns) {
-                print("spawnwo2");
+
                 _distanceToSpawn = 0;
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
                 GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);

@@ -222,6 +222,8 @@ MonoBehaviour:
     m_Bits: 0
   speed: 12
   boss: {fileID: 0}
+  stopTime: 0.15
+  active: 0
 --- !u!114 &114425525449765392
 MonoBehaviour:
   m_ObjectHideFlags: 1
