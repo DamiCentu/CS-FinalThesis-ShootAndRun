@@ -5,14 +5,13 @@ using UnityEngine;
 public class BossSerpent : AbstractBoss {
     public float speed=1;
     public BossThrowFire actionThrowFire;
+    public enum Type {Left, Right };
+    public Type type;
     void Awake()
     {
         SetActions();
         Config();
 
-
-
-        transform.LookAt(player.transform.position);
     }
 
     private void SetActions()
@@ -26,7 +25,7 @@ public class BossSerpent : AbstractBoss {
     new void Update()
     {
         base.Update();
-        transform.Rotate(Vector3.down, 95.5f);
+
         this.transform.position += this.transform.right * speed * Time.deltaTime;
     }
 

@@ -37,6 +37,7 @@ public abstract class AbstractBoss : AbstractEnemy
     public void Config()
     {
 
+        player = ((Player)FindObjectOfType(typeof(Player))).gameObject;
         index = 0;
         stage = 0;
         if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
@@ -58,10 +59,9 @@ public abstract class AbstractBoss : AbstractEnemy
         actions = stageActions[stage];
         an = GetComponent<Animator>();
         timerIntro = new Timer(introTime, FinishiIntro);
+        timerActions = timerActionsStage1;
         actualAction = actions[0];
         actualAction.Begin(this);
-        player = ((Player)FindObjectOfType(typeof(Player))).gameObject;
-        timerActions = timerActionsStage1;
 
     }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DamagePath : MonoBehaviour {
-    public float speed=10;
+    private float speed;
     private Vector3 _startPosition;
     private float _distanceTraveled;
     private float _maxDistance = 10000;
@@ -24,6 +24,7 @@ public class DamagePath : MonoBehaviour {
         particles = GameObject.Find(particlesName);
         if (particles == null) print("che es null!");
         set(spawnPos, speed);
+        _maxDistance = 10000;
     }
 
     public void SpawnPosition(Vector3 spawnPos, Vector3 endPos, float speed)
@@ -54,11 +55,13 @@ public class DamagePath : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
-
+            print("spawnwo1");
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
+            print("_distanceToSpawn:" + _distanceToSpawn);
+            print("distanceBetweenSpawns:" + distanceBetweenSpawns);
             if (_distanceToSpawn > distanceBetweenSpawns) {
-
+                print("spawnwo2");
                 _distanceToSpawn = 0;
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
                 GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);

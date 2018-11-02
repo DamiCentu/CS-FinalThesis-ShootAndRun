@@ -68,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4173729503147794}
   - component: {fileID: 114390135109834886}
+  - component: {fileID: 114951123051083710}
   m_Layer: 12
   m_Name: BossThrowFire
   m_TagString: Untagged
@@ -86,6 +87,7 @@ GameObject:
   - component: {fileID: 114892225617770412}
   - component: {fileID: 114425525449765392}
   - component: {fileID: 136070264228936152}
+  - component: {fileID: 114779772722819886}
   m_Layer: 12
   m_Name: BossSerpentLeft
   m_TagString: Untagged
@@ -214,6 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b9eb3b0d9402347a9886b38eb64975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeDefault: 2.5
+  maskThatBlockVisionToPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 12
+  boss: {fileID: 0}
 --- !u!114 &114425525449765392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +235,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteTimeOnHit: 0.1
   whiteMat: {fileID: 0}
+--- !u!114 &114779772722819886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782998905453274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fb2d2dc08c6bd43868efc40873180d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  width: 17
+  direction: 1
 --- !u!114 &114892225617770412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,8 +277,23 @@ MonoBehaviour:
   bossCameraShakeTime: 2
   player: {fileID: 0}
   meshRends: []
-  speed: 1
+  speed: 0
   actionThrowFire: {fileID: 114390135109834886}
+  type: 0
+--- !u!114 &114951123051083710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571557775097432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b706fbd2c937aba4f87504b37b13b8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeAlive: 0.5
+  particlesName: fire
+  distanceBetweenSpawns: 1
 --- !u!136 &136070264228936152
 CapsuleCollider:
   m_ObjectHideFlags: 1

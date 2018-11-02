@@ -100,7 +100,7 @@ public class SectionNode : MonoBehaviour {
         bossSerpentLeftOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
         bossSerpentLeftOnScreen.gameObject.SetActive(true);
 
-        bossSerpentRightOnScreen = Instantiate(EnemiesManager.instance.bossSerpentRightPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<BossSerpent>();
+        bossSerpentRightOnScreen = Instantiate(EnemiesManager.instance.bossSerpentRightPrefab, _allSpawns[1].transform.position, _allSpawns[1].transform.rotation).GetComponent<BossSerpent>();
         bossSerpentRightOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
         bossSerpentRightOnScreen.gameObject.SetActive(true);
     }
