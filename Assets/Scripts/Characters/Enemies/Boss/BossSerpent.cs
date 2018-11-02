@@ -6,9 +6,13 @@ using UnityEngine;
 public class BossSerpent : AbstractBoss {
     public float speed=1;
     public BossThrowFire actionThrowFire;
+    public BossShootGun actionShootGun;
+    public BossLaser actionLaser;
     public enum Type {Left, Right };
     public Type type;
     MovingPlatform moving;
+    public Transform shootPosition;
+
     void Awake()
     {
         SetActions();
@@ -20,8 +24,14 @@ public class BossSerpent : AbstractBoss {
     {
 
         stageActions.Add(new List<BossActions>());
-        stageActions[0].Add(actionThrowFire);
-
+        if (type == Type.Left) {
+            stageActions[0].Add(actionThrowFire);
+        }
+        if (type == Type.Right)
+        {
+            stageActions[0].Add(actionShootGun);
+            stageActions[0].Add(actionLaser);
+        }
     }
 
     new void Update()

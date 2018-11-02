@@ -13,7 +13,7 @@ public class BossThrowFire : MonoBehaviour, BossActions
     public float speed=5;
     public BossSerpent boss;
     public float stopTime=0.15f;
-    public bool active=false;
+
 
 
     void BossActions.Begin(AbstractBoss boss)
@@ -21,7 +21,7 @@ public class BossThrowFire : MonoBehaviour, BossActions
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
         damagePath = GetComponent<DamagePath>();
-        active = true;
+        StartCoroutine("ThrowFiretCorutine");
     }
 
     void BossActions.DeleteAll()
@@ -31,19 +31,16 @@ public class BossThrowFire : MonoBehaviour, BossActions
 
     void BossActions.Finish(AbstractBoss boss)
     {
-        active = false;
+        StopCoroutine("ThrowFiretCorutine");
     }
 
     void BossActions.Update(Transform boss, Vector3 playerPosition)
     {
-        if (active) {
-            StartCoroutine("ShootCorutine");
-            active = false;
-        } 
+
     }
 
 
-    IEnumerator ShootCorutine() {
+    IEnumerator ThrowFiretCorutine() {
         while (true) {
 
             yield return new WaitForSeconds(timeDefault);
