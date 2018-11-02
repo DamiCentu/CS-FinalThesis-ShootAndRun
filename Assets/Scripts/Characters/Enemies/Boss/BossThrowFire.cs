@@ -7,17 +7,21 @@ public class BossThrowFire : MonoBehaviour, BossActions
 {
       DamagePath damagePath;
     private Transform target;
-    private Timer timer;
+
     public float timeDefault=2;
     public LayerMask maskThatBlockVisionToPlayer;
     public float speed=5;
-    public AbstractBoss boss;
+    public BossSerpent boss;
+    public float stopTime=0.15f;
+    public bool active=false;
+
+
     void BossActions.Begin(AbstractBoss boss)
     {
-        this.boss = boss;
+        this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
-        timer = new Timer(timeDefault, Shoot);
         damagePath = GetComponent<DamagePath>();
+        active = true;
     }
 
     void BossActions.DeleteAll()
@@ -27,33 +31,38 @@ public class BossThrowFire : MonoBehaviour, BossActions
 
     void BossActions.Finish(AbstractBoss boss)
     {
-
+        active = false;
     }
 
     void BossActions.Update(Transform boss, Vector3 playerPosition)
     {
-        if (timer.CheckAndRun()) timer.Reset();
+        if (active) {
+            StartCoroutine("ShootCorutine");
+            active = false;
+        } 
+    }
+
+
+    IEnumerator ShootCorutine() {
+        while (true) {
+
+            yield return new WaitForSeconds(timeDefault);
+            print("shoot");
+            Vector3 direct = target.position - boss.transform.position;
+            if (!Physics.Raycast(transform.position, direct, direct.magnitude, maskThatBlockVisionToPlayer))
+            {
+                boss.StopMoving(true);
+                yield return new WaitForSeconds(stopTime);
+                print("stopTime:" + stopTime);
+                direct.y = 0;
+                damagePath.SpawnDirection(boss.transform.position + new Vector3(0f, 1, 0f), direct.normalized, speed);
+                yield return new WaitForSeconds(stopTime);
+                boss.StopMoving(false);
+            }
+        }
     }
 
     void BossActions.Upgrade()
     {
-
     }
-
-
-    private void Shoot()
-    {
-        print("shoot");
-        Vector3 direct = target.position - boss.transform.position;
-        if (Physics.Raycast(transform.position, direct, direct.magnitude, maskThatBlockVisionToPlayer)) {
-
-            print("no disparoo");
-            return;
-        }
-        direct.y = 0;
-        damagePath.SpawnDirection(boss.transform.position + new Vector3(0f, 1, 0f), direct.normalized, speed);
-    }
-
-
-
 }
