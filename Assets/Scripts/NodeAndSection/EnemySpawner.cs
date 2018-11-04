@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour {
     public float sizeDebugCube = 1.5f; 
     public bool showGizmos = true;
 
+    public float extraWaitToSpawn = 0f;
+
     void OnDrawGizmos() {
         if (!showGizmos)
             return;

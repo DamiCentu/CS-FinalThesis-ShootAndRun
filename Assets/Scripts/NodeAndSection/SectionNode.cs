@@ -362,11 +362,12 @@ public class SectionNode : MonoBehaviour {
     }
 
     IEnumerator MultipleSpawnTriggerRoutine(int quantity, Vector3 pos) {
+        yield return _waitBetweenWaves;
         for (int i = 0; i < quantity; i++) {
-            yield return _waitBetweenSpawns;
             var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator() as NormalEnemyBehaviour;
             n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(pos).gameObject.SetActive(true);
-            _allNormalActives.Add(n); 
+            _allNormalActives.Add(n);
+            yield return _waitBetweenSpawns;
         }
     }
 
