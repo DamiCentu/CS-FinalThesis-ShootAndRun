@@ -10,6 +10,7 @@ public class MultiEnemySpawner : MonoBehaviour {
     [Header("---------")]
     public int quantityOfTriggersThatAffectThisSpawner;
     public float offsetY = 1f;
+    public bool hasToDestroyToUnlockSomething = false;
 
     public Vector3 GetPositionWithOffset { get { return Utility.SetYInVector3(transform.position, offsetY); } }
     public int GetRespectiveQuantityOfEnemyPerTrigger { get { return quantityOfEnemies / quantityOfTriggersThatAffectThisSpawner; } }

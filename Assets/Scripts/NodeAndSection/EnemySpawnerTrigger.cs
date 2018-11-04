@@ -15,6 +15,8 @@ public class EnemySpawnerTrigger : MonoBehaviour {
     [Header("TypeOfTrigger")]
     public TypeOfTrigger typeOfTrigger;
 
+    public bool hasToTriggerOnColliderExit = false;
+
     EnemySpawner[] _allTriggerSpawners;
 
     public enum TypeOfTrigger {
@@ -30,7 +32,10 @@ public class EnemySpawnerTrigger : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider c) {
-        if(c.gameObject.layer == 8) {
+        if (hasToTriggerOnColliderExit)
+            return;
+
+        if (c.gameObject.layer == 8) { 
 
             switch (typeOfTrigger) {
 
@@ -42,7 +47,32 @@ public class EnemySpawnerTrigger : MonoBehaviour {
                     break;
                 case TypeOfTrigger.SpawnEnemiesInPortal:
                     foreach (var multiSpawner in multiSpawners) {
-                        nodeOfTriggering.StartTriggerMultipleSpawnRoutine(multiSpawner.GetRespectiveQuantityOfEnemyPerTrigger, multiSpawner.GetPositionWithOffset);
+                        nodeOfTriggering.StartTriggerMultipleSpawnRoutine(multiSpawner.GetRespectiveQuantityOfEnemyPerTrigger, multiSpawner);
+                    }
+                    break;
+
+            } 
+            gameObject.SetActive(false);
+        }
+    }
+
+     void OnTriggerExit(Collider c) {
+        if (!hasToTriggerOnColliderExit)
+            return;
+
+        if (c.gameObject.layer == 8) { 
+
+            switch (typeOfTrigger) {
+
+                case TypeOfTrigger.SpawnWaves:
+                    nodeOfTriggering.StartNodeRoutine();
+                    break;
+                case TypeOfTrigger.SpawnEnemiesPreSetted:
+                    nodeOfTriggering.TriggerSpawn(_allTriggerSpawners);
+                    break;
+                case TypeOfTrigger.SpawnEnemiesInPortal:
+                    foreach (var multiSpawner in multiSpawners) {
+                        nodeOfTriggering.StartTriggerMultipleSpawnRoutine(multiSpawner.GetRespectiveQuantityOfEnemyPerTrigger, multiSpawner);
                     }
                     break;
 

@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour {
     public SectionManager.WaveNumber waveOfSpawn;
     public EnemiesManager.TypeOfEnemy typeOfEnemy;
     public bool triggerSpawn = false;
+    public bool hasToDestroyToUnlockSomething = false;
 
     public float radiusOfDebugSphere = 1f;
     public float sizeDebugCube = 1.5f; 
