@@ -117,7 +117,7 @@ public  class Utility {
                 EnemiesManager.instance.ReturnChargerEnemyToPool(n as ChargerEnemyBehaviour);
             else if (n is EnemyTurretBehaviour) {
                 //(n as EnemyTurretBehaviour).DeactivateEverithing();
-                EnemiesManager.instance.ReturnTurretEnemyToPool((n as EnemyTurretBehaviour).DeactivateEverithing());
+                EnemiesManager.instance.ReturnTurretEnemyToPool((n as EnemyTurretBehaviour).DeactivateEverything());
             }
             else if (n is PowerUpChaserEnemy)
                 EnemiesManager.instance.ReturnChaserEnemyToPool(n as PowerUpChaserEnemy);

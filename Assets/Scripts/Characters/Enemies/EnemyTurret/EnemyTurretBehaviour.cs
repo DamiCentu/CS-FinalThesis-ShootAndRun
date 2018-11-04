@@ -51,14 +51,14 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
         return this;
     }
 
-    public EnemyTurretBehaviour DeactivateEverithing() {
+    public EnemyTurretBehaviour DeactivateEverything() {
         GetComponent<LineRenderer>().enabled = false;
         shieldGO.SetActive(false);
         sparksParticleS.gameObject.SetActive(false);
         return this;
     }
 
-    public EnemyTurretBehaviour SetType(EnemiesManager.TypeOfEnemy type, TurretWaypoint starter = null) {
+    public EnemyTurretBehaviour SetType(EnemiesManager.TypeOfEnemy type, TurretWaypoint starter = null, bool hasToHaveShield = false) {
         if(type != EnemiesManager.TypeOfEnemy.TurretBurst && type != EnemiesManager.TypeOfEnemy.TurretLaser && type != EnemiesManager.TypeOfEnemy.MovingTurretLaser)
             throw new System.Exception("No es de tipo turret");
 
@@ -71,18 +71,14 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
                     _turretTypes.Add(type, new LaserTurretStrategy(this, GetComponent<LineRenderer>()));
                     break;
                 case EnemiesManager.TypeOfEnemy.MovingTurretLaser:
-                    _turretTypes.Add(type, new MovingLaserTurretStrategy(this, GetComponent<LineRenderer>(),starter));
+                    _turretTypes.Add(type, new MovingLaserTurretStrategy(this, GetComponent<LineRenderer>()));
                     break; 
             }  
         }
 
-        if(starter != null) {
-            startWaypointForMovingLaser = starter;
-        }
-
         _currentTypeOfTurret = _turretTypes[type];
 
-        _currentTypeOfTurret.SetStartValues();
+        _currentTypeOfTurret.SetStartValues(hasToHaveShield , starter);
 
         _currentTypeOfTurret.SetHitsCanTake();
         return this;

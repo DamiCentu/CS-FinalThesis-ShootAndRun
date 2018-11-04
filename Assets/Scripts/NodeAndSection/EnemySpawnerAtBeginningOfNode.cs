@@ -8,6 +8,7 @@ public class EnemySpawnerAtBeginningOfNode : MonoBehaviour {
     public bool hasToDestroyToUnlockSomething = false;
     [Header ("Only MovingLaserTurret")]
     public TurretWaypoint startTurretNode;
+    public bool hasToHaveShield = false;
 
     public float radiusOfDebugSphere = 1f;
     public bool showGizmos = true;

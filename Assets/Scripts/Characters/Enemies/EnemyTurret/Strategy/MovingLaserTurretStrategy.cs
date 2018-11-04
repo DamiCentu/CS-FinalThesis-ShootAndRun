@@ -7,16 +7,15 @@ public class MovingLaserTurretStrategy : ITurret {
 
     EnemyTurretBehaviour _parent;
     LineRenderer _line;
-
-    TurretWaypoint _start;
+     
     int _hitsRemaining = 0;
     bool _canInteract = false;
+    bool _hasShield = false;
     //float _time = 0f;
 
-    public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line, TurretWaypoint start) { 
+    public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line) { 
         _parent = parent;
-        _line = line;
-        _start = start;
+        _line = line; 
     }
 
     public void OnUpdate() {
@@ -61,9 +60,15 @@ public class MovingLaserTurretStrategy : ITurret {
         _hitsRemaining = _parent.hitsCanTakeBurst;
     }
 
-    public void SetStartValues() {
-        _parent.shieldGO.SetActive(false);
-        
+    public void SetStartValues(bool hasToHaveShield = false, TurretWaypoint start = null) {
+        _hasShield = hasToHaveShield;
+        _parent.shieldGO.SetActive(hasToHaveShield);
+
+        if(start != null) {
+            _parent.startWaypointForMovingLaser = start;
+            _parent.transform.position = start.transform.position;
+        }
+
         _parent.transformToRotate.rotation = _parent.transform.rotation * Quaternion.Euler(new Vector3(0f, -180f, -90f));
 
         //si no choca contra algo hay que desactiva, ahora no lo esta haciendo
@@ -82,11 +87,10 @@ public class MovingLaserTurretStrategy : ITurret {
     }
 
     private void OnPlayerCanMove(object[] parameterContainer) {
-        if (SectionManager.instance.actualNode != _parent.CurrentNode) {
+        if (SectionManager.instance.actualNode != _parent.CurrentNode || !_parent.isActiveAndEnabled) {
             return;
         }
-        _parent.startWaypointForMovingLaser = _start;
-        _parent.transform.position = _start.transform.position;
+        
         _parent.StartCoroutine(CanMoveRoutine());
     }
 
@@ -98,6 +102,10 @@ public class MovingLaserTurretStrategy : ITurret {
     //bool WaitToStartMovement{get { return _time > _parent.timeToWaitToInteract; } }
 
     public bool OnHitReturnIfDestroyed(int damage) {
+        if (_hasShield) {
+            return false;
+        }
+
         _hitsRemaining -= damage;
         _parent.StartHitRoutine();
         if (_hitsRemaining <= 0) { 

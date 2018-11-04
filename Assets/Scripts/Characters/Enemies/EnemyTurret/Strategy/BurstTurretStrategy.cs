@@ -6,6 +6,7 @@ public class BurstTurretStrategy : ITurret {
 
     bool _shooting = false;
     int _hitsRemaining = 0;
+    bool _hasShield = false;
 
     EnemyTurretBehaviour _parent;
 
@@ -35,6 +36,10 @@ public class BurstTurretStrategy : ITurret {
     }
 
     public bool OnHitReturnIfDestroyed(int damage) {
+        if (_hasShield) {
+            return false;
+        }
+
         _hitsRemaining -= damage;
         _parent.StartHitRoutine();
         if (_hitsRemaining <= 0) {
@@ -46,8 +51,9 @@ public class BurstTurretStrategy : ITurret {
         return false;
     }
 
-    public void SetStartValues() {
-        _parent.shieldGO.SetActive(false);
+    public void SetStartValues(bool hasToHaveShield = false,TurretWaypoint start = null) {
+        _hasShield = hasToHaveShield;
+        _parent.shieldGO.SetActive(hasToHaveShield);
         _shooting = false;
     }
 

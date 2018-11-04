@@ -24,7 +24,7 @@ public class LaserTurretStrategy : ITurret {
 
     public void SetHitsCanTake() { }
 
-    public void SetStartValues() {
+    public void SetStartValues(bool hasToHaveShield = false , TurretWaypoint wp = null) {
         _parent.shieldGO.SetActive(true);
         
         _parent.transformToRotate.rotation = _parent.transform.rotation * Quaternion.Euler(new Vector3(0f, -180f, -90f));

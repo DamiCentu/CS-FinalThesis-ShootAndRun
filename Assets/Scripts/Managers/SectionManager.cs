@@ -120,6 +120,7 @@ public class SectionManager : MonoBehaviour {
         while (actualNode != null) {
             EventManager.instance.ExecuteEvent(Constants.START_SECTION);
             yield return new WaitForSeconds(0.6f);
+            actualNode.SpawnEnemyAtStart();
             EventManager.instance.ExecuteEvent(Constants.BLACK_SCREEN); 
             yield return new WaitForSeconds(waitTimeForStartNode-0.6f);
 

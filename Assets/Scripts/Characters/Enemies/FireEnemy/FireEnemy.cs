@@ -12,7 +12,6 @@ public class FireEnemy : AbstractEnemy, IHittable {
     public float speed;
     public LayerMask maskThatBlockVisionToPlayer;
 
-    FollowPathBehaviour _followPathBehaviour;
     DamagePath damagePath; 
     Timer timer;
 
@@ -63,12 +62,6 @@ public class FireEnemy : AbstractEnemy, IHittable {
     public FireEnemy SetTarget(Transform player) {
         target = player;
         return this;
-    }
-
-    void OnDisable() {
-        if (_followPathBehaviour != null) {
-            _followPathBehaviour.OnDisable();
-        }
     } 
 
     private void OnTriggerEnter(Collider c) {
@@ -76,6 +69,12 @@ public class FireEnemy : AbstractEnemy, IHittable {
                 {//enemy //powerup // enemybullet
                  //   _flocking.resetVelocity();
                 }*/
+    }
+
+    private void OnDisable() {
+        if (damagePath != null) {
+            damagePath.DeleteAll();
+        }
     }
 
     public void Stop() {

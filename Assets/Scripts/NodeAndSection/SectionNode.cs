@@ -157,7 +157,7 @@ public class SectionNode : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.POWER_UP_DROPED, OnPowerUpDropped);
         EventManager.instance.SubscribeEvent(Constants.BOSS_DESTROYED, OnBossDestroyed);
 
-        SpawnEnemyAtStart();
+        //SpawnEnemyAtStart();
         SetQuantityToDestroyToUnlockSomething();
     }
 
@@ -167,9 +167,9 @@ public class SectionNode : MonoBehaviour {
     }
 
     //Spawnea en el en todos los spawns que no afecten en el final del nodo y setea la cantidad de enemigos para desbloquear algo
-    void SpawnEnemyAtStart() {
+    public void SpawnEnemyAtStart() {
         foreach (var sP in _allSpawnsThatNotAffectEndOfNode) {
-            SpawnEnemyAtPointNoCuentaParaTerminarNodo(sP.transform, sP.typeOfEnemy, sP.parent, sP.hasToDestroyToUnlockSomething,sP.startTurretNode);
+            SpawnEnemyAtPointNoCuentaParaTerminarNodo(sP);
         } 
     }
 
@@ -502,72 +502,65 @@ public class SectionNode : MonoBehaviour {
                 break;
             case EnemiesManager.TypeOfEnemy.FireEnemy:
                 var f = EnemiesManager.instance.GiveMeFireEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as FireEnemy;
-
                 f.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allFireEnemiesActive.Add(f);
                 break;
         }
-    } 
-    
-    public void SpawnEnemyAtPointNoCuentaParaTerminarNodo(Transform spawnTransform, EnemiesManager.TypeOfEnemy type, Transform parent, bool hasToDestroyToUnlockSomething, TurretWaypoint starter = null) {
+    }
+
+    public void SpawnEnemyAtPointNoCuentaParaTerminarNodo(EnemySpawnerAtBeginningOfNode sp) {
         var wave = SectionManager.WaveNumber.NoCuentaParaTerminarNodo;
-        switch (type) {
+        switch (sp.typeOfEnemy) {
             case EnemiesManager.TypeOfEnemy.Normal:
-                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(hasToDestroyToUnlockSomething) as NormalEnemyBehaviour;
-                n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnTransform.transform.position).gameObject.SetActive(true);
-                if (parent != null) {
-                    n.transform.SetParent(parent);
-                //    n.SetPosition(parent.position);
+                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as NormalEnemyBehaviour;
+                n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
+                if (sp.parent != null) {
+                    n.transform.SetParent(sp.parent);
                 }
                 _allNormalActives.Add(n);
                 break;
 
             case EnemiesManager.TypeOfEnemy.Charger:
-                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(hasToDestroyToUnlockSomething) as ChargerEnemyBehaviour;
-                c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnTransform.transform.position).gameObject.SetActive(true);
-                if (parent != null) {
-                    c.transform.SetParent(parent);
-        //            c.SetPosition(parent.position);
+                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as ChargerEnemyBehaviour;
+                c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
+                if (sp.parent != null) {
+                    c.transform.SetParent(sp.parent);
                 }
                 _allChargerActives.Add(c);
                 break;
             case EnemiesManager.TypeOfEnemy.TurretBurst:
-                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
-                t.SetPosition(spawnTransform.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
-                if (parent != null) {
-                    t.transform.SetParent(parent);
-          //          t.SetPosition(parent.position);
+                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
+                t.SetPosition(sp.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
+                if (sp.parent != null) {
+                    t.transform.SetParent(sp.parent);
                 }
                 _allTurretsActives.Add(t);
                 break;
 
             case EnemiesManager.TypeOfEnemy.TurretLaser:
-                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
-                tL.SetPosition(spawnTransform.transform.position).SetForward(spawnTransform.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
+                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
+                tL.SetPosition(sp.transform.position).SetForward(sp.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
                 _allTurretsActives.Add(tL);
-                if (parent != null) {
-                    tL.transform.SetParent(parent);
-               //     tL.SetPosition(parent.position);
+                if (sp.parent != null) {
+                    tL.transform.SetParent(sp.parent);
                 }
                 break;
 
             case EnemiesManager.TypeOfEnemy.MovingTurretLaser:
-                var MTL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
-                MTL.SetPosition(spawnTransform.transform.position).SetForward(spawnTransform.transform.forward).SetType(EnemiesManager.TypeOfEnemy.MovingTurretLaser,starter).gameObject.SetActive(true);
+                var MTL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
+                MTL.SetPosition(sp.transform.position).SetForward(sp.transform.forward).SetType(EnemiesManager.TypeOfEnemy.MovingTurretLaser, sp.startTurretNode, sp.hasToHaveShield).gameObject.SetActive(true);
                 _allTurretsActives.Add(MTL);
-                if (parent != null) {
-                    MTL.transform.SetParent(parent);
-                    //     tL.SetPosition(parent.position);
+                if (sp.parent != null) {
+                    MTL.transform.SetParent(sp.parent);
                 }
                 break;
 
             case EnemiesManager.TypeOfEnemy.Cube:
-                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(hasToDestroyToUnlockSomething) as CubeEnemyBehaviour;
-                cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnTransform.transform.position).gameObject.SetActive(true);
+                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as CubeEnemyBehaviour;
+                cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
                 _allCubeActives.Add(cu);
-                if (parent != null) {
-                    cu.transform.SetParent(parent);
-                    //     tL.SetPosition(parent.position);
+                if (sp.parent != null) {
+                    cu.transform.SetParent(sp.parent);
                 }
                 break;
         }

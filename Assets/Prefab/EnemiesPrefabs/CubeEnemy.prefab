@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteTimeOnHit: 0.1
-  whiteMat: {fileID: 0}
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114342995499819486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,7 +589,6 @@ MonoBehaviour:
   speedToRotateImage: 60
   tiltingTime: 0.05
   integrationParticles: {fileID: 198258588904822140}
-  imageOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114842646118925832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -627,7 +626,6 @@ MonoBehaviour:
   parentOfArrows: {fileID: 224191465189159646}
   distBetweenArrows: 0.5
   arrowsScale: 0.02
-  yPosOfArrows: -0.45
   tiltingTime: 0.05
 --- !u!198 &198258588904822140
 ParticleSystem:
