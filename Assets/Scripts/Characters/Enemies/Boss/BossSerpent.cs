@@ -18,6 +18,7 @@ public class BossSerpent : AbstractBoss {
         SetActions();
         Config();
         moving= GetComponent<MovingPlatform>();
+        life = 10;
     }
 
     private void SetActions()

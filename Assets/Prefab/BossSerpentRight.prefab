@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
-  width: 18
+  width: 15
   direction: 1
 --- !u!114 &114522498405883946
 MonoBehaviour:

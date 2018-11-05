@@ -147,7 +147,7 @@ public abstract class AbstractBoss : AbstractEnemy
 
     private void ChangeStageIfNeeded()
     {
-        if (life < maxLifeToChangeStage[stage])
+        if (life < maxLifeToChangeStage[stage]&& life>0)
         {
             stage++;
             actions = stageActions[stage];
@@ -161,6 +161,11 @@ public abstract class AbstractBoss : AbstractEnemy
             {
                 timerActions = timerActionsStage3;
             }
+        }
+        if (life <= 0&& this.gameObject!=null)
+        {
+            this.gameObject.SetActive(false);
+
         }
     }
 
