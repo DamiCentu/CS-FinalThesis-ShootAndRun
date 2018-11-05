@@ -337,11 +337,10 @@ public class Player : MonoBehaviour, IHittable
                 //print("asd");
                 horizontalVel = 0;
             }
-            //    horizontalVel = CheckRun(Vector3.right * horizontalVel) ? horizontalVel : 0;
+
 
             _rb.velocity = new Vector3(horizontalVel, 0, verticalVel).normalized * speed;
-            //float animHor = horizontalVel / speed;
-            //float animVer = verticalVel / speed;
+
             an.SetFloat("Horizontal", horizontalVel);
             an.SetFloat("Vertical", verticalVel);
         }
@@ -358,33 +357,47 @@ public class Player : MonoBehaviour, IHittable
 
     private void TryDash()
     {
-         _dashTimer -= Time.deltaTime;
-        if (_dashTimer < 0) {
+        TimerDash();
+
+        float verticalVel = Input.GetAxis("Vertical");
+        float horizontalVel = Input.GetAxis("Horizontal");
+        Vector3 direction = new Vector3(horizontalVel, 0, verticalVel).normalized;
+
+        if (CanDash(direction))
+        {
+            print("dasheo normal");
+            StartDash(direction);
+
+        }
+
+    }
+
+    private void TimerDash()
+    {
+        _dashTimer -= Time.deltaTime;
+        if (_dashTimer < 0)
+        {
             _dashTimer = defaultDashTimer;
-            if (dashCount < MaxDashCount) {
+            if (dashCount < MaxDashCount)
+            {
                 dashCount++;
                 RefreshDashUI();
             }
         }
+    }
 
-        float verticalVel = Input.GetAxis("Vertical");
-        float horizontalVel = Input.GetAxis("Horizontal");
-        Vector3 direction = new Vector3(horizontalVel, 0, verticalVel).normalized ;
-
-       // if (MyInputManager.instance.Dash() && CheckDash(direction) &&  _dashTimer <= 0 && direction != Vector3.zero) { // tengo que tener una direccion, haber tocado la tecla y no estar en cooldown
-       if (CanDash(direction)) { 
-            _isDashing = true;  // marco que dasheo
-            ChangeShaderValue("_DashF", 1);
-            _isInvulnerable = true;
-            this.transform.rotation = Quaternion.FromToRotation(this.transform.position, this.transform.position + dashDirection);
-            an.SetBool("Dash", true);
-            //   _dashTimer = defaultDashTimer; // reseteo el timer de dash
-            _timeDashing = 0;
-            dashDirection = direction;
-            dashCount--;
-            RefreshDashUI();
-           
-        }
+    private void StartDash(Vector3 direction)
+    {
+        _isDashing = true;  // marco que dasheo
+        ChangeShaderValue("_DashF", 1);
+        _isInvulnerable = true;
+        this.transform.rotation = Quaternion.FromToRotation(this.transform.position, this.transform.position + dashDirection);
+        an.SetBool("Dash", true);
+        //   _dashTimer = defaultDashTimer; // reseteo el timer de dash
+        _timeDashing = 0;
+        dashDirection = direction;
+        dashCount--;
+        RefreshDashUI();
     }
 
     public void RefreshDashUI()
@@ -398,8 +411,12 @@ public class Player : MonoBehaviour, IHittable
 
     private bool CheckDash(Vector3 direction)
     {
-        if(Physics.Raycast(this.transform.position, direction,  offsetDash, ObstacleLayerMask))
+        if (Physics.Raycast(this.transform.position + Vector3.up * 0.5f, direction, offsetDash, ObstacleLayerMask))
         {
+
+            return false;
+        }
+        else if (!CheckRun(direction)) {
             return false;
         }
         return true;
@@ -407,7 +424,8 @@ public class Player : MonoBehaviour, IHittable
 
     private bool CheckRun(Vector3 direction)
     {
-        if (Physics.Raycast(this.transform.position+ Vector3.up * 0.5f, direction, 1, ObstacleLayerMask))
+        if (Physics.Raycast(this.transform.position+ Vector3.up * 0.5f, direction, 1f, ObstacleLayerMask))// pasar el 1 a un valor mas chico y arreglar bien el movimiento despues
+        
         {
             return false;
         }
