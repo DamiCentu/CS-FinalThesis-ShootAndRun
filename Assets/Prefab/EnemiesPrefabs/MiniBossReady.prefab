@@ -1221,9 +1221,9 @@ MonoBehaviour:
   timeToStartAttack: 0.3
   timeToEndAttack: 1
   hitsCanTake: 20
-  timeBetweenBullets: 0.5
+  timeBetweenBullets: 0.1
   spawnBulletPosition: {fileID: 4491173177536554}
-  speedRotation: 1
+  speedRotation: 5
   blockEnemyViewToTarget:
     serializedVersion: 2
     m_Bits: 525312
