@@ -3,35 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using FSMFUNCTIONAL;
 
-public class MiniBossBehaviour : AbstractEnemy,IHittable { 
-    public float openColliderHeight = 5.7f;
-    public float ClosedColliderHeight = 0f;
-    public float radiusToStartLaser = 10f;
-    public float radiusToEndLaser = 15f;
+public class MiniBossBehaviour : AbstractEnemy,IHittable {
+    public float radiusToStartShooting = 10f;
+    public float radiusToEndShooting = 15f;
     public float timeToStartAttack = 1f;
     public float timeToEndAttack = 1f;
 
     public int hitsCanTake = 10;
-    public Transform transformToRotate;
-    public LayerMask layersToHitOnAttack;
-    public float maxDistanceOfAttack = 10f;
-    public float speedOfAttack = 7f;
-    public float speedOfEndAttack = 10f;
-    public Transform spawnLaserFront;
-    public Transform spawnLaserBack; 
+    public float timeBetweenBullets = .5f;
+    public Transform spawnBulletPosition;
     public float speedRotation = 5f;
     public LayerMask blockEnemyViewToTarget;
 
-    LineRenderer[] _lineRendereders; 
-
-    int _hitsTaken; 
-    float _currentDistanceOfAttack = 0f;
+    int _hitsTaken;
     bool _canReciveDamage = false; 
     float _time = 0f;
+    float _timerToShoot = 0f;
 
     Animator _anim;
     Flocking _flocking;
-    CapsuleCollider _capCol;
     FollowPathBehaviour _followPathBehaviour;
 
     WaitForSeconds _waitToStartAttack;
@@ -53,30 +43,16 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
 
         _anim = GetComponentInChildren<Animator>();
         _flocking = GetComponent<Flocking>();
-        _capCol = GetComponent<CapsuleCollider>();
-        _lineRendereders = GetComponentsInChildren<LineRenderer>(); 
         _followPathBehaviour = new FollowPathBehaviour(this, blockEnemyViewToTarget, _flocking);
 
         _flocking.target = EnemiesManager.instance.player.transform; 
         _flocking.resetVelocity();
         _anim.SetBool("Moving", true);
-        _capCol.height = ClosedColliderHeight;
         _flocking.flockingEnabled = false;
 
         _waitToStartAttack = new WaitForSeconds(timeToStartAttack);
 
         _waitToEndAttack = new WaitForSeconds(timeToEndAttack);
-
-        int count = 0;
-        foreach (var l in _lineRendereders) { 
-            l.SetPosition(count ,transform.position);
-
-            count++;
-            if(l.positionCount == count) {
-                count = 0;
-            }
-            l.enabled = false;
-        } 
 
         _followPathBehaviour.SetActualSectionNode(_actualSectionNode);
 
@@ -93,7 +69,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         var closing = new State<MiniBossInputs>(CLOSING);
         var integration = new State<MiniBossInputs>(INTEGRATION);
         var followUser = new State<MiniBossInputs>(FOLLOW_USER);
-        var shootingLaser = new State<MiniBossInputs>(SHOOTING_LASER);
+        var shooting = new State<MiniBossInputs>(SHOOTING_LASER);
         var opening = new State<MiniBossInputs>(OPENING);
 
 
@@ -103,30 +79,26 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
 
         StateConfigurer.Create(followUser)
             .SetTransition(MiniBossInputs.InRange, opening)
-            //.SetTransition(MiniBossInputs.ResetFSM, integration)
             .Done();
 
         StateConfigurer.Create(opening)
-            .SetTransition(MiniBossInputs.FinishedOpening, shootingLaser)
+            .SetTransition(MiniBossInputs.FinishedOpening, shooting)
             .SetTransition(MiniBossInputs.NotInRange, closing)
-            //.SetTransition(MiniBossInputs.ResetFSM, integration)
             .Done();
 
-        StateConfigurer.Create(shootingLaser)
+        StateConfigurer.Create(shooting)
             .SetTransition(MiniBossInputs.NotInRange, closing)
-            //.SetTransition(MiniBossInputs.ResetFSM, integration)
             .Done();
 
         StateConfigurer.Create(closing)
             .SetTransition(MiniBossInputs.InRange, opening)
             .SetTransition(MiniBossInputs.FinishedClosing, followUser)
-            //.SetTransition(MiniBossInputs.ResetFSM, integration)
             .Done();
 
         SetFollowUserFuncs(followUser);
         SetOpeningFuncs(opening);
         SetClosingFuncs(closing);
-        SetShootingLaserFuncs(shootingLaser);
+        SetShootingFuncs(shooting);
         SetIntegrationFuncs(integration);
 
         _myFsm = new EventFSM<MiniBossInputs>(integration);
@@ -157,7 +129,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
                 return;
             }
             
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToStartLaser)) {
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToStartShooting)) {
                 SendInputToFSM(MiniBossInputs.InRange);
             }
         };
@@ -184,7 +156,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         opening.OnUpdate += () => {
             _anim.speed = SectionManager.instance.EnemiesMultiplicator;
             _time += Time.deltaTime;
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndLaser)) { 
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndShooting)) { 
                 if (0.1f < _time) { // es el largo del clip de open y closing
                     SendInputToFSM(MiniBossInputs.FinishedOpening);
                 }
@@ -198,8 +170,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
     //---------------------------------------------------------------------CLOSING
 
     void SetClosingFuncs(State<MiniBossInputs> closing) {
-        closing.OnEnter += x => { 
-            _capCol.height = ClosedColliderHeight;
+        closing.OnEnter += x => {
             _anim.SetBool("Moving", true);
             _time = 0f;
         };
@@ -207,7 +178,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         closing.OnUpdate += () => {
             _anim.speed = SectionManager.instance.EnemiesMultiplicator;
             _time += Time.deltaTime;
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndLaser)) { 
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndShooting)) { 
                 SendInputToFSM(MiniBossInputs.InRange);
             }
             else {
@@ -220,61 +191,38 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
 
     //---------------------------------------------------------------------SHOOTING LASER 
 
-    void SetShootingLaserFuncs(State<MiniBossInputs> shootingLaser) {
-        shootingLaser.OnEnter += x =>  { 
-            _currentDistanceOfAttack = 0f;
-            foreach (var l in _lineRendereders) {
-                l.enabled = true;
-            }
+    void SetShootingFuncs(State<MiniBossInputs> shooting) {
+        shooting.OnEnter += x => {
+            _timerToShoot = 0;
 
             _canReciveDamage = true;
-            _capCol.height = openColliderHeight;
         };
 
-        shootingLaser.OnUpdate += () => {
+        shooting.OnUpdate += () => {
             
             var targetRotation = Quaternion.LookRotation(Utility.SetYInVector3(EnemiesManager.instance.player.transform.position,transform.position.y) - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speedRotation * Time.deltaTime * SectionManager.instance.EnemiesMultiplicator);
 
-            _lineRendereders[0].SetPosition(0, spawnLaserFront.position);
-            _lineRendereders[0].SetPosition(1, spawnLaserFront.position + spawnLaserFront.forward * _currentDistanceOfAttack);
-            _lineRendereders[1].SetPosition(0, spawnLaserBack.position);
-            _lineRendereders[1].SetPosition(1, spawnLaserBack.position + spawnLaserBack.forward * _currentDistanceOfAttack);
-
-
             _anim.speed = SectionManager.instance.EnemiesMultiplicator;
 
-            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndLaser)) { 
-                _currentDistanceOfAttack += Time.deltaTime * speedOfAttack * SectionManager.instance.EnemiesMultiplicator; 
-                if (_currentDistanceOfAttack > maxDistanceOfAttack) { 
-                    _currentDistanceOfAttack = maxDistanceOfAttack;
+            if (Utility.InRangeSquared(_flocking.target.transform.position, transform.position, radiusToEndShooting)) {
+
+                if(_timerToShoot > timeBetweenBullets) { 
+                    var s = EnemyBulletManager.instance.giveMeEnemyBullet();
+                    s.SetPos(spawnBulletPosition.position).SetDir(spawnBulletPosition.forward).gameObject.SetActive(true);
+                    _timerToShoot = 0;
                 }
+
+                _timerToShoot += Time.deltaTime;
             }
 
             else {
-                _currentDistanceOfAttack -= Time.deltaTime * speedOfEndAttack * SectionManager.instance.EnemiesMultiplicator; 
-                if (_currentDistanceOfAttack < 0) { 
                     SendInputToFSM(MiniBossInputs.NotInRange);
-                }
             } 
         };
 
-        shootingLaser.OnFixedUpdate += () => {
-            RaycastHit rh;
-            if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out rh, _currentDistanceOfAttack, layersToHitOnAttack) 
-                                || Physics.Raycast(transform.position + Vector3.up, -transform.forward, out rh, _currentDistanceOfAttack, layersToHitOnAttack)) {
-                if (rh.collider.gameObject.layer == 8) {//player
-                    rh.collider.gameObject.GetComponent<IHittable>().OnHit(1);
-                }
-            } 
-        };
-
-        shootingLaser.OnExit += x => { 
-            _currentDistanceOfAttack = 0;
-            foreach (var l in _lineRendereders) {
-                l.enabled = false;
-            }
-
+        shooting.OnExit += x => {
+            _timerToShoot = 0;
             _canReciveDamage = false;
         };
     }
@@ -313,6 +261,6 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
 
     void OnDrawGizmos() {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, radiusToStartLaser);
+        Gizmos.DrawWireSphere(transform.position, radiusToStartShooting);
     }
 }
