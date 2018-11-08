@@ -91,7 +91,11 @@ public class BossSerpent : AbstractBoss,IHittable {
             type = Type.Up;
             stageActions.Clear();
             SetActions();
-            Evolve();
+            base.Evolve();
+
+            moving.ChangeStartPosition(GameObject.Find("BossEvolveSpaenPoint").transform.position);
+            moving.direction = MovingPlatform.Direction.Right;
+            moving.width = 10;
         }
     }
 

@@ -33,6 +33,12 @@ public class MovingPlatform : MonoBehaviour {
         }
 	}
 
+    public void ChangeStartPosition(Vector3 pos)
+    {
+        initialPosition = pos;
+        timer = 0;
+    }
+
     internal void Move(bool v)
     {
         _shouldMove = v;
