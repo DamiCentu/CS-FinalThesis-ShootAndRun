@@ -66,6 +66,7 @@ public class Player : MonoBehaviour, IHittable
     public GameObject wings;
     public ScatterUlt scatter;
     public MinionsSpawn minionsSpawn;
+    public bool debugMode=false;
 
     void Start () {
         _rb=this.GetComponent<Rigidbody>();
@@ -480,7 +481,7 @@ public class Player : MonoBehaviour, IHittable
   
     public void OnHit(int damage)
     {
-        if (!_isInvulnerable&&!isDead&&!_inBerserkerMode) {
+        if (!_isInvulnerable&&!isDead&&!_inBerserkerMode&& !debugMode) {
             if (_gotShield)
             {
                 powerUpManager.DisableShield();

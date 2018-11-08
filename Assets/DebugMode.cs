@@ -5,6 +5,7 @@ using UnityEngine;
 public class DebugMode : MonoBehaviour {
 
     public PlayerPowerUpManager powerUpManager;
+    public Player player;
     // Use this for initialization
     void Start()
     {
@@ -14,6 +15,8 @@ public class DebugMode : MonoBehaviour {
         powerUpManager.AddRange();
         powerUpManager.AddRange();
         powerUpManager.EnableShield(new object[1]);
+        powerUpManager.RecalculatePowerUp();
+        player.debugMode = true;
     }
 
     // Update is called once per frame

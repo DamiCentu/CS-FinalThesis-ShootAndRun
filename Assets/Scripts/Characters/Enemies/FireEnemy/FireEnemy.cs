@@ -11,7 +11,7 @@ public class FireEnemy : AbstractEnemy, IHittable {
     public Transform target;
     public float speed;
     public LayerMask maskThatBlockVisionToPlayer;
-
+    public Transform body;
     DamagePath damagePath; 
     Timer timer;
 
@@ -33,6 +33,8 @@ public class FireEnemy : AbstractEnemy, IHittable {
         if (_eIntegration != null && !_eIntegration.LoadingNotComplete) {
 
         }
+        body.LookAt(EnemiesManager.instance.player.transform.position);
+        body.Rotate(90, 0, 0);
     }
 
     void FixedUpdate() {
