@@ -8,6 +8,7 @@ public class BossSerpent : AbstractBoss,IHittable {
     public BossThrowFire actionThrowFire;
     public BossShootGun actionShootGun;
     public BossLaser actionLaser;
+    public BossDirectedMisil actionDirectedMisil;
     public enum Type {Left, Right };
     public Type type;
     MovingPlatform moving;
@@ -27,6 +28,7 @@ public class BossSerpent : AbstractBoss,IHittable {
         stageActions.Add(new List<BossActions>());
         if (type == Type.Left) {
             stageActions[0].Add(actionThrowFire);
+            stageActions[0].Add(actionDirectedMisil);
         }
         if (type == Type.Right)
         {

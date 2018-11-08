@@ -23,7 +23,6 @@ public abstract class IBullet : MonoBehaviour {
         content[0] = this;
         //print(1);
         EventManager.instance.ExecuteEvent(Constants.EVENT_BULLET_RETURN_TO_POOL,content);
-   //     Destroy(this.gameObject); //devovler bala al pool correspondiente
     }
 
 

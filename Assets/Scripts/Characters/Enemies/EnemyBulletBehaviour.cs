@@ -10,7 +10,7 @@ public class EnemyBulletBehaviour : MonoBehaviour {
 
     TrailRenderer _trail; 
 
-    void Update () {
+    public virtual void Update () {
         transform.position += bulletSpeed * Time.deltaTime * transform.forward * SectionManager.instance.EnemiesMultiplicator;
 	}
 
@@ -36,7 +36,7 @@ public class EnemyBulletBehaviour : MonoBehaviour {
         return this;
     }
 
-    void OnTriggerEnter(Collider c) {
+    public virtual void OnTriggerEnter(Collider c) {
         if(layerThatAffectEnemyBullet == (layerThatAffectEnemyBullet | (1 << c.gameObject.layer))) {
             _trail.Clear();
             _trail.enabled = false;

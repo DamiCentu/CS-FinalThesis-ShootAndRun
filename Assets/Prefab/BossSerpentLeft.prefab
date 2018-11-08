@@ -59,6 +59,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1351595620089264
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4661075180266198}
+  - component: {fileID: 114427746666771280}
+  m_Layer: 12
+  m_Name: BossDirectedMisil (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1380660442118758
 GameObject:
   m_ObjectHideFlags: 1
@@ -223,8 +239,22 @@ Transform:
   - {fileID: 4770040837460686}
   - {fileID: 4990507259484920}
   - {fileID: 4173729503147794}
+  - {fileID: 4661075180266198}
   m_Father: {fileID: 4737639976590528}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4661075180266198
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351595620089264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4521552915928940}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4737639976590528
 Transform:
@@ -388,6 +418,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteTimeOnHit: 0.1
   whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
+--- !u!114 &114427746666771280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351595620089264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54432749ac7b56646938632dead7b66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nBullet: 3
+  angle: 45
+  prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
+    type: 2}
 --- !u!114 &114779772722819886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
-  width: 15
+  width: 12
   direction: 1
 --- !u!114 &114892225617770412
 MonoBehaviour:
@@ -423,7 +468,8 @@ MonoBehaviour:
   maxLifeToChangeStage:
   - -100
   timerActionsStage1:
-  - 20
+  - 5
+  - 5
   timerActionsStage2: []
   timerActionsStage3: []
   life: 50
@@ -434,6 +480,7 @@ MonoBehaviour:
   actionThrowFire: {fileID: 114390135109834886}
   actionShootGun: {fileID: 114180238876812894}
   actionLaser: {fileID: 114015264290088276}
+  actionDirectedMisil: {fileID: 114427746666771280}
   type: 0
   shootPosition: {fileID: 4283482168512746}
 --- !u!114 &114951123051083710
