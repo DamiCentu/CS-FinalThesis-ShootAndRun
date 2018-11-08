@@ -17,8 +17,8 @@ public abstract class AbstractBoss : AbstractEnemy
     public int lifeMedium = 400;
     public int lifeHard = 500;
     public List<float> maxLifeToChangeStage = new List<float>();
-    int stage = 0;
-    int index = 0;
+    public int stage = 0;
+    public int index = 0;
     public List<float> timerActionsStage1 = new List<float>();
     public List<float> timerActionsStage2 = new List<float>();
     public List<float> timerActionsStage3 = new List<float>();
@@ -32,7 +32,7 @@ public abstract class AbstractBoss : AbstractEnemy
     int maxLife = 50;
     bool introFinished = false;
     public Renderer[] meshRends;
-
+    protected bool shouldChangeStage = true;
 
     public void Config()
     {
@@ -40,21 +40,7 @@ public abstract class AbstractBoss : AbstractEnemy
         player = ((Player)FindObjectOfType(typeof(Player))).gameObject;
         index = 0;
         stage = 0;
-        if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
-        {
-            life = lifeEasy;
-            maxLifeToChangeStage[0] = lifeToChangeEasy;
-        }
-        else if (Configuration.instance.dificulty == Configuration.Dificulty.Medium)
-        {
-            life = lifeMedium;
-            maxLifeToChangeStage[0] = lifeToChangeMedium;
-        }
-        else if (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
-        {
-            life = lifeToChangeHard;
-            maxLifeToChangeStage[0] = lifeToChangeHard;
-        }
+        SetLife(0);
         maxLife = life;
         actions = stageActions[stage];
         an = GetComponent<Animator>();
@@ -62,6 +48,45 @@ public abstract class AbstractBoss : AbstractEnemy
         timerActions = timerActionsStage1;
         actualAction = actions[0];
         actualAction.Begin(this);
+
+    }
+
+    private void SetLife(int stage)
+    {
+        if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
+        {
+            life = lifeEasy;
+            maxLifeToChangeStage[stage] = lifeToChangeEasy;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Medium)
+        {
+            life = lifeMedium;
+            maxLifeToChangeStage[stage] = lifeToChangeMedium;
+        }
+        else if (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
+        {
+            life = lifeToChangeHard;
+            maxLifeToChangeStage[stage] = lifeToChangeHard;
+        }
+    }
+
+    protected void Evolve() {
+
+        SetLife(1);
+        life *= 2;
+        maxLife = life;
+        shouldChangeStage = true;
+
+        stage++;
+        actions = stageActions[stage];
+        index = 0;
+
+        timerActions = timerActionsStage2;
+
+
+        actualAction = actions[index];
+        actualAction.Begin(this);
+        timer.Reset(timerActions[index]);
 
     }
 
@@ -145,9 +170,9 @@ public abstract class AbstractBoss : AbstractEnemy
         EventManager.instance.ExecuteEvent(Constants.UPDATE_BOSS_LIFE, container);
     }
 
-    private void ChangeStageIfNeeded()
+    protected void ChangeStageIfNeeded()
     {
-        if (life < maxLifeToChangeStage[stage]&& life>0)
+        if (life < maxLifeToChangeStage[stage]&& life>0 && shouldChangeStage)
         {
             stage++;
             actions = stageActions[stage];

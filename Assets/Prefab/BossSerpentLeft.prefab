@@ -431,6 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nBullet: 3
   angle: 45
+  offsetXz: 2
   prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
     type: 2}
 --- !u!114 &114779772722819886
@@ -467,10 +468,17 @@ MonoBehaviour:
   lifeHard: 200
   maxLifeToChangeStage:
   - -100
+  - -100
+  stage: 0
+  index: 0
   timerActionsStage1:
   - 5
   - 5
-  timerActionsStage2: []
+  timerActionsStage2:
+  - 5
+  - 5
+  - 5
+  - 5
   timerActionsStage3: []
   life: 50
   bossCameraShakeTime: 2

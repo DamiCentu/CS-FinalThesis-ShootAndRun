@@ -9,22 +9,31 @@ public class BossSerpent : AbstractBoss,IHittable {
     public BossShootGun actionShootGun;
     public BossLaser actionLaser;
     public BossDirectedMisil actionDirectedMisil;
-    public enum Type {Left, Right };
+    public enum Type {Left, Right,Up };
     public Type type;
     MovingPlatform moving;
     public Transform shootPosition;
-    private bool inmortal=false;
+    private bool dead=false;
+
 
     void Awake()
     {
         SetActions();
         Config();
         moving= GetComponent<MovingPlatform>();
+        shouldChangeStage = false;
+    }
+
+    private void Start()
+    {
+        EventManager.instance.SubscribeEvent("EvolveBoss2", Evolve);
     }
 
     private void SetActions()
     {
 
+        stageActions.Add(new List<BossActions>());
+        stageActions.Add(new List<BossActions>());
         stageActions.Add(new List<BossActions>());
         if (type == Type.Left) {
             stageActions[0].Add(actionThrowFire);
@@ -34,6 +43,13 @@ public class BossSerpent : AbstractBoss,IHittable {
         {
             stageActions[0].Add(actionShootGun);
             stageActions[0].Add(actionLaser);
+        }
+        if (type == Type.Up)
+        {
+            stageActions[1].Add(actionShootGun);
+            stageActions[1].Add(actionLaser);
+            stageActions[1].Add(actionThrowFire);
+            stageActions[1].Add(actionDirectedMisil);
         }
     }
 
@@ -50,11 +66,33 @@ public class BossSerpent : AbstractBoss,IHittable {
     }
     void IHittable.OnHit(int damage)
     {
-        if (!inmortal)
+        AbstractOnHitWhiteAction();
+        if (type == Type.Up)
         {
-            AbstractOnHitWhiteAction();
             GetDamage(damage);
+        }
+        else
+        {
+            life -= damage;
+            if (life <= 0) {
+                dead = true;
+                Destroy(this.gameObject);
+                EventManager.instance.ExecuteEvent("EvolveBoss2");
 
+            }
         }
     }
+
+
+    private void Evolve(object[] parameterContainer)
+    {
+        if (!dead) {
+            print("evolveee");
+            type = Type.Up;
+            stageActions.Clear();
+            SetActions();
+            Evolve();
+        }
+    }
+
 }
