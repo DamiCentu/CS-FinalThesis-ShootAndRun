@@ -336,14 +336,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introTime: 0
-  lifeToChangeEasy: 150
-  lifeToChangeMedium: 250
-  lifeToChangeHard: 350
-  lifeEasy: 300
-  lifeMedium: 400
-  lifeHard: 500
+  lifeToChangeEasy: -100
+  lifeToChangeMedium: -100
+  lifeToChangeHard: -100
+  lifeEasy: 100
+  lifeMedium: 150
+  lifeHard: 200
   maxLifeToChangeStage:
-  - -1
+  - -100
   timerActionsStage1:
   - 5
   - 5
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteTimeOnHit: 0.1
-  whiteMat: {fileID: 0}
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114922754863239900
 MonoBehaviour:
   m_ObjectHideFlags: 1

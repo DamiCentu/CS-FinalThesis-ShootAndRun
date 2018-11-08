@@ -232,7 +232,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1782998905453274}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -372,7 +372,7 @@ MonoBehaviour:
   maskThatBlockVisionToPlayer:
     serializedVersion: 2
     m_Bits: 0
-  speed: 5
+  speed: 15
   boss: {fileID: 0}
   stopTime: 0.15
 --- !u!114 &114425525449765392
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteTimeOnHit: 0.1
-  whiteMat: {fileID: 0}
+  whiteMat: {fileID: 2100000, guid: 92215d5234a21f44995be61fd0e8ea39, type: 2}
 --- !u!114 &114779772722819886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -414,14 +414,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introTime: 0
-  lifeToChangeEasy: 150
-  lifeToChangeMedium: 250
-  lifeToChangeHard: 350
-  lifeEasy: 300
-  lifeMedium: 400
-  lifeHard: 500
+  lifeToChangeEasy: -100
+  lifeToChangeMedium: -100
+  lifeToChangeHard: -100
+  lifeEasy: 100
+  lifeMedium: 150
+  lifeHard: 200
   maxLifeToChangeStage:
-  - -1
+  - -100
   timerActionsStage1:
   - 20
   timerActionsStage2: []

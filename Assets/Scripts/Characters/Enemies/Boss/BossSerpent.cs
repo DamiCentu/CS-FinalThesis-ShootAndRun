@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSerpent : AbstractBoss {
+public class BossSerpent : AbstractBoss,IHittable {
     public float speed=1;
     public BossThrowFire actionThrowFire;
     public BossShootGun actionShootGun;
@@ -12,13 +12,13 @@ public class BossSerpent : AbstractBoss {
     public Type type;
     MovingPlatform moving;
     public Transform shootPosition;
+    private bool inmortal=false;
 
     void Awake()
     {
         SetActions();
         Config();
         moving= GetComponent<MovingPlatform>();
-        life = 10;
     }
 
     private void SetActions()
@@ -45,5 +45,14 @@ public class BossSerpent : AbstractBoss {
     internal void StopMoving(bool v)
     {
         moving.Move(!v);
+    }
+    void IHittable.OnHit(int damage)
+    {
+        if (!inmortal)
+        {
+            AbstractOnHitWhiteAction();
+            GetDamage(damage);
+
+        }
     }
 }
