@@ -19,15 +19,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 0c3bac9ef367a42488da8587a565c864, type: 3}
+        m_Texture: {fileID: 2800000, guid: c486a00f8e936814489f2be8bad12921, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: fe8d3da10714c52478888b3314a0b8b7, type: 3}
+        m_Texture: {fileID: 2800000, guid: b02a047fbf09b6c4a83dca0a79ae6111, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
-        m_Texture: {fileID: 2800000, guid: fa0fb82ba6d946d46ba4c14e3ab28413, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1eb0354696b94f44d877d6bb08ab4256, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo2_DefaultMaterial_AO:
@@ -60,6 +60,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Berserker: 0
+    - _Brillo: 1
     - _Cutoff: 0.5
     - _Float0: 0
     - __dirty: 0

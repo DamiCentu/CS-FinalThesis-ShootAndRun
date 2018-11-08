@@ -18,28 +18,40 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: 60974f539c2717b4e904c5e7ccc82233, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 0c03c43945b69d245902bf3e72488e92, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission:
+        m_Texture: {fileID: 2800000, guid: 0b85ee785f4220443a9c0c6ee9d9738a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TextureSample1:
         m_Texture: {fileID: 2800000, guid: f98b75fbffa36144b991e7ccfc3c3ef3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AO:
-        m_Texture: {fileID: 2800000, guid: 79d08dcfe67c12e47ba0bca2dd0d4ea9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 60974f539c2717b4e904c5e7ccc82233, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AlbedoTransparency:
-        m_Texture: {fileID: 2800000, guid: a005df66142d2fe4ba581d607bdec72c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_Emission:
-        m_Texture: {fileID: 2800000, guid: aa756a32999974542a4aaf3e14b77089, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_MetallicSmoothness:
-        m_Texture: {fileID: 2800000, guid: 0948b22f4859dde498b7ec797a07d98a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_Normal:
-        m_Texture: {fileID: 2800000, guid: f6f6bafce6b938043bb561d31a2af573, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -48,6 +60,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Berserker: 0
+    - _Brillo: 3
     - _Cutoff: 0.5
     - __dirty: 0
     - _reintegrateValue: 2

@@ -105,7 +105,12 @@ ModelImporter:
     13700024: pata 2
     13700026: pata 3
     13700028: pata 4
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: dd3dabc86a7a2844bb3a50e52cff6f92, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
