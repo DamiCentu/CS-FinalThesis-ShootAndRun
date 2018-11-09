@@ -24,6 +24,7 @@ public class SectionManager : MonoBehaviour {
     public float EnemiesMultiplicator { get { return _enemiesMultiplator; } } 
 
     public float timeSplicingQuoteForSectionRoutine = 0.001f;
+    public GameObject debug;
 
     void Awake()
     {
@@ -59,6 +60,12 @@ public class SectionManager : MonoBehaviour {
         EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque);
 
         //para que no me rompa las bolas
+
+        int nodeNumber = Configuration.instance.node;
+        if (Configuration.instance.node >= 0) {
+
+            actualNode = GameObject.Find("SectionNode" + nodeNumber).GetComponent<SectionNode>();
+        }
         if (actualNode == null)
             return;
 
@@ -69,6 +76,10 @@ public class SectionManager : MonoBehaviour {
             {
                 actualNode.SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
             }
+        }
+
+        if (Configuration.instance.activeDebugMode) {
+            debug.SetActive(true);
         }
 
         StartCoroutine(SectionsRoutine());

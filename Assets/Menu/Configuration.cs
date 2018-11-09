@@ -13,6 +13,8 @@ public class Configuration : MonoBehaviour {
     public int creditsMedium = 5;
     public int creditsHard = 1;
     public int lvl=1;
+    public int node = -1;
+    public bool activeDebugMode = false;
     
     public int Credits { get { return GetCreditsAmount(); } }
 
@@ -25,6 +27,10 @@ public class Configuration : MonoBehaviour {
             instance = this; 
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void SetDebugMode(bool b) {
+        activeDebugMode = b;
     }
 
     public  void SetSinglePlayer() {
@@ -126,5 +132,10 @@ public class Configuration : MonoBehaviour {
         {
             SetHard();
         }
+    }
+
+    internal void SetNode(int value)
+    {
+        node = value;
     }
 }
