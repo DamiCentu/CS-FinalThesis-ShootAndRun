@@ -431,6 +431,7 @@ MonoBehaviour:
     m_Bits: 524288
   boss: {fileID: 0}
   line: {fileID: 120078702018564514}
+  speed: 0.3
 --- !u!114 &114180238876812894
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,8 +12,10 @@ public class BossFly : MonoBehaviour, BossActions
     void BossActions.Begin(AbstractBoss boss)
     {
         print("empiezo a volar");
+        print("boss type");
+        print(((BossSerpent)boss).type);
         ((BossSerpent)boss).StopMoving(true);
-        startPos = this.transform.position;
+        startPos = boss.transform.position;
     }
 
     void BossActions.DeleteAll()

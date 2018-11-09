@@ -13,11 +13,17 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
     private float offset=1;
     public float offsetXz= 2;
     public GameObject prefabMisil;
+    public float misilSpeed;
+    public int extraBullet=2;
+    public bool upgraded=false;
+    public float extraSpeed=5;
 
     void BossActions.Begin(AbstractBoss boss)
     {
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
+        if (upgraded)
+            this.boss.SpawnEnemies("DirectedMisilUpgrade");
         Shoot();
     }
 
@@ -36,6 +42,9 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
 
             var s = Instantiate(prefabMisil, shootPosition,Quaternion.Euler(new Vector3 (curRot.x, 0,-curRot.z)) );
             s.transform.forward = curRot;
+            if (upgraded) {
+                s.GetComponent<FollowBullets>().ExtraSpeed(extraSpeed);
+            }
             misils.Add(s);
         }
 
@@ -62,6 +71,14 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
 
     void BossActions.Upgrade()
     {
-
+        nBullet += extraBullet;
+        misilSpeed += extraSpeed;
+        upgraded = true;
+    }
+    public void Upgrade()
+    {
+        nBullet += extraBullet;
+        misilSpeed += extraSpeed;
+        upgraded = true;
     }
 }

@@ -13,13 +13,14 @@ public class BossThrowFire : MonoBehaviour, BossActions
     public float speed=5;
     public BossSerpent boss;
     public float stopTime=0.15f;
-
-
+    private bool upgraded=false;
 
     void BossActions.Begin(AbstractBoss boss)
     {
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
+        if(upgraded)
+            this.boss.SpawnEnemies("FireUpgrade");
         damagePath = GetComponent<DamagePath>();
         StartCoroutine("ThrowFiretCorutine");
     }
@@ -61,5 +62,12 @@ public class BossThrowFire : MonoBehaviour, BossActions
 
     void BossActions.Upgrade()
     {
+
+        upgraded = true;
+    }
+
+    public void Upgrade()
+    {
+        upgraded = true;
     }
 }

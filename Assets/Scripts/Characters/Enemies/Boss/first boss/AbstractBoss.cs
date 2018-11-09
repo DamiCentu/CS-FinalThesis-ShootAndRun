@@ -25,7 +25,7 @@ public abstract class AbstractBoss : AbstractEnemy
     List<float> timerActions = new List<float>();
     Timer timerIntro;
     Timer timer;
-    private BossActions actualAction;
+    protected BossActions actualAction;
     public int life = 50;
     public float bossCameraShakeTime = 2;
     public GameObject player;
@@ -71,7 +71,6 @@ public abstract class AbstractBoss : AbstractEnemy
     }
 
     protected void Evolve() {
-
         SetLife(1);
         life *= 2;
         maxLife = life;

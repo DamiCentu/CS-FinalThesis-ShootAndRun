@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,14 +24,7 @@ public class FollowBullets : EnemyBulletBehaviour
         timer -= Time.deltaTime;
         base.Update();
         Transform player = EnemiesManager.instance.player.transform;
-        /*float rotX = Mathf.Lerp(this.transform.position.x, player.transform.position.x, followIntensity);
-        float rotz = Mathf.Lerp(this.transform.position.z, player.transform.position.z, followIntensity);
 
-          this.transform.rotation = Quaternion.Euler(new Vector3(rotX, 0, rotz));
-        Vector3 rot =Quaternion.LookRotation(player.position - this.transform.position, Vector3.up).eulerAngles;
-
-        float rotX = Mathf.Lerp(this.transform.rotation.eu.x, player.transform.position.x, followIntensity);
-        float rotz = Mathf.Lerp(this.transform.position.z, player.transform.position.z, followIntensity);*/
 
         Vector3 auxDir = player.position - this.transform.position;
         this.transform.forward = Vector3.RotateTowards(transform.forward, auxDir, followIntensity, 0.0f);
@@ -41,4 +35,8 @@ public class FollowBullets : EnemyBulletBehaviour
         }
     }
 
+    internal void ExtraSpeed(float extraSpeed)
+    {
+        bulletSpeed += extraSpeed;
+    }
 }

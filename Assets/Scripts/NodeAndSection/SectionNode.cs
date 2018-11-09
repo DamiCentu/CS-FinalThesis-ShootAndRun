@@ -306,10 +306,13 @@ public class SectionNode : MonoBehaviour {
                 }
             }
             else if (Configuration.instance.lvl == 2) {
-                bossSerpentLeftOnScreen.DeleteAll();
-                Destroy(bossSerpentLeftOnScreen.gameObject);
-                bossSerpentRightOnScreen.DeleteAll();
-                Destroy(bossSerpentRightOnScreen.gameObject);
+                if (bossSerpentLeftOnScreen != null)
+                {
+                    bossSerpentLeftOnScreen.Destroy();
+                }
+                if (bossSerpentRightOnScreen != null) {
+                    bossSerpentRightOnScreen.Destroy();
+                }
             }
         }
     }

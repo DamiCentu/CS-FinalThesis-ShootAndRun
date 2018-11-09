@@ -22,7 +22,6 @@ public class BossShootGun : MonoBehaviour, BossActions {
 
     void BossActions.DeleteAll()
     {
-        StopCoroutine("ShootCorutine");
     }
 
     void BossActions.Finish(AbstractBoss boss)

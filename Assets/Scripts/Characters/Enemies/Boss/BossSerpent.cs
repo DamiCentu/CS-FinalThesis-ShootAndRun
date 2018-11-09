@@ -50,8 +50,13 @@ public class BossSerpent : AbstractBoss,IHittable {
             stageActions[1].Add(actionBossFlyup);
             stageActions[1].Add(actionBossFlyDown);
             stageActions[1].Add(actionShootGun);
-            stageActions[1].Add(actionLaser);
-            stageActions[1].Add(actionThrowFire);
+            BossLaser auxlaser = actionLaser;
+            auxlaser.Upgrade();
+
+            stageActions[1].Add(auxlaser);
+            BossThrowFire auxfire = actionThrowFire;
+            auxfire.Upgrade();
+            stageActions[1].Add(auxfire);
             stageActions[1].Add(actionDirectedMisil);
         }
     }
@@ -79,17 +84,30 @@ public class BossSerpent : AbstractBoss,IHittable {
             life -= damage;
             if (life <= 0 && !dead) {
                 dead = true;
-                Destroy(this.gameObject);
+                actualAction.Finish(this);
+                Destroy();
+                //this.gameObject.SetActive(false);
                 EventManager.instance.ExecuteEvent("EvolveBoss2");
 
             }
         }
     }
 
+    public void SpawnEnemies(string nameParent, EnemiesManager.TypeOfEnemy type = EnemiesManager.TypeOfEnemy.Normal)
+    {
+        GameObject spawns = GameObject.Find(nameParent);
+        var positions = spawns.GetComponentsInChildren<EnemySpawner>();
+        foreach (var p in positions)
+        {
+            Vector3 position = Utility.SetYInVector3(p.transform.position, 1);
 
+            _actualSectionNode.SpawnEnemyAtPointNoCuentaParaTerminarNodoPeroTieneIntegracion(position, type);
+        }
+    }
     private void Evolve(object[] parameterContainer)
     {
         if (!dead) {
+            print(type);
             print("evolveee");
             type = Type.Up;
             stageActions.Clear();
@@ -102,4 +120,10 @@ public class BossSerpent : AbstractBoss,IHittable {
         }
     }
 
+    internal void Destroy()
+    {
+        this.DeleteAll();
+        EventManager.instance.UnsubscribeEvent("EvolveBoss2", Evolve);
+        Destroy(this.gameObject);
+    }
 }
