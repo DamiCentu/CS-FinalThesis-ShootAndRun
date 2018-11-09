@@ -217,11 +217,11 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
             _myFsm.FixedUpdate();
             //_anim.speed = SectionManager.instance.EnemiesMultiplicator; 
         }
-        head.LookAt(EnemiesManager.instance.player.transform.position);
+       // head.LookAt(EnemiesManager.instance.player.transform.position);
         // -90 90 0
         // -90 90  90
         // 0   0  -90
-        head.Rotate(-90f, -90f, -90f);
+      //  head.Rotate(-90f, -90f, -90f);
         //else _anim.speed = 0f;
     }
 

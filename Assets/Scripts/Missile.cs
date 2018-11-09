@@ -74,7 +74,7 @@ public class Missile: MonoBehaviour
         DestroyMissile();
     }
 
-    public void DestroyMissile()
+    public  virtual void DestroyMissile()
     {
         //print("chau misil");
   //      EventManager.instance.ExecuteEvent(Constants.MISILE_DESTROY);
