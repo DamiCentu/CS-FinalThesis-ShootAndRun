@@ -18,7 +18,10 @@ public class BossLaser : MonoBehaviour, BossActions {
 
     void BossActions.DeleteAll()
     {
+        if (line != null && line.gameObject != null) {
         line.gameObject.SetActive(false);
+
+        }
     }
 
     void BossActions.Finish(AbstractBoss boss)
