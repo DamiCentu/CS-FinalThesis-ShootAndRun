@@ -77,10 +77,9 @@ public abstract class AbstractBoss : AbstractEnemy
         maxLife = life;
         shouldChangeStage = true;
 
-        stage++;
-        actions = stageActions[stage];
+        stage=1;
         index = 0;
-
+        actions = stageActions[stage];
         timerActions = timerActionsStage2;
 
 

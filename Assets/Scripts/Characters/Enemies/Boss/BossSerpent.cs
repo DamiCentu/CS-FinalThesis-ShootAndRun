@@ -9,12 +9,13 @@ public class BossSerpent : AbstractBoss,IHittable {
     public BossShootGun actionShootGun;
     public BossLaser actionLaser;
     public BossDirectedMisil actionDirectedMisil;
+    public BossFly actionBossFlyup;
+    public BossFly actionBossFlyDown;
     public enum Type {Left, Right,Up };
     public Type type;
     MovingPlatform moving;
     public Transform shootPosition;
     private bool dead=false;
-
 
     void Awake()
     {
@@ -46,6 +47,8 @@ public class BossSerpent : AbstractBoss,IHittable {
         }
         if (type == Type.Up)
         {
+            stageActions[1].Add(actionBossFlyup);
+            stageActions[1].Add(actionBossFlyDown);
             stageActions[1].Add(actionShootGun);
             stageActions[1].Add(actionLaser);
             stageActions[1].Add(actionThrowFire);
@@ -74,7 +77,7 @@ public class BossSerpent : AbstractBoss,IHittable {
         else
         {
             life -= damage;
-            if (life <= 0) {
+            if (life <= 0 && !dead) {
                 dead = true;
                 Destroy(this.gameObject);
                 EventManager.instance.ExecuteEvent("EvolveBoss2");

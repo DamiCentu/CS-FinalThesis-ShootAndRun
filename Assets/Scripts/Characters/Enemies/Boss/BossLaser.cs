@@ -31,9 +31,6 @@ public class BossLaser : MonoBehaviour, BossActions {
         line.gameObject.SetActive(true);
 
         RaycastHit rh;
-        print("boss: " + this.boss);
-        print("shootPos: "+ this.boss.shootPosition);
-        print("shootPos pos: " + this.boss.shootPosition.position);
         if (Physics.Raycast(this.boss.shootPosition.position, Vector3.left, out rh, laserMaxDistance, maskToCollide))
         {
             if (rh.collider.gameObject.layer == 8)

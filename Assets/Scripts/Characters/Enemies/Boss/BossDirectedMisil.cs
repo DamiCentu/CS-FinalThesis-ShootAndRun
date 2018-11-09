@@ -33,7 +33,9 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
             Vector3 shootPosition = new Vector3(boss.transform.position.x, boss.player.transform.position.y + offset, boss.transform.position.z+ offset*i);
             var curRot = Quaternion.AngleAxis(angle * i, Vector3.up) * rotation;
 
-            var s = Instantiate(prefabMisil, shootPosition,Quaternion.Euler(curRot) );
+
+            var s = Instantiate(prefabMisil, shootPosition,Quaternion.Euler(new Vector3 (curRot.x, 0,-curRot.z)) );
+            s.transform.forward = curRot;
             misils.Add(s);
         }
 
