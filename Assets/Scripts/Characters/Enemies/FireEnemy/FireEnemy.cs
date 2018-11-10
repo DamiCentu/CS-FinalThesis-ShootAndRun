@@ -7,13 +7,15 @@ using UnityEngine;
 public class FireEnemy : AbstractEnemy, IHittable {
 
     public float timeDefault = 3;
-    public int life = 10;
+    public int hitsCanTake = 10;
     public Transform target;
     public float speed;
     public LayerMask maskThatBlockVisionToPlayer;
     public Transform body;
     DamagePath damagePath; 
     Timer timer;
+
+    int _hitsRemaining;
 
     private void Start() {
         timer = new Timer(timeDefault, Shoot);
@@ -41,10 +43,10 @@ public class FireEnemy : AbstractEnemy, IHittable {
 
     } 
 
-    public void OnHit(int damage) { 
-        life -= damage;
+    public void OnHit(int damage) {
+        _hitsRemaining -= damage;
         AbstractOnHitWhiteAction();
-        if (life < 0) {
+        if (_hitsRemaining < 0) {
             EnemiesManager.instance.ReturnFireEnemyToPool(this);
             Stop();
             StopAllCoroutines();
@@ -54,6 +56,7 @@ public class FireEnemy : AbstractEnemy, IHittable {
     }
 
     public FireEnemy SetPosition(Vector3 pos) {
+        _hitsRemaining = hitsCanTake;
         transform.position = pos;
         if (timer != null) {
             timer.Reset();

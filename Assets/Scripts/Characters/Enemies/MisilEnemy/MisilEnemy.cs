@@ -19,9 +19,10 @@ public class MisilEnemy : AbstractEnemy, IHittable {
 
     private LayerMask misileEnemyLayerMask;
 
-    public int life = 10;
+    public int hitsCanTake = 10;
     public Transform target;
-    public  Transform spawnMissilesPosition; 
+    public  Transform spawnMissilesPosition;
+    int _hitsRemaining;
 
     void FixedUpdate() {
         if (_eIntegration != null && _eIntegration.LoadingNotComplete) 
@@ -57,9 +58,9 @@ public class MisilEnemy : AbstractEnemy, IHittable {
 
     public void OnHit(int damage)
     {
-        life -= damage;
+        _hitsRemaining -= damage;
         AbstractOnHitWhiteAction();
-        if (life <= 0) {
+        if (_hitsRemaining <= 0) {
         AbstractOnHitWhiteAction();
             EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
@@ -70,6 +71,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
 
     public MisilEnemy SetPosition(Vector3 pos)
     {
+        _hitsRemaining = hitsCanTake;
         transform.position = pos;
         cañon.transform.rotation = Quaternion.Euler(0, 90, -90);
         _timer = 0;

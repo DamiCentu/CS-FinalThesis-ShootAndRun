@@ -293,7 +293,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4963592097518288}
   - component: {fileID: 33230296840449404}
-  - component: {fileID: 136660724106359586}
   - component: {fileID: 114415577248336108}
   - component: {fileID: 114944646256991140}
   - component: {fileID: 114660442203637838}
@@ -308,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4104962423467194
 Transform:
   m_ObjectHideFlags: 1
@@ -818,7 +817,7 @@ MonoBehaviour:
   maxOffset: 3
   _timer: 0
   "ca\xF1on": {fileID: 1529121401451362}
-  life: 15
+  hitsCanTake: 10
   target: {fileID: 0}
   spawnMissilesPosition: {fileID: 4406441645513406}
 --- !u!114 &114961241774417848
@@ -848,19 +847,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!136 &136660724106359586
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949953396845020}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.8887558
-  m_Height: 2.8814747
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137159782948454438
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
