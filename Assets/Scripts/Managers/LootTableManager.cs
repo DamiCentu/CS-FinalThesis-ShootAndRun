@@ -20,6 +20,7 @@ public class LootTableManager : MonoBehaviour {
     private int totalPowerAvailable;
     List<GameObject> _allGamePowerUps;
     public static LootTableManager instance { get; private set; }
+    public LayerMask objectToDetectOnSpawnPowerUp;
 
     void Awake() {
         Debug.Assert(FindObjectsOfType<LootTableManager>().Length == 1);
@@ -98,6 +99,13 @@ public class LootTableManager : MonoBehaviour {
         AbstractEnemy a = (AbstractEnemy)parameterContainer[2];
 
         Vector3 position = a.transform.position;
+
+        var dirToPlayer = EnemiesManager.instance.player.transform.position - position;
+
+        if( Physics.Raycast(position, dirToPlayer, dirToPlayer.magnitude, objectToDetectOnSpawnPowerUp)) {
+            return;
+        }
+
         if (0 != totalPowerAvailable) { //si no agarre todos lso power ups
             float random = UnityEngine.Random.Range(0f, 1f);
             if (random <= probability)
