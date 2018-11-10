@@ -366,7 +366,7 @@ public class Player : MonoBehaviour, IHittable
 
         if (CanDash(direction))
         {
-            print("dasheo normal");
+            //print("dasheo normal");
             StartDash(direction);
 
         }
