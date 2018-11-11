@@ -566,6 +566,12 @@ public class SectionNode : MonoBehaviour {
                     cu.transform.SetParent(sp.parent);
                 }
                 break;
+            case EnemiesManager.TypeOfEnemy.MisilEnemy:
+                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as MisilEnemy;
+
+                m.SetPosition(sp.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
+                _allMisilEnemiesActive.Add(m);
+                break;
         }
     }
 
