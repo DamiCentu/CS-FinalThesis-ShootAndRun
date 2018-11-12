@@ -86,7 +86,7 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
 
     public void OnHit(int damage) {
         if(_currentTypeOfTurret.OnHitReturnIfDestroyed(damage)) { 
-            EventManager.instance.ExecuteEvent("EnemyDead", new object[] { _actualWave, _actualSectionNode, this, false, hasToDestroyThisToUnlockSomething , false});  // si es true el ultimo parametro significa que el elemento no debe spawnear un power up
+            EventManager.instance.ExecuteEvent("EnemyDead", new object[] { _actualWave, _actualSectionNode, this, false, hasToDestroyThisToUnlockSomething, wallToUnlockID , false});  // si es true el ultimo parametro significa que el elemento no debe spawnear un power up
         }
     }
 

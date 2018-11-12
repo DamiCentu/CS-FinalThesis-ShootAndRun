@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
     protected SectionManager.WaveNumber _actualWave;
     protected SectionNode _actualSectionNode;
+    protected int wallToUnlockID = 0;
     protected bool hasToDestroyThisToUnlockSomething = false;
 
     OnHitWhiteFeedback _onHitWhiteFeedback;
@@ -25,8 +26,9 @@ public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
         return this;
     }
 
-    public AbstractEnemy SetIffHasToDestroyToOpenSomething(bool value) {
+    public AbstractEnemy SetIffHasToDestroyToOpenSomething(bool value, int wallID) {
         hasToDestroyThisToUnlockSomething = value;
+        wallToUnlockID = wallID;
         return this;
     }
 

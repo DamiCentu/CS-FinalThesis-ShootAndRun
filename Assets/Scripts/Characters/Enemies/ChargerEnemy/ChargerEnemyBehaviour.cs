@@ -28,7 +28,7 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
             _charging = false;
             EnemiesManager.instance.ReturnChargerEnemyToPool(this);
             gameObject.SetActive(false);
-            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode,this, false, hasToDestroyThisToUnlockSomething });
+            EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode,this, false, hasToDestroyThisToUnlockSomething,wallToUnlockID });
         }
     }
 

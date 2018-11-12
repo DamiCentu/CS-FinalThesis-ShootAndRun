@@ -14,9 +14,6 @@ public class SectionNode : MonoBehaviour {
 
     public GameObject[] triggerSpawners;
 
-    [Header("OnlySectionsWithWallsThatBlockPlayer")]
-    public GameObject parentAllWallsThatNotLetThePlayerPass;
-
     public bool wavesStartAtTrigger = false;
 
     public LayerMask objectToDetectConnectingNodes;
@@ -29,8 +26,6 @@ public class SectionNode : MonoBehaviour {
 
     public float radiusToSetPowerUpChaser = 7f;
     Vector3 onGizmosSafeZoneChaser = new Vector3(1000f, 1000f, 1000f);
-
-    //public BlockingWallsBehaviour[] blockingWalls;
 
     EnemySpawner[] _allSpawns;
     EnemySpawnerAtBeginningOfNode[] _allSpawnsThatNotAffectEndOfNode;
@@ -54,8 +49,8 @@ public class SectionNode : MonoBehaviour {
     WaitForSeconds _waitBetweenWaves;
     WaitForSeconds _waitBetweenSpawns;
 
-    int _quantityOfEnemiesThatHasThePlayerToDestroy = 0;
-    int _actualQuantityOfEnemiesThatHasThePlayerToDestroy = 0;
+    Dictionary<int, int> _quantityPerIDDictionary = new Dictionary<int, int>();
+    WallThatDestroysWhenPlayerKillsEnemiesBehaviour[] _allWallsThatHaveToUnlockDestroying;
 
     int _enemiesRemaining = 0;
     int _allQuantityInMultiEnemySpawners = 0;
@@ -157,7 +152,7 @@ public class SectionNode : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.POWER_UP_DROPED, OnPowerUpDropped);
         EventManager.instance.SubscribeEvent(Constants.BOSS_DESTROYED, OnBossDestroyed);
 
-        //SpawnEnemyAtStart();
+        _allWallsThatHaveToUnlockDestroying = transform.GetComponentsInChildren<WallThatDestroysWhenPlayerKillsEnemiesBehaviour>();
         SetQuantityToDestroyToUnlockSomething();
     }
 
@@ -169,34 +164,55 @@ public class SectionNode : MonoBehaviour {
     //Spawnea en el en todos los spawns que no afecten en el final del nodo y setea la cantidad de enemigos para desbloquear algo
     public void SpawnEnemyAtStart() {
         foreach (var sP in _allSpawnsThatNotAffectEndOfNode) {
-            SpawnEnemyAtPointNoCuentaParaTerminarNodo(sP);
+            SpawnEnemyAtPointAtStartNoCuentaParaTerminarNodo(sP);
         } 
     }
 
-    void SetQuantityToDestroyToUnlockSomething() { 
-        _quantityOfEnemiesThatHasThePlayerToDestroy = 0;
+    void SetQuantityToDestroyToUnlockSomething() {
+        if (_allWallsThatHaveToUnlockDestroying.Length == 0)
+            return;
+
+        List<int> keys = new List<int>(_quantityPerIDDictionary.Keys);
+
+        foreach (var i in keys) {
+            _quantityPerIDDictionary[i] = 0;
+        }
 
         foreach (var sP in _allSpawnsThatNotAffectEndOfNode) {
             if (sP.hasToDestroyToUnlockSomething) {
-                _quantityOfEnemiesThatHasThePlayerToDestroy++;
+                if (!_quantityPerIDDictionary.ContainsKey(sP.idOfWall)) {
+                    _quantityPerIDDictionary.Add(sP.idOfWall, 0);
+                }
+                _quantityPerIDDictionary[sP.idOfWall]++;
             }
         }
 
         foreach(var sP2 in _allSpawns) {
              if (sP2.hasToDestroyToUnlockSomething) {
-                _quantityOfEnemiesThatHasThePlayerToDestroy++;
+                if (!_quantityPerIDDictionary.ContainsKey(sP2.idOfWall)) {
+                    _quantityPerIDDictionary.Add(sP2.idOfWall, 0);
+                }
+                _quantityPerIDDictionary[sP2.idOfWall]++;
             }
         }
 
         foreach(var sP3 in _allMultiSpawns) {
              if (sP3.hasToDestroyToUnlockSomething) {
-                _quantityOfEnemiesThatHasThePlayerToDestroy += sP3.quantityOfEnemies;
+                if (!_quantityPerIDDictionary.ContainsKey(sP3.idOfWall)) {
+                    _quantityPerIDDictionary.Add(sP3.idOfWall, 0);
+                }
+                _quantityPerIDDictionary[sP3.idOfWall] += sP3.quantityOfEnemies;
             }
         }
 
-        _actualQuantityOfEnemiesThatHasThePlayerToDestroy = _quantityOfEnemiesThatHasThePlayerToDestroy;
-        if (_actualQuantityOfEnemiesThatHasThePlayerToDestroy > 0) {
-            parentAllWallsThatNotLetThePlayerPass.SetActive(true);
+        foreach (var i in _quantityPerIDDictionary) {
+            if(_quantityPerIDDictionary[i.Key] > 0) {
+                foreach (var w in _allWallsThatHaveToUnlockDestroying) {
+                    if(w.id == i.Key) {
+                        w.gameObject.SetActive(true);
+                    }
+                } 
+            }
         }
     }
 
@@ -252,9 +268,18 @@ public class SectionNode : MonoBehaviour {
             } 
 
             if ((bool)param[4] == true) { // esto es para saber si se tiene que romper una pared o algo
-                _actualQuantityOfEnemiesThatHasThePlayerToDestroy--;
-                if(_actualQuantityOfEnemiesThatHasThePlayerToDestroy <= 0) {
-                    parentAllWallsThatNotLetThePlayerPass.SetActive(false);
+                _quantityPerIDDictionary[(int)param[5]]--; //param 5 es el id
+
+                List<int> keys = new List<int>(_quantityPerIDDictionary.Keys);
+
+                foreach (var k in keys) {
+                    if(_quantityPerIDDictionary[k] <= 0) {
+                        foreach (var w in _allWallsThatHaveToUnlockDestroying) {
+                            if(w.id == k) {
+                                w.gameObject.SetActive(false);
+                            }
+                        } 
+                    }
                 }
             }
         } 
@@ -385,7 +410,7 @@ public class SectionNode : MonoBehaviour {
     IEnumerator MultipleSpawnTriggerRoutine(int quantity, MultiEnemySpawner sp) {
         yield return _waitBetweenWaves;
         for (int i = 0; i < quantity; i++) {
-            var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as NormalEnemyBehaviour;
+            var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething,sp.idOfWall) as NormalEnemyBehaviour;
             n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.GetPositionWithOffset).gameObject.SetActive(true);
             _allNormalActives.Add(n);
             yield return _waitBetweenSpawns;
@@ -405,7 +430,7 @@ public class SectionNode : MonoBehaviour {
 
         foreach (var sP in allTriggerSpawners) {
             yield return new WaitForSeconds(sP.extraWaitToSpawn);
-            SpawnEnemy(sP, SectionManager.WaveNumber.Trigger);
+            StartCoroutine( SpawnEnemy(sP, SectionManager.WaveNumber.Trigger));
         }
     }
 
@@ -464,58 +489,58 @@ public class SectionNode : MonoBehaviour {
         }
     } 
 
-    IEnumerator SpawnEnemy(EnemySpawner spawnPoint, SectionManager.WaveNumber wave) {
-        yield return new WaitForSeconds(spawnPoint.extraWaitToSpawn);
+    IEnumerator SpawnEnemy(EnemySpawner sP, SectionManager.WaveNumber wave) {
+        yield return new WaitForSeconds(sP.extraWaitToSpawn);
 
-         switch (spawnPoint.typeOfEnemy) {
+         switch (sP.typeOfEnemy) {
             case EnemiesManager.TypeOfEnemy.Normal:
-                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as NormalEnemyBehaviour;
-                n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as NormalEnemyBehaviour;
+                n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sP.transform.position).gameObject.SetActive(true);
                 _allNormalActives.Add(n);
                 break;
 
             case EnemiesManager.TypeOfEnemy.Charger:
-                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as ChargerEnemyBehaviour;
-                c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as ChargerEnemyBehaviour;
+                c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sP.transform.position).gameObject.SetActive(true);
                 _allChargerActives.Add(c);
                 break;
 
             case EnemiesManager.TypeOfEnemy.TurretBurst:
-                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
-                t.SetPosition(spawnPoint.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
+                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as EnemyTurretBehaviour;
+                t.SetPosition(sP.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
                 _allTurretsActives.Add(t);
                 break;
 
             case EnemiesManager.TypeOfEnemy.TurretLaser:
-                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
-                tL.SetPosition(spawnPoint.transform.position).SetForward(spawnPoint.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
+                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as EnemyTurretBehaviour;
+                tL.SetPosition(sP.transform.position).SetForward(sP.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
                 _allTurretsActives.Add(tL);
                 break;
 
             case EnemiesManager.TypeOfEnemy.Cube:
-                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as CubeEnemyBehaviour;
-                cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint.transform.position).gameObject.SetActive(true);
+                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as CubeEnemyBehaviour;
+                cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sP.transform.position).gameObject.SetActive(true);
                 _allCubeActives.Add(cu);
                 break;
             case EnemiesManager.TypeOfEnemy.MisilEnemy:
-                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as MisilEnemy;
+                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as MisilEnemy;
 
-                m.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
+                m.SetPosition(sP.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allMisilEnemiesActive.Add(m);
                 break;
             case EnemiesManager.TypeOfEnemy.FireEnemy:
-                var f = EnemiesManager.instance.GiveMeFireEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(spawnPoint.hasToDestroyToUnlockSomething) as FireEnemy;
-                f.SetPosition(spawnPoint.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
+                var f = EnemiesManager.instance.GiveMeFireEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as FireEnemy;
+                f.SetPosition(sP.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allFireEnemiesActive.Add(f);
                 break;
         }
     }
 
-    public void SpawnEnemyAtPointNoCuentaParaTerminarNodo(EnemySpawnerAtBeginningOfNode sp) {
+    public void SpawnEnemyAtPointAtStartNoCuentaParaTerminarNodo(EnemySpawnerAtBeginningOfNode sp) {
         var wave = SectionManager.WaveNumber.NoCuentaParaTerminarNodo;
         switch (sp.typeOfEnemy) {
             case EnemiesManager.TypeOfEnemy.Normal:
-                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as NormalEnemyBehaviour;
+                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as NormalEnemyBehaviour;
                 n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
                 if (sp.parent != null) {
                     n.transform.SetParent(sp.parent);
@@ -524,7 +549,7 @@ public class SectionNode : MonoBehaviour {
                 break;
 
             case EnemiesManager.TypeOfEnemy.Charger:
-                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as ChargerEnemyBehaviour;
+                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as ChargerEnemyBehaviour;
                 c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
                 if (sp.parent != null) {
                     c.transform.SetParent(sp.parent);
@@ -532,7 +557,7 @@ public class SectionNode : MonoBehaviour {
                 _allChargerActives.Add(c);
                 break;
             case EnemiesManager.TypeOfEnemy.TurretBurst:
-                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
+                var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as EnemyTurretBehaviour;
                 t.SetPosition(sp.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
                 if (sp.parent != null) {
                     t.transform.SetParent(sp.parent);
@@ -541,7 +566,7 @@ public class SectionNode : MonoBehaviour {
                 break;
 
             case EnemiesManager.TypeOfEnemy.TurretLaser:
-                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
+                var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as EnemyTurretBehaviour;
                 tL.SetPosition(sp.transform.position).SetForward(sp.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
                 _allTurretsActives.Add(tL);
                 if (sp.parent != null) {
@@ -550,7 +575,7 @@ public class SectionNode : MonoBehaviour {
                 break;
 
             case EnemiesManager.TypeOfEnemy.MovingTurretLaser:
-                var MTL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as EnemyTurretBehaviour;
+                var MTL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as EnemyTurretBehaviour;
                 MTL.SetPosition(sp.transform.position).SetForward(sp.transform.forward).SetType(EnemiesManager.TypeOfEnemy.MovingTurretLaser, sp.startTurretNode, sp.hasToHaveShield).gameObject.SetActive(true);
                 _allTurretsActives.Add(MTL);
                 if (sp.parent != null) {
@@ -559,7 +584,7 @@ public class SectionNode : MonoBehaviour {
                 break;
 
             case EnemiesManager.TypeOfEnemy.Cube:
-                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as CubeEnemyBehaviour;
+                var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as CubeEnemyBehaviour;
                 cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
                 _allCubeActives.Add(cu);
                 if (sp.parent != null) {
@@ -567,7 +592,7 @@ public class SectionNode : MonoBehaviour {
                 }
                 break;
             case EnemiesManager.TypeOfEnemy.MisilEnemy:
-                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething) as MisilEnemy;
+                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as MisilEnemy;
 
                 m.SetPosition(sp.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
                 _allMisilEnemiesActive.Add(m);
@@ -579,13 +604,13 @@ public class SectionNode : MonoBehaviour {
         var wave = SectionManager.WaveNumber.NoCuentaParaTerminarNodo;
         switch (type) {
             case EnemiesManager.TypeOfEnemy.Normal:
-                    var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as NormalEnemyBehaviour;
+                    var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as NormalEnemyBehaviour;
                     n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
                     _allNormalActives.Add(n);
                     break;
 
                 case EnemiesManager.TypeOfEnemy.Charger:
-                    var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false) as ChargerEnemyBehaviour;
+                    var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as ChargerEnemyBehaviour;
                     c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
                     _allChargerActives.Add(c);
                     break; 

@@ -251,7 +251,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
         AbstractOnHitWhiteAction();
         _hitsTaken -= damage;
         if (_hitsTaken <= 0) { 
-             EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this,false, hasToDestroyThisToUnlockSomething });
+             EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this,false, hasToDestroyThisToUnlockSomething, wallToUnlockID });
         }
     }
 

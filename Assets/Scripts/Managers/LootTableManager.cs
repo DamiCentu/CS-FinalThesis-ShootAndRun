@@ -92,8 +92,8 @@ public class LootTableManager : MonoBehaviour {
         //print("powerUPsAvailable :" + totalPowerAvailable + cantidades[0] + cantidades[1] + cantidades[2] + cantidades[3]);
     }
 
-    private void ShouldDropPowerUp(object[] parameterContainer) {
-        if ((bool)parameterContainer[3] == true || parameterContainer.Length > 5 && (bool)parameterContainer[5] == false)//esto es para saber si deberia la muerte spawnear o no(pasaba que el verde agarraba el power up y es una muerte en teoria pero no esta mueriendo, no deberia dropear) el 3 es del bicho verde que te dice si exploto o se chupo el power up
+    private void ShouldDropPowerUp(object[] parameterContainer) {//[3] son para saber si tiene que hacer particulas
+        if ((bool)parameterContainer[3] == true || parameterContainer.Length > 6 && (bool)parameterContainer[6] == false) //esto es para saber si deberia la muerte spawnear o no(pasaba que el verde agarraba el power up y es una muerte en teoria pero no esta mueriendo, no deberia dropear) el 3 es del bicho verde que te dice si exploto o se chupo el power up
             return;
 
         AbstractEnemy a = (AbstractEnemy)parameterContainer[2];

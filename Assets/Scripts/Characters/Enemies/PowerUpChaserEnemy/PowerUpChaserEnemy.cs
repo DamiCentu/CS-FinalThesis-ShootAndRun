@@ -215,7 +215,7 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable {
         StopAllCoroutines();
         EnemiesManager.instance.ReturnChaserEnemyToPool(this);
         gameObject.SetActive(false);
-        EventManager.instance.ExecuteEvent("EnemyDead", new object[] { _actualWave, _actualSectionNode, this, makeParticles, hasToDestroyThisToUnlockSomething });//true es para saber si toco 1 power up para en el destroy en el section node tirar el evento de particle
+        EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, makeParticles, hasToDestroyThisToUnlockSomething,wallToUnlockID });//true es para saber si toco 1 power up para en el destroy en el section node tirar el evento de particle
     }
 
     void SendInputToFSM(ChaserInputs inp) {

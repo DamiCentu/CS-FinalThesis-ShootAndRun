@@ -6,7 +6,7 @@ public class ClearSectionObjective : IObjetableStrategy {
     int _enemiesRemaining = 0;
 
     public ClearSectionObjective() {
-        EventManager.instance.SubscribeEvent("EnemyDead", EnemyDead);
+        EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, EnemyDead);
     }
 
     void EnemyDead(params object[] param) {

@@ -5,10 +5,14 @@ using UnityEngine;
 public class EnemySpawnerAtBeginningOfNode : MonoBehaviour {
     public Transform parent;
     public EnemiesManager.TypeOfEnemy typeOfEnemy;
+    [Header("----------------------------")]
     public bool hasToDestroyToUnlockSomething = false;
+    public int idOfWall = 0;
+    [Header("----------------------------")]
     [Header ("Only MovingLaserTurret")]
     public TurretWaypoint startTurretNode;
     public bool hasToHaveShield = false;
+    [Header("----------------------------")]
 
     public float radiusOfDebugSphere = 1f;
     public bool showGizmos = true;
