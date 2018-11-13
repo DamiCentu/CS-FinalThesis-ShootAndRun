@@ -82,7 +82,8 @@ public class FireEnemy : AbstractEnemy, IHittable {
         }
     }
 
-    public void Stop() {
+    public FireEnemy Stop() {
         damagePath.DeleteAll();
+        return this;
     }
 }

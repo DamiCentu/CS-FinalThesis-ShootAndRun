@@ -115,12 +115,21 @@ public  class Utility {
                 EnemiesManager.instance.ReturnNormalEnemyToPool(n as NormalEnemyBehaviour);
             else if (n is ChargerEnemyBehaviour)
                 EnemiesManager.instance.ReturnChargerEnemyToPool(n as ChargerEnemyBehaviour);
-            else if (n is EnemyTurretBehaviour) {
-                //(n as EnemyTurretBehaviour).DeactivateEverithing();
+            else if (n is EnemyTurretBehaviour) { 
                 EnemiesManager.instance.ReturnTurretEnemyToPool((n as EnemyTurretBehaviour).DeactivateEverything());
             }
-            else if (n is PowerUpChaserEnemy)
+            else if (n is PowerUpChaserEnemy) { 
                 EnemiesManager.instance.ReturnChaserEnemyToPool(n as PowerUpChaserEnemy);
+            }
+            else if (n is CubeEnemyBehaviour) { 
+                EnemiesManager.instance.ReturnCubeEnemyToPool(n as CubeEnemyBehaviour);
+            }
+            else if (n is MisilEnemy) { 
+                EnemiesManager.instance.ReturnMisilEnemyToPool(n as MisilEnemy);
+            }
+            else if (n is FireEnemy) { 
+                EnemiesManager.instance.ReturnFireEnemyToPool((n as FireEnemy).Stop());
+            }
 
             n.gameObject.SetActive(false);
         }

@@ -10,8 +10,7 @@ public class MovingLaserTurretStrategy : ITurret {
      
     int _hitsRemaining = 0;
     bool _canInteract = false;
-    bool _hasShield = false;
-    //float _time = 0f;
+    bool _hasShield = false; 
 
     public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line) { 
         _parent = parent;
@@ -41,10 +40,7 @@ public class MovingLaserTurretStrategy : ITurret {
             _parent.sparksParticleS.gameObject.SetActive(false);
         }
 
-
-        //if(!WaitToStartMovement) {
-        if (!_canInteract) {
-            //_time += Time.deltaTime;
+        if (!_canInteract) { 
             return;
         } 
 
@@ -75,8 +71,7 @@ public class MovingLaserTurretStrategy : ITurret {
         _parent.sparksParticleS.gameObject.SetActive(true);
         _line.enabled = true;
 
-        _parent.transform.position = _parent.startWaypointForMovingLaser.transform.position;
-        //_time = 0f;
+        _parent.transform.position = _parent.startWaypointForMovingLaser.transform.position; 
 
         EventManager.instance.SubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
@@ -97,9 +92,7 @@ public class MovingLaserTurretStrategy : ITurret {
     IEnumerator CanMoveRoutine() {
         yield return new WaitForSeconds(1f);
         _canInteract = true;
-    }
-
-    //bool WaitToStartMovement{get { return _time > _parent.timeToWaitToInteract; } }
+    } 
 
     public bool OnHitReturnIfDestroyed(int damage) {
         if (_hasShield) {

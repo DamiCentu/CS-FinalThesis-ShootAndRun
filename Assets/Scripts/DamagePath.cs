@@ -49,7 +49,9 @@ public class DamagePath : MonoBehaviour {
         {
             if (item != null) Destroy(item);
         }
-        AllGameObjects = new List<GameObject>();
+        AllGameObjects.Clear();
+        _distanceTraveled = 0;
+        _distanceToSpawn = 0;
     }
 
     // Update is called once per frame
@@ -59,8 +61,7 @@ public class DamagePath : MonoBehaviour {
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
 
-            if (_distanceToSpawn > distanceBetweenSpawns) {
-
+            if (_distanceToSpawn > distanceBetweenSpawns) { 
                 _distanceToSpawn = 0;
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
                 GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);

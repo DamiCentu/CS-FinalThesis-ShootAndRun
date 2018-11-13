@@ -15,7 +15,7 @@ public class MisilEnemy : AbstractEnemy, IHittable {
 
     private Vector3 defaultRot = new Vector3(0, -90, -90);
 
-   // Animator _anim;
+    Animator _anim;
 
     private LayerMask misileEnemyLayerMask;
 
@@ -23,41 +23,37 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     public Transform target;
     public  Transform spawnMissilesPosition;
     int _hitsRemaining;
+    bool _canInteract = true;
 
     void FixedUpdate() {
-        if (_eIntegration != null && _eIntegration.LoadingNotComplete) 
+        if (_eIntegration != null && _eIntegration.LoadingNotComplete || !_canInteract) {
+            if(_anim != null) {
+                _anim.speed = 0;
+            }
             return;
+        }
 
+        _anim.speed = SectionManager.instance.EnemiesMultiplicator;
         _timer += Time.deltaTime;
-        if (_timer > timeBetweenMissiles)
-        {
-            //Vector3 dir = target.position- this.transform.position;
+        if (_timer > timeBetweenMissiles) {
             float angle = Vector3.SignedAngle(cañon.transform.position, target.position, Vector3.right);
-        cañon.transform.rotation = Quaternion.Euler(0, 90, -90);
-       //     cañon.transform.rotation= Quaternion.AngleAxis(angle, Vector3.right);
-
-            DropMissile(target.position);
-
+            cañon.transform.rotation = Quaternion.Euler(0, 90, -90); 
+            DropMissile(target.position); 
             _timer = 0;
         }
     }
 
-    private void DropMissile(Vector3 playerPosition)
-    {
+    private void DropMissile(Vector3 playerPosition) {
         float xPosition = playerPosition.x + UnityEngine.Random.Range(-maxOffset, maxOffset);
         float zPosition = playerPosition.z + UnityEngine.Random.Range(-maxOffset, maxOffset);
         Vector3 destination = new Vector3(xPosition, playerPosition.y + 0.3f, zPosition);
-        //Missile mis= new Missile(destination, timeToBoom)
+
         Missile mis = Instantiate(Missile, spawnMissilesPosition.position, Quaternion.FromToRotation(spawnMissilesPosition.position, destination));
-
-     //   Missile mis2 = Instantiate(Missile, this.transform.position+ Vector3.up, Quaternion.LookRotation(Vector3.up, Vector3.forward));
-
 
         mis.Set(destination, timeToBoom);
     }
 
-    public void OnHit(int damage)
-    {
+    public void OnHit(int damage) {
         _hitsRemaining -= damage;
         AbstractOnHitWhiteAction();
         if (_hitsRemaining <= 0) {
@@ -65,18 +61,22 @@ public class MisilEnemy : AbstractEnemy, IHittable {
             EnemiesManager.instance.ReturnMisilEnemyToPool(this);
             StopAllCoroutines();
             gameObject.SetActive(false);
+            UnsubscribeToEvents();
             EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, false, hasToDestroyThisToUnlockSomething, wallToUnlockID });
         }
     }
 
-    public MisilEnemy SetPosition(Vector3 pos)
-    {
+    public MisilEnemy SetPosition(Vector3 pos) {
         _hitsRemaining = hitsCanTake;
+        if (_anim == null)
+            _anim = GetComponentInChildren<Animator>();
+        _canInteract = true;
+        _anim.speed = 0;
         transform.position = pos;
         cañon.transform.rotation = Quaternion.Euler(0, 90, -90);
-        _timer = 0;
+        _timer = 0; 
         return this;
-    }
+    } 
 
     public MisilEnemy SetTarget(Transform player)
     {
@@ -92,5 +92,29 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     private void OnTriggerEnter(Collider c)
     {
 
+    }
+
+    public MisilEnemy SubscribeToEvents() {
+        _canInteract = false;
+        EventManager.instance.SubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
+        EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
+        return this;
+    }
+
+    public MisilEnemy UnsubscribeToEvents() {
+        EventManager.instance.UnsubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
+        EventManager.instance.UnsubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
+        return this;
+    }
+
+    private void OnPlayerCanMove(object[] parameterContainer) {
+        if (SectionManager.instance.actualNode != _actualSectionNode || !isActiveAndEnabled) {
+            return;
+        }
+        _canInteract = true;
+    }
+
+    private void OnPlayerDead(object[] parameterContainer) { 
+        _canInteract = false;
     }
 }

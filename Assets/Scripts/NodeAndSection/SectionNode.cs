@@ -25,6 +25,12 @@ public class SectionNode : MonoBehaviour {
     public Transform cameraPosInLookAtOnBoos;
 
     public float radiusToSetPowerUpChaser = 7f;
+
+    public bool waveDelayedSpawn = false;
+    public SectionManager.WaveNumber waveNumber;
+    public float timeBetweenDelayedSpawn = 0.2f;
+    float _currentTimeBetweenDelayedSpawn = 0f;
+
     Vector3 onGizmosSafeZoneChaser = new Vector3(1000f, 1000f, 1000f);
 
     EnemySpawner[] _allSpawns;
@@ -385,7 +391,8 @@ public class SectionNode : MonoBehaviour {
 
         if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
             TutorialBehaviour.instance.RestartTutorial();
-        } 
+        }
+        _currentTimeBetweenDelayedSpawn = 0;
     } 
 
     private void DropIfNeededPowerUpHelp(Vector3 position) {
@@ -439,7 +446,7 @@ public class SectionNode : MonoBehaviour {
             LootTableManager.instance.SetTutoProbavility();
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT);
         }
-
+        _currentTimeBetweenDelayedSpawn = 0;
         SetWaves(SectionManager.WaveNumber.First);
         yield return _waitBetweenWaves;
 
@@ -453,7 +460,7 @@ public class SectionNode : MonoBehaviour {
                 yield return null;
             }
         }
-
+        _currentTimeBetweenDelayedSpawn = 0;
         SetWaves(SectionManager.WaveNumber.Second);
         yield return _waitBetweenWaves;
 
@@ -463,7 +470,7 @@ public class SectionNode : MonoBehaviour {
         if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) {
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_ULTIMATE);
         }
-
+        _currentTimeBetweenDelayedSpawn = 0;
         SetWaves(SectionManager.WaveNumber.Third);
         yield return _waitBetweenWaves; 
 
@@ -490,6 +497,10 @@ public class SectionNode : MonoBehaviour {
     } 
 
     IEnumerator SpawnEnemy(EnemySpawner sP, SectionManager.WaveNumber wave) {
+        if (waveDelayedSpawn && wave == waveNumber) { 
+            _currentTimeBetweenDelayedSpawn += timeBetweenDelayedSpawn;
+        }
+        yield return new WaitForSeconds(_currentTimeBetweenDelayedSpawn);
         yield return new WaitForSeconds(sP.extraWaitToSpawn);
 
          switch (sP.typeOfEnemy) {
@@ -594,7 +605,7 @@ public class SectionNode : MonoBehaviour {
             case EnemiesManager.TypeOfEnemy.MisilEnemy:
                 var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as MisilEnemy;
 
-                m.SetPosition(sp.transform.position).SetTarget(EnemiesManager.instance.player.transform).gameObject.SetActive(true);
+                m.SetPosition(sp.transform.position).SetTarget(EnemiesManager.instance.player.transform).SubscribeToEvents().gameObject.SetActive(true);
                 _allMisilEnemiesActive.Add(m);
                 break;
         }
