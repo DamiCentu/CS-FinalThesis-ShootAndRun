@@ -426,9 +426,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introTime: 0
-  lifeToChangeEasy: 100
-  lifeToChangeMedium: 150
-  lifeToChangeHard: 200
+  lifeToChangeEasy: -100
+  lifeToChangeMedium: -100
+  lifeToChangeHard: -100
   lifeEasy: 10
   lifeMedium: 150
   lifeHard: 200
@@ -478,6 +478,10 @@ MonoBehaviour:
   offsetXz: 2
   prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
     type: 2}
+  misilSpeed: 0
+  extraBullet: 2
+  upgraded: 0
+  extraSpeed: 5
 --- !u!114 &114476427044187090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,7 +528,7 @@ MonoBehaviour:
   laserMaxDistance: 40
   maskToCollide:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 256
   boss: {fileID: 0}
   line: {fileID: 120497346523313132}
   speed: 0.3

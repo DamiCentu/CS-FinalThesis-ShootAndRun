@@ -428,7 +428,7 @@ MonoBehaviour:
   laserMaxDistance: 40
   maskToCollide:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 256
   boss: {fileID: 0}
   line: {fileID: 120078702018564514}
   speed: 0.3
@@ -495,6 +495,10 @@ MonoBehaviour:
   offsetXz: 2
   prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
     type: 2}
+  misilSpeed: 0
+  extraBullet: 2
+  upgraded: 0
+  extraSpeed: 5
 --- !u!114 &114523833285194550
 MonoBehaviour:
   m_ObjectHideFlags: 1

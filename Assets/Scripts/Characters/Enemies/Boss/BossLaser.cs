@@ -44,6 +44,7 @@ public class BossLaser : MonoBehaviour, BossActions {
         else {
 
             Vector3 auxDir = playerPosition - boss.transform.position;
+            auxDir.y = 0;
             Vector3  auxDir2 = Vector3.RotateTowards(laserDir, auxDir, speed* Time.deltaTime, 0.0f);
             laserDir = new Vector3(auxDir2.x, 0f, auxDir2.z);
 
@@ -56,11 +57,11 @@ public class BossLaser : MonoBehaviour, BossActions {
         line.gameObject.SetActive(true);
 
         RaycastHit rh;
-        if (Physics.Raycast(this.boss.shootPosition.position, direction, out rh, laserMaxDistance, maskToCollide))
+        if (Physics.Raycast(this.boss.shootPosition.position+ new Vector3(0,1,0), direction, out rh, laserMaxDistance, maskToCollide))
         {
             if (rh.collider.gameObject.layer == 8)
             {
-                rh.collider.GetComponent<IHittable>().OnHit(0);
+                rh.collider.GetComponent<IHittable>().OnHit(1);
             }
 
             line.SetPosition(0, this.boss.shootPosition.position);

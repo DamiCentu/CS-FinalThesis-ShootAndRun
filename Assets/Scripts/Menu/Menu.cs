@@ -69,50 +69,50 @@ public class Menu : MonoBehaviour {
     }
 
     public void Seccion1_1 (){
-        Configuration.instance.SetNode(1);
         SetLvl1();
+        Configuration.instance.SetNode(1);
     }
 
     public void Seccion1_2()
     {
-        Configuration.instance.SetNode(2);
         SetLvl1();
+        Configuration.instance.SetNode(2);
     }
 
     public void Seccion1_3()
     {
-        Configuration.instance.SetNode(3);
         SetLvl1();
+        Configuration.instance.SetNode(3);
     }
 
     public void Seccion1_4()
     {
-        Configuration.instance.SetNode(4);
         SetLvl1();
+        Configuration.instance.SetNode(4);
     }
 
     public void Seccion2_1()
     {
-        Configuration.instance.SetNode(1);
         SetLvl2();
+        Configuration.instance.SetNode(1);
     }
 
     public void Seccion2_2()
     {
-        Configuration.instance.SetNode(2);
         SetLvl2();
+        Configuration.instance.SetNode(2);
 
     }
 
     public void Seccion2_3()
     {
-        Configuration.instance.SetNode(3);
         SetLvl2();
+        Configuration.instance.SetNode(3);
     }
     public void Seccion2_4()
     {
-        Configuration.instance.SetNode(4);
         SetLvl2();
+        Configuration.instance.SetNode(4);
     }
     public void ActiveDebugMode()
     {

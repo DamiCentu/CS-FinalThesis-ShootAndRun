@@ -49,6 +49,7 @@ public class Configuration : MonoBehaviour {
     internal void NextLvl()
     {
         lvl = 2;
+        node = -1;
     }
 
     public void SetEasy() {
@@ -62,11 +63,13 @@ public class Configuration : MonoBehaviour {
     internal void SetLvl1()
     {
         lvl = 1;
+        node = -1;
     }
 
     internal void SetLvl2()
     {
         lvl = 2;
+        node = -1;
     }
 
     public void SetMedium() {
