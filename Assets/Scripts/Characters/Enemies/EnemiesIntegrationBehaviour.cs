@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemiesIntegrationBehaviour : MonoBehaviour {
+public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
     public float reintegrateMaxValue = 20f;
     public float lerpMaxValue = 5f;
 
@@ -23,9 +23,17 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour {
     float _timer = 0f;
     float _tiltingTimer = 0; 
 
-    bool _reintergrate = false; 
+    bool _reintergrate = false;
+    bool _paused;
 
-	void Update () {
+    public void OnPauseChange(bool v) {
+        _paused = v; 
+    }
+
+    void Update () {
+        if (_paused)
+            return;
+
         if (!_reintergrate || _timeToReintegrate == 0)
             return;
 
@@ -135,6 +143,8 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour {
             integrationParticles.Stop();
             hudImage.enabled = false;
             yield return new WaitForSeconds(1f);
+            while (_paused)
+                yield return null;
             ActivateOrDeactivateIntegration(false);
         }
         yield return null;

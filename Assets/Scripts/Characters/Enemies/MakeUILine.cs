@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MakeUILine : MonoBehaviour { 
+public class MakeUILine : MonoBehaviour , IPauseable { 
     public GameObject arrowPrefab; 
     public Transform parentOfArrows;
     public float distBetweenArrows = 0.5f;
@@ -22,6 +22,12 @@ public class MakeUILine : MonoBehaviour {
     float _tiltingTimer = 0;
     float yPosOfArrows = 0f;
 
+    bool _paused;
+
+    public void OnPauseChange(bool v) {
+        _paused = v; 
+    }
+
     void Awake() {
         _poolArrows = new Pool<GameObject>(15, ArrowFactoryMethod, null, null, true);
     }
@@ -31,6 +37,9 @@ public class MakeUILine : MonoBehaviour {
     }
 
     void Update() {
+        if (_paused)
+            return;
+
         if (!_lineActive || _target == null)
             return;
 

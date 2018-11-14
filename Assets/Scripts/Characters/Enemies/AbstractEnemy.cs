@@ -7,6 +7,7 @@ public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
     protected SectionNode _actualSectionNode;
     protected int wallToUnlockID = 0;
     protected bool hasToDestroyThisToUnlockSomething = false;
+    protected bool paused = false;
 
     OnHitWhiteFeedback _onHitWhiteFeedback;
 

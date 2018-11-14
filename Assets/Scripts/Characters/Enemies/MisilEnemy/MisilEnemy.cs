@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Flocking))]
-public class MisilEnemy : AbstractEnemy, IHittable {
+public class MisilEnemy : AbstractEnemy, IHittable , IPauseable {
 
     public LayerMask blockEnemyViewToPlayer;
     public Missile Missile;
@@ -25,7 +25,17 @@ public class MisilEnemy : AbstractEnemy, IHittable {
     int _hitsRemaining;
     bool _canInteract = true;
 
+    //bool _paused = false;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        _anim.enabled = !v;
+    }
+
     void FixedUpdate() {
+        if (paused)
+            return;
+
         if (_eIntegration != null && _eIntegration.LoadingNotComplete || !_canInteract) {
             if(_anim != null) {
                 _anim.speed = 0;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour, IHittable
+public class Player : MonoBehaviour, IHittable , IPauseable
 {
     public enum ID { Player1,Player2}
     public ID id ;
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IHittable
     public float InvulnerableTime=3;
     public float InvulnerableExtraTime = 0.5f;
     internal bool _isInvulnerable;
-    private Animator an;
+    private Animator _anim;
     public float bersekerTime=5;
     public ParticleSystem DeadParticle;
     public ParticleSystem spawnParticle1;
@@ -68,6 +68,12 @@ public class Player : MonoBehaviour, IHittable
     public MinionsSpawn minionsSpawn;
     public bool debugMode=false;
 
+    bool _paused;
+    public void OnPauseChange(bool v) {
+        _paused = v;
+        _anim.enabled = !v;
+    }
+
     void Start () {
         _rb=this.GetComponent<Rigidbody>();
         EventManager.instance.SubscribeEvent("GetShield", powerUpManager.EnableShield);
@@ -76,7 +82,7 @@ public class Player : MonoBehaviour, IHittable
 
         _isInvulnerable = false;
         timerToUlt = ultTimer;
-        an = this.GetComponent<Animator>();
+        _anim = this.GetComponent<Animator>();
         RefreshDashUI();
         object[] container = new object[1];
         container[0] = false;
@@ -98,6 +104,9 @@ public class Player : MonoBehaviour, IHittable
 
 
     void Update () {
+        if (_paused)
+            return;
+
         if (spawned)
         {
             TryDash();
@@ -317,7 +326,7 @@ public class Player : MonoBehaviour, IHittable
                     _isInvulnerable = false;
                 });
                 timers.Add(timer);
-                an.SetBool("Dash", false);
+                _anim.SetBool("Dash", false);
             }
         }
         else
@@ -342,8 +351,8 @@ public class Player : MonoBehaviour, IHittable
 
             _rb.velocity = new Vector3(horizontalVel, 0, verticalVel).normalized * speed;
 
-            an.SetFloat("Horizontal", horizontalVel);
-            an.SetFloat("Vertical", verticalVel);
+            _anim.SetFloat("Horizontal", horizontalVel);
+            _anim.SetFloat("Vertical", verticalVel);
         }
     }
 
@@ -393,7 +402,7 @@ public class Player : MonoBehaviour, IHittable
         ChangeShaderValue("_DashF", 1);
         _isInvulnerable = true;
         this.transform.rotation = Quaternion.FromToRotation(this.transform.position, this.transform.position + dashDirection);
-        an.SetBool("Dash", true);
+        _anim.SetBool("Dash", true);
         //   _dashTimer = defaultDashTimer; // reseteo el timer de dash
         _timeDashing = 0;
         dashDirection = direction;

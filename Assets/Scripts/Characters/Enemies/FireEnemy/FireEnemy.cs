@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Flocking))]
-public class FireEnemy : AbstractEnemy, IHittable {
+public class FireEnemy : AbstractEnemy, IHittable, IPauseable {
 
     public float timeDefault = 3;
     public int hitsCanTake = 10;
@@ -16,6 +16,13 @@ public class FireEnemy : AbstractEnemy, IHittable {
     Timer timer;
 
     int _hitsRemaining;
+    //bool _paused = false;
+
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        //_anim.enabled = !v;
+    }
 
     private void Start() {
         timer = new Timer(timeDefault, Shoot);
@@ -31,6 +38,9 @@ public class FireEnemy : AbstractEnemy, IHittable {
     }
 
     private void Update() {
+        if (paused)
+            return;
+
         if (timer.CheckAndRun()) timer.Reset();
         if (_eIntegration != null && !_eIntegration.LoadingNotComplete) {
 

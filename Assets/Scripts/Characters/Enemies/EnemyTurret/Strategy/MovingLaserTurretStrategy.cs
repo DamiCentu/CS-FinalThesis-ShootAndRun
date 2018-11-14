@@ -14,7 +14,7 @@ public class MovingLaserTurretStrategy : ITurret {
 
     public MovingLaserTurretStrategy(EnemyTurretBehaviour parent, LineRenderer line) { 
         _parent = parent;
-        _line = line; 
+        _line = line;
     }
 
     public void OnUpdate() {
@@ -91,6 +91,9 @@ public class MovingLaserTurretStrategy : ITurret {
 
     IEnumerator CanMoveRoutine() {
         yield return new WaitForSeconds(1f);
+        while (_parent.Paused) { 
+            yield return null;
+        }
         _canInteract = true;
     } 
 

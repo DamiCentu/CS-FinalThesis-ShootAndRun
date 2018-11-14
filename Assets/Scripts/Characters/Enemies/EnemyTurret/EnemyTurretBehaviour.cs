@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTurretBehaviour : AbstractEnemy, IHittable { 
+public class EnemyTurretBehaviour : AbstractEnemy, IHittable, IPauseable { 
 
     [Header("LaserTurret")]
     public int hitsCanTakeLaser = 20;
@@ -36,7 +36,19 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable {
 
     public SectionNode CurrentNode { get { return _actualSectionNode; } }
 
+    internal bool Paused { get { return paused; } }
+
+    //bool _paused;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        //_anim.enabled = !v;
+    }
+
     void Update() {
+        if (paused)
+            return;
+
         if (_eIntegration != null && !_eIntegration.LoadingNotComplete || _actualWave == SectionManager.WaveNumber.NoCuentaParaTerminarNodo)
             _currentTypeOfTurret.OnUpdate();
     }

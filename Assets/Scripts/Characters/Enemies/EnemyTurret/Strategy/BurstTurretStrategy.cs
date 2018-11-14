@@ -26,12 +26,26 @@ public class BurstTurretStrategy : ITurret {
     IEnumerator ShootRoutine() {
         _shooting = true;
         yield return new WaitForSeconds(_parent.timeToStartShootingBurst);
+
+        while (_parent.Paused) { 
+            yield return null;
+        }
+
         for (int i = 0; i < _parent.shotsInBurst; i++) {
             var s = EnemyBulletManager.instance.giveMeEnemyBullet();
             s.SetPos(_parent.shotSpawn.position).SetDir(_parent.shotSpawn.forward).gameObject.SetActive(true);
             yield return new WaitForSeconds(_parent.timeDelayInBurst / SectionManager.instance.EnemiesMultiplicator);
+
+            while (_parent.Paused) { 
+                yield return null;
+            }
         }
         yield return new WaitForSeconds(_parent.timeToWaitBetweenShots / SectionManager.instance.EnemiesMultiplicator);
+
+        while (_parent.Paused) { 
+            yield return null;
+        }
+
         _shooting = false;
     }
 

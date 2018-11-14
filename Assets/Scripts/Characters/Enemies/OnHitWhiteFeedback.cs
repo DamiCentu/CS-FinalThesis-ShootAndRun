@@ -14,11 +14,15 @@ public class OnHitWhiteFeedback : MonoBehaviour {
     bool _hitted;
     float _time;
 
-    void Start () {
-		
-	}
+    bool _paused;
+    public void OnPauseChange(bool v) {
+        _paused = v;
+    }
 
-	void Update () {
+    void Update () {
+        if (_paused)
+            return;
+
         if (_hitted) {
             OnHitCheck();
             _time += Time.deltaTime;

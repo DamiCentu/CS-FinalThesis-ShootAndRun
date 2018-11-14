@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FSMFUNCTIONAL;
 
-public class MiniBossBehaviour : AbstractEnemy,IHittable {
+public class MiniBossBehaviour : AbstractEnemy,IHittable , IPauseable {
     public float radiusToStartShooting = 10f;
     public float radiusToEndShooting = 15f;
     public float timeToStartAttack = 1f;
@@ -28,6 +28,13 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
     WaitForSeconds _waitToEndAttack;
 
     EventFSM<MiniBossInputs> _myFsm;
+
+    //bool _paused;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        _anim.enabled = !v;
+    }
 
     enum MiniBossInputs {
         InRange,
@@ -230,10 +237,16 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable {
     //---------------------------------------------------------------------
 
     void Update () {
+        if (paused)
+            return;
+
         _myFsm.Update();
     }
 
     void FixedUpdate() {
+        if (paused)
+            return;
+
         _myFsm.FixedUpdate();
     }
 

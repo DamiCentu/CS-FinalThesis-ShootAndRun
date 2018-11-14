@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using FSMFUNCTIONAL;
 
-public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
+public class CubeEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
 
     public LayerMask blockEnemyViewToPlayer; 
     public int hitsCanTake = 5;
@@ -32,8 +32,14 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     FollowPathBehaviour _followPathBehaviour;
     EventFSM<CubeInputs> _myFsm;
 
-    GameObject _transformToFollowOnEvade ; 
+    GameObject _transformToFollowOnEvade ;
 
+    //bool _paused;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        //_anim.enabled = !v;
+    }
 
     enum CubeInputs {
         InRadius, 
@@ -121,6 +127,10 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
 
     IEnumerator StoppedRoutine() {
         yield return new WaitForSeconds(stoppedTime);
+        while (paused) {
+            yield return null;
+        }
+
         if(_flocking.target.gameObject.layer == 8) {//player 
             if (Utility.InRangeSquared(_flocking.target.position, transform.position, radiusToAttack)) {
                 SendInputToFSM(CubeInputs.InRadius);
@@ -154,6 +164,9 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
 
         yield return new WaitForSeconds(stoppedTime);
 
+        while (paused) {
+            yield return null;
+        }
         
         if(_flocking.target.gameObject.layer == 8) {//player  
             if (Utility.InRangeSquared(_flocking.target.position, transform.position, radiusToAttack)) {
@@ -203,6 +216,9 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     private void Update() {
+        if (paused)
+            return;
+
         if(_eIntegration != null && !_eIntegration.LoadingNotComplete) {  
             _myFsm.Update();
             //Debug.Log(_flocking.target.name);
@@ -210,6 +226,9 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     void FixedUpdate () {
+        if (paused)
+            return;
+
         if (_flocking == null || _eIntegration == null)// || _anim == null)
             return;
 

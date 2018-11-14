@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Flocking))]
-public class NormalEnemyBehaviour : AbstractEnemy, IHittable {
+public class NormalEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
 
     public LayerMask blockEnemyViewToPlayer; 
 
@@ -11,12 +11,25 @@ public class NormalEnemyBehaviour : AbstractEnemy, IHittable {
 
     FollowPathBehaviour _followPathBehaviour;
 
+    //bool _paused = false;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        _anim.enabled = !v;
+    }
+
     private void Update() {
+        if (paused)
+            return;
+
         if(_eIntegration != null && !_eIntegration.LoadingNotComplete)
             _followPathBehaviour.OnUpdate();
     }
 
     void FixedUpdate () {
+        if (paused)
+            return;
+
         if (_flocking == null || _eIntegration == null || _anim == null)
             return;
 

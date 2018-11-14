@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletBehaviour : MonoBehaviour {
+public class EnemyBulletBehaviour : MonoBehaviour, IPauseable {
 
     public float bulletSpeed = 5f;
 
     public LayerMask layerThatAffectEnemyBullet;
 
-    TrailRenderer _trail; 
+    TrailRenderer _trail;
+    bool _paused;
+    public void OnPauseChange(bool v) {
+        _paused = v; 
+    }
 
     public virtual void Update () {
+        if (_paused)
+            return;
+
         transform.position += bulletSpeed * Time.deltaTime * transform.forward * SectionManager.instance.EnemiesMultiplicator;
 	}
 

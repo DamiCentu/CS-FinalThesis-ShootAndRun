@@ -5,7 +5,7 @@ using System;
 using FSMFUNCTIONAL;
 
 [RequireComponent(typeof(Flocking))]
-public class PowerUpChaserEnemy : AbstractEnemy, IHittable {
+public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable {
 
     public int hitsCanTake = 5;
     public float timeSplicingQuote = 0.001f;
@@ -20,6 +20,13 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable {
     EventFSM<ChaserInputs> _myFsm;
 
     int _hitsRemaining = 0;
+
+    //bool _paused;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        _anim.enabled = !v;
+    }
 
     enum ChaserInputs {
         PowerUpDropped,
@@ -180,10 +187,16 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable {
     }
 
     void Update() {
+        if (paused)
+            return;
+
         _myFsm.Update(); 
     }
 
     void FixedUpdate() {
+        if (paused)
+            return;
+
         _myFsm.FixedUpdate();
     } 
 

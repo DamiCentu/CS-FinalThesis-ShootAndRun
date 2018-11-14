@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
+public class ChargerEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
 
     public float distanceToCharge = 5f;
     public float timeToStartCharging = 1f;
@@ -19,6 +19,13 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
 
     FollowPathBehaviour _followPathBehaviour;
 
+    //bool _paused;
+
+    public void OnPauseChange(bool v) {
+        paused = v;
+        //_anim.enabled = !v;
+    }
+
     public void OnHit(int damage) {
         _hitsRemaining -= damage;
 
@@ -33,6 +40,9 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     void Update() {
+        if (paused)
+            return;
+
         if (_eIntegration == null || _eIntegration.LoadingNotComplete)
             return;
 
@@ -41,6 +51,9 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
     }
 
     void FixedUpdate () {
+        if (paused)
+            return;
+
         if (_eIntegration == null || _eIntegration.LoadingNotComplete)
             return;
 
@@ -66,6 +79,9 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable {
         transform.forward = target - transform.position;
         while (_moving) {
             transform.position += transform.forward * speedOfCharge * Time.deltaTime * SectionManager.instance.EnemiesMultiplicator;
+            while (paused) {
+                yield return null;
+            }
             yield return null;
         } 
         yield return new WaitForSeconds(timeToStartMovingAgain);
