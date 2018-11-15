@@ -348,11 +348,12 @@ public class Player : MonoBehaviour, IHittable , IPauseable
                 horizontalVel = 0;
             }
 
+            if (spawned) {
+                _rb.velocity = new Vector3(horizontalVel, 0, verticalVel).normalized * speed;
 
-            _rb.velocity = new Vector3(horizontalVel, 0, verticalVel).normalized * speed;
-
-            _anim.SetFloat("Horizontal", horizontalVel);
-            _anim.SetFloat("Vertical", verticalVel);
+                _anim.SetFloat("Horizontal", horizontalVel);
+                _anim.SetFloat("Vertical", verticalVel);
+            }
         }
     }
 
@@ -515,6 +516,8 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         //LO IDEAL SERIA SEPARAR EL PORTAL DE CUANDO APARECE DE CUANDO TERMINA ASI SE EJECUTA BIEN(RECORDA QUE EL START_SECTION DEL SECTION MANAGER EN LA LINEA 121 SIRVE PARA
         //CUANDO TERMINA EL NODO "PONELE", TE VAS A DAR CUENTA SI LO TESTEAS LO QUE DIGO (EL BUG ES REPRODUCIBLE SI GANAS LA SECCION, PODES DEJARTE 1 SOLO ENEMIGO Y ALCANZA
         //PARA GANARLA RAPIDO Y PASAS A LA SIGUIENTE)
+        _anim.SetFloat("Hotizontal", 0);
+        _anim.SetFloat("Vertical", 0);
         Timer portalTimer = new Timer(2.1f, FinishSpawn);
         timers.Add(portalTimer);
         spawned = false;
@@ -537,6 +540,8 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
     private void FinishSpawn()
     {
+        _anim.SetFloat("Hotizontal", 0);
+        _anim.SetFloat("Vertical", 0);
         spawnParticle1.gameObject.SetActive(false);
         spawnParticle2.gameObject.SetActive(false);
         spawned = true;
