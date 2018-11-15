@@ -104,8 +104,10 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
 
     void Update () {
-        if (_paused)
+        if (_paused) {
+            _rb.velocity = new Vector3(0, 0, 0);
             return;
+        }
 
         if (spawned)
         {
