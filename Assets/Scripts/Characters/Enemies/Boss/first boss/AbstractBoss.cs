@@ -47,8 +47,8 @@ public abstract class AbstractBoss : AbstractEnemy
         timerIntro = new Timer(introTime, FinishiIntro);
         timerActions = timerActionsStage1;
         actualAction = actions[0];
-        actualAction.Begin(this);
-
+        //TODO OJOOOO VER Q NO ROMPA EL  BOSS1. 
+        //actualAction.Begin(this);
     }
 
     private void SetLife(int stage)
@@ -125,6 +125,7 @@ public abstract class AbstractBoss : AbstractEnemy
 
         timer = new Timer(timerActions[index], ChangeAction);
         introFinished = true;
+        actualAction.Begin(this);
     }
 
     internal void SetAnimation(string name, bool value)
