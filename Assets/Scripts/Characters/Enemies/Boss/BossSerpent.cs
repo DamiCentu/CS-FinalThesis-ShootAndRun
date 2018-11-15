@@ -22,12 +22,18 @@ public class BossSerpent : AbstractBoss,IHittable {
         SetActions();
         Config();
         moving= GetComponent<MovingPlatform>();
+
         shouldChangeStage = false;
+
+        this.transform.Rotate(0, 90, 0);
+
+
     }
 
     private void Start()
     {
         EventManager.instance.SubscribeEvent("EvolveBoss2", Evolve);
+        moving.Move(false);
     }
 
     private void SetActions()
@@ -61,12 +67,6 @@ public class BossSerpent : AbstractBoss,IHittable {
         }
     }
 
-    new void Update()
-    {
-        base.Update();
-
-        this.transform.position += this.transform.right * speed * Time.deltaTime;
-    }
 
     internal void StopMoving(bool v)
     {
