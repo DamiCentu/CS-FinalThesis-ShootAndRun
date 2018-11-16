@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossShootGun : MonoBehaviour, BossActions {
+public class BossShootGun : MonoBehaviour, BossActions, IPauseable {
 
     private Transform target;
     public float timeDefault = 2;
@@ -12,6 +12,12 @@ public class BossShootGun : MonoBehaviour, BossActions {
     public float angle=15;
     public int nBullet = 4;
     private float offset;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void BossActions.Begin(AbstractBoss boss)
     {
@@ -41,12 +47,19 @@ public class BossShootGun : MonoBehaviour, BossActions {
         {
             yield return new WaitForSeconds(timeDefault);
 
+            while (_paused)
+                yield return null;
+
             boss.StopMoving(true);
             yield return new WaitForSeconds(stopTime);
+            while (_paused)
+                yield return null;
 
             Shoot();
 
             yield return new WaitForSeconds(stopTime);
+            while (_paused)
+                yield return null;
             boss.StopMoving(false);
         }
     }

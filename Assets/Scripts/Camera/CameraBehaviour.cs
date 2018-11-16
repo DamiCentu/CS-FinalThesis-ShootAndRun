@@ -121,8 +121,10 @@ public class CameraBehaviour : MonoBehaviour , IPauseable {
             yield return null; 
         }
         yield return new WaitForSeconds(1f);
+
         while (_paused)
             yield return null;
+
         Kino.AnalogGlitch aGlitch = this.gameObject.GetComponent<Kino.AnalogGlitch>();
         aGlitch.scanLineJitter = 0;
         aGlitch.colorDrift = 0;

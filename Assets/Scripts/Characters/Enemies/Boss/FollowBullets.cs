@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowBullets : EnemyBulletBehaviour
+public class FollowBullets : EnemyBulletBehaviour , IPauseable
 {
     public float followIntensity=0.2f;
     public float lifeTime = 3;
     public float timer;
 
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     public void Awake()
     {
@@ -21,6 +26,9 @@ public class FollowBullets : EnemyBulletBehaviour
     }
     public override void Update()
     {
+        if (_paused)
+            return;
+
         timer -= Time.deltaTime;
         base.Update();
         Transform player = EnemiesManager.instance.player.transform;
