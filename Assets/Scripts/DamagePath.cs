@@ -11,24 +11,34 @@ public class DamagePath : MonoBehaviour , IPauseable {
     private Vector3 _direction;
     public float timeAlive;
     GameObject particles;
-    public string particlesName;
+    public string particlesName= "Virtual_Fire";
+    public string prefabName = "fire3";
     public float distanceBetweenSpawns;
      float _distanceToSpawn;
     private bool _shouldStopSpawning = true;
     private List<GameObject> AllGameObjects= new List<GameObject>();
 
     bool _paused;
+    public GameObject prefab_collider;
+
     public void OnPauseChange(bool v)
     {
         _paused = v;
+    }
+
+    private void Start()
+    {
+        particles = GameObject.Find(particlesName);
+        if (particles == null) print("che es null!");
+        var aux = GameObject.Find(prefabName);
+        if (aux == null) print("che es null!");
+        prefab_collider = Instantiate(aux);
     }
 
     public void SpawnDirection(Vector3 spawnPos, Vector3 direction,float speed) {
 
         _direction = direction;
 
-        particles = GameObject.Find(particlesName);
-        if (particles == null) print("che es null!");
         set(spawnPos, speed);
         _maxDistance = 10000;
     }
@@ -47,6 +57,9 @@ public class DamagePath : MonoBehaviour , IPauseable {
         _distanceTraveled = 0;
         _distanceToSpawn = 0;
         this.speed = speed;
+        particles.SetActive(false);
+        particles.transform.position = spawnPos;
+        particles.SetActive(true);
     }
 
     internal void DeleteAll()
@@ -69,11 +82,12 @@ public class DamagePath : MonoBehaviour , IPauseable {
 
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
-
+            particles.transform.position += speed * Time.deltaTime* _direction;
             if (_distanceToSpawn > distanceBetweenSpawns) { 
                 _distanceToSpawn = 0;
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
-                GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);
+                //      GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);
+                GameObject p = Instantiate(prefab_collider, spawnPos, this.transform.rotation);
                 p.gameObject.SetActive(true);
                 AllGameObjects.Add(p);
                Destroy(p.gameObject, timeAlive);

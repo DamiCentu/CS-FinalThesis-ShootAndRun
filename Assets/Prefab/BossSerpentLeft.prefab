@@ -972,8 +972,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeAlive: 2
-  particlesName: fire
+  particlesName: Virtual_Fire
+  prefabName: fire3
   distanceBetweenSpawns: 1
+  prefab_collider: {fileID: 0}
 --- !u!120 &120078702018564514
 LineRenderer:
   m_ObjectHideFlags: 1

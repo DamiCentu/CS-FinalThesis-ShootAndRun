@@ -82,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1189139201157038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,8 +1010,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeAlive: 2
-  particlesName: fire
+  particlesName: Virtual_Fire1
+  prefabName: fire
   distanceBetweenSpawns: 2
+  prefab_collider: {fileID: 0}
 --- !u!114 &114164823022334450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1074,7 +1076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDefault: 3
-  life: 10
+  hitsCanTake: 10
   target: {fileID: 0}
   speed: 10
   maskThatBlockVisionToPlayer:

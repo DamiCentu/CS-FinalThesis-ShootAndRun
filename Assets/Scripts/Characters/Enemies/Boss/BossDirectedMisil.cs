@@ -27,6 +27,7 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
             this.boss.SpawnEnemies("DirectedMisilUpgrade");
         StartCoroutine("WaitShoot");
         this.boss.StopMoving(false);
+        misils = new List<GameObject>();
     }
 
 
@@ -37,7 +38,7 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
     }
     private void Shoot()
     {
-        misils = new List<GameObject>();
+       
 
 
         Vector3 rotation = boss.player.transform.position - boss.transform.position;
