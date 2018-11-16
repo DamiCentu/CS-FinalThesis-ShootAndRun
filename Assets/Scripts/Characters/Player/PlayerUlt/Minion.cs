@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : MonoBehaviour {
+public class Minion : MonoBehaviour , IPauseable {
     private Vector3 _target;
     public float radius;
     public LayerMask hittableLayers;
@@ -11,6 +11,12 @@ public class Minion : MonoBehaviour {
     public float minTimeTiShoot=0.5f;
     Timer _timer;
     // Use this for initialization
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
     void Start () {
          _timer = new Timer(minTimeTiShoot, Shoot);
     }
@@ -48,6 +54,9 @@ public class Minion : MonoBehaviour {
 
     private void Update()
     {
+        if (_paused)
+            return;
+
         if (_timer.CheckAndRun()) {
             _timer.Reset();
         }

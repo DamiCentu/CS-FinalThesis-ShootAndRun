@@ -39,7 +39,6 @@ public class Boss : AbstractBoss,IHittable
     public Transform ShootPos2;
     public Transform ShootPos3;
 
-
     void Awake()
     {
         SetActions();
@@ -92,14 +91,17 @@ public class Boss : AbstractBoss,IHittable
     }
 
 
-    IEnumerator Dead() {
-        EventManager.instance.ExecuteEvent(Constants.CAMERA_STATIONARY, new object[] { transform.position });
-        yield return new WaitForSeconds(2);
+    //IEnumerator Dead() {
+    //    EventManager.instance.ExecuteEvent(Constants.CAMERA_STATIONARY, new object[] { transform.position });
+    //    yield return new WaitForSeconds(2);
 
-        EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_BOSS_EXPLOTION_NAME, transform.position });
-        EventManager.instance.ExecuteEvent(Constants.BOSS_DESTROYED , new object[] { bossCameraShakeTime });
-        Destroy(this.gameObject);
-    }
+    //    while (_paused)
+    //        yield return null;
+
+    //    EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_BOSS_EXPLOTION_NAME, transform.position });
+    //    EventManager.instance.ExecuteEvent(Constants.BOSS_DESTROYED , new object[] { bossCameraShakeTime });
+    //    Destroy(this.gameObject);
+    //}
 
     bool isDead() {
         return life <= 0;

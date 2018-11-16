@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour, IPauseable {
 
     public List<GameObject> dash;
     public SimpleHealthBar bossLife;
@@ -23,6 +23,12 @@ public class UIManager : MonoBehaviour {
 
     WaitForSeconds _waitToDisapearTutoText;
     HashSet<string> _hashToCompare = new HashSet<string>();
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void Start() {
         EventManager.instance.SubscribeEvent(Constants.UPDATE_BOSS_LIFE, UpdateBossLife);
@@ -58,6 +64,8 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator TextDisapearRoutine() {
         yield return _waitToDisapearTutoText;
+        while (_paused)
+            yield return null;
         tutorialText.enabled = false;
     } 
 

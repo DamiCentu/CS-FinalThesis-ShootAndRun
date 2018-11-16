@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScatterUlt : MonoBehaviour {
+public class ScatterUlt : MonoBehaviour , IPauseable {
     public float timer=4;
     public int amount=10;
     public LineRenderer line;
@@ -14,7 +14,15 @@ public class ScatterUlt : MonoBehaviour {
     public LayerMask layerToHit;
     public static ScatterUlt instance;
     public List<GameObject> balls= new List<GameObject>();
-        List<Vector3> posiciones = new List<Vector3>();
+
+    List<Vector3> posiciones = new List<Vector3>();
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     private void Start()
     {
         instance = this;
@@ -37,6 +45,10 @@ public class ScatterUlt : MonoBehaviour {
     IEnumerator SpawnRays()
     {
         yield return new WaitForSeconds(1f);
+
+        while (_paused)
+            yield return null;
+
         line.gameObject.SetActive(true);
         line.positionCount = amount;
         line.SetPositions(posiciones.ToArray());
@@ -65,7 +77,11 @@ public class ScatterUlt : MonoBehaviour {
 
         }
         yield return new WaitForSeconds(1f);
-            line.gameObject.SetActive(false);
+
+        while (_paused)
+            yield return null;
+
+        line.gameObject.SetActive(false);
         ResetBalls();
     }
 

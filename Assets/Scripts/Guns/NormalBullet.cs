@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalBullet : IBullet {
+public class NormalBullet : IBullet , IPauseable {
     public LayerMask hitLayers;
     public float maxRange=1.5f;
 
@@ -12,6 +12,10 @@ public class NormalBullet : IBullet {
         {
             Mathf.Clamp(lifeTime, lifeTime * multiplier, maxRange);
         }*/
+    bool _paused;
+    public void OnPauseChange(bool v) {
+        _paused = v;
+    }
 
     void OnTriggerEnter(Collider c) {
         
@@ -48,6 +52,9 @@ public class NormalBullet : IBullet {
     }
     public void FixedUpdate()
     {
+        if (_paused)
+            return;
+
         this.transform.position += this.transform.forward * speed;
         // rb.velocity = this.transform.forward * speed;
         timer -= Time.deltaTime;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombBullet : IBullet {
+public class BombBullet : IBullet , IPauseable {
     public float radius;
     public LayerMask hittableLayer;
     public LayerMask obstacleLayers;
@@ -11,6 +11,13 @@ public class BombBullet : IBullet {
     private float timerd;
     public ParticleSystem DestroyParticle1;
     public ParticleSystem DestroyParticle2;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     public void Start()
 	{
         DestroyParticle1 = GameObject.Find("distorsionBoom").GetComponent<ParticleSystem>();
@@ -18,6 +25,9 @@ public class BombBullet : IBullet {
     }
     public void FixedUpdate()
     {
+        if (_paused)
+            return;
+
         this.transform.position += this.transform.forward * speed;
         timerd += Time.deltaTime;
         if (timerd > lifeTime) {

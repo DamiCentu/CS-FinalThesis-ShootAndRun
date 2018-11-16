@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SectionManager : MonoBehaviour {
+public class SectionManager : MonoBehaviour , IPauseable {
     public SectionNode actualNode;
     public static SectionManager instance { get; private set; }
 
@@ -25,6 +25,12 @@ public class SectionManager : MonoBehaviour {
 
     public float timeSplicingQuoteForSectionRoutine = 0.001f;
     public GameObject debug;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void Awake()
     {
@@ -109,6 +115,8 @@ public class SectionManager : MonoBehaviour {
 
     IEnumerator slowRoutine() {
         yield return new WaitForSeconds(slowDuration);
+        while (_paused)
+            yield return null;
         _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR; 
     }
 
@@ -121,6 +129,9 @@ public class SectionManager : MonoBehaviour {
         if (actualNode != null) {
             EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque);
             yield return new WaitForSeconds(timeToRestartAfterPlayerDead);
+            while (_paused)
+                yield return null;
+
             actualNode.RestartSection();
          
             actualNode.SetEnemiesRemaining();
@@ -131,9 +142,13 @@ public class SectionManager : MonoBehaviour {
         while (actualNode != null) {
             EventManager.instance.ExecuteEvent(Constants.START_SECTION);
             yield return new WaitForSeconds(0.6f);
+            while (_paused)
+                yield return null;
             actualNode.SpawnEnemyAtStart();
             EventManager.instance.ExecuteEvent(Constants.BLACK_SCREEN); 
             yield return new WaitForSeconds(waitTimeForStartNode-0.6f);
+            while (_paused)
+                yield return null;
 
             if (actualNode.isBossNode) {
                 EventManager.instance.ExecuteEvent(Constants.CAMERA_ON_BOSS);
@@ -151,6 +166,9 @@ public class SectionManager : MonoBehaviour {
                 actualNode.SetBoss();
 
                 yield return new WaitForSeconds(actualNode.timeBetweenWaves);
+
+                while (_paused)
+                    yield return null;
 
                 while (actualNode.BossAlive) {
                     yield return null;
@@ -184,6 +202,8 @@ public class SectionManager : MonoBehaviour {
                     //Debug.Log(Time.realtimeSinceStartup - start + " arre "+ timeSplicingQuoteForSectionRoutine);
                     if (Time.realtimeSinceStartup - start > timeSplicingQuoteForSectionRoutine) {
                         yield return wait;
+                        while (_paused)
+                            yield return null;
                         start = Time.realtimeSinceStartup;
                     }
                     //yield return null;
@@ -191,6 +211,8 @@ public class SectionManager : MonoBehaviour {
                 SoundManager.instance.StageComplete();
                 InfoManager.instance.CountDown(waitTimeForNextNodeSectionWhenFinish);
                 yield return new WaitForSeconds(waitTimeForNextNodeSectionWhenFinish);
+                while (_paused)
+                    yield return null;
                 LootTableManager.instance.DestroyAllPowerUps();
             }
             actualNode = actualNode.next;
@@ -211,6 +233,8 @@ public class SectionManager : MonoBehaviour {
     IEnumerator WinRoutine() {
         SoundManager.instance.Victory();
         yield return new WaitForSeconds(timeAfterWinning);
+        while (_paused)
+            yield return null;
         if (Configuration.instance.lvl == 1)
         {
             SceneManager.LoadScene("LvlComplete");
@@ -227,6 +251,8 @@ public class SectionManager : MonoBehaviour {
     IEnumerator LoseRoutine() {
         SoundManager.instance.GameOver();
         yield return new WaitForSeconds(timeAfterLosing);
+        while (_paused)
+            yield return null;
         SceneManager.LoadScene("GameOverScene");
     }
 

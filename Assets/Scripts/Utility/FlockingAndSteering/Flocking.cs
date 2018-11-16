@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Flocking : Steering {
+public class Flocking : Steering , IPauseable {
 
 
     [Header("Flocking")]
@@ -17,7 +17,16 @@ public class Flocking : Steering {
 
 	Vector3 _alignment, _cohesion, _separation;
 
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     public void OnFixedUpdate () {
+        if (_paused)
+            return;
+
 		ResetForces();
 
         if (flockingEnabled) { 

@@ -3,13 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine: MonoBehaviour {
+public class StateMachine: MonoBehaviour , IPauseable {
     //   Dictionary<IState, List<IState>> _stateMachine;
     //  Dictionary<string, IState> _allStates;
     IState _currentState;
     public List<IState> states=new List<IState>();
    //S bool ShouldChangeState;
     public static StateMachine instance;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -34,6 +41,9 @@ public class StateMachine: MonoBehaviour {
       }
       */
     void FixedUpdate() {
+        if (_paused)
+            return;
+
         if (_currentState == null)
         {
             _currentState = GetState("Fall");

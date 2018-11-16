@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillButton : MonoBehaviour {
+public class SkillButton : MonoBehaviour , IPauseable {
     public float timerToDrop;
     float _timer;
     bool OnTheButton;
     public DropUlt ult;
     public DropSpecial special;
     public Transform newSkillPosition;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (_paused)
+            return;
+
         if (OnTheButton) {
             _timer -= Time.deltaTime;
             if (_timer <= 0) {

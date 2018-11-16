@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossCharge : MonoBehaviour,BossActions {
+public class BossCharge : MonoBehaviour,BossActions , IPauseable {
     bool _moving = false;
     public float distanceToCharge = 5f;
     public float timeToStartCharging = 1f;
@@ -15,6 +15,12 @@ public class BossCharge : MonoBehaviour,BossActions {
     public DamagePath damagePath;
     public LineRenderer line;
     public LayerMask CollisionLayer;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void BossActions.Begin(AbstractBoss boss)
     {
@@ -73,6 +79,8 @@ public class BossCharge : MonoBehaviour,BossActions {
         //print("length");
         //print(Vector3.Distance(boss.transform.position, targetPosition));
         yield return new WaitForSeconds(timeToStartCharging);
+        while (_paused)
+            yield return null;
         line.gameObject.SetActive(false);
         StartCoroutine(ChargeMethod());
     }

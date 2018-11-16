@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour {
+public class MovingPlatform : MonoBehaviour, IPauseable {
      Vector3 initialPosition;
     public float speed;
     float timer;
@@ -11,6 +11,12 @@ public class MovingPlatform : MonoBehaviour {
     public enum Direction {Right,Forward,Up};
     public Direction direction;
     private bool _shouldMove=true;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     // Use this for initialization
     void Start () {
@@ -21,6 +27,9 @@ public class MovingPlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (_paused)
+            return;
+
         if (_shouldMove) {
             print("me muevo!");
             timer += Time.deltaTime;

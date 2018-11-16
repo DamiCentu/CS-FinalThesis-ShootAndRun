@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : MonoBehaviour {
+public class Bird : MonoBehaviour , IPauseable {
     Vector3 startPosition;
     public float maxDistance = 200;
     public float speed = 20;
@@ -12,7 +12,12 @@ public class Bird : MonoBehaviour {
     public float angle=20;
     private Quaternion startRotation;
 
-    // Use this for initialization
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     void Start () {
         startPosition = this.transform.position;
         startRotation = this.transform.rotation;
@@ -28,6 +33,9 @@ public class Bird : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (_paused)
+            return;
+
         _distanceTraveled += speed * Time.deltaTime;
         if (_distanceTraveled > maxDistance) {
             _distanceTraveled = 0;

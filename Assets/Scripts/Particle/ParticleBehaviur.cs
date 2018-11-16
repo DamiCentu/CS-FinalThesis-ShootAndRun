@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleBehaviur : MonoBehaviour {
+public class ParticleBehaviur : MonoBehaviour , IPauseable {
 
     public List<GameObject> vfxs;
     public float particleTime = 3f;
@@ -10,8 +10,17 @@ public class ParticleBehaviur : MonoBehaviour {
     Dictionary<string, GameObject> _vfxsDic = new Dictionary<string, GameObject>();
 
     float _time = 0;
-	
-	void Update () {
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
+    void Update () {
+        if (_paused)
+            return;
+
         _time += Time.deltaTime;
         if(_time > particleTime) {
             EventManager.instance.ExecuteEvent(Constants.PARTICLE_RETURN_TO_POOL, new object []{this});

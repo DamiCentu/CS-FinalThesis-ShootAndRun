@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamagePath : MonoBehaviour {
+public class DamagePath : MonoBehaviour , IPauseable {
     private float speed;
     private Vector3 _startPosition;
     private float _distanceTraveled;
@@ -16,6 +16,12 @@ public class DamagePath : MonoBehaviour {
      float _distanceToSpawn;
     private bool _shouldStopSpawning = true;
     private List<GameObject> AllGameObjects= new List<GameObject>();
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     public void SpawnDirection(Vector3 spawnPos, Vector3 direction,float speed) {
 
@@ -56,6 +62,9 @@ public class DamagePath : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (_paused)
+            return;
+
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
 
             _distanceTraveled +=  speed * Time.deltaTime;

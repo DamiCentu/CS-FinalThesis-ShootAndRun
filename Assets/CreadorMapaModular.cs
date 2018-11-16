@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class CreadorMapaModular : MonoBehaviour {
+public class CreadorMapaModular : MonoBehaviour , IPauseable {
     public GameObject prefab;
     public bool instance=false;
     public int x;
     public int z;
     public Transform initialPos;
     public Transform parent;
-    // Use this for initialization
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (_paused)
+            return;
+
         if (instance == true)
         {
             instance = false;

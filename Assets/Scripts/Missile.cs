@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile: MonoBehaviour
+public class Missile: MonoBehaviour , IPauseable
 {
     float t;
     Vector3 startPosition;
@@ -18,6 +18,12 @@ public class Missile: MonoBehaviour
 
     public ParticleSystem DestroyParticle1;
     public ParticleSystem DestroyParticle2;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     public void Set(Vector3 destination, float time) {
         t = 0;
@@ -39,6 +45,9 @@ public class Missile: MonoBehaviour
 
     private void Update()
     {
+        if (_paused)
+            return;
+
         t += Time.deltaTime / timeToReachTarget;
         transform.position = Vector3.Lerp(startPosition, target, t);
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropsBehaviour : MonoBehaviour,IHittable {
+public class PropsBehaviour : MonoBehaviour,IHittable , IPauseable {
 
     public GameObject particlePrefab;
 
@@ -10,7 +10,13 @@ public class PropsBehaviour : MonoBehaviour,IHittable {
     MeshRenderer _rend;
     Collider _col;
 
-	void Start () {
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
+    void Start () {
         _particle = Instantiate(particlePrefab,transform).GetComponent<ParticleSystem>();
         _rend = GetComponent<MeshRenderer>();
         var s = _particle.shape;
@@ -38,6 +44,8 @@ public class PropsBehaviour : MonoBehaviour,IHittable {
         _rend.enabled = false;
         _col.enabled = false;
         yield return new WaitForSeconds(_particle.main.duration);
+        while (_paused)
+            yield return null;
         gameObject.SetActive(false);
     }
 }

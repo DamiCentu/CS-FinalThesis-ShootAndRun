@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractBoss : AbstractEnemy
+public abstract class AbstractBoss : AbstractEnemy , IPauseable
 {
 
     public float introTime;
@@ -33,6 +33,12 @@ public abstract class AbstractBoss : AbstractEnemy
     bool introFinished = false;
     public Renderer[] meshRends;
     protected bool shouldChangeStage = true;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     public void Config()
     {
@@ -109,6 +115,9 @@ public abstract class AbstractBoss : AbstractEnemy
     {
         EventManager.instance.ExecuteEvent(Constants.CAMERA_STATIONARY, new object[] { transform.position });
         yield return new WaitForSeconds(2);
+
+        while (_paused)
+            yield return null;
 
         EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_BOSS_EXPLOTION_NAME, transform.position });
         EventManager.instance.ExecuteEvent(Constants.BOSS_DESTROYED, new object[] { bossCameraShakeTime });
@@ -202,6 +211,9 @@ public abstract class AbstractBoss : AbstractEnemy
 
     protected void Update()
     {
+        if (_paused)
+            return;
+
         if (!introFinished)
         {
             timerIntro.CheckAndRun();

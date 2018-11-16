@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CameraITween : MonoBehaviour {
+public class CameraITween : MonoBehaviour , IPauseable {
 
     public Image blackScreen;
     public float timeToFade = 50f;
@@ -14,6 +14,12 @@ public class CameraITween : MonoBehaviour {
     bool fadeOut=false;
     bool AllBlack = true;
 
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     void Start() {
         EventManager.instance.SubscribeEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque, FadeInCamera);
         EventManager.instance.SubscribeEvent(Constants.BLACK_SCREEN, FadeInCamera);
@@ -21,6 +27,9 @@ public class CameraITween : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        if (_paused)
+            return;
+
         if (timer == null) {
             return;
         }

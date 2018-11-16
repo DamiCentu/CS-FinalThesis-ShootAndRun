@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class DropSpecial : MonoBehaviour {
+public class DropSpecial : MonoBehaviour , IPauseable {
     public Mine mine;
     public SpecialBombGun bombGun;
     public List<Image> SpecialImages;
@@ -13,6 +13,12 @@ public class DropSpecial : MonoBehaviour {
     public float timeToChangeSpecial;
     int index = 0;
     Timer timer;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void Start()
     {
@@ -40,6 +46,8 @@ public class DropSpecial : MonoBehaviour {
 
     void Update()
     {
+        if (_paused)
+            return;
         timer.CheckAndRun();
     }
 

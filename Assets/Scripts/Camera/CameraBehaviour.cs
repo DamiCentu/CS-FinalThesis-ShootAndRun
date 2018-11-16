@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CameraBehaviour : MonoBehaviour {
+public class CameraBehaviour : MonoBehaviour , IPauseable {
     [Header("Player")]
     public Transform target;
 
@@ -43,6 +43,12 @@ public class CameraBehaviour : MonoBehaviour {
     private float colorDrift = 0.25f;
     private float scanLine = 0.25f;
 
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     void Start() { 
         _allStrats.Add(ON_FOLLOW, new OnFollowPlayerStrategy(this));
         _allStrats.Add(ON_BOSS_NODE, new OnBossNodeStrategy(this));
@@ -71,7 +77,10 @@ public class CameraBehaviour : MonoBehaviour {
         StartCoroutine(ShakeRoutine()); 
     }
 
-    void FixedUpdate() { 
+    void FixedUpdate() {
+        if (_paused)
+            return;
+
         _strategyBehaviour.OnFixedUpdate();
     } 
 
@@ -98,17 +107,22 @@ public class CameraBehaviour : MonoBehaviour {
 
     IEnumerator ShakeRoutine() {
         while (_shakeCountdown > 0)  {
-             
-            if(_shakeCountdown < playerDeadShakeDuration/2)
+
+            while (_paused)
+                yield return null;
+
+            if (_shakeCountdown < playerDeadShakeDuration/2)
                 transform.position = transform.position + UnityEngine.Random.insideUnitSphere * shakeAmount/3;
             else
                 transform.position = transform.position + UnityEngine.Random.insideUnitSphere * shakeAmount;
 
             _shakeCountdown -= Time.deltaTime * decreaseFactor;
 
-            yield return null;
+            yield return null; 
         }
         yield return new WaitForSeconds(1f);
+        while (_paused)
+            yield return null;
         Kino.AnalogGlitch aGlitch = this.gameObject.GetComponent<Kino.AnalogGlitch>();
         aGlitch.scanLineJitter = 0;
         aGlitch.colorDrift = 0;

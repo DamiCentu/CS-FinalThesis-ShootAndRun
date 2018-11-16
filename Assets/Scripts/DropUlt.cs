@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DropUlt : MonoBehaviour {
+public class DropUlt : MonoBehaviour , IPauseable {
     public List<Image> ultImages;
     Image currentImage;
     public List<string> ultName;
@@ -13,6 +13,12 @@ public class DropUlt : MonoBehaviour {
     public float timeToChangeUlt;
      int index = 0;
     Timer timer;
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void Start () {
         timer = new Timer(timeToChangeUlt, ChangeUlt);
@@ -36,6 +42,9 @@ public class DropUlt : MonoBehaviour {
     }
 
     void Update () {
+        if (_paused)
+            return;
+
         timer.CheckAndRun();
 	}
 

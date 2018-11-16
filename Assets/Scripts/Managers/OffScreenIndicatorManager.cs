@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class OffScreenIndicatorManager : MonoBehaviour {
+public class OffScreenIndicatorManager : MonoBehaviour , IPauseable {
 
     public float timeSplicingQuoteForUpdate = 0.001f;
     public GameObject arrowPrefab;
@@ -16,6 +16,12 @@ public class OffScreenIndicatorManager : MonoBehaviour {
     Pool<GameObject> _poolArrows;
 
     public static OffScreenIndicatorManager instance { get; private set; }
+
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
 
     void Awake() {
         _poolArrows = new Pool<GameObject>(15, ArrowFactoryMethod, null, null, true);
@@ -86,6 +92,8 @@ public class OffScreenIndicatorManager : MonoBehaviour {
 
                 if (Time.realtimeSinceStartup - start > timeSplicingQuoteForUpdate) {
                     yield return wait;
+                    while (_paused)
+                        yield return null;
                     start = Time.realtimeSinceStartup;
                 } 
             }

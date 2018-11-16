@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SectionNode : MonoBehaviour {
+public class SectionNode : MonoBehaviour , IPauseable {
     public int id;
     public SectionNode next;
 
@@ -73,6 +73,12 @@ public class SectionNode : MonoBehaviour {
 
     public bool BossAlive { get { return _bossAlive; } }
 
+    bool _paused;
+    public void OnPauseChange(bool v)
+    {
+        _paused = v;
+    }
+
     public void SetBoss() {
         if (Configuration.instance.lvl == 1) {
             StartCoroutine(BossRoutine());
@@ -86,6 +92,8 @@ public class SectionNode : MonoBehaviour {
     IEnumerator BossRoutine() {
 
         yield return _waitBetweenWaves;
+        while (_paused)
+            yield return null;
 
         bossOnScreen = Instantiate(EnemiesManager.instance.bossPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<Boss>();
         bossOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
@@ -97,6 +105,8 @@ public class SectionNode : MonoBehaviour {
     {
 
         yield return _waitBetweenWaves;
+        while (_paused)
+            yield return null;
 
         bossSerpentLeftOnScreen = Instantiate(EnemiesManager.instance.bossSerpentLeftPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<BossSerpent>();
         bossSerpentLeftOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
@@ -416,11 +426,15 @@ public class SectionNode : MonoBehaviour {
 
     IEnumerator MultipleSpawnTriggerRoutine(int quantity, MultiEnemySpawner sp) {
         yield return _waitBetweenWaves;
+        while (_paused)
+            yield return null;
         for (int i = 0; i < quantity; i++) {
             var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething,sp.idOfWall) as NormalEnemyBehaviour;
             n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.GetPositionWithOffset).gameObject.SetActive(true);
             _allNormalActives.Add(n);
             yield return _waitBetweenSpawns;
+            while (_paused)
+                yield return null;
         }
     }
 
@@ -434,9 +448,13 @@ public class SectionNode : MonoBehaviour {
     
     IEnumerator TriggerRoutine(EnemySpawner[] allTriggerSpawners) {
         yield return _waitBetweenWaves;
+        while (_paused)
+            yield return null;
 
         foreach (var sP in allTriggerSpawners) {
             yield return new WaitForSeconds(sP.extraWaitToSpawn);
+            while (_paused)
+                yield return null;
             StartCoroutine( SpawnEnemy(sP, SectionManager.WaveNumber.Trigger));
         }
     }
@@ -449,6 +467,9 @@ public class SectionNode : MonoBehaviour {
         _currentTimeBetweenDelayedSpawn = 0;
         SetWaves(SectionManager.WaveNumber.First);
         yield return _waitBetweenWaves;
+
+        while (_paused)
+            yield return null;
 
         while (_dicQuantityInWave[SectionManager.WaveNumber.First] > 0)
             yield return null;
@@ -464,6 +485,9 @@ public class SectionNode : MonoBehaviour {
         SetWaves(SectionManager.WaveNumber.Second);
         yield return _waitBetweenWaves;
 
+        while (_paused)
+            yield return null;
+
         while (_dicQuantityInWave[SectionManager.WaveNumber.Second] > 0)
             yield return null;
 
@@ -472,7 +496,10 @@ public class SectionNode : MonoBehaviour {
         }
         _currentTimeBetweenDelayedSpawn = 0;
         SetWaves(SectionManager.WaveNumber.Third);
-        yield return _waitBetweenWaves; 
+        yield return _waitBetweenWaves;
+
+        while (_paused)
+            yield return null;
 
         while (_dicQuantityInWave[SectionManager.WaveNumber.Third] > 0)
             yield return null; 
@@ -501,9 +528,16 @@ public class SectionNode : MonoBehaviour {
             _currentTimeBetweenDelayedSpawn += timeBetweenDelayedSpawn;
         }
         yield return new WaitForSeconds(_currentTimeBetweenDelayedSpawn);
+
+        while (_paused)
+            yield return null;
+
         yield return new WaitForSeconds(sP.extraWaitToSpawn);
 
-         switch (sP.typeOfEnemy) {
+        while (_paused)
+            yield return null;
+
+        switch (sP.typeOfEnemy) {
             case EnemiesManager.TypeOfEnemy.Normal:
                 var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as NormalEnemyBehaviour;
                 n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sP.transform.position).gameObject.SetActive(true);
