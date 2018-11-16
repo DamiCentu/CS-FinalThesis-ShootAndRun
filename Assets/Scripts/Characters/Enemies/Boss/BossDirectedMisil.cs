@@ -17,6 +17,7 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
     public int extraBullet=2;
     public bool upgraded=false;
     public float extraSpeed=5;
+    private float stopTime=2;
 
     void BossActions.Begin(AbstractBoss boss)
     {
@@ -24,9 +25,16 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
         target = this.boss.player.transform;
         if (upgraded)
             this.boss.SpawnEnemies("DirectedMisilUpgrade");
-        Shoot();
+        StartCoroutine("WaitShoot");
+        this.boss.StopMoving(false);
     }
 
+
+    IEnumerator WaitShoot()
+    {
+        yield return new WaitForSeconds(stopTime);
+        Shoot();
+    }
     private void Shoot()
     {
         misils = new List<GameObject>();

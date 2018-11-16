@@ -18,7 +18,7 @@ public class BossLaser : MonoBehaviour, BossActions {
         print("entre");
         this.boss = (BossSerpent)boss;
         line.gameObject.SetActive(false);
-        boss.transform.forward = -Vector3.forward;
+     //   boss.transform.forward = -Vector3.forward;
         laserDir = -Vector3.forward;
     }
 
