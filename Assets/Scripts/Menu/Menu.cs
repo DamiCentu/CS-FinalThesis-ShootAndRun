@@ -114,6 +114,12 @@ public class Menu : MonoBehaviour {
         SetLvl2();
         Configuration.instance.SetNode(4);
     }
+
+    public void Seccion2_5()
+    {
+        SetLvl2();
+        Configuration.instance.SetNode(5);
+    }
     public void ActiveDebugMode()
     {
         Configuration.instance.SetDebugMode(true);
