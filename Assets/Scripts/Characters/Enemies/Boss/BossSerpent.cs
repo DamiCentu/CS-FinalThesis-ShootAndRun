@@ -27,7 +27,7 @@ public class BossSerpent : AbstractBoss,IHittable {
 
         this.transform.Rotate(0, 90, 0);
 
-
+        SetAnimation("left", true);
     }
 
     private void Start()
@@ -71,6 +71,17 @@ public class BossSerpent : AbstractBoss,IHittable {
     internal void StopMoving(bool v)
     {
         moving.Move(!v);
+        if (v) {
+            SetAnimation("left", false);
+            SetAnimation("right", false);
+        }
+        else if (moving.speed > 0) {
+            SetAnimation("left", true);
+        }
+        else if (moving.speed < 0)
+        {
+            SetAnimation("right", true);
+        }
     }
     void IHittable.OnHit(int damage)
     {

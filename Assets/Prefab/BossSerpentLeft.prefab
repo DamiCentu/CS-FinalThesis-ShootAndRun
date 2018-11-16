@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 114425525449765392}
   - component: {fileID: 114779772722819886}
   - component: {fileID: 65504564066909646}
+  - component: {fileID: 95153800227824972}
   m_Layer: 12
   m_Name: BossSerpentLeft
   m_TagString: Untagged
@@ -753,6 +754,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.03, y: 6.08, z: 4.86}
   m_Center: {x: 0, y: 1.4460683, z: 0}
+--- !u!95 &95153800227824972
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782998905453274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: b748d56d62b71bf44b04fcb06ecfc3ef, type: 3}
+  m_Controller: {fileID: 9100000, guid: 50d4e0b745128724e9cd767aead16189, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95463641871350950
 Animator:
   serializedVersion: 3
@@ -760,7 +778,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945793460186324}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: b748d56d62b71bf44b04fcb06ecfc3ef, type: 3}
   m_Controller: {fileID: 9100000, guid: 50d4e0b745128724e9cd767aead16189, type: 2}
   m_CullingMode: 1
