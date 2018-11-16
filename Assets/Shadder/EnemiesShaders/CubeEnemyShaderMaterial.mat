@@ -19,15 +19,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AO:
-        m_Texture: {fileID: 2800000, guid: 60974f539c2717b4e904c5e7ccc82233, type: 3}
+        m_Texture: {fileID: 2800000, guid: 89953113bbe7dd34fb2b5f7de51d6c7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 0c03c43945b69d245902bf3e72488e92, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0ab9a41e470aeab40a55bae74fc2fb8d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 0b85ee785f4220443a9c0c6ee9d9738a, type: 3}
+        m_Texture: {fileID: 2800000, guid: f5302e8b07d9eaa4bbf106b85280bf70, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
@@ -63,5 +63,5 @@ Material:
     - _Brillo: 3
     - _Cutoff: 0.5
     - __dirty: 0
-    - _reintegrateValue: 2
+    - _reintegrateValue: 1.94
     m_Colors: []
