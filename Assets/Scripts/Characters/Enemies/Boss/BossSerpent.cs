@@ -55,12 +55,14 @@ public class BossSerpent : AbstractBoss,IHittable {
         {
             stageActions[1].Add(actionBossFlyup);
             stageActions[1].Add(actionBossFlyDown);
-            stageActions[1].Add(actionShootGun);
-            BossLaser auxlaser = actionLaser;
+            BossShootGun auxshootGun = actionShootGun;
+            actionShootGun.Upgrade();
+            stageActions[1].Add(auxshootGun);
+         /*   BossLaser auxlaser = actionLaser;
             auxlaser.Upgrade();
 
-            stageActions[1].Add(auxlaser);
-            BossThrowFire auxfire = actionThrowFire;
+            stageActions[1].Add(auxlaser); */
+             BossThrowFire auxfire = actionThrowFire;
             auxfire.Upgrade();
             stageActions[1].Add(auxfire);
             stageActions[1].Add(actionDirectedMisil);

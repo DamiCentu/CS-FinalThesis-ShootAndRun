@@ -82,7 +82,7 @@ public class BossLaser : MonoBehaviour, BossActions {
         upgrade = true;
     }
     public void Upgrade() {
-        upgrade = true;
+       upgrade = true;
     }
 
 

@@ -730,7 +730,7 @@ MonoBehaviour:
   lifeToChangeEasy: -100
   lifeToChangeMedium: -100
   lifeToChangeHard: -100
-  lifeEasy: 10
+  lifeEasy: 100
   lifeMedium: 150
   lifeHard: 200
   maxLifeToChangeStage:
@@ -745,7 +745,6 @@ MonoBehaviour:
   timerActionsStage2:
   - 3
   - 3
-  - 5
   - 5
   - 5
   - 5
@@ -875,6 +874,10 @@ MonoBehaviour:
   stopTime: 0.15
   angle: 15
   nBullet: 4
+  extraBullet: 2
+  upgradeAngle: 10
+  upgradeRandomRange: 5
+  reduceTime: 0.3
 --- !u!114 &114966053848763868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -888,7 +891,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeAlive: 2
   particlesName: fire
+  prefabName: fire3
   distanceBetweenSpawns: 1
+  prefab_collider: {fileID: 0}
 --- !u!114 &114977671456932454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1098,7 +1103,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b748d56d62b71bf44b04fcb06ecfc3ef, type: 3}
+  - {fileID: 2100000, guid: 433bd97f9ccd6d348af4d4cd1e2f375f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

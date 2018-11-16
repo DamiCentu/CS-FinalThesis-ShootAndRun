@@ -14,6 +14,12 @@ public class BossShootGun : MonoBehaviour, BossActions, IPauseable {
     private float offset;
 
     bool _paused;
+    public int extraBullet=2;
+    public float upgradeAngle=10;
+    private float randomRange=0;
+    public float upgradeRandomRange=5;
+    public float reduceTime=0f;
+
     public void OnPauseChange(bool v)
     {
         _paused = v;
@@ -74,7 +80,7 @@ public class BossShootGun : MonoBehaviour, BossActions, IPauseable {
         for (int i = -nBullet+1; i < nBullet; i++)
         {
 
-            var curRot = Quaternion.AngleAxis(angle * i, Vector3.up) * rotation;
+            var curRot = Quaternion.AngleAxis(angle * i+ UnityEngine.Random.Range(-randomRange, randomRange), Vector3.up) * rotation;
 
             var s = EnemyBulletManager.instance.giveMeEnemyBullet();
             s.SetPos(shootPosition).SetDir(curRot).gameObject.SetActive(true);
@@ -82,8 +88,18 @@ public class BossShootGun : MonoBehaviour, BossActions, IPauseable {
         }
 
     }
-
     void BossActions.Upgrade()
     {
+        nBullet += extraBullet;
+        angle = upgradeAngle;
+        randomRange = upgradeRandomRange;
+        timeDefault -= reduceTime;
+    }
+    public void Upgrade()
+    {
+        nBullet += extraBullet;
+        angle = upgradeAngle;
+        randomRange = upgradeRandomRange;
+        timeDefault = reduceTime;
     }
 }
