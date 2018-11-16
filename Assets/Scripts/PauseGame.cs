@@ -45,12 +45,14 @@ public class PauseGame : MonoBehaviour {
      void Pause(bool v, ParticleSystem[] _allParticles) {
         if(v) { 
             foreach (var p in _allParticles) {
-                p.Pause();
+                if (p != null)
+                    p.Pause();
             }
         }
         else {
             foreach (var p in _allParticles) {
-                p.Play();
+                if(p!=null)
+                  p.Play();
             }
         }
     }
