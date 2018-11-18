@@ -3,17 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowBullets : EnemyBulletBehaviour , IPauseable
+public class FollowBullets : EnemyBulletBehaviour
 {
     public float followIntensity=0.2f;
     public float lifeTime = 3;
     public float timer;
-
-    bool _paused;
-    public void OnPauseChange(bool v)
-    {
-        _paused = v;
-    }
 
     public void Awake()
     {

@@ -9,7 +9,7 @@ public class EnemyBulletBehaviour : MonoBehaviour, IPauseable {
     public LayerMask layerThatAffectEnemyBullet;
 
     TrailRenderer _trail;
-    bool _paused;
+    protected bool _paused;
     public void OnPauseChange(bool v) {
         _paused = v; 
     }
