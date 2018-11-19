@@ -33,6 +33,7 @@ Material:
     m_Floats:
     - _Brillo: 1.15
     - _Float0: 1
+    - _Speed: 1.25
     - __dirty: 0
     - _metallic: 0.9811869
     m_Colors: []
