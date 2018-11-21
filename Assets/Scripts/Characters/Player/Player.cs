@@ -119,6 +119,8 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
         }
         else {
+            _anim.SetFloat("Horizontal", 0);
+            _anim.SetFloat("Vertical", 0);
             _isDashing = false;
             ChangeShaderValue("_DashF", 0);
             Vector3 directionToLook = transform.position + new Vector3(0, 0, 10);
