@@ -56,17 +56,18 @@ public class DamagePath : MonoBehaviour , IPauseable {
         particles = Instantiate((GameObject)Resources.Load(particlesName), spawnPos, Quaternion.Euler(_direction));
         particles.SetActive(false);
         particles.transform.position = spawnPos;
-        particles.SetActive(true);
     }
 
     internal void DeleteAll()
     {
+        Stop();
         foreach (var item in AllGameObjects)
         {
             if (item != null) Destroy(item);
         }
         AllGameObjects.Clear();
-        particles.SetActive(false);
+        if(particles!=null)
+            particles.SetActive(false);
         _distanceTraveled = 0;
         _distanceToSpawn = 0;
     }
@@ -75,9 +76,8 @@ public class DamagePath : MonoBehaviour , IPauseable {
     void Update () {
         if (_paused)
             return;
-
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
-
+            particles.SetActive(true);
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
             particles.transform.position += speed * Time.deltaTime* _direction;

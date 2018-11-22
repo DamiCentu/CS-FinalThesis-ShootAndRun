@@ -51,7 +51,7 @@ public class BossCharge : MonoBehaviour,BossActions , IPauseable {
         boss.shield2.GetComponent<BoxCollider>().enabled = false;
         EventManager.instance.UnsubscribeEvent(Constants.CHARGER_CRUSH, StopCharging);
         StopCharging(new object[0]);
-        damagePath.DeleteAll();
+      //  damagePath.DeleteAll();
     }
 
     private void StopCharging(object[] parameterContainer)
