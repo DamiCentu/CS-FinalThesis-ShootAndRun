@@ -81,7 +81,7 @@ Material:
     - _Float6: 1
     - _Power: 1
     - _Scale: 2
-    - __dirty: 0
+    - __dirty: 1
     - _disolve: 1
     m_Colors:
     - _ASEOutlineColor: {r: 0, g: 1, b: 0, a: 0}

@@ -140,7 +140,9 @@ public class SectionManager : MonoBehaviour , IPauseable {
 
     IEnumerator SectionsRoutine() {
         while (actualNode != null) {
-            EventManager.instance.ExecuteEvent(Constants.START_SECTION);
+            object[] conteiner = new object[1];
+            conteiner[0] = "out";
+            EventManager.instance.ExecuteEvent(Constants.START_SECTION,conteiner);
             yield return new WaitForSeconds(0.6f);
             while (_paused)
                 yield return null;
@@ -161,8 +163,9 @@ public class SectionManager : MonoBehaviour , IPauseable {
                         EnemiesManager.instance.player2.gameObject.SetActive(true);
                     }
                 }
-
-                EventManager.instance.ExecuteEvent(Constants.START_SECTION);
+                conteiner = new object[1];
+                conteiner[0] = "in";
+                EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
                 actualNode.SetBoss();
 
                 yield return new WaitForSeconds(actualNode.timeBetweenWaves);
@@ -192,8 +195,9 @@ public class SectionManager : MonoBehaviour , IPauseable {
                         EnemiesManager.instance.player2.gameObject.SetActive(true);
                     }
                 }
-
-                EventManager.instance.ExecuteEvent(Constants.START_SECTION);
+                conteiner = new object[1];
+                conteiner[0] = "in";
+                EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
                 actualNode.SetEnemiesRemaining();
 
                 var wait = new WaitForEndOfFrame();

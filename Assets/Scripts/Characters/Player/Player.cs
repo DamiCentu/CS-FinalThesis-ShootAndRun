@@ -69,6 +69,9 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     public bool debugMode=false;
 
     bool _paused;
+    private bool portalOut;
+    private bool portalIn;
+
     public void OnPauseChange(bool v) {
         _paused = v;
         _anim.enabled = !v;
@@ -513,9 +516,9 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     {
         float timer = 1;
         while (timer > -1) {
-            timer -= 0.1f;
+            timer -= 0.05f;
             ChangeShaderValue("_disolve", timer);
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
         }
 
     }
@@ -543,10 +546,20 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         //LO IDEAL SERIA SEPARAR EL PORTAL DE CUANDO APARECE DE CUANDO TERMINA ASI SE EJECUTA BIEN(RECORDA QUE EL START_SECTION DEL SECTION MANAGER EN LA LINEA 121 SIRVE PARA
         //CUANDO TERMINA EL NODO "PONELE", TE VAS A DAR CUENTA SI LO TESTEAS LO QUE DIGO (EL BUG ES REPRODUCIBLE SI GANAS LA SECCION, PODES DEJARTE 1 SOLO ENEMIGO Y ALCANZA
         //PARA GANARLA RAPIDO Y PASAS A LA SIGUIENTE)
+        if ((string)parameterContainer[0] == "in")
+        {
+            StartCoroutine("Integrate");
+            portalIn = true;
+        }
+        if ((string)parameterContainer[0] == "out")
+        {
+            StartCoroutine("Disolve");
+            portalOut = true;
+        }
         _anim.SetFloat("Hotizontal", 0);
         _anim.SetFloat("Vertical", 0);
-        StartCoroutine("Integrate");
-        Timer portalTimer = new Timer(2.1f, FinishSpawn);
+       
+        Timer portalTimer = new Timer(2.5f, FinishSpawn);
         timers.Add(portalTimer);
         spawned = false;
         spawnParticle1.transform.position = this.transform.position;
@@ -577,7 +590,9 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         dashCount = MaxDashCount;
         ActiveUI();
         timerToUlt = 0;
-        timerCooldownSpecial = 0; 
+        timerCooldownSpecial = 0;
+        portalIn = false;
+        portalOut = false;
         EventManager.instance.ExecuteEvent(Constants.PLAYER_CAN_MOVE);
     }
 

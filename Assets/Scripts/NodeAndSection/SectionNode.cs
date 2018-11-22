@@ -28,7 +28,7 @@ public class SectionNode : MonoBehaviour , IPauseable {
 
     public bool waveDelayedSpawn = false;
     public SectionManager.WaveNumber waveNumber;
-    public float timeBetweenDelayedSpawn = 0.2f;
+    public float timeBetweenDelayedSpawn = 0.4f;
     float _currentTimeBetweenDelayedSpawn = 0f;
 
     Vector3 onGizmosSafeZoneChaser = new Vector3(1000f, 1000f, 1000f);
@@ -367,8 +367,9 @@ public class SectionNode : MonoBehaviour , IPauseable {
                 SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
             }
         }
-
-        EventManager.instance.ExecuteEvent(Constants.START_SECTION);
+        object[] conteiner= new object[1];
+        conteiner[0] = "in";
+        EventManager.instance.ExecuteEvent(Constants.START_SECTION,conteiner);
 
         if (isBossNode) {
             
