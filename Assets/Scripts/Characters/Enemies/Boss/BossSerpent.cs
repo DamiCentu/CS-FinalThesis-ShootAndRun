@@ -9,11 +9,10 @@ public class BossSerpent : AbstractBoss,IHittable {
     public BossShootGun actionShootGun;
     public BossLaser actionLaser;
     public BossDirectedMisil actionDirectedMisil;
-    public BossFly actionBossFlyup;
-    public BossFly actionBossFlyDown;
+    public BossFly actionBossFly;
     public enum Type {Left, Right,Up };
     public Type type;
-    MovingPlatform moving;
+    public MovingPlatform moving;
     public Transform shootPosition;
     private bool dead=false;
 
@@ -26,14 +25,20 @@ public class BossSerpent : AbstractBoss,IHittable {
         shouldChangeStage = false;
 
         this.transform.Rotate(0, 90, 0);
-
-        SetAnimation("left", true);
+        SetAnimation("fly", true);
     }
+
 
     private void Start()
     {
-        EventManager.instance.SubscribeEvent("EvolveBoss2", Evolve);
+        EventManager.instance.SubscribeEvent("EvolveBoss2", SetEvolve);
         moving.Move(false);
+    }
+
+    private void SetEvolve(object[] parameterContainer)
+    {
+        shouldEvolve = true;
+        shouldChangeStage = true;
     }
 
     private void SetActions()
@@ -53,8 +58,8 @@ public class BossSerpent : AbstractBoss,IHittable {
         }
         if (type == Type.Up)
         {
-            stageActions[1].Add(actionBossFlyup);
-            stageActions[1].Add(actionBossFlyDown);
+            stageActions[1].Add(actionBossFly);
+
             BossShootGun auxshootGun = actionShootGun;
             actionShootGun.Upgrade();
             stageActions[1].Add(auxshootGun);
@@ -117,7 +122,7 @@ public class BossSerpent : AbstractBoss,IHittable {
             _actualSectionNode.SpawnEnemyAtPointNoCuentaParaTerminarNodoPeroTieneIntegracion(position, type);
         }
     }
-    private void Evolve(object[] parameterContainer)
+    protected override void Evolve()
     {
         if (!dead) {
             print(type);
@@ -127,16 +132,20 @@ public class BossSerpent : AbstractBoss,IHittable {
             SetActions();
             base.Evolve();
 
-            moving.ChangeStartPosition(GameObject.Find("BossEvolveSpaenPoint").transform.position);
-            moving.direction = MovingPlatform.Direction.Right;
-            moving.width = 10;
+
         }
     }
 
     internal void Destroy()
     {
         this.DeleteAll();
-        EventManager.instance.UnsubscribeEvent("EvolveBoss2", Evolve);
+        EventManager.instance.UnsubscribeEvent("EvolveBoss2", SetEvolve);
         Destroy(this.gameObject);
+    }
+
+    protected override void FinishiIntro()
+    {
+        base.FinishiIntro();
+        SetAnimation("fly", false);
     }
 }

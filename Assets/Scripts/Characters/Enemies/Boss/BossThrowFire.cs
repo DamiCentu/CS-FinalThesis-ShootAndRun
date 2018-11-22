@@ -55,7 +55,7 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
             while (_paused)
                 yield return null;
 
-            print("shoot");
+
             Vector3 direct = target.position - boss.transform.position;
             if (!Physics.Raycast(transform.position, direct, direct.magnitude, maskThatBlockVisionToPlayer))
             {
@@ -63,7 +63,7 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
                 yield return new WaitForSeconds(stopTime);
                 while (_paused)
                     yield return null;
-                print("stopTime:" + stopTime);
+
                 direct.y = 0;
                 damagePath.SpawnDirection(boss.transform.position + new Vector3(0f, 1, 0f), direct.normalized, speed);
                 yield return new WaitForSeconds(stopTime);

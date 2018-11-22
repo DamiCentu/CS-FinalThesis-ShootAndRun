@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4360659430554876}
   - component: {fileID: 114889633840181352}
   m_Layer: 12
-  m_Name: BossFlyUp
+  m_Name: BossFly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,6 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: -45
   speed: -15
+  time: 1
 --- !u!114 &114779772722819886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -917,6 +918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 45
   speed: 15
+  time: 2
 --- !u!114 &114892225617770412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -928,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17933486e1f3b4240b7e8586af0224fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introTime: 2
+  introTime: 1
   lifeToChangeEasy: -100
   lifeToChangeMedium: -100
   lifeToChangeHard: -100
@@ -944,8 +946,7 @@ MonoBehaviour:
   - 5
   - 5
   timerActionsStage2:
-  - 3
-  - 3
+  - 4
   - 5
   - 5
   - 5
@@ -959,9 +960,9 @@ MonoBehaviour:
   actionShootGun: {fileID: 114180238876812894}
   actionLaser: {fileID: 114015264290088276}
   actionDirectedMisil: {fileID: 114427746666771280}
-  actionBossFlyup: {fileID: 114889633840181352}
-  actionBossFlyDown: {fileID: 114523833285194550}
+  actionBossFly: {fileID: 114889633840181352}
   type: 0
+  moving: {fileID: 0}
   shootPosition: {fileID: 4283482168512746}
 --- !u!114 &114951123051083710
 MonoBehaviour:

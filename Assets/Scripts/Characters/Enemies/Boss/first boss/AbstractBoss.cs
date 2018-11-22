@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +34,7 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
     bool introFinished = false;
     public Renderer[] meshRends;
     protected bool shouldChangeStage = true;
-
+    protected bool shouldEvolve;
     bool _paused;
     public void OnPauseChange(bool v)
     {
@@ -57,6 +58,7 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
         //actualAction.Begin(this);
     }
 
+
     private void SetLife(int stage)
     {
         if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
@@ -76,7 +78,7 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
         }
     }
 
-    protected void Evolve() {
+    protected virtual void Evolve() {
         SetLife(1);
         life *= 2;
         maxLife = life;
@@ -129,9 +131,9 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
         actualAction.DeleteAll();
     }
 
-    private void FinishiIntro()
+    protected virtual void FinishiIntro()
     {
-
+        
         timer = new Timer(timerActions[index], ChangeAction);
         introFinished = true;
         actualAction.Begin(this);
@@ -180,8 +182,13 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
 
     protected void ChangeStageIfNeeded()
     {
-        if (life < maxLifeToChangeStage[stage]&& life>0 && shouldChangeStage)
+        if ((life < maxLifeToChangeStage[stage]|| shouldEvolve)&& life>0 && shouldChangeStage)
         {
+            if (shouldEvolve) {
+                Evolve();
+                shouldEvolve = false;
+                return;
+            }
             stage++;
             actions = stageActions[stage];
             index = 0;

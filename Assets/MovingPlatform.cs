@@ -31,7 +31,6 @@ public class MovingPlatform : MonoBehaviour, IPauseable {
             return;
 
         if (_shouldMove) {
-            print("me muevo!");
             timer += Time.deltaTime;
             Vector3 dir=Vector3.zero;
             if (direction == Direction.Right) dir = this.transform.right;
