@@ -123,6 +123,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
             _anim.SetFloat("Vertical", 0);
             _isDashing = false;
             ChangeShaderValue("_DashF", 0);
+            //StartCoroutine("Integrate");
             Vector3 directionToLook = transform.position + new Vector3(0, 0, 10);
             transform.LookAt(directionToLook);
             _rb.velocity = Vector3.zero;
@@ -508,6 +509,28 @@ public class Player : MonoBehaviour, IHittable , IPauseable
             EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
         }
     }
+    IEnumerator Disolve()
+    {
+        float timer = 1;
+        while (timer > -1) {
+            timer -= 0.1f;
+            ChangeShaderValue("_disolve", timer);
+            yield return new WaitForSeconds(.1f);
+        }
+
+    }
+
+    IEnumerator Integrate()
+    {
+        float timer = -1;
+        while (timer < 1)
+        {
+            timer += 0.05f;
+            ChangeShaderValue("_disolve", timer);
+            yield return new WaitForSeconds(.05f);
+        }
+
+    }
 
     private void Portal(object[] parameterContainer)
     {
@@ -522,6 +545,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         //PARA GANARLA RAPIDO Y PASAS A LA SIGUIENTE)
         _anim.SetFloat("Hotizontal", 0);
         _anim.SetFloat("Vertical", 0);
+        StartCoroutine("Integrate");
         Timer portalTimer = new Timer(2.1f, FinishSpawn);
         timers.Add(portalTimer);
         spawned = false;

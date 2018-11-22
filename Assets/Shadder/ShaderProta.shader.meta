@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 18f3716cc15c7b54f898dfba0e137c62
-timeCreated: 1539905444
+timeCreated: 1542915884
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
+  - _Large_DI509: {fileID: 2800000, guid: 309ae11227180214f837ad39ea44305f, type: 3}
+  - _download2: {fileID: 2800000, guid: 513ae8f75b130db40bf7e18c9aea656b, type: 3}
   - _mainbody_03___Default_Normal: {fileID: 2800000, guid: 912177baac7d0aa458d4a8266d39f083,
       type: 3}
   - _mainbody_03___Default_AlbedoTransparency: {fileID: 2800000, guid: dc7c5acda41d9ac4eaaa6dd0fbb406a8,
