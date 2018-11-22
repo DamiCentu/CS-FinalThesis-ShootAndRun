@@ -389,6 +389,19 @@ public class SectionNode : MonoBehaviour , IPauseable {
 
         LootTableManager.instance.DestroyAllPowerUps();
 
+        var damagesPath = FindObjectsOfType<DamagePath>();
+
+        foreach (var item in damagesPath)
+        {
+            item.DeleteAll();
+        }
+        GameObject fire = GameObject.Find("Virtual_Fire(Clone)");
+        while (fire != null) {
+            fire.SetActive(false);
+            Destroy(fire);
+            fire= GameObject.Find("Virtual_Fire(Clone)");
+        }
+
         GameObject p = EnemiesManager.instance.player;
         DropIfNeededPowerUpHelp(p.transform.position);
 

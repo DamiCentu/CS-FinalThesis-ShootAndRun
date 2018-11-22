@@ -12,15 +12,14 @@ public class DamagePath : MonoBehaviour , IPauseable {
     public float timeAlive;
     GameObject particles;
     public string particlesName= "Virtual_Fire";
-    public string prefabName = "fire3";
     public float distanceBetweenSpawns;
      float _distanceToSpawn;
     private bool _shouldStopSpawning = true;
     private List<GameObject> AllGameObjects= new List<GameObject>();
 
     bool _paused;
-    public GameObject prefab_collider;
-
+    // public GameObject prefab_collider;
+    public string collider_name= "ParticleCollider";
     public void OnPauseChange(bool v)
     {
         _paused = v;
@@ -28,11 +27,7 @@ public class DamagePath : MonoBehaviour , IPauseable {
 
     private void Start()
     {
-        particles = GameObject.Find(particlesName);
-        if (particles == null) print("che es null!");
-        var aux = GameObject.Find(prefabName);
-        if (aux == null) print("che es null!");
-        prefab_collider = Instantiate(aux);
+
     }
 
     public void SpawnDirection(Vector3 spawnPos, Vector3 direction,float speed) {
@@ -57,18 +52,22 @@ public class DamagePath : MonoBehaviour , IPauseable {
         _distanceTraveled = 0;
         _distanceToSpawn = 0;
         this.speed = speed;
+
+        particles = Instantiate((GameObject)Resources.Load(particlesName), spawnPos, Quaternion.Euler(_direction));
         particles.SetActive(false);
         particles.transform.position = spawnPos;
-        particles.SetActive(true);
     }
 
     internal void DeleteAll()
     {
+        Stop();
         foreach (var item in AllGameObjects)
         {
             if (item != null) Destroy(item);
         }
         AllGameObjects.Clear();
+        if(particles!=null)
+            particles.SetActive(false);
         _distanceTraveled = 0;
         _distanceToSpawn = 0;
     }
@@ -77,9 +76,8 @@ public class DamagePath : MonoBehaviour , IPauseable {
     void Update () {
         if (_paused)
             return;
-
         if (_maxDistance > _distanceTraveled && !_shouldStopSpawning) {
-
+            particles.SetActive(true);
             _distanceTraveled +=  speed * Time.deltaTime;
             _distanceToSpawn += speed * Time.deltaTime;
             particles.transform.position += speed * Time.deltaTime* _direction;
@@ -87,7 +85,8 @@ public class DamagePath : MonoBehaviour , IPauseable {
                 _distanceToSpawn = 0;
                 Vector3 spawnPos = _startPosition + _direction * _distanceTraveled;
                 //      GameObject p= Instantiate(particles, spawnPos, this.transform.rotation);
-                GameObject p = Instantiate(prefab_collider, spawnPos, this.transform.rotation);
+                
+                GameObject p = Instantiate((GameObject)Resources.Load(collider_name), spawnPos,Quaternion.Euler(_direction)) ;
                 p.gameObject.SetActive(true);
                 AllGameObjects.Add(p);
                Destroy(p.gameObject, timeAlive);
