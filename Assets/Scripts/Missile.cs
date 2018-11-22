@@ -17,8 +17,8 @@ public class Missile: MonoBehaviour , IPauseable
     public GameObject DecayMark;
 
     public ParticleSystem DestroyParticle1;
-    public ParticleSystem DestroyParticle2;
-
+    private ParticleSystem DestroyParticle2;
+    public string DestroyParticle2Name= "explosion misil";
     bool _paused;
     public void OnPauseChange(bool v)
     {
@@ -34,7 +34,7 @@ public class Missile: MonoBehaviour , IPauseable
 
         CreateMark();
         DestroyParticle1 = GameObject.Find("distorsionBoom").GetComponent<ParticleSystem>();
-        DestroyParticle2 = GameObject.Find("ExplotionBoom").GetComponent<ParticleSystem>();
+//        DestroyParticle2 = ((GameObject)Resources.Load(DestroyParticle2Name)).GetComponent<ParticleSystem>();
     }
 
     private void CreateMark()
@@ -91,14 +91,15 @@ public class Missile: MonoBehaviour , IPauseable
         DestroyParticle1.transform.position = this.transform.position;
         DestroyParticle1.gameObject.SetActive(true);
         DestroyParticle1.Play();
+        DestroyParticle2 = Instantiate ((GameObject)Resources.Load(DestroyParticle2Name),this.transform.position,this.transform.rotation).GetComponent<ParticleSystem>();
         DestroyParticle2.transform.position = this.transform.position;
         DestroyParticle2.gameObject.SetActive(true);
         DestroyParticle2.Play();
-        GameObject g=Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
-        Destroy(g, 2);
+    //    GameObject g=Instantiate(DecayMark, new Vector3(mark.transform.position.x, -0.43f, mark.transform.position.z), mark.transform.rotation);
+        //Destroy(g, 2);
         Destroy(mark);
         gameObject.SetActive(false);
         Destroy(this.gameObject);
-        
+        Destroy(DestroyParticle2.gameObject,3);
     }
 }

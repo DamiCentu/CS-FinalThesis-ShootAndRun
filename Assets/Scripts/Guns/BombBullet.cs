@@ -13,16 +13,16 @@ public class BombBullet : IBullet , IPauseable {
     public ParticleSystem DestroyParticle2;
 
     bool _paused;
+    private string DestroyParticle2Name;
+    private string DestroyParticle1Name;
+    private string DestroyParticleName= "explo digital";
+    private GameObject DestroyParticle;
+
     public void OnPauseChange(bool v)
     {
         _paused = v;
     }
 
-    public void Start()
-	{
-        DestroyParticle1 = GameObject.Find("distorsionBoom").GetComponent<ParticleSystem>();
-        DestroyParticle2 = GameObject.Find("ExplotionBoom").GetComponent<ParticleSystem>();
-    }
     public void FixedUpdate()
     {
         if (_paused)
@@ -55,12 +55,22 @@ public class BombBullet : IBullet , IPauseable {
             col.enabled = false;
             a.enabled = false;
 
-            DestroyParticle1.transform.position = this.transform.position;
-            DestroyParticle1.gameObject.SetActive(true);
-            DestroyParticle1.Play();
-            DestroyParticle2.transform.position = this.transform.position;
-            DestroyParticle2.gameObject.SetActive(true);
-            DestroyParticle2.Play();
+            /*   DestroyParticle1 = Instantiate((GameObject)Resources.Load(DestroyParticle1Name), this.transform.position, this.transform.rotation).GetComponent<ParticleSystem>();
+               DestroyParticle1.transform.position = this.transform.position;
+               DestroyParticle1.gameObject.SetActive(true);
+               DestroyParticle1.Play();
+
+               DestroyParticle2 = Instantiate((GameObject)Resources.Load(DestroyParticle2Name), this.transform.position, this.transform.rotation).GetComponent<ParticleSystem>();
+               DestroyParticle2.transform.position = this.transform.position;
+               DestroyParticle2.gameObject.SetActive(true);
+               DestroyParticle2.Play();
+
+               Destroy(DestroyParticle1.gameObject,3);
+               Destroy(DestroyParticle2.gameObject,3);*/
+
+            DestroyParticle = Instantiate((GameObject)Resources.Load(DestroyParticleName), this.transform.position, this.transform.rotation);
+
+            Destroy(DestroyParticle.gameObject,3);
             Destroy(this.gameObject);
         }
 	}
