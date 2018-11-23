@@ -850,7 +850,7 @@ MonoBehaviour:
   lifeToChangeEasy: -100
   lifeToChangeMedium: -100
   lifeToChangeHard: -100
-  lifeEasy: 10
+  lifeEasy: 100
   lifeMedium: 150
   lifeHard: 200
   maxLifeToChangeStage:
@@ -863,10 +863,10 @@ MonoBehaviour:
   - 5
   - 5
   timerActionsStage2:
-  - 2
+  - 4
   - 5
   - 5
-  - 5
+  - 6
   timerActionsStage3: []
   life: 50
   bossCameraShakeTime: 2

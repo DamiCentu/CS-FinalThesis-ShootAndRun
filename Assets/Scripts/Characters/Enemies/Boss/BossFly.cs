@@ -11,17 +11,18 @@ public class BossFly : MonoBehaviour, BossActions
     public float speed = 10;
     public float time = 2f;
     BossSerpent boss;
+    private bool stop=false;
+
     void BossActions.Begin(AbstractBoss boss)
     {
-        print("empiezo a volar");
-        print("boss type");
-        print(((BossSerpent)boss).type);
-        this.boss = (BossSerpent)boss;
-        ((BossSerpent)boss).StopMoving(true);
-        boss.SetAnimation("fly", true);
-        print("llll");
-        //  startPos = boss.transform.position;
-        StartCoroutine("WaitToGetDown");
+        if (!stop) {
+
+            this.boss = (BossSerpent)boss;
+            ((BossSerpent)boss).StopMoving(true);
+            boss.SetAnimation("fly", true);
+            StartCoroutine("WaitToGetDown");
+
+        }
     }
     IEnumerator WaitToGetDown()
     {
@@ -46,8 +47,12 @@ public class BossFly : MonoBehaviour, BossActions
 
     void BossActions.Finish(AbstractBoss boss)
     {
-        ((BossSerpent)boss).StopMoving(false);
-        
+        if (!stop)
+        {
+            ((BossSerpent)boss).StopMoving(false);
+            boss.StopFlying();
+            stop = true;
+        }
 
     }
 

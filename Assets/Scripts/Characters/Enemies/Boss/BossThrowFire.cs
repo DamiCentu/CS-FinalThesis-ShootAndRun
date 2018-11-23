@@ -25,7 +25,9 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
     {
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
-
+        if (upgraded){
+            ((BossSerpent)boss).StopMoving(false);
+        }
         damagePath = GetComponent<DamagePath>();
         StartCoroutine("ThrowFiretCorutine");
     }

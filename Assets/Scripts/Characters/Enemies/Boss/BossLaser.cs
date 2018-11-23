@@ -15,7 +15,7 @@ public class BossLaser : MonoBehaviour, BossActions {
     public GameObject mark1;
     public GameObject mark2;
     public GameObject mark3;
-    List<GameObject> misils;
+    List<GameObject> misils = new List<GameObject>();
     public int nBullet;
     public float angle;
     private float offset = 1;
@@ -36,8 +36,8 @@ public class BossLaser : MonoBehaviour, BossActions {
 
             StartCoroutine("WaitShoot");
             misils = new List<GameObject>();
+            this.boss.StopMoving(false);
         }
-        this.boss.StopMoving(false);
     }
 
     void BossActions.DeleteAll()
@@ -46,9 +46,12 @@ public class BossLaser : MonoBehaviour, BossActions {
             line.gameObject.SetActive(false);
         }
         MarkActive(false);
-        foreach (var item in misils)
-        {
-            if (item != null) Destroy(item.gameObject);
+        if (upgrade) {
+
+            foreach (var item in misils)
+            {
+                if (item != null) Destroy(item.gameObject);
+            }
         }
     }
 

@@ -30,6 +30,7 @@ public class BossShootGun : MonoBehaviour, BossActions, IPauseable {
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
         StartCoroutine("ShootCorutine");
+
     }
 
     void BossActions.DeleteAll()

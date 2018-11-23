@@ -58,6 +58,10 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
         //actualAction.Begin(this);
     }
 
+    internal void StopFlying()
+    {
+        timerActions[0]=0;
+    }
 
     private void SetLife(int stage)
     {
@@ -73,7 +77,7 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
         }
         else if (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
         {
-            life = lifeToChangeHard;
+            life = lifeHard;
             maxLifeToChangeStage[stage] = lifeToChangeHard;
         }
     }
