@@ -396,6 +396,15 @@ public class SectionNode : MonoBehaviour , IPauseable {
         {
             item.DeleteAll();
         }
+
+        var followBullets = FindObjectsOfType<FollowBullets>();
+
+        foreach (var item in followBullets)
+        {
+            Destroy(item.gameObject);
+        }
+
+
         GameObject fire = GameObject.Find("Virtual_Fire(Clone)");
         while (fire != null) {
             fire.SetActive(false);
