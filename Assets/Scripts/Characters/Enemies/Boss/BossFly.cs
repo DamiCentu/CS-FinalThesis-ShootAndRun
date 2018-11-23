@@ -40,7 +40,7 @@ public class BossFly : MonoBehaviour, BossActions
         boss.transform.position = newPos;
         boss.moving.direction = MovingPlatform.Direction.Right;
         boss.moving.width = 10;
-        boss.moving.speed = 1;
+        boss.moving.speed = 0.75f;
         boss.transform.forward = -Vector3.forward;
         
     }

@@ -956,7 +956,7 @@ MonoBehaviour:
   mark1: {fileID: 1339957327364876}
   mark2: {fileID: 1601867217058310}
   mark3: {fileID: 1519188862394194}
-  nBullet: 5
+  nBullet: 4
   angle: 30
   offsetXz: 2
   prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
@@ -983,7 +983,7 @@ MonoBehaviour:
   mark1: {fileID: 1339957327364876}
   mark2: {fileID: 1601867217058310}
   mark3: {fileID: 1519188862394194}
-  nBullet: 5
+  nBullet: 4
   angle: 30
   offsetXz: 2
   prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   extraBullet: 2
   upgradeAngle: 10
   upgradeRandomRange: 5
-  reduceTime: 0.3
+  reduceTime: 0.6
 --- !u!114 &114966053848763868
 MonoBehaviour:
   m_ObjectHideFlags: 1

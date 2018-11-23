@@ -51,10 +51,12 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
     IEnumerator ThrowFiretCorutine() {
         while (true) {
 
-            yield return new WaitForSeconds(timeDefault/2);
-            if (upgraded)
+            yield return new WaitForSeconds(timeDefault);
+            if (upgraded) {
+
                 this.boss.SpawnEnemies("FireUpgrade");
-            yield return new WaitForSeconds(timeDefault / 2);
+                yield return new WaitForSeconds(timeDefault / 2);
+            }
             while (_paused)
                 yield return null;
 
