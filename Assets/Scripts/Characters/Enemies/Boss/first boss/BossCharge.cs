@@ -15,7 +15,9 @@ public class BossCharge : MonoBehaviour,BossActions , IPauseable {
     public DamagePath damagePath;
    // public LineRenderer line;
     public LayerMask CollisionLayer;
-    public GameObject chargeMark;
+    public GameObject chargeMark1;
+    public GameObject chargeMark2;
+    public GameObject chargeMark3;
     bool _paused;
     public void OnPauseChange(bool v)
     {
@@ -42,7 +44,9 @@ public class BossCharge : MonoBehaviour,BossActions , IPauseable {
         EventManager.instance.UnsubscribeEvent(Constants.CHARGER_CRUSH, StopCharging);
         this.boss.shield1.GetComponent<BoxCollider>().enabled = false;
         this.boss.shield2.GetComponent<BoxCollider>().enabled = false;
-        chargeMark.SetActive(false);
+        chargeMark1.SetActive(false);
+        chargeMark2.SetActive(false);
+        chargeMark3.SetActive(false);
     }
     void BossActions.DeleteAll()
     {
@@ -67,20 +71,24 @@ public class BossCharge : MonoBehaviour,BossActions , IPauseable {
         Vector3 targetPosition = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
         boss.transform.LookAt(targetPosition);
         Vector3 direction = (targetPosition - boss.transform.position).normalized;
-        chargeMark.SetActive(true);
+        chargeMark1.SetActive(true);
+        chargeMark2.SetActive(true);
+        chargeMark3.SetActive(true);
         //print(direction);
 
-    /*    RaycastHit info;
-        Physics.Raycast(boss.transform.position, direction, out info, CollisionLayer);
+        /*    RaycastHit info;
+            Physics.Raycast(boss.transform.position, direction, out info, CollisionLayer);
 
 
-        line.SetPosition(1, info.point);
-        line.gameObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        line.gameObject.SetActive(true);*/
+            line.SetPosition(1, info.point);
+            line.gameObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            line.gameObject.SetActive(true);*/
         //print("length");
         //print(Vector3.Distance(boss.transform.position, targetPosition));
         yield return new WaitForSeconds(timeToStartCharging);
-        chargeMark.SetActive(false);
+        chargeMark1.SetActive(false);
+        chargeMark2.SetActive(false);
+        chargeMark3.SetActive(false);
         while (_paused)
             yield return null;
        // line.gameObject.SetActive(false);
