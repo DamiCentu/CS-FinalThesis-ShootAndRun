@@ -161,7 +161,7 @@ public class Steering : MonoBehaviour, ISteerable {
     public void resetVelocity() {
         //_velocity = Vector3.zero; 
         if (target != null)
-            _velocity = (target.transform.position - transform.position).normalized ;
+            _velocity = (target.transform.position - transform.position).normalized * (maxVelocity - (maxVelocity / 4)) ;
         //transform.forward = target.transform.position - transform.position;
     }
 
