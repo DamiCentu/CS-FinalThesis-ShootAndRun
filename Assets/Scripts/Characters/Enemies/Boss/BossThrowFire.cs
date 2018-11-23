@@ -25,8 +25,7 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
     {
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
-        if(upgraded)
-            this.boss.SpawnEnemies("FireUpgrade");
+
         damagePath = GetComponent<DamagePath>();
         StartCoroutine("ThrowFiretCorutine");
     }
@@ -50,11 +49,12 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
     IEnumerator ThrowFiretCorutine() {
         while (true) {
 
-            yield return new WaitForSeconds(timeDefault);
-
+            yield return new WaitForSeconds(timeDefault/2);
+            if (upgraded)
+                this.boss.SpawnEnemies("FireUpgrade");
+            yield return new WaitForSeconds(timeDefault / 2);
             while (_paused)
                 yield return null;
-
 
             Vector3 direct = target.position - boss.transform.position;
             if (!Physics.Raycast(transform.position, direct, direct.magnitude, maskThatBlockVisionToPlayer))

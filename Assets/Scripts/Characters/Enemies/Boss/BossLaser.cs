@@ -8,13 +8,20 @@ public class BossLaser : MonoBehaviour, BossActions {
     public LayerMask maskToCollide;
     public BossSerpent boss;
     public LineRenderer line;
-    private bool upgrade;
+    public bool upgrade;
     public float speed=0.01f;
     Vector3 laserDir;
     private float timer;
     public GameObject mark1;
     public GameObject mark2;
     public GameObject mark3;
+    List<GameObject> misils;
+    public int nBullet;
+    public float angle;
+    private float offset = 1;
+    public float offsetXz = 2;
+    public GameObject prefabMisil;
+    private float stopTime = 2;
 
     void BossActions.Begin(AbstractBoss boss)
     {
@@ -22,9 +29,15 @@ public class BossLaser : MonoBehaviour, BossActions {
         this.boss = (BossSerpent)boss;
         line.gameObject.SetActive(false);
      //   boss.transform.forward = -Vector3.forward;
-        laserDir = -Vector3.forward;
+      //  laserDir = -Vector3.forward;
         MarkActive(true);
         timer = 1f;
+        if (upgrade) {
+
+            StartCoroutine("WaitShoot");
+            misils = new List<GameObject>();
+        }
+        this.boss.StopMoving(false);
     }
 
     void BossActions.DeleteAll()
@@ -33,6 +46,34 @@ public class BossLaser : MonoBehaviour, BossActions {
             line.gameObject.SetActive(false);
         }
         MarkActive(false);
+        foreach (var item in misils)
+        {
+            if (item != null) Destroy(item.gameObject);
+        }
+    }
+
+    IEnumerator WaitShoot()
+    {
+        yield return new WaitForSeconds(stopTime);
+        Shoot();
+
+
+    }
+    private void Shoot()
+    {
+        Vector3 rotation = boss.player.transform.position - boss.transform.position;
+        rotation.y = 0;
+        for (int i = -nBullet + 1; i < nBullet; i++)
+        {
+            Vector3 shootPosition = new Vector3(boss.transform.position.x, boss.player.transform.position.y + offset, boss.transform.position.z + offset * i);
+            var curRot = Quaternion.AngleAxis(angle * i, Vector3.up) * rotation;
+
+
+            var s = Instantiate(prefabMisil, shootPosition, Quaternion.Euler(new Vector3(curRot.x, 0, -curRot.z)));
+            s.transform.forward = curRot;
+            misils.Add(s);
+        }
+
     }
 
     void BossActions.Finish(AbstractBoss boss)
@@ -52,20 +93,12 @@ public class BossLaser : MonoBehaviour, BossActions {
         if (timer < 0)
         {
             MarkActive(false);
-            if (!upgrade)
-            {
+            if(!upgrade)
                 Laser(Vector3.left);
+            else {
+                Laser(-Vector3.forward);
             }
-            else
-            {
 
-                Vector3 auxDir = playerPosition - boss.transform.position;
-                auxDir.y = 0;
-                Vector3 auxDir2 = Vector3.RotateTowards(laserDir, auxDir, speed * Time.deltaTime, 0.0f);
-                laserDir = new Vector3(auxDir2.x, 0f, auxDir2.z);
-
-                Laser(laserDir);
-            }
         }
         else {
             timer -= Time.deltaTime;

@@ -43,6 +43,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1038675974312850
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4071666798694186}
+  - component: {fileID: 114657762377552490}
+  m_Layer: 12
+  m_Name: BossLaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1051372177636308
 GameObject:
   m_ObjectHideFlags: 1
@@ -321,7 +337,7 @@ GameObject:
   - component: {fileID: 4247905431577896}
   - component: {fileID: 114640643218969118}
   m_Layer: 12
-  m_Name: BossLaser
+  m_Name: BossLaserUpgraded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,6 +439,19 @@ Transform:
   m_Father: {fileID: 4245272639697690}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4071666798694186
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038675974312850}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4904321900081754}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4147460803635688
 Transform:
   m_ObjectHideFlags: 1
@@ -509,7 +538,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4904321900081754}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4290833320165162
 Transform:
@@ -695,7 +724,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115602512248254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4290833320165162}
@@ -726,10 +755,11 @@ Transform:
   m_Children:
   - {fileID: 4941853118515650}
   - {fileID: 4387030279915578}
-  - {fileID: 4247905431577896}
+  - {fileID: 4071666798694186}
   - {fileID: 4546203342389614}
   - {fileID: 4623721299158704}
   - {fileID: 4632047551588746}
+  - {fileID: 4247905431577896}
   m_Father: {fileID: 4290833320165162}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -845,7 +875,8 @@ MonoBehaviour:
   speed: 1
   actionThrowFire: {fileID: 114522498405883946}
   actionShootGun: {fileID: 114922754863239900}
-  actionLaser: {fileID: 114640643218969118}
+  actionLaser: {fileID: 114657762377552490}
+  actionLaserUpgraded: {fileID: 114640643218969118}
   actionDirectedMisil: {fileID: 114245952982704518}
   actionBossFly: {fileID: 114977671456932454}
   type: 1
@@ -920,10 +951,43 @@ MonoBehaviour:
     m_Bits: 256
   boss: {fileID: 0}
   line: {fileID: 120497346523313132}
+  upgrade: 1
   speed: 0.3
   mark1: {fileID: 1339957327364876}
   mark2: {fileID: 1601867217058310}
   mark3: {fileID: 1519188862394194}
+  nBullet: 5
+  angle: 30
+  offsetXz: 2
+  prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
+    type: 2}
+--- !u!114 &114657762377552490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038675974312850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa81858fdf5cc24e81e7527751c36a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserMaxDistance: 40
+  maskToCollide:
+    serializedVersion: 2
+    m_Bits: 256
+  boss: {fileID: 0}
+  line: {fileID: 120497346523313132}
+  upgrade: 0
+  speed: 0.3
+  mark1: {fileID: 1339957327364876}
+  mark2: {fileID: 1601867217058310}
+  mark3: {fileID: 1519188862394194}
+  nBullet: 5
+  angle: 30
+  offsetXz: 2
+  prefabMisil: {fileID: 1862604624381266, guid: 9ab2afbed5dd37f41bd22c83b93a8225,
+    type: 2}
 --- !u!114 &114733624924595166
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -35,6 +35,8 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
     {
         yield return new WaitForSeconds(stopTime);
         Shoot();
+
+
     }
     private void Shoot()
     {
@@ -80,14 +82,15 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
 
     void BossActions.Upgrade()
     {
-        nBullet += extraBullet;
-        misilSpeed += extraSpeed;
         upgraded = true;
+    //    nBullet += extraBullet;
+      //  misilSpeed += extraSpeed;
+       // upgraded = true;
     }
     public void Upgrade()
     {
-        nBullet += extraBullet;
-        misilSpeed += extraSpeed;
-        upgraded = true;
+    //    nBullet += extraBullet;
+      //  misilSpeed += extraSpeed;
+        //upgraded = true;
     }
 }

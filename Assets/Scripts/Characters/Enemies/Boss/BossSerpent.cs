@@ -8,6 +8,7 @@ public class BossSerpent : AbstractBoss,IHittable {
     public BossThrowFire actionThrowFire;
     public BossShootGun actionShootGun;
     public BossLaser actionLaser;
+    public BossLaser actionLaserUpgraded;
     public BossDirectedMisil actionDirectedMisil;
     public BossFly actionBossFly;
     public enum Type {Left, Right,Up };
@@ -63,14 +64,12 @@ public class BossSerpent : AbstractBoss,IHittable {
             BossShootGun auxshootGun = actionShootGun;
             actionShootGun.Upgrade();
             stageActions[1].Add(auxshootGun);
-         /*   BossLaser auxlaser = actionLaser;
-            auxlaser.Upgrade();
-
-            stageActions[1].Add(auxlaser); */
              BossThrowFire auxfire = actionThrowFire;
             auxfire.Upgrade();
             stageActions[1].Add(auxfire);
-            stageActions[1].Add(actionDirectedMisil);
+            stageActions[1].Add(actionLaserUpgraded); 
+
+           // stageActions[1].Add(actionDirectedMisil);
         }
     }
 
