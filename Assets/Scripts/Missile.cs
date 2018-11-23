@@ -65,9 +65,8 @@ public class Missile: MonoBehaviour , IPauseable
                 IHittable hittable = item.gameObject.GetComponent<IHittable>();
                 if (hittable != null) hittable.OnHit(damage);
             }
-
-        }
-        DestroyMissile();
+            DestroyMissile();
+        } 
     }
     private void OnTriggerStay(Collider c)
     {
@@ -79,8 +78,8 @@ public class Missile: MonoBehaviour , IPauseable
             {
                 ihittable.OnHit(damage);
             }
-        }
-        DestroyMissile();
+            DestroyMissile();
+        } 
     }
 
     public  virtual void DestroyMissile()
