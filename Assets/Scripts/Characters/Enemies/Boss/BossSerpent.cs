@@ -34,6 +34,7 @@ public class BossSerpent : AbstractBoss,IHittable {
     {
         EventManager.instance.SubscribeEvent("EvolveBoss2", SetEvolve);
         moving.Move(false);
+        UIManager.instance.bossLifeBar.SetActive(false);
     }
 
     private void SetEvolve(object[] parameterContainer)

@@ -42,7 +42,8 @@ public class BossFly : MonoBehaviour, BossActions
         boss.moving.width = 10;
         boss.moving.speed = 0.75f;
         boss.transform.forward = -Vector3.forward;
-        
+        UIManager.instance.bossLifeBar.SetActive(true);
+
     }
 
     void BossActions.Finish(AbstractBoss boss)

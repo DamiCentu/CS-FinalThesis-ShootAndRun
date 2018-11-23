@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour, IPauseable {
 
     public List<GameObject> dash;
     public SimpleHealthBar bossLife;
+    public GameObject bossLifeBar;
     public List<Image> lifeImages;
     public Text creditsText;
     public Text tutorialText;
@@ -72,7 +73,7 @@ public class UIManager : MonoBehaviour, IPauseable {
     private void UpdateBossLife(object[] parameterContainer) {
         if (bossLife == null)
             return;
-
+  //      bossLife.gameObject.SetActive(true);
         int life = (int)parameterContainer[0];
         int maxLife = (int)parameterContainer[1];
 
