@@ -11,7 +11,10 @@ public class BossLaser : MonoBehaviour, BossActions {
     private bool upgrade;
     public float speed=0.01f;
     Vector3 laserDir;
-
+    private float timer;
+    public GameObject mark1;
+    public GameObject mark2;
+    public GameObject mark3;
 
     void BossActions.Begin(AbstractBoss boss)
     {
@@ -20,35 +23,52 @@ public class BossLaser : MonoBehaviour, BossActions {
         line.gameObject.SetActive(false);
      //   boss.transform.forward = -Vector3.forward;
         laserDir = -Vector3.forward;
+        MarkActive(true);
+        timer = 1f;
     }
 
     void BossActions.DeleteAll()
     {
         if (line != null && line.gameObject != null) {
-        line.gameObject.SetActive(false);
-
+            line.gameObject.SetActive(false);
         }
+        MarkActive(false);
     }
 
     void BossActions.Finish(AbstractBoss boss)
     {
         line.gameObject.SetActive(false);
+        MarkActive(false);
+    }
+
+    private void MarkActive(bool v) {
+        mark1.SetActive(v);
+        mark2.SetActive(v);
+        mark3.SetActive(v);
     }
 
     void BossActions.Update(Transform bossi, Vector3 playerPosition)
     {
-        if (!upgrade)
+        if (timer < 0)
         {
-            Laser(Vector3.left);
+            MarkActive(false);
+            if (!upgrade)
+            {
+                Laser(Vector3.left);
+            }
+            else
+            {
+
+                Vector3 auxDir = playerPosition - boss.transform.position;
+                auxDir.y = 0;
+                Vector3 auxDir2 = Vector3.RotateTowards(laserDir, auxDir, speed * Time.deltaTime, 0.0f);
+                laserDir = new Vector3(auxDir2.x, 0f, auxDir2.z);
+
+                Laser(laserDir);
+            }
         }
         else {
-
-            Vector3 auxDir = playerPosition - boss.transform.position;
-            auxDir.y = 0;
-            Vector3  auxDir2 = Vector3.RotateTowards(laserDir, auxDir, speed* Time.deltaTime, 0.0f);
-            laserDir = new Vector3(auxDir2.x, 0f, auxDir2.z);
-
-            Laser(laserDir);
+            timer -= Time.deltaTime;
         }
     }
 
