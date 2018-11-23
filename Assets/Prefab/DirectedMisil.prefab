@@ -343,7 +343,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 786688
   followIntensity: 0.04
-  lifeTime: 8
+  lifeTime: 5
   timer: 0
 --- !u!198 &198704679802821020
 ParticleSystem:
