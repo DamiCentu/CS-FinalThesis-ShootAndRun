@@ -77,8 +77,12 @@ public class BossLaser : MonoBehaviour, BossActions {
         line.gameObject.SetActive(true);
 
         RaycastHit rh;
-        if (Physics.Raycast(this.boss.shootPosition.position+ new Vector3(0,1,0), direction, out rh, laserMaxDistance, maskToCollide))
+        print("disparo");
+  //      if (Physics.Raycast(this.boss.shootPosition.position+ new Vector3(0,1,0), direction, out rh, laserMaxDistance, maskToCollide))
+    //    {
+         if (Physics.SphereCast(this.boss.shootPosition.position, 1.5f, direction, out rh, 20f, maskToCollide))
         {
+                print("me choque con algo");
             if (rh.collider.gameObject.layer == 8)
             {
                 rh.collider.GetComponent<IHittable>().OnHit(1);
