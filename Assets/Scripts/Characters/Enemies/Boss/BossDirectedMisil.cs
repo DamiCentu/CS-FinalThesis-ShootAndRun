@@ -24,7 +24,7 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
         this.boss = (BossSerpent)boss;
         target = this.boss.player.transform;
         if (upgraded)
-            this.boss.SpawnEnemies("DirectedMisilUpgrade");
+            this.boss.SpawnEnemies("DirectedMisilUpgrade", EnemiesManager.TypeOfEnemy.MisilEnemy);
         StartCoroutine("WaitShoot");
         this.boss.StopMoving(false);
         misils = new List<GameObject>();
@@ -89,8 +89,6 @@ public class BossDirectedMisil : MonoBehaviour, BossActions
     }
     public void Upgrade()
     {
-    //    nBullet += extraBullet;
-      //  misilSpeed += extraSpeed;
-        //upgraded = true;
+        upgraded = true;
     }
 }

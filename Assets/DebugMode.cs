@@ -16,7 +16,11 @@ public class DebugMode : MonoBehaviour {
         powerUpManager.AddRange();
         powerUpManager.EnableShield(new object[1]);
         powerUpManager.RecalculatePowerUp();
-        player.debugMode = true;
+        Player p = FindObjectOfType<Player>();
+        object[] container = new object[1];
+        container[0] = PrimaryWeaponManager.instance.GetNextPowerUp(p.primaryGun);
+        EventManager.instance.ExecuteEvent("UpgradeWeapon", container);
+       // player.debugMode = true;
     }
 
     // Update is called once per frame

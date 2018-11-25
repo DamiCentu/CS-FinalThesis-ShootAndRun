@@ -71,6 +71,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     bool _paused;
     private bool portalOut;
     private bool portalIn;
+    private bool bossFinished=false;
 
     public void OnPauseChange(bool v) {
         _paused = v;
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         EventManager.instance.SubscribeEvent("GetShield", powerUpManager.EnableShield);
         EventManager.instance.SubscribeEvent(Constants.START_SECTION, Portal);
         EventManager.instance.SubscribeEvent("PlayerDead",Die);
+        EventManager.instance.SubscribeEvent(Constants.START_BOSS_DEAD,BossFinished);
 
         _isInvulnerable = false;
         timerToUlt = ultTimer;
@@ -93,7 +95,12 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         _meshRends =  GetComponentsInChildren<Renderer>();
         ult = Configuration.instance.playerUlt;
     }
-   
+
+    private void BossFinished(object[] parameterContainer)
+    {
+        bossFinished = true;
+    }
+
     internal void ChangeUlt(Ults newUlt)
     {
         ult = newUlt;
@@ -499,7 +506,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
   
     public void OnHit(int damage)
     {
-        if (!_isInvulnerable&&!isDead&&!_inBerserkerMode&& !debugMode) {
+        if (!_isInvulnerable&&!isDead&&!_inBerserkerMode&& !debugMode&& !bossFinished) {
             if (_gotShield)
             {
                 powerUpManager.DisableShield();

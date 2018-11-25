@@ -28,12 +28,11 @@ public class BossLaser : MonoBehaviour, BossActions {
         print("entre");
         this.boss = (BossSerpent)boss;
         line.gameObject.SetActive(false);
-     //   boss.transform.forward = -Vector3.forward;
-      //  laserDir = -Vector3.forward;
+
         MarkActive(true);
         timer = 1f;
         if (upgrade) {
-
+            this.boss.SpawnEnemies("LaserUpgrade", EnemiesManager.TypeOfEnemy.Charger);
             StartCoroutine("WaitShoot");
             misils = new List<GameObject>();
             this.boss.StopMoving(false);

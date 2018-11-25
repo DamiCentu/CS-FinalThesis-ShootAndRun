@@ -73,6 +73,8 @@ public class Constants : MonoBehaviour
     public const string SOUND_FADE_IN = "sound_fade_in";
     public const string SOUND_FADE_OUT = "sound_fade_out";
     public const string SOUND_BULLET_HIT = "bullet_hit";
+
+    public static string START_BOSS_DEAD = "start_boss_dead";
     //public const string SOUND_BOSS_EXPLOTION = "boss_explotion";
 
 

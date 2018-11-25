@@ -378,7 +378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1796832294599948
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4904321900081754}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4147460803635688
 Transform:
@@ -706,7 +706,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4904321900081754}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4591925076361580
 Transform:
@@ -732,7 +732,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4904321900081754}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4632047551588746
 Transform:
@@ -745,7 +745,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4904321900081754}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4873852386486346
 Transform:
@@ -785,10 +785,10 @@ Transform:
   m_Children:
   - {fileID: 4941853118515650}
   - {fileID: 4387030279915578}
-  - {fileID: 4071666798694186}
   - {fileID: 4546203342389614}
   - {fileID: 4623721299158704}
   - {fileID: 4632047551588746}
+  - {fileID: 4071666798694186}
   - {fileID: 4247905431577896}
   m_Father: {fileID: 4290833320165162}
   m_RootOrder: 2
@@ -931,7 +931,7 @@ MonoBehaviour:
   timerActionsStage2:
   - 4
   - 5
-  - 5
+  - 8
   - 6
   timerActionsStage3: []
   life: 50
@@ -967,7 +967,7 @@ MonoBehaviour:
   misilSpeed: 0
   extraBullet: 2
   upgraded: 0
-  extraSpeed: 5
+  extraSpeed: 0
 --- !u!114 &114476427044187090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -997,7 +997,7 @@ MonoBehaviour:
   maskThatBlockVisionToPlayer:
     serializedVersion: 2
     m_Bits: 0
-  speed: 5
+  speed: 15
   boss: {fileID: 0}
   stopTime: 0.15
 --- !u!114 &114640643218969118
@@ -1100,7 +1100,7 @@ MonoBehaviour:
   extraBullet: 2
   upgradeAngle: 10
   upgradeRandomRange: 5
-  reduceTime: 0.6
+  reduceTime: 0.4
 --- !u!114 &114966053848763868
 MonoBehaviour:
   m_ObjectHideFlags: 1

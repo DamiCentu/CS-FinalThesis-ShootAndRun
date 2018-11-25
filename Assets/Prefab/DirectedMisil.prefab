@@ -338,11 +338,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90fc220bc2f45d14d95175f1eed47e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 12
+  bulletSpeed: 10
   layerThatAffectEnemyBullet:
     serializedVersion: 2
     m_Bits: 786688
-  followIntensity: 0.04
+  followIntensity: 0.06
   lifeTime: 5
   timer: 0
 --- !u!198 &198704679802821020

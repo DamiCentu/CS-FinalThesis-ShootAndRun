@@ -14,7 +14,7 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
     public BossSerpent boss;
     public float stopTime=0.15f;
     private bool upgraded=false;
-
+    float count = 0;
     bool _paused;
     public void OnPauseChange(bool v)
     {
@@ -30,6 +30,7 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
         }
         damagePath = GetComponent<DamagePath>();
         StartCoroutine("ThrowFiretCorutine");
+        count = 0;
     }
 
     void BossActions.DeleteAll()
@@ -40,6 +41,7 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
     void BossActions.Finish(AbstractBoss boss)
     {
         StopCoroutine("ThrowFiretCorutine");
+        count = 0;
     }
 
     void BossActions.Update(Transform boss, Vector3 playerPosition)
@@ -49,13 +51,16 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
 
 
     IEnumerator ThrowFiretCorutine() {
-        while (true) {
+        print(count);
+        while (count < 2) {
 
-            yield return new WaitForSeconds(timeDefault);
             if (upgraded) {
-
+                yield return new WaitForSeconds(timeDefault/2);
                 this.boss.SpawnEnemies("FireUpgrade");
                 yield return new WaitForSeconds(timeDefault / 2);
+            }
+            else {
+                yield return new WaitForSeconds(timeDefault);
             }
             while (_paused)
                 yield return null;
@@ -74,6 +79,12 @@ public class BossThrowFire : MonoBehaviour, BossActions , IPauseable
                 while (_paused)
                     yield return null;
                 boss.StopMoving(false);
+                count++;
+
+            }
+            if (upgraded)
+            {
+                yield return new WaitForSeconds(timeDefault / 2);
             }
         }
     }

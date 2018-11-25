@@ -84,7 +84,7 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
 
     protected virtual void Evolve() {
         SetLife(1);
-        life *= 2;
+        life *= 3;
         maxLife = life;
         shouldChangeStage = true;
 
@@ -113,7 +113,9 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
         {
             actualAction.Finish(this);
             SetAnimation("Die", true);
-            StartCoroutine(Dead());
+            EventManager.instance.ExecuteEvent(Constants.START_BOSS_DEAD);
+
+    StartCoroutine(Dead());
         }
     }
 

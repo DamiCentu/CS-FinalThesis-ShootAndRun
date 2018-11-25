@@ -69,8 +69,6 @@ public class BossSerpent : AbstractBoss,IHittable {
             auxfire.Upgrade();
             stageActions[1].Add(auxfire);
             stageActions[1].Add(actionLaserUpgraded); 
-
-           // stageActions[1].Add(actionDirectedMisil);
         }
     }
 

@@ -681,7 +681,13 @@ public class SectionNode : MonoBehaviour , IPauseable {
                     var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as ChargerEnemyBehaviour;
                     c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
                     _allChargerActives.Add(c);
-                    break; 
+                    break;
+
+            case EnemiesManager.TypeOfEnemy.MisilEnemy:
+                var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as MisilEnemy;
+                m.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
+                _allMisilEnemiesActive.Add(m);
+                break;
         }
     }
 
