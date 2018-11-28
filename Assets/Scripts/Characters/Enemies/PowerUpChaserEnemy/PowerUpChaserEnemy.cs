@@ -162,7 +162,7 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable {
 
         _hitsRemaining = hitsCanTake; 
 
-        _flocking.resetVelocity();
+        _flocking.resetVelocity(false);
         
         if(_myFsm != null) { 
             SendInputToFSM(ChaserInputs.ResetFSM);
@@ -214,7 +214,7 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable {
     void OnTriggerEnter(Collider c) {
         if (c.gameObject.layer != 12  && c.gameObject.layer != 0 && c.gameObject.layer != 14) {//enemy 
             if(_flocking.target != null && _flocking != null)
-                _flocking.resetVelocity(); 
+                _flocking.resetVelocity(true); 
         }
 
         if (c.gameObject.layer == 13) {//powerup

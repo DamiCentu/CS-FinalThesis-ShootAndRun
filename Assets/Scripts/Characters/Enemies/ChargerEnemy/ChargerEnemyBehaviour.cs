@@ -91,7 +91,7 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
     public ChargerEnemyBehaviour SetPosition(Vector3 pos) {
         transform.position = pos;
         _hitsRemaining = hitsCanTake;
-        _flocking.resetVelocity();
+        _flocking.resetVelocity(false);
         return this;
     }
 
@@ -118,7 +118,7 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
         //if (c.gameObject.layer != 12 && c.gameObject.layer != 13 && c.gameObject.layer != 0) {//enemy //powerup//ddefault
         if(layerThatDontAffectCharge != (layerThatDontAffectCharge | (1 << c.gameObject.layer))) { 
             _moving = false;
-            _flocking.resetVelocity();
+            _flocking.resetVelocity(false);
         } 
     } 
 }

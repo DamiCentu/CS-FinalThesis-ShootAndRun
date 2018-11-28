@@ -158,11 +158,15 @@ public class Steering : MonoBehaviour, ISteerable {
 		transform.forward = Vector3.Slerp(transform.forward, _velocity, 0.1f);
 	}
 
-    public void resetVelocity() {
-        //_velocity = Vector3.zero; 
-        if (target != null)
-            _velocity = (target.transform.position - transform.position).normalized * (maxVelocity - (maxVelocity / 4)) ;
-        //transform.forward = target.transform.position - transform.position;
+    public void resetVelocity(bool hitWall) {
+        if (target != null) {
+            if (hitWall) {
+                _velocity = (target.transform.position - transform.position).normalized * (maxVelocity - (maxVelocity / 4));
+            }
+            else {
+                _velocity = (target.transform.position - transform.position).normalized;
+            }
+        } 
     }
 
 	virtual protected void OnDrawGizmos() {

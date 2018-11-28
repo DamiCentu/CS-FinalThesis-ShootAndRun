@@ -53,7 +53,7 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable , IPauseable {
         _followPathBehaviour = new FollowPathBehaviour(this, blockEnemyViewToTarget, _flocking);
 
         _flocking.target = EnemiesManager.instance.player.transform; 
-        _flocking.resetVelocity();
+        _flocking.resetVelocity(false);
         _anim.SetBool("Moving", true);
         _flocking.flockingEnabled = false;
 

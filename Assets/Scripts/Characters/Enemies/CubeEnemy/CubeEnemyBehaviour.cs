@@ -211,7 +211,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
                 _uiLine.DeactivateLine();
             }
             imageTargetOnEvade.enabled = false;
-            _flocking.resetVelocity();
+            _flocking.resetVelocity(false);
         };
     }
 
@@ -264,7 +264,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
         //if (_anim == null)
         //    _anim = GetComponent<Animator>();
 
-        _flocking.resetVelocity();
+        _flocking.resetVelocity(false);
         return this;
     } 
 
@@ -291,7 +291,7 @@ public class CubeEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
 
     private void OnTriggerEnter(Collider c) {
         if (c.gameObject.layer != 12 && c.gameObject.layer != 13 && c.gameObject.layer != 14 && c.gameObject.layer != 0 && _flocking != null) {//enemy //powerup // enemybullet
-            _flocking.resetVelocity(); 
+            _flocking.resetVelocity(true); 
             if(_myFsm.Current.Name == "Evade") {
                 SendInputToFSM(CubeInputs.FinishedEvade);
             }
