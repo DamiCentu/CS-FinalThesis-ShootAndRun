@@ -32,7 +32,7 @@ Shader "New AmplifyShader"
 		void surf( Input i , inout SurfaceOutput o )
 		{
 			o.Emission = _Tint.rgb;
-			o.Alpha = saturate( ( 1.0 - ( i.uv_texcoord.y * 1.56 ) ) );
+			o.Alpha = saturate( ( ( 1.0 - ( i.uv_texcoord.y * 2.85 ) ) - 0.18 ) );
 		}
 
 		ENDCG
@@ -112,18 +112,21 @@ Shader "New AmplifyShader"
 }
 /*ASEBEGIN
 Version=15301
-602;86;602;556;960.1716;248.3447;1.355779;True;False
+757;112;602;556;759.7654;-64.75617;1;False;False
 Node;AmplifyShaderEditor.TextureCoordinatesNode;2;-1011.935,157.0283;Float;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ScaleNode;5;-653.6383,188.7039;Float;True;1.56;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.OneMinusNode;6;-454.4661,237.0242;Float;True;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;1;-480.8171,-74.80997;Float;False;Property;_Tint;Tint;0;0;Create;True;0;0;False;0;1,0,0,0;1,0,0,0;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SaturateNode;7;-229.4069,239.7358;Float;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;4;-899.8474,321.0776;Float;False;Constant;_Float0;Float 0;0;0;Create;True;0;0;False;0;0.18;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.ScaleNode;5;-707.514,174.4849;Float;True;2.85;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;4;-532.6536,407.7357;Float;False;Constant;_Float0;Float 0;0;0;Create;True;0;0;False;0;0.18;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;6;-501.4671,198.8359;Float;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleSubtractOpNode;8;-305.0378,292.002;Float;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SaturateNode;7;-176.3435,204.3602;Float;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ColorNode;1;-480.8171,-74.80997;Float;False;Property;_Tint;Tint;0;0;Create;True;0;0;False;0;1,0,0,0;0,0.5843138,1,0;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;0,0;Float;False;True;2;Float;ASEMaterialInspector;0;0;Unlit;New AmplifyShader;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;False;False;False;False;False;Off;0;False;-1;0;False;-1;False;0;0;False;0;Transparent;0.5;True;True;0;False;Transparent;;Transparent;All;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;15;10;25;False;0.5;True;2;5;False;-1;10;False;-1;0;0;False;-1;0;False;-1;-1;False;-1;-1;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;-1;-1;-1;-1;0;0;0;False;0;0;0;False;-1;-1;0;False;-1;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;5;0;2;2
 WireConnection;6;0;5;0
-WireConnection;7;0;6;0
+WireConnection;8;0;6;0
+WireConnection;8;1;4;0
+WireConnection;7;0;8;0
 WireConnection;0;2;1;0
 WireConnection;0;9;7;0
 ASEEND*/
-//CHKSM=EE07167427DEF373B95FB791F819D68CEE13BACB
+//CHKSM=791CCA2ADA370D6AA11A33DCE3DEA08EADAB3071
