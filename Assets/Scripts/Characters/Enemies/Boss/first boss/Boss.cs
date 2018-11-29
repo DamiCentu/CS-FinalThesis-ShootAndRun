@@ -79,7 +79,7 @@ public class Boss : AbstractBoss,IHittable
         stageActions[1].Add(bossMissileUpgrade);
         stageActions[1].Add(bossShootUpgrade);
         stageActions[1].Add(bossChargeUpgrade);
-
+        UIManager.instance.ActivateBar(true, 0);
     }
 
 

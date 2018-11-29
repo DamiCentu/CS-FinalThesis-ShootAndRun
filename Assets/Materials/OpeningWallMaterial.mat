@@ -86,7 +86,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 0
+    - __dirty: 1
     - _fuerza: 0
     - _time: 0
     m_Colors:
