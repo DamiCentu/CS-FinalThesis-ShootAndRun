@@ -225,7 +225,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
             if(_quantityPerIDDictionary[i.Key] > 0) {
                 foreach (var w in _allWallsThatHaveToUnlockDestroying) {
                     if(w.id == i.Key) {
-                        w.gameObject.SetActive(true);
+                        w.Show(true);
+                      //  w.gameObject.SetActive(true);
                     }
                 } 
             }
@@ -292,7 +293,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
                     if(_quantityPerIDDictionary[k] <= 0) {
                         foreach (var w in _allWallsThatHaveToUnlockDestroying) {
                             if(w.id == k) {
-                                w.gameObject.SetActive(false);
+                                w.Show(false);
+                   //             w.gameObject.SetActive(false);
                             }
                         } 
                     }

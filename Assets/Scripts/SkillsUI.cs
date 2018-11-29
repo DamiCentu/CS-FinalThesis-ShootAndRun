@@ -77,7 +77,7 @@ public class SkillsUI : MonoBehaviour {
         {
             return;
         }
-        print("lalala");
+
         float timer = (float)parameterContainer[0];
         float maxTime = (float)parameterContainer[1];
         //Image bar;
