@@ -12,12 +12,13 @@ public class UIManager : MonoBehaviour, IPauseable {
     public Text creditsText;
     public Text tutorialText;
     public float timeToDisapearTutoText = 4f;
+    public GameObject panelOfTutorial;
 
     public static UIManager instance = null;
 
     public const string TUTORIAL_MOVE = "Use W,A,S,D to move";
     public const string TUTORIAL_DASH = "Use spacebar to dash";
-    public const string TUTORIAL_ULTIMATE = "Use alt to use your ULTIMATE!";
+    public const string TUTORIAL_ULTIMATE = "Use Q to use your ULTIMATE!";
     public const string TUTORIAL_SHOOT = "Use left click to shoot";
     public const string TUTORIAL_SHOOT_SPECIAL = "Use right click to shoot your special weapon";
     public const string TUTORIAL_PICK_POWER_UP = "Pick power ups to upgrade your champion";
@@ -50,6 +51,7 @@ public class UIManager : MonoBehaviour, IPauseable {
 
     private void OnTutorialDeactivated(object[] parameterContainer) {
         tutorialText.enabled = false;
+        panelOfTutorial.SetActive(false);
     }
 
     private void OnTutorialChange(object[] parameterContainer) {
@@ -57,6 +59,7 @@ public class UIManager : MonoBehaviour, IPauseable {
             return;
         }
         _hashToCompare.Add((string)parameterContainer[0]);
+        panelOfTutorial.SetActive(true);
         tutorialText.enabled = true;
         StopAllCoroutines();
         tutorialText.text = (string)parameterContainer[0];
@@ -68,6 +71,7 @@ public class UIManager : MonoBehaviour, IPauseable {
         while (_paused)
             yield return null;
         tutorialText.enabled = false;
+        panelOfTutorial.SetActive(false);
     } 
 
     private void UpdateBossLife(object[] parameterContainer) {

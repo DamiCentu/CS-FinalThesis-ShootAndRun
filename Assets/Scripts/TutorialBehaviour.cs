@@ -22,6 +22,11 @@ public class TutorialBehaviour : MonoBehaviour {
         EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_RESTART);
         EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_MOVE);
         _greenKilled = false;
+        StartCoroutine(defaultProbRoutine()); 
+    }
+
+    IEnumerator defaultProbRoutine() {
+        yield return new WaitForSeconds(1f);
         LootTableManager.instance.SetTutoProbavility();
     }
 

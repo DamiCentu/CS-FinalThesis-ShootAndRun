@@ -103,7 +103,14 @@ public class LootTableManager : MonoBehaviour {
         var dirToPlayer = EnemiesManager.instance.player.transform.position - position;
 
         if( Physics.Raycast(position, dirToPlayer, dirToPlayer.magnitude, objectToDetectOnSpawnPowerUp)) {
-            return;
+            if( TutorialBehaviour.instance != null) {
+                if(SectionManager.instance.actualNode != TutorialBehaviour.instance.tutorialNode) {
+                    return;
+                }
+            }
+            else {
+                return;
+            }
         }
 
         if (0 != totalPowerAvailable) { //si no agarre todos lso power ups

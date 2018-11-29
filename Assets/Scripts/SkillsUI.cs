@@ -7,12 +7,14 @@ public class SkillsUI : MonoBehaviour {
 
    // public Image ultimateImage;
     public Image specialImage;
-    public Text ultimateName;
-    public Text specialName;
+    //public Text ultimateName;
+    //public Text specialName;
     public Image specialImageInPlayer;
-    public Image ultimateBarOverWatch;
-    public Image ultimateBarOverWatchFull;
-    public Image ultimateImageOverWatch;
+    //public Image ultimateBarOverWatch;
+    //public Image ultimateBarOverWatchFull;
+    public GameObject ultimateActivated;
+    public GameObject ultimateDeactivated;
+    //public Image ultimateImageOverWatch;
     public List<Image> dashes;
     public List<Image> unactiveDashes;
     public List<Image> dashesInPlayer;
@@ -75,25 +77,30 @@ public class SkillsUI : MonoBehaviour {
         }
         float timer = (float)parameterContainer[0];
         float maxTime = (float)parameterContainer[1];
-        Image bar;
+        //Image bar;
 
-        if (ultimateBarOverWatchFull == null)
-            return;
+       /// if (ultimateBarOverWatchFull == null)
+          //  return;
         if (timer <= 0)
         {
-            bar = ultimateBarOverWatchFull;
-            ultimateBarOverWatch.gameObject.SetActive(false);
-            ultimateBarOverWatchFull.gameObject.SetActive(true);
-            ultimateImageOverWatch.gameObject.SetActive (true);
+//             bar = ultimateBarOverWatchFull;
+//             ultimateBarOverWatch.gameObject.SetActive(false);
+//             ultimateBarOverWatchFull.gameObject.SetActive(true);
+//             ultimateImageOverWatch.gameObject.SetActive (true); //tiene ulti
+            ultimateActivated.SetActive(true);
+            ultimateDeactivated.SetActive(false);
         }
         else {
-            bar = ultimateBarOverWatch;
-            ultimateBarOverWatch.gameObject.SetActive(true);
-            ultimateBarOverWatchFull.gameObject.SetActive(false);
-            ultimateImageOverWatch.gameObject.SetActive(false);
+//             bar = ultimateBarOverWatch;
+//             ultimateBarOverWatch.gameObject.SetActive(true);
+//             ultimateBarOverWatchFull.gameObject.SetActive(false);
+//             ultimateImageOverWatch.gameObject.SetActive(false); //sin ulti
+            ultimateActivated.SetActive(false);
+            ultimateDeactivated.SetActive(true);
         }
-        RefreshImage(timer, maxTime, ultimateBarOverWatch);
+        RefreshImage(timer, maxTime);
     }
+
     private void TimeLeftUlting(object[] parameterContainer)
     { 
         if ((Player.ID)parameterContainer[2] != id)
@@ -103,7 +110,7 @@ public class SkillsUI : MonoBehaviour {
         float timer = (float)parameterContainer[0];
         float maxTime = (float)parameterContainer[1];
 
-        RefreshImage(timer, maxTime, ultimateBarOverWatchFull);
+        RefreshImage(timer, maxTime);
 
     }
 
@@ -119,6 +126,14 @@ public class SkillsUI : MonoBehaviour {
         }
     }
 
+    void RefreshImage(float timer, float maxTime)
+    {
+        if (timer < maxTime)
+        {
+            float percentage = 1 - (timer / maxTime);
+        }
+    }
+
     private void ChangeUltimate(object[] parameterContainer)
     {
         if ((Player.ID)parameterContainer[0] != id)
@@ -127,7 +142,7 @@ public class SkillsUI : MonoBehaviour {
         }
         Image newImage = (Image)parameterContainer[1];
         string newName = (string)parameterContainer[2];
-        ultimateName.text = newName;
+        //ultimateName.text = newName;
     }
     
     private void RefreshSpecial(object[] parameterContainer)
@@ -154,6 +169,6 @@ public class SkillsUI : MonoBehaviour {
         Image newImage = (Image)parameterContainer[1];
         string newName = (string)parameterContainer[2];
         specialImage.sprite = newImage.sprite;
-        specialName.text = newName;
+        //specialName.text = newName;
     } 
 }
