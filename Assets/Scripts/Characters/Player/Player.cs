@@ -389,10 +389,24 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         float horizontalVel = Input.GetAxis("Horizontal");
         Vector3 direction = new Vector3(horizontalVel, 0, verticalVel).normalized;
 
-        if (CanDash(direction))
+        if (!CheckDash((new Vector3(0, 0, 1) * verticalVel).normalized))
+        {
+            //print("Hola");
+            verticalVel = 0;
+        }
+        if (!CheckDash((new Vector3(1, 0, 0) * horizontalVel).normalized))
+        {
+            //print("asd");
+            horizontalVel = 0;
+        }
+
+
+        Vector3 new_direction = new Vector3(horizontalVel, 0, verticalVel).normalized;
+
+        if (CanDash(new_direction))
         {
             //print("dasheo normal");
-            StartDash(direction);
+            StartDash(new_direction);
 
         }
 
@@ -437,7 +451,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
     private bool CheckDash(Vector3 direction)
     {
-        if (Physics.Raycast(this.transform.position + Vector3.up * 0.5f, direction, offsetDash, ObstacleLayerMask))
+        if (Physics.Raycast(this.transform.position + Vector3.up * 0.5f, direction, offsetDash * 1.42f, ObstacleLayerMask))
         {
 
             return false;
@@ -459,7 +473,10 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     }
 
     private bool CanDash(Vector3 direction) {
-        if (MyInputManager.instance.Dash(control) && CheckDash(direction) && direction != Vector3.zero && dashCount>0) {
+        if (MyInputManager.instance.Dash(control)
+            && CheckDash(direction) 
+            && direction != Vector3.zero 
+            && dashCount>0) {
             return true;
             }
         return false;
