@@ -42,12 +42,16 @@ public class BossFly : MonoBehaviour, BossActions
         boss.moving.width = 10;
         boss.moving.speed = 0.75f;
         boss.transform.forward = -Vector3.forward;
-        UIManager.instance.bossLifeBar.SetActive(true);
+        UIManager.instance.ActivateBar(true, 0);
 
+        UIManager.instance.bossLifeBar0.SetActive(true);
+        UIManager.instance.bossLifeBar1.SetActive(false);
+        UIManager.instance.bossLifeBar2.SetActive(false);
     }
 
     void BossActions.Finish(AbstractBoss boss)
     {
+        this.boss.inmortal = false;
         if (!stop)
         {
             ((BossSerpent)boss).StopMoving(false);

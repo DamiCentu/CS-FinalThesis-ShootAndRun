@@ -43,6 +43,7 @@ public class Boss : AbstractBoss,IHittable
     {
         SetActions();
         Config();
+        numberBoss = 0;
         shield1= GameObject.Find("ShieldBoss1");
         shield2=GameObject.Find("ShieldBoss2");
 

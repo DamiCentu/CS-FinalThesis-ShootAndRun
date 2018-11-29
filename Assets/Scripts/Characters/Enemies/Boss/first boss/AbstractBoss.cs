@@ -36,6 +36,8 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
     protected bool shouldChangeStage = true;
     protected bool shouldEvolve;
     bool _paused;
+    internal int numberBoss;
+
     public void OnPauseChange(bool v)
     {
         _paused = v;
@@ -179,10 +181,10 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
     public void UpdateBossLife()
     {
 
-        object[] container = new object[2];
+        object[] container = new object[3];
         container[0] = life;
         container[1] = maxLife;
-
+        container[2] = numberBoss;
         EventManager.instance.ExecuteEvent(Constants.UPDATE_BOSS_LIFE, container);
     }
 

@@ -16,6 +16,7 @@ public class BossSerpent : AbstractBoss,IHittable {
     public MovingPlatform moving;
     public Transform shootPosition;
     private bool dead=false;
+    public bool inmortal=false;
 
     void Awake()
     {
@@ -34,13 +35,15 @@ public class BossSerpent : AbstractBoss,IHittable {
     {
         EventManager.instance.SubscribeEvent("EvolveBoss2", SetEvolve);
         moving.Move(false);
-        UIManager.instance.bossLifeBar.SetActive(false);
+        UIManager.instance.bossLifeBar0.SetActive(false);
     }
 
     private void SetEvolve(object[] parameterContainer)
     {
         shouldEvolve = true;
         shouldChangeStage = true;
+        UIManager.instance.ActivateBar(false, numberBoss);
+        inmortal = true;
     }
 
     private void SetActions()
@@ -52,11 +55,15 @@ public class BossSerpent : AbstractBoss,IHittable {
         if (type == Type.Left) {
             stageActions[0].Add(actionThrowFire);
             stageActions[0].Add(actionDirectedMisil);
+            numberBoss = 1;
+            UIManager.instance.ActivateBar(true, 1);
         }
         if (type == Type.Right)
         {
             stageActions[0].Add(actionShootGun);
             stageActions[0].Add(actionLaser);
+            numberBoss = 2;
+            UIManager.instance.ActivateBar(true, 2);
         }
         if (type == Type.Up)
         {
@@ -68,7 +75,9 @@ public class BossSerpent : AbstractBoss,IHittable {
              BossThrowFire auxfire = actionThrowFire;
             auxfire.Upgrade();
             stageActions[1].Add(auxfire);
-            stageActions[1].Add(actionLaserUpgraded); 
+            stageActions[1].Add(actionLaserUpgraded);
+
+            numberBoss = 0;
         }
     }
 
@@ -90,6 +99,7 @@ public class BossSerpent : AbstractBoss,IHittable {
     }
     void IHittable.OnHit(int damage)
     {
+        if (inmortal) return;
         AbstractOnHitWhiteAction();
         if (type == Type.Up)
         {
@@ -98,6 +108,7 @@ public class BossSerpent : AbstractBoss,IHittable {
         else
         {
             life -= damage;
+            UpdateBossLife();
             if (life <= 0 && !dead) {
                 dead = true;
                 actualAction.Finish(this);
@@ -124,12 +135,12 @@ public class BossSerpent : AbstractBoss,IHittable {
     {
         if (!dead) {
             print(type);
+            numberBoss = 0;
             print("evolveee");
             type = Type.Up;
             stageActions.Clear();
             SetActions();
             base.Evolve();
-
 
         }
     }
