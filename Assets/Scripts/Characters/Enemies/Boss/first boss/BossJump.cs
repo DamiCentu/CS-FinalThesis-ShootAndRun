@@ -19,6 +19,10 @@ public class BossJump : MonoBehaviour, BossActions
     GameObject mark;
     private BoxCollider bossCollider;
     public LayerMask layerToDetect;
+    private float maxZ = -70;
+    private float minZ = -93;
+    private float maxX = -102;
+    private float minX = -125;
 
     void BossActions.Begin(AbstractBoss boss)
     {
@@ -29,6 +33,25 @@ public class BossJump : MonoBehaviour, BossActions
         boss.transform.LookAt(boss.player.transform.position);
         Vector3 position = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
         positionToAim= Utility.RandomVector3InRadiusCountingBoundariesInAnyDirection(position, 5f, layerToDetect);
+
+        if (positionToAim.x < minX)
+        {
+            positionToAim.x = minX;
+        }
+        else if (positionToAim.x > maxX) {
+            positionToAim.x = maxX;
+        }
+
+        if (positionToAim.z < minZ)
+        {
+            positionToAim.z = minZ;
+        }
+        else if (positionToAim.z > maxZ)
+        {
+            positionToAim.z = maxZ;
+        }
+
+
         this.boss.col.enabled = false;
 
     }
@@ -36,6 +59,7 @@ public class BossJump : MonoBehaviour, BossActions
     void BossActions.Finish(AbstractBoss boss)
     {
         mark.SetActive(false);
+        
         boss.SetAnimation("Jump", false);
         //print("Le pegue");
         Collider[] hitColliders = Physics.OverlapSphere(boss.transform.position, radius, hittableLayer, QueryTriggerInteraction.Collide);

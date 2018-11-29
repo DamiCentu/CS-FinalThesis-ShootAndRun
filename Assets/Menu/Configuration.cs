@@ -21,6 +21,7 @@ public class Configuration : MonoBehaviour {
     public static Configuration instance = null;
 
     public Player.Ults playerUlt;
+    public bool playerInmortal;
 
     void Awake() {
         if (instance == null)

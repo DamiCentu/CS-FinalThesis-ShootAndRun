@@ -84,9 +84,9 @@ public class SectionManager : MonoBehaviour , IPauseable {
             }
         }
 
-        if (Configuration.instance.activeDebugMode) {
-            debug.SetActive(true);
-        }
+
+        debug.SetActive(true);
+
 
         StartCoroutine(SectionsRoutine());
     }
