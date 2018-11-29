@@ -22,6 +22,7 @@ public class SkillsUI : MonoBehaviour {
     public static SkillsUI instance;
     public Player.ID id;
     public GameObject gm;
+    public GameObject ultimateInUse;
 
     void Start () {
         EventManager.instance.SubscribeEvent(Constants.ULTIMATE_TIME, RefreshUltimate);
@@ -31,6 +32,7 @@ public class SkillsUI : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.UPDATE_DASH, UpdateDash);
         EventManager.instance.SubscribeEvent(Constants.SHOW_SKILL_UI, ShowSkills );
         EventManager.instance.SubscribeEvent(Constants.LEFT_TIME_ULTING, TimeLeftUlting);
+
     }
 
 
@@ -75,6 +77,7 @@ public class SkillsUI : MonoBehaviour {
         {
             return;
         }
+        print("lalala");
         float timer = (float)parameterContainer[0];
         float maxTime = (float)parameterContainer[1];
         //Image bar;
@@ -83,22 +86,26 @@ public class SkillsUI : MonoBehaviour {
           //  return;
         if (timer <= 0)
         {
-//             bar = ultimateBarOverWatchFull;
+//             bar = ultimateActivated;
 //             ultimateBarOverWatch.gameObject.SetActive(false);
 //             ultimateBarOverWatchFull.gameObject.SetActive(true);
 //             ultimateImageOverWatch.gameObject.SetActive (true); //tiene ulti
-            ultimateActivated.SetActive(true);
-            ultimateDeactivated.SetActive(false);
+          //  ultimateActivated.SetActive(false);
+   //         ultimateDeactivated.SetActive(false);
+   //         ultimateInUse.SetActive(true);
+    //        RefreshImage(timer, maxTime, ultimateInUse.GetComponent<Image>());
         }
         else {
 //             bar = ultimateBarOverWatch;
 //             ultimateBarOverWatch.gameObject.SetActive(true);
 //             ultimateBarOverWatchFull.gameObject.SetActive(false);
 //             ultimateImageOverWatch.gameObject.SetActive(false); //sin ulti
-            ultimateActivated.SetActive(false);
+            ultimateActivated.SetActive(true);
             ultimateDeactivated.SetActive(true);
+            ultimateInUse.SetActive(false);
+            RefreshImage(timer, maxTime, ultimateActivated.GetComponent<Image>());
         }
-        RefreshImage(timer, maxTime);
+   //     RefreshImage(timer, maxTime);
     }
 
     private void TimeLeftUlting(object[] parameterContainer)
@@ -110,7 +117,11 @@ public class SkillsUI : MonoBehaviour {
         float timer = (float)parameterContainer[0];
         float maxTime = (float)parameterContainer[1];
 
-        RefreshImage(timer, maxTime);
+
+        ultimateActivated.SetActive(false);
+        ultimateDeactivated.SetActive(false);
+        ultimateInUse.SetActive(true);
+        RefreshImage(timer, maxTime, ultimateInUse.GetComponent<Image>());
 
     }
 
