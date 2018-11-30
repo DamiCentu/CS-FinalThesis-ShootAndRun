@@ -5,11 +5,16 @@ using UnityEngine;
 public class ReactivateSomethingTrigger : MonoBehaviour {
 
     public GameObject[] gameobjectsToReactivate;
+    public WallThatDestroysWhenPlayerKillsEnemiesBehaviour [] wallsThatDestroy;
 
     private void OnTriggerEnter(Collider c) {
         if(c.gameObject.layer == 8) { // player
             foreach (var go in gameobjectsToReactivate) { 
                 go.SetActive(true);
+            }
+
+            foreach (var w in wallsThatDestroy) { 
+                w.Show(true);
             }
         }
     }

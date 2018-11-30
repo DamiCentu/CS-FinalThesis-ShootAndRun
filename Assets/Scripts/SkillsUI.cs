@@ -4,26 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SkillsUI : MonoBehaviour {
-
-   // public Image ultimateImage;
+    
     public Image specialImage;
-    //public Text ultimateName;
-    //public Text specialName;
     public Image specialImageInPlayer;
-    //public Image ultimateBarOverWatch;
-    //public Image ultimateBarOverWatchFull;
+
     public Image ultimateActivated;
-    //public Image ultimateDeactivated;
     public Image ultimateUsing;
-    //public Image ultimateImageOverWatch;
+
     public List<Image> dashes;
     public List<Image> unactiveDashes;
     public List<Image> dashesInPlayer;
     public List<Image> unactiveDashesInPlayer;
+
     public static SkillsUI instance;
+
     public Player.ID id;
     public GameObject gm;
-    //public GameObject ultimateInUse;
 
     void Start () {
         EventManager.instance.SubscribeEvent(Constants.ULTIMATE_TIME, RefreshUltimate);
