@@ -8,6 +8,7 @@ public class BossLaser : MonoBehaviour, BossActions {
     public LayerMask maskToCollide;
     public BossSerpent boss;
     public LineRenderer line;
+    public LineRenderer line1;
     public bool upgrade;
     public float speed=0.01f;
     Vector3 laserDir;
@@ -28,7 +29,23 @@ public class BossLaser : MonoBehaviour, BossActions {
         print("entre");
         this.boss = (BossSerpent)boss;
         line.gameObject.SetActive(false);
+        Vector3  direction;
+        float laserDistance;
+        line1.gameObject.SetActive(false);
+        if (upgrade)
+        {
+            direction=(Vector3.down);
+            laserDistance = 40;
+        }
+        else {
+            direction = (Vector3.left);
+            laserDistance = 23;
+        }
 
+        var a = direction * laserDistance + this.boss.shootPosition.position;
+        line1.SetPosition(0, this.boss.shootPosition.position);
+        line1.SetPosition(1, a);
+        line1.gameObject.SetActive(true);
         MarkActive(true);
         timer = 1f;
         if (upgrade) {
@@ -43,6 +60,11 @@ public class BossLaser : MonoBehaviour, BossActions {
     {
         if (line != null && line.gameObject != null) {
             line.gameObject.SetActive(false);
+        }
+
+        if (line1 != null && line1.gameObject != null)
+        {
+            line1.gameObject.SetActive(false);
         }
         MarkActive(false);
         if (upgrade) {
@@ -94,6 +116,7 @@ public class BossLaser : MonoBehaviour, BossActions {
     {
         if (timer < 0)
         {
+            line1.gameObject.SetActive(false);
             MarkActive(false);
             if(!upgrade)
                 Laser(Vector3.left);
@@ -103,6 +126,25 @@ public class BossLaser : MonoBehaviour, BossActions {
 
         }
         else {
+            Vector3 direction;
+            float laserDistance;
+            line1.gameObject.SetActive(false);
+            if (upgrade)
+            {
+                direction = (Vector3.down);
+                laserDistance = 40;
+            }
+            else
+            {
+                direction = (Vector3.left);
+                laserDistance = 23;
+            }
+
+            var a = direction * laserDistance + this.boss.shootPosition.position;
+            line1.SetPosition(0, this.boss.shootPosition.position);
+            line1.SetPosition(1, a);
+            line1.gameObject.SetActive(true);
+
             timer -= Time.deltaTime;
         }
     }
