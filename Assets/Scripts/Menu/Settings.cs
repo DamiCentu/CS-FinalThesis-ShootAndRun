@@ -15,16 +15,19 @@ public class Settings : MonoBehaviour {
     public void SetEasy() {
         Configuration.instance.SetEasy();
         Menu.instance.OpenUlt();
+        Menu.instance.HideEasyDescription();
     }
 
     public void SetHard() {
         Configuration.instance.SetHard();
         Menu.instance.OpenUlt();
+        Menu.instance.HideHardDescription();
     }
 
     public void SetMedium() {
         Configuration.instance.SetMedium();
         Menu.instance.OpenUlt();
+        Menu.instance.HideMediumDescription();
     }
     public void SetBerseker()
     {
