@@ -345,6 +345,7 @@ MonoBehaviour:
   followIntensity: 0.06
   lifeTime: 5
   timer: 0
+  DestroyParticleName: muerte misil
 --- !u!198 &198704679802821020
 ParticleSystem:
   m_ObjectHideFlags: 1
