@@ -10,6 +10,11 @@ public class Menu : MonoBehaviour {
     public GameObject ultObject;
     public static Menu instance;
     public GameObject cheatMode;
+    public GameObject easyDescription;
+    public GameObject meduimDescription;
+    public GameObject hardDescription;
+
+
     void Start () {
         OpenMenu();
         instance = this;
@@ -127,6 +132,35 @@ public class Menu : MonoBehaviour {
     public void UnactiveDebugMode()
     {
         Configuration.instance.SetDebugMode(false);
+    }
+
+    public void ShowEasyDescription() {
+        easyDescription.SetActive(true);
+    }
+
+    public void HideEasyDescription()
+    {
+        easyDescription.SetActive(false);
+    }
+
+    public void ShowMediumDescription()
+    {
+        meduimDescription.SetActive(true);
+    }
+
+    public void HideMediumDescription()
+    {
+        meduimDescription.SetActive(false);
+    }
+
+    public void ShowHardDescription()
+    {
+        hardDescription.SetActive(true);
+    }
+
+    public void HideHardDescription()
+    {
+        hardDescription.SetActive(false);
     }
     /* public void PlayTutorial() {
          SceneManager.LoadScene("Tutorial");
