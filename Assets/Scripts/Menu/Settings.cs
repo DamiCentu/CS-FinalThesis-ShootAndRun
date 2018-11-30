@@ -50,11 +50,11 @@ public class Settings : MonoBehaviour {
     {
         if (Configuration.instance.lvl == 1)
         {
-            //SceneManager.LoadScene("nivel prueba");
+          //  SceneManager.LoadScene("nivel prueba");
             StartCoroutine(LoadAsync("nivel prueba"));
         }
         else {
-            //SceneManager.LoadScene("Scene2");
+      //      SceneManager.LoadScene("Scene2");
             StartCoroutine(LoadAsync("Scene2"));
         }
     }
