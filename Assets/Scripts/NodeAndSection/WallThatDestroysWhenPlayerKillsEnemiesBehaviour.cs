@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour {
+public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IPauseable {
 
     public int id = 0;
     Renderer rend;
+    Collider col;
+
+    bool _pause;
 
     void Start()
     {
         rend = GetComponent<Renderer>();
+        col = GetComponent<Collider>();
     }
+
     public void Show(bool v) {
         if (v)
         {
@@ -20,10 +25,16 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour {
             StartCoroutine("Disolve");
         }
     }
+
+    public void OnPauseChange(bool p) {
+        _pause = p;
+    }
+
+
     IEnumerator Appear()
     {
         print("aparezco");
-        this.GetComponent<Collider>().enabled = true;
+        col.enabled = true;
         rend.material.SetFloat("_time", 6);
 
         while (rend.material.GetFloat("_time") > 0) {
@@ -31,6 +42,8 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour {
             var time = Mathf.Clamp(rend.material.GetFloat("_time") - 0.2f,0,10);
             rend.material.SetFloat("_time", time);
             yield return new WaitForSeconds(.05f);
+            if (_pause)
+                yield return null;
         }
     }
 
@@ -45,7 +58,9 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour {
             print("time");
             rend.material.SetFloat("_time", time);
             yield return new WaitForSeconds(.05f);
+            if (_pause)
+                yield return null;
         }
-        this.GetComponent<Collider>().enabled = false;
+        col.enabled = false;
     }
 }
