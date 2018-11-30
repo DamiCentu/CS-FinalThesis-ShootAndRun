@@ -43,6 +43,11 @@ public class LootTableManager : MonoBehaviour {
         }
     }
 
+    public void AddDropedPowerUp(GameObject g) {
+        _allGamePowerUps.Add(g);
+
+    }
+
     private void ConfigurePowerUps()
     {
         _allGamePowerUps = new List<GameObject>();
@@ -176,7 +181,23 @@ public class LootTableManager : MonoBehaviour {
     }
 
     public void DestroyAllPowerUps() {
-        Utility.DestroyAllInAndClearList(_allGamePowerUps);
+
+        var _allGamePowerUps2 = new List<GameObject>();
+        foreach (var power in _allGamePowerUps)
+        {
+
+            if (power.GetComponent<IPowerUp>().shouldbeErased)
+            {
+                Destroy(power);
+                //      power.gameObject.SetActive(false);
+            } else
+            {
+                _allGamePowerUps2.Add(power);
+            }
+        }
+        _allGamePowerUps = _allGamePowerUps2;
+
+    //    Utility.DestroyAllInAndClearList(_allGamePowerUps);
     }
 
     public bool ExistAPowerUp { get { return _allGamePowerUps.Count > 0; } }

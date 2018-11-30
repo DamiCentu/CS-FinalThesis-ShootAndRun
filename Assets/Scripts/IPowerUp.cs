@@ -7,4 +7,6 @@ public enum PowerUp { ExtraDash, ExtraRange, DoubleShoot, Shield, ExtraLife }
 
     public abstract class IPowerUp: MonoBehaviour
     {
+    public bool shouldbeErased=true;
+
 }

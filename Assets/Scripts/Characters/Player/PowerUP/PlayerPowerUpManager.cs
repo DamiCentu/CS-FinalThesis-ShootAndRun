@@ -9,6 +9,9 @@ public class PlayerPowerUpManager : MonoBehaviour {
     internal int PowerUpExtraDashNUmber = 0;
     internal int PowerUpShieldNumber = 0;
     public IShootable DoubleShoot;
+  //  public GameObject prefabShoot;
+  //  public GameObject prefabRange;
+  //  public GameObject prefabDash;
 
     public void Start()
     {
@@ -148,42 +151,58 @@ public class PlayerPowerUpManager : MonoBehaviour {
     {
         RecalculatePowerUp();
         PowerUp p;
+        GameObject prefabPowerUp;
         int countDoubleShoot = PrimaryWeaponManager.instance.Index(player.primaryGun);
 
         if (PowerUpExtraDashNUmber > 0)
         {
             RemoveExtraDash();
             p = PowerUp.ExtraDash;
+            prefabPowerUp = LootTableManager.instance.extraDash.gameObject;
         }
         else if (PowerUpRangeNumber > 0)
         {
             ReduceRange();
             p = PowerUp.ExtraRange;
+            prefabPowerUp = LootTableManager.instance.range.gameObject;
         }
         else if (countDoubleShoot > 0)
         {
             DowngradeShoot();
             p = PowerUp.DoubleShoot;
+            prefabPowerUp = LootTableManager.instance.doubleShoot.gameObject;
         }
         else
         {
             return;
         }
         // borro los souls anteriores
-        var foundObject = FindObjectOfType<Soul>();
-        if (foundObject != null)
+        var foundObjects = FindObjectsOfType<IPowerUp>();
+        foreach (var power in foundObjects)
         {
-            foundObject.transform.position = transform.position;
-            foundObject.Set(p);
+            if (!power.shouldbeErased) {
+                power.shouldbeErased = true;
+          //      power.gameObject.SetActive(false);
+            }
         }
-        else
-        {
 
-            Soul s = Instantiate(player.soulPrefab, transform.position, transform.rotation).GetComponent<Soul>();
-            s.Set(p);
-        }
+        LootTableManager.instance.DestroyAllPowerUps();
+        /*        if (foundObject != null)
+                {
+                    foundObject.transform.position = transform.position;
+                    foundObject.Set(p);
+                }
+                else
+                {
+
+                    Soul s = Instantiate(player.soulPrefab, transform.position, transform.rotation).GetComponent<Soul>();
+                    s.Set(p);
+                }*/
 
         // creo el nuevo
+       GameObject go= Instantiate(prefabPowerUp, transform.position, Quaternion.identity);
+        go.GetComponent<IPowerUp>().shouldbeErased = false;
+        LootTableManager.instance.AddDropedPowerUp(go);
     }
 
     public void RecalculatePowerUp() {
