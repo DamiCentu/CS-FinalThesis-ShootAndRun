@@ -9,6 +9,7 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
     Collider col;
 
     bool _pause;
+    bool _isOn = true;
 
     void Start()
     {
@@ -34,34 +35,42 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
 
     IEnumerator Appear()
     {
-        print("aparezco");
-        col.enabled = true;
-        rend.material.SetFloat("_time", 6);
-
-        while (rend.material.GetFloat("_time") > 0) {
+        if (!_isOn) {
             print("aparezco");
-            var time = Mathf.Clamp(rend.material.GetFloat("_time") - 0.2f,0,10);
-            rend.material.SetFloat("_time", time);
-            yield return new WaitForSeconds(.05f);
-            if (_pause)
-                yield return null;
+            col.enabled = true;
+            rend.material.SetFloat("_time", 6); 
+          
+            while (rend.material.GetFloat("_time") > 0) {
+                print("aparezco");
+                var time = Mathf.Clamp(rend.material.GetFloat("_time") - 0.2f,0,10);
+                rend.material.SetFloat("_time", time);
+                yield return new WaitForSeconds(.05f);
+                if (_pause)
+                    yield return null;
+            }
+            _isOn = true;
         }
+        yield return null;
     }
 
     IEnumerator Disolve()
     {
-        rend.material.SetFloat("_time", 0);
-
-        while (rend.material.GetFloat("_time") < 6)
-        {
-            print("desaparezco");
-            var time = Mathf.Clamp(rend.material.GetFloat("_time") + 0.2f, 0, 10);
-            print("time");
-            rend.material.SetFloat("_time", time);
-            yield return new WaitForSeconds(.05f);
-            if (_pause)
-                yield return null;
+        if (_isOn) {
+            rend.material.SetFloat("_time", 0);
+         
+            while (rend.material.GetFloat("_time") < 6)
+            {
+                //print("desaparezco");
+                var time = Mathf.Clamp(rend.material.GetFloat("_time") + 0.2f, 0, 10);
+                print("time");
+                rend.material.SetFloat("_time", time);
+                yield return new WaitForSeconds(.05f);
+                if (_pause)
+                    yield return null;
+            }
+            col.enabled = false;
+            _isOn = false;
         }
-        col.enabled = false;
+        yield return null;
     }
 }
