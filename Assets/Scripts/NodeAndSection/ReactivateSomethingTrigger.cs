@@ -13,6 +13,8 @@ public class ReactivateSomethingTrigger : MonoBehaviour {
                 go.SetActive(true);
             }
 
+            EventManager.instance.ExecuteEvent(Constants.DESTROY_ENEMIES_BEHIND_WALL);
+
             foreach (var w in wallsThatDestroy) { 
                 w.Show(true);
             }

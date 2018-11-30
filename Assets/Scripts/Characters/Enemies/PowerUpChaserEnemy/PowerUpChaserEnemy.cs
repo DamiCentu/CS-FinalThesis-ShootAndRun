@@ -5,7 +5,7 @@ using System;
 using FSMFUNCTIONAL;
 
 [RequireComponent(typeof(Flocking))]
-public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable {
+public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable , ICustomOnHit {
 
     public int hitsCanTake = 5;
     public float timeSplicingQuote = 0.001f;
@@ -222,6 +222,10 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable {
             OnDestroyCustom(true);
             EventManager.instance.ExecuteEvent(Constants.POWER_UP_PICKED, new object[] { c.gameObject }); 
         }
+    }
+
+    public void CustomOnHit() {
+        OnDestroyCustom(true);
     }
 
     void OnDestroyCustom(bool makeParticles) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FSMFUNCTIONAL;
 
-public class MiniBossBehaviour : AbstractEnemy,IHittable , IPauseable {
+public class MiniBossBehaviour : AbstractEnemy,IHittable , IPauseable , ICustomOnHit {
     public float radiusToStartShooting = 10f;
     public float radiusToEndShooting = 15f;
     public float timeToStartAttack = 1f;
@@ -266,6 +266,10 @@ public class MiniBossBehaviour : AbstractEnemy,IHittable , IPauseable {
         if (_hitsTaken <= 0) { 
              EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this,false, hasToDestroyThisToUnlockSomething, wallToUnlockID });
         }
+    }
+
+    public void CustomOnHit() {
+        EventManager.instance.ExecuteEvent(Constants.ENEMY_DEAD, new object[] { _actualWave, _actualSectionNode, this, true, hasToDestroyThisToUnlockSomething, wallToUnlockID });
     }
 
     void SendInputToFSM(MiniBossInputs inp) {

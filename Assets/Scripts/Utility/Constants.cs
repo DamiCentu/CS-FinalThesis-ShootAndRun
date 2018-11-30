@@ -75,6 +75,9 @@ public class Constants : MonoBehaviour
     public const string SOUND_BULLET_HIT = "bullet_hit";
 
     public static string START_BOSS_DEAD = "start_boss_dead";
+
+    public static string DESTROY_ENEMIES_BEHIND_WALL = "destroyEnemiesBehindWall";
+
     //public const string SOUND_BOSS_EXPLOTION = "boss_explotion";
 
 
