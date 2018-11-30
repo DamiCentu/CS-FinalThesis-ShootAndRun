@@ -17,6 +17,7 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
     }
 
     public void Show(bool v) {
+        if (col == null || rend == null) return;
         if (v)
         {
             StartCoroutine("Appear");
