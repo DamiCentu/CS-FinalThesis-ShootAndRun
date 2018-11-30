@@ -31,9 +31,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Brillo: 1
     - _Metalic: 0.817
     - _Smoothness: 0.8
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.22794116, g: 0.22794116, b: 0.22794116, a: 0}
+    - _Color0: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 0}
     - _Tint: {r: 0, g: 0.5862069, b: 1, a: 0}

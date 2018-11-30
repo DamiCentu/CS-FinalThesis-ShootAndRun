@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: New Material 2
-  m_Shader: {fileID: 4800000, guid: e5d36900bb37af14eb5fa1c644f39d21, type: 3}
+  m_Shader: {fileID: 4800000, guid: 79376fe43e60f864485dc5a4355b8429, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -42,6 +42,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 8512b5973a488674f8e3e5e9222dd664, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,6 +68,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Ancho: 25.55
+    - _Brillo: 3
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -71,10 +76,12 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Metalic: 0.817
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Smoothness: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 1.2
@@ -85,5 +92,6 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Tint: {r: 0.75735295, g: 0.47334558, b: 0.74951833, a: 0}
+    - _Tint: {r: 1, g: 0, b: 0.972414, a: 0}
