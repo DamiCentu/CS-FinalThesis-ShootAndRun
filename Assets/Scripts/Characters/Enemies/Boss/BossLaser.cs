@@ -34,7 +34,7 @@ public class BossLaser : MonoBehaviour, BossActions {
         line1.gameObject.SetActive(false);
         if (upgrade)
         {
-            direction=(Vector3.down);
+            direction=(-Vector3.forward);
             laserDistance = 40;
         }
         else {
@@ -131,7 +131,7 @@ public class BossLaser : MonoBehaviour, BossActions {
             line1.gameObject.SetActive(false);
             if (upgrade)
             {
-                direction = (Vector3.down);
+                direction = (-Vector3.forward);
                 laserDistance = 40;
             }
             else
