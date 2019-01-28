@@ -5,26 +5,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Settings : MonoBehaviour {
+public class Settings : MonoBehaviour
+{
     public GameObject splash;
     public Image slider;
 
     enum Dificulty { Easy, Medium, Hard };
     Dificulty dificulty;
 
-    public void SetEasy() {
+    public void SetEasy()
+    {
         Configuration.instance.SetEasy();
         Menu.instance.OpenUlt();
         Menu.instance.HideEasyDescription();
     }
 
-    public void SetHard() {
+    public void SetHard()
+    {
         Configuration.instance.SetHard();
         Menu.instance.OpenUlt();
         Menu.instance.HideHardDescription();
     }
 
-    public void SetMedium() {
+    public void SetMedium()
+    {
         Configuration.instance.SetMedium();
         Menu.instance.OpenUlt();
         Menu.instance.HideMediumDescription();
@@ -50,22 +54,21 @@ public class Settings : MonoBehaviour {
     {
         if (Configuration.instance.lvl == 1)
         {
-          //  SceneManager.LoadScene("nivel prueba");
-            StartCoroutine(LoadAsync("nivel prueba"));
+            StartCoroutine(LoadAsync(Constants.LEVEL_1_NAME));
         }
-        else {
-      //      SceneManager.LoadScene("Scene2");
-            StartCoroutine(LoadAsync("Scene2"));
+        else
+        {
+            StartCoroutine(LoadAsync(Constants.LEVEL_2_NAME));
         }
     }
     public void NextLvl()
     {
         Configuration.instance.NextLvl();
-        StartCoroutine(LoadAsync("Scene2"));
-        //SceneManager.LoadScene("Scene2");
+        StartCoroutine(LoadAsync(Constants.LEVEL_2_NAME));
     }
 
-    IEnumerator LoadAsync(string name) {
+    IEnumerator LoadAsync(string name)
+    {
         splash.SetActive(true);
         AsyncOperation async = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
         async.allowSceneActivation = false;

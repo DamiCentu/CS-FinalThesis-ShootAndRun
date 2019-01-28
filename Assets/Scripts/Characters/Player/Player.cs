@@ -494,7 +494,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         }
 
         if (c.gameObject.layer == 13)//POWER UP
-            EventManager.instance.ExecuteEvent(Constants.POWER_UP_PICKED, new object[] { c.gameObject });
+            EventManager.instance.ExecuteEvent(Constants.POWER_UP_PICKED, new object[] { c.gameObject , "isPlayer"});
     }
 
 

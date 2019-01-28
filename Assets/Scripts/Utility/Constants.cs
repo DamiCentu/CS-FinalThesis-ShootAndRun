@@ -69,14 +69,29 @@ public class Constants : MonoBehaviour
     public const string UI_TUTORIAL_RESTART = "ui_tutorial_restart";
     public const string UI_TUTORIAL_DEACTIVATED = "ui_tutorial_deactivated";
     public const string UI_TUTORIAL_CHANGE = "ui_tutorial_change";
+    public const string UI_POINTS_UPDATE = "ui_points_Update";
+    public const string UI_CLEAR_MULTIPLIER = "ui_clear_multiplier";
+    public const string UI_NOTIFICATION_TEXT_UPDATE = "ui_notification_text_update";
 
     public const string SOUND_FADE_IN = "sound_fade_in";
     public const string SOUND_FADE_OUT = "sound_fade_out";
     public const string SOUND_BULLET_HIT = "bullet_hit";
 
-    public static string START_BOSS_DEAD = "start_boss_dead";
+    public const string START_BOSS_DEAD = "start_boss_dead";
 
-    public static string DESTROY_ENEMIES_BEHIND_WALL = "destroyEnemiesBehindWall";
+    public const string DESTROY_ENEMIES_BEHIND_WALL = "destroyEnemiesBehindWall";
+
+    public const string CREDIT_LOSED = "credit_losed";
+    public const string PAUSE_OR_UNPAUSE = "pauseOrUnpause";
+
+    public const string WIN_LEVEL = "win_level";
+
+    public const string LEVEL_1_NAME = "nivelPrueba";
+    public const string LEVEL_2_NAME = "Scene2";
+
+    public const string GO_TO_LEVEL_COMPLETE_SCENE = "goToLevelCompleteScene";
+    public const string GO_TO_GAME_COMPLETE_SCENE = "goToGameCompleteScene";
+
 
     //public const string SOUND_BOSS_EXPLOTION = "boss_explotion";
 

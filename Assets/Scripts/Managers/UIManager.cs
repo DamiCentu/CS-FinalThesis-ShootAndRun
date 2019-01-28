@@ -9,9 +9,6 @@ public class UIManager : MonoBehaviour, IPauseable {
     public SimpleHealthBar bossLife0;
     public GameObject bossLifeBar0;
 
-  //  SimpleHealthBar bossLife;
-  //  GameObject bossLifeBar;
-
     public SimpleHealthBar bossLife1;
     public GameObject bossLifeBar1;
 
@@ -19,8 +16,11 @@ public class UIManager : MonoBehaviour, IPauseable {
     public GameObject bossLifeBar2;
 
     public List<Image> lifeImages;
-    public Text creditsText;
     public Text tutorialText;
+    public Text pointsText;
+    public Text multiplierPointsText;
+    public Text notificationPointsText;
+    public float timeToShowPointsInfoText = 1.5f;
     public float timeToDisapearTutoText = 4f;
     public GameObject panelOfTutorial;
 
@@ -35,10 +35,10 @@ public class UIManager : MonoBehaviour, IPauseable {
 
     WaitForSeconds _waitToDisapearTutoText;
     HashSet<string> _hashToCompare = new HashSet<string>();
+    Queue<String> queueForNotificationPointsText = new Queue<String>();
 
     bool _paused;
-
-
+    WaitForSeconds _waitBetweenTextInfoPoints;
 
     public void OnPauseChange(bool v)
     {
@@ -51,11 +51,65 @@ public class UIManager : MonoBehaviour, IPauseable {
         EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_RESTART, OnTutorialRestart);
         EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_CHANGE, OnTutorialChange);
         EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_DEACTIVATED, OnTutorialDeactivated);
+        EventManager.instance.SubscribeEvent(Constants.UI_POINTS_UPDATE, OnPointsUpdate);
+        EventManager.instance.SubscribeEvent(Constants.UI_CLEAR_MULTIPLIER, OnClearMultiplierText);
+        EventManager.instance.SubscribeEvent(Constants.UI_NOTIFICATION_TEXT_UPDATE, OnNotificationTextUpdate);
         if (instance == null) { 
             instance = this;
         }
+        pointsText.text = "0";
         tutorialText.text = "";
+        multiplierPointsText.text = "";
+        multiplierPointsText.transform.parent.gameObject.SetActive(false);
+        notificationPointsText.transform.parent.gameObject.SetActive(false);
+
         _waitToDisapearTutoText = new WaitForSeconds(timeToDisapearTutoText);
+        _waitBetweenTextInfoPoints = new WaitForSeconds(timeToShowPointsInfoText);
+    }
+
+    private void OnNotificationTextUpdate(object[] param)
+    {
+        if (!queueForNotificationPointsText.Contains((string)param[0]))
+        {
+            queueForNotificationPointsText.Enqueue((string)param[0]);
+        }
+
+        StartCoroutine(ShowTextFromQueueRoutine(notificationPointsText, queueForNotificationPointsText, _waitBetweenTextInfoPoints));
+    }
+
+    private void OnClearMultiplierText(object[] parameterContainer)
+    {
+        multiplierPointsText.text = "";
+        multiplierPointsText.transform.parent.gameObject.SetActive(false);
+    }
+
+    private void OnPointsUpdate(object[] param)
+    {
+        var currentPoints = (int)param[0];
+        var currentMultiplier = (float)param[1];
+
+        if(currentMultiplier > 1)
+        {
+            var text = currentMultiplier.ToString() + "X";
+            multiplierPointsText.transform.parent.gameObject.SetActive(true);
+            multiplierPointsText.text = text;
+        }
+
+        pointsText.text = currentPoints.ToString();
+    }
+
+    IEnumerator ShowTextFromQueueRoutine(Text text, Queue<string> queue, WaitForSeconds wait)
+    {
+        text.transform.parent.gameObject.SetActive(true);
+
+        while(queue.Count > 0)
+        {
+            text.text = queue.Dequeue();
+            yield return wait;
+        }
+
+        text.text = "";
+        text.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnTutorialRestart(object[] parameterContainer) {
@@ -173,6 +227,6 @@ public class UIManager : MonoBehaviour, IPauseable {
         for (int i = lifeCount; i < lifeImages.Count; i++)
             lifeImages[i].gameObject.SetActive(false);
 
-        creditsText.text = "Credits: " + (int)parameterContainer[1]; //creditsRemaining 
+        //creditsText.text = "Credits: " + (int)parameterContainer[1]; //creditsRemaining 
     }
 }

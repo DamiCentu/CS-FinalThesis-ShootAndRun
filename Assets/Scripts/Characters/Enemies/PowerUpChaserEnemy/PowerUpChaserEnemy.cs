@@ -220,7 +220,7 @@ public class PowerUpChaserEnemy : AbstractEnemy, IHittable , IPauseable , ICusto
         if (c.gameObject.layer == 13) {//powerup
             _actualSectionNode.SpawnMiniBoss(transform.position,_actualWave);
             OnDestroyCustom(true);
-            EventManager.instance.ExecuteEvent(Constants.POWER_UP_PICKED, new object[] { c.gameObject }); 
+            EventManager.instance.ExecuteEvent(Constants.POWER_UP_PICKED, new object[] { c.gameObject, "isPowerUpChaser" }); 
         }
     }
 

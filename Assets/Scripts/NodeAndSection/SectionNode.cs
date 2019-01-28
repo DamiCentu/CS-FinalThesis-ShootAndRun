@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SectionNode : MonoBehaviour , IPauseable {
+public class SectionNode : MonoBehaviour, IPauseable
+{
     public int id;
     public SectionNode next;
 
@@ -79,17 +80,20 @@ public class SectionNode : MonoBehaviour , IPauseable {
         _paused = v;
     }
 
-    public void SetBoss() {
-        if (Configuration.instance.lvl == 1) {
+    public void SetBoss()
+    {
+        if (Configuration.instance.lvl == 1)
+        {
             StartCoroutine(BossRoutine());
         }
-       else if (Configuration.instance.lvl == 2)
+        else if (Configuration.instance.lvl == 2)
         {
             StartCoroutine(BossSerpentsRoutine());
         }
     }
 
-    IEnumerator BossRoutine() {
+    IEnumerator BossRoutine()
+    {
 
         yield return _waitBetweenWaves;
         while (_paused)
@@ -117,16 +121,20 @@ public class SectionNode : MonoBehaviour , IPauseable {
         bossSerpentRightOnScreen.gameObject.SetActive(true);
     }
 
-    public bool SectionCleared {
-        get {
-            if (_enemiesRemaining <= 0) {
+    public bool SectionCleared
+    {
+        get
+        {
+            if (_enemiesRemaining <= 0)
+            {
                 StopAllEnemies();
                 return true;
             }
             return false;
         }
     }
-    void Start() {
+    void Start()
+    {
         _dicSpawn.Add(SectionManager.WaveNumber.First, new List<EnemySpawner>());
         _dicSpawn.Add(SectionManager.WaveNumber.Second, new List<EnemySpawner>());
         _dicSpawn.Add(SectionManager.WaveNumber.Third, new List<EnemySpawner>());
@@ -146,14 +154,17 @@ public class SectionNode : MonoBehaviour , IPauseable {
         _allMapNodes = transform.GetComponentsInChildren<MapNode>();
 
 
-        foreach (var m in _allMultiSpawns) {
+        foreach (var m in _allMultiSpawns)
+        {
             _allQuantityInMultiEnemySpawners += m.quantityOfEnemies;
         }
 
         Utility.ConnectMapNodes(_allMapNodes, objectToDetectConnectingNodes);
 
-        foreach (var spawn in _allSpawns) {
-            if (_dicSpawn.ContainsKey(spawn.waveOfSpawn)) {
+        foreach (var spawn in _allSpawns)
+        {
+            if (_dicSpawn.ContainsKey(spawn.waveOfSpawn))
+            {
                 if (spawn.triggerSpawn)
                     continue;
                 else
@@ -172,77 +183,99 @@ public class SectionNode : MonoBehaviour , IPauseable {
         SetQuantityToDestroyToUnlockSomething();
     }
 
-    void OnBossDestroyed(params object[] param) {
+    void OnBossDestroyed(params object[] param)
+    {
         _bossAlive = false;
         StopAllEnemies();
     }
 
     //Spawnea en el en todos los spawns que no afecten en el final del nodo y setea la cantidad de enemigos para desbloquear algo
-    public void SpawnEnemyAtStart() {
-        foreach (var sP in _allSpawnsThatNotAffectEndOfNode) {
+    public void SpawnEnemyAtStart()
+    {
+        foreach (var sP in _allSpawnsThatNotAffectEndOfNode)
+        {
             SpawnEnemyAtPointAtStartNoCuentaParaTerminarNodo(sP);
-        } 
+        }
     }
 
-    void SetQuantityToDestroyToUnlockSomething() {
+    void SetQuantityToDestroyToUnlockSomething()
+    {
         if (_allWallsThatHaveToUnlockDestroying.Length == 0)
             return;
 
         List<int> keys = new List<int>(_quantityPerIDDictionary.Keys);
 
-        foreach (var i in keys) {
+        foreach (var i in keys)
+        {
             _quantityPerIDDictionary[i] = 0;
         }
 
-        foreach (var sP in _allSpawnsThatNotAffectEndOfNode) {
-            if (sP.hasToDestroyToUnlockSomething) {
-                if (!_quantityPerIDDictionary.ContainsKey(sP.idOfWall)) {
+        foreach (var sP in _allSpawnsThatNotAffectEndOfNode)
+        {
+            if (sP.hasToDestroyToUnlockSomething)
+            {
+                if (!_quantityPerIDDictionary.ContainsKey(sP.idOfWall))
+                {
                     _quantityPerIDDictionary.Add(sP.idOfWall, 0);
                 }
                 _quantityPerIDDictionary[sP.idOfWall]++;
             }
         }
 
-        foreach(var sP2 in _allSpawns) {
-             if (sP2.hasToDestroyToUnlockSomething) {
-                if (!_quantityPerIDDictionary.ContainsKey(sP2.idOfWall)) {
+        foreach (var sP2 in _allSpawns)
+        {
+            if (sP2.hasToDestroyToUnlockSomething)
+            {
+                if (!_quantityPerIDDictionary.ContainsKey(sP2.idOfWall))
+                {
                     _quantityPerIDDictionary.Add(sP2.idOfWall, 0);
                 }
                 _quantityPerIDDictionary[sP2.idOfWall]++;
             }
         }
 
-        foreach(var sP3 in _allMultiSpawns) {
-             if (sP3.hasToDestroyToUnlockSomething) {
-                if (!_quantityPerIDDictionary.ContainsKey(sP3.idOfWall)) {
+        foreach (var sP3 in _allMultiSpawns)
+        {
+            if (sP3.hasToDestroyToUnlockSomething)
+            {
+                if (!_quantityPerIDDictionary.ContainsKey(sP3.idOfWall))
+                {
                     _quantityPerIDDictionary.Add(sP3.idOfWall, 0);
                 }
                 _quantityPerIDDictionary[sP3.idOfWall] += sP3.quantityOfEnemies;
             }
         }
 
-        foreach (var i in _quantityPerIDDictionary) {
-            if(_quantityPerIDDictionary[i.Key] > 0) {
-                foreach (var w in _allWallsThatHaveToUnlockDestroying) {
-                    if(w.id == i.Key) {
+        foreach (var i in _quantityPerIDDictionary)
+        {
+            if (_quantityPerIDDictionary[i.Key] > 0)
+            {
+                foreach (var w in _allWallsThatHaveToUnlockDestroying)
+                {
+                    if (w.id == i.Key)
+                    {
                         w.Show(true);
-                      //  w.gameObject.SetActive(true);
+                        //  w.gameObject.SetActive(true);
                     }
-                } 
+                }
             }
         }
     }
 
-    void OnEnemyDead(params object[] param) {
-        if ((SectionNode)param[1] == this) {
-            if((SectionManager.WaveNumber)param[0] != SectionManager.WaveNumber.NoCuentaParaTerminarNodo) {
+    void OnEnemyDead(params object[] param)
+    {
+        if ((SectionNode)param[1] == this)
+        {
+            if ((SectionManager.WaveNumber)param[0] != SectionManager.WaveNumber.NoCuentaParaTerminarNodo)
+            {
                 if ((SectionManager.WaveNumber)param[0] != SectionManager.WaveNumber.Trigger)
                     _dicQuantityInWave[(SectionManager.WaveNumber)param[0]]--;
 
                 _enemiesRemaining--;
 
-                if (Utility.CalcPercentage(_enemiesRemaining, _allSpawns.Length) < SectionManager.instance.percentageOfEnemysToBerserk) {
-      //              EventManager.instance.ExecuteEvent(Constants.BERSERK);
+                if (Utility.CalcPercentage(_enemiesRemaining, _allSpawns.Length) < SectionManager.instance.percentageOfEnemysToBerserk)
+                {
+                    //              EventManager.instance.ExecuteEvent(Constants.BERSERK);
                 }
             }
 
@@ -255,56 +288,69 @@ public class SectionNode : MonoBehaviour , IPauseable {
             else if (param[2] is EnemyTurretBehaviour)
                 Utility.RemoveFromListGeneric(_allTurretsActives, (EnemyTurretBehaviour)param[2]);
 
-            else if (param[2] is PowerUpChaserEnemy) { 
+            else if (param[2] is PowerUpChaserEnemy)
+            {
                 Utility.RemoveFromListGeneric(_allChasersActives, (PowerUpChaserEnemy)param[2]);
-                if(TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
+                if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+                {
                     TutorialBehaviour.instance.GreenKilled = true;
                 }
             }
 
-            else if (param[2] is MiniBossBehaviour) {
+            else if (param[2] is MiniBossBehaviour)
+            {
                 var e = (MiniBossBehaviour)param[2];
                 Utility.RemoveFromListGeneric(_allMiniBoss, e);
                 Destroy(e.gameObject);
             }
-            else if(param[2] is CubeEnemyBehaviour) {
+            else if (param[2] is CubeEnemyBehaviour)
+            {
                 Utility.RemoveFromListGeneric(_allCubeActives, (CubeEnemyBehaviour)param[2]);
             }
-            else if (param[2] is MisilEnemy) {
+            else if (param[2] is MisilEnemy)
+            {
                 Utility.RemoveFromListGeneric(_allMisilEnemiesActive, (MisilEnemy)param[2]);
             }
-            else if (param[2] is FireEnemy) {  
+            else if (param[2] is FireEnemy)
+            {
                 Utility.RemoveFromListGeneric(_allFireEnemiesActive, (FireEnemy)param[2]);
             }
 
             var absE = (AbstractEnemy)param[2];
             absE.UnSubscribeToIndicator();
 
-            if ((bool)param[3] == false) { //el verde no deberia hacer particulas si no le pega el player
+            if ((bool)param[3] == false)
+            { //el verde no deberia hacer particulas si no le pega el player
                 EventManager.instance.ExecuteEvent(Constants.PARTICLE_SET, new object[] { Constants.PARTICLE_ENEMY_EXPLOTION_NAME, absE.transform.position });
-            } 
+            }
 
-            if ((bool)param[4] == true) { // esto es para saber si se tiene que romper una pared o algo
+            if ((bool)param[4] == true)
+            { // esto es para saber si se tiene que romper una pared o algo
                 _quantityPerIDDictionary[(int)param[5]]--; //param 5 es el id
 
                 List<int> keys = new List<int>(_quantityPerIDDictionary.Keys);
 
-                foreach (var k in keys) {
-                    if(_quantityPerIDDictionary[k] <= 0) {
-                        foreach (var w in _allWallsThatHaveToUnlockDestroying) {
-                            if(w.id == k) {
+                foreach (var k in keys)
+                {
+                    if (_quantityPerIDDictionary[k] <= 0)
+                    {
+                        foreach (var w in _allWallsThatHaveToUnlockDestroying)
+                        {
+                            if (w.id == k)
+                            {
                                 w.Show(false);
-                   //             w.gameObject.SetActive(false);
+                                //             w.gameObject.SetActive(false);
                             }
-                        } 
+                        }
                     }
                 }
             }
-        } 
-    }  
+        }
+    }
 
     //la idea es vaciar todo cuando se reinicia y se termina una seccion, asi no le pega nada cuaando la gana
-    void StopAllEnemies() {
+    void StopAllEnemies()
+    {
         OffScreenIndicatorManager.instance.CleanIndicators();
         StopAllCoroutines();
 
@@ -316,7 +362,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
         _dicQuantityInWave[SectionManager.WaveNumber.Second] = 0;
         _dicQuantityInWave[SectionManager.WaveNumber.Third] = 0;
 
-        foreach (var e in _allFireEnemiesActive) {
+        foreach (var e in _allFireEnemiesActive)
+        {
             e.Stop();
         }
 
@@ -338,8 +385,10 @@ public class SectionNode : MonoBehaviour , IPauseable {
 
         Utility.DestroyAllInAndClearList(_allMiniBoss);
 
-        if (isBossNode) {
-            if (Configuration.instance.lvl == 1) {
+        if (isBossNode)
+        {
+            if (Configuration.instance.lvl == 1)
+            {
                 bossOnScreen.DeleteAll();
                 Destroy(bossOnScreen.gameObject);
                 var foundMisiles = FindObjectsOfType<Missile>();
@@ -348,44 +397,54 @@ public class SectionNode : MonoBehaviour , IPauseable {
                     misil.DestroyMissile();
                 }
             }
-            else if (Configuration.instance.lvl == 2) {
+            else if (Configuration.instance.lvl == 2)
+            {
                 if (bossSerpentLeftOnScreen != null)
                 {
                     bossSerpentLeftOnScreen.Destroy();
                 }
-                if (bossSerpentRightOnScreen != null) {
+                if (bossSerpentRightOnScreen != null)
+                {
                     bossSerpentRightOnScreen.Destroy();
                 }
             }
         }
     }
 
-    public void RestartSection() {
+    public void RestartSection()
+    {
         StopAllEnemies();
         SpawnPlayerInSpawnPoint(EnemiesManager.instance.player);
 
-        if (Configuration.instance != null) {
-            if (Configuration.instance.Multiplayer())  {
+        if (Configuration.instance != null)
+        {
+            if (Configuration.instance.Multiplayer())
+            {
                 SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
             }
         }
-        object[] conteiner= new object[1];
+        object[] conteiner = new object[2];
         conteiner[0] = "in";
-        EventManager.instance.ExecuteEvent(Constants.START_SECTION,conteiner);
+        conteiner[1] = this;
+        EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
 
-        if (isBossNode) {
-            
+        if (isBossNode)
+        {
+
             SetBoss();
             //return;
         }
 
-        foreach (var trigger in triggerSpawners) {
+        foreach (var trigger in triggerSpawners)
+        {
             if (trigger != null)
                 trigger.SetActive(true);
         }
 
-        if(_allProps.Length > 0) { 
-            foreach (var prop in _allProps) {
+        if (_allProps.Length > 0)
+        {
+            foreach (var prop in _allProps)
+            {
                 prop.RestartProp();
             }
         }
@@ -408,10 +467,11 @@ public class SectionNode : MonoBehaviour , IPauseable {
 
 
         GameObject fire = GameObject.Find("Virtual_Fire(Clone)");
-        while (fire != null) {
+        while (fire != null)
+        {
             fire.SetActive(false);
             Destroy(fire);
-            fire= GameObject.Find("Virtual_Fire(Clone)");
+            fire = GameObject.Find("Virtual_Fire(Clone)");
         }
 
         GameObject p = EnemiesManager.instance.player;
@@ -420,21 +480,25 @@ public class SectionNode : MonoBehaviour , IPauseable {
         SpawnEnemyAtStart();
         SetQuantityToDestroyToUnlockSomething();
 
-        if (!wavesStartAtTrigger && !isBossNode) {
+        if (!wavesStartAtTrigger && !isBossNode)
+        {
             StartCoroutine(WavesNodeRoutine());
         }
 
-        if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+        {
             TutorialBehaviour.instance.RestartTutorial();
         }
         _currentTimeBetweenDelayedSpawn = 0;
-    } 
+    }
 
-    private void DropIfNeededPowerUpHelp(Vector3 position) {
+    private void DropIfNeededPowerUpHelp(Vector3 position)
+    {
 
-        Vector3 spawnPosition = position + new Vector3(0, 0, 4f); 
-        timesDead++; 
-        if (timesDead >= timesDeadTillPowerHelp && Configuration.instance.dificulty == Configuration.Dificulty.Easy) {
+        Vector3 spawnPosition = position + new Vector3(0, 0, 4f);
+        timesDead++;
+        if (timesDead >= timesDeadTillPowerHelp && Configuration.instance.dificulty == Configuration.Dificulty.Easy)
+        {
             LootTableManager.instance.DropPowerUp(spawnPosition, false);
         }
     }
@@ -445,16 +509,19 @@ public class SectionNode : MonoBehaviour , IPauseable {
         player.gameObject.SetActive(true);
     }
 
-    public void StartTriggerMultipleSpawnRoutine(int quantity,MultiEnemySpawner sp) {
+    public void StartTriggerMultipleSpawnRoutine(int quantity, MultiEnemySpawner sp)
+    {
         StartCoroutine(MultipleSpawnTriggerRoutine(quantity, sp));
     }
 
-    IEnumerator MultipleSpawnTriggerRoutine(int quantity, MultiEnemySpawner sp) {
+    IEnumerator MultipleSpawnTriggerRoutine(int quantity, MultiEnemySpawner sp)
+    {
         yield return _waitBetweenWaves;
         while (_paused)
             yield return null;
-        for (int i = 0; i < quantity; i++) {
-            var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething,sp.idOfWall) as NormalEnemyBehaviour;
+        for (int i = 0; i < quantity; i++)
+        {
+            var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenSpawns).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as NormalEnemyBehaviour;
             n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.GetPositionWithOffset).gameObject.SetActive(true);
             _allNormalActives.Add(n);
             yield return _waitBetweenSpawns;
@@ -463,29 +530,35 @@ public class SectionNode : MonoBehaviour , IPauseable {
         }
     }
 
-    public void StartNodeRoutine() { 
+    public void StartNodeRoutine()
+    {
         StartCoroutine(WavesNodeRoutine());
-    } 
+    }
 
-    public void TriggerSpawn(EnemySpawner[] allTriggerSpawners) {
+    public void TriggerSpawn(EnemySpawner[] allTriggerSpawners)
+    {
         StartCoroutine(TriggerRoutine(allTriggerSpawners));
     }
-    
-    IEnumerator TriggerRoutine(EnemySpawner[] allTriggerSpawners) {
+
+    IEnumerator TriggerRoutine(EnemySpawner[] allTriggerSpawners)
+    {
         yield return _waitBetweenWaves;
         while (_paused)
             yield return null;
 
-        foreach (var sP in allTriggerSpawners) {
+        foreach (var sP in allTriggerSpawners)
+        {
             yield return new WaitForSeconds(sP.extraWaitToSpawn);
             while (_paused)
                 yield return null;
-            StartCoroutine( SpawnEnemy(sP, SectionManager.WaveNumber.Trigger));
+            StartCoroutine(SpawnEnemy(sP, SectionManager.WaveNumber.Trigger));
         }
     }
 
-    IEnumerator WavesNodeRoutine() {
-        if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) {
+    IEnumerator WavesNodeRoutine()
+    {
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+        {
             LootTableManager.instance.SetTutoProbavility();
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT);
         }
@@ -499,10 +572,12 @@ public class SectionNode : MonoBehaviour , IPauseable {
         while (_dicQuantityInWave[SectionManager.WaveNumber.First] > 0)
             yield return null;
 
-        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+        {
             TutorialBehaviour.instance.FirstEnemyKIlled();
 
-            while (!TutorialBehaviour.instance.GreenKilled) {
+            while (!TutorialBehaviour.instance.GreenKilled)
+            {
                 yield return null;
             }
         }
@@ -516,7 +591,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
         while (_dicQuantityInWave[SectionManager.WaveNumber.Second] > 0)
             yield return null;
 
-        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) {
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+        {
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_ULTIMATE);
         }
         _currentTimeBetweenDelayedSpawn = 0;
@@ -527,29 +603,34 @@ public class SectionNode : MonoBehaviour , IPauseable {
             yield return null;
 
         while (_dicQuantityInWave[SectionManager.WaveNumber.Third] > 0)
-            yield return null; 
+            yield return null;
 
-        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode) { 
+        if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+        {
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_DEACTIVATED);
         }
     }
 
-    void SetWaves(SectionManager.WaveNumber wave) {
+    void SetWaves(SectionManager.WaveNumber wave)
+    {
         SoundManager.instance.PlaySpawnEnemy();
         if (!_dicSpawn.ContainsKey(wave))
-            return; 
+            return;
 
-        foreach (var spawnPoint in _dicSpawn[wave]) {
-            if ( spawnPoint.waveOfSpawn != wave || spawnPoint.triggerSpawn)
+        foreach (var spawnPoint in _dicSpawn[wave])
+        {
+            if (spawnPoint.waveOfSpawn != wave || spawnPoint.triggerSpawn)
                 return;
             _dicQuantityInWave[wave]++;
 
-            StartCoroutine( SpawnEnemy(spawnPoint,wave));
+            StartCoroutine(SpawnEnemy(spawnPoint, wave));
         }
-    } 
+    }
 
-    IEnumerator SpawnEnemy(EnemySpawner sP, SectionManager.WaveNumber wave) {
-        if (waveDelayedSpawn && wave == waveNumber) { 
+    IEnumerator SpawnEnemy(EnemySpawner sP, SectionManager.WaveNumber wave)
+    {
+        if (waveDelayedSpawn && wave == waveNumber)
+        {
             _currentTimeBetweenDelayedSpawn += timeBetweenDelayedSpawn;
         }
         yield return new WaitForSeconds(_currentTimeBetweenDelayedSpawn);
@@ -562,7 +643,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
         while (_paused)
             yield return null;
 
-        switch (sP.typeOfEnemy) {
+        switch (sP.typeOfEnemy)
+        {
             case EnemiesManager.TypeOfEnemy.Normal:
                 var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(sP.hasToDestroyToUnlockSomething, sP.idOfWall) as NormalEnemyBehaviour;
                 n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sP.transform.position).gameObject.SetActive(true);
@@ -606,13 +688,16 @@ public class SectionNode : MonoBehaviour , IPauseable {
         }
     }
 
-    public void SpawnEnemyAtPointAtStartNoCuentaParaTerminarNodo(EnemySpawnerAtBeginningOfNode sp) {
+    public void SpawnEnemyAtPointAtStartNoCuentaParaTerminarNodo(EnemySpawnerAtBeginningOfNode sp)
+    {
         var wave = SectionManager.WaveNumber.NoCuentaParaTerminarNodo;
-        switch (sp.typeOfEnemy) {
+        switch (sp.typeOfEnemy)
+        {
             case EnemiesManager.TypeOfEnemy.Normal:
                 var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as NormalEnemyBehaviour;
                 n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
-                if (sp.parent != null) {
+                if (sp.parent != null)
+                {
                     n.transform.SetParent(sp.parent);
                 }
                 _allNormalActives.Add(n);
@@ -621,7 +706,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
             case EnemiesManager.TypeOfEnemy.Charger:
                 var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as ChargerEnemyBehaviour;
                 c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
-                if (sp.parent != null) {
+                if (sp.parent != null)
+                {
                     c.transform.SetParent(sp.parent);
                 }
                 _allChargerActives.Add(c);
@@ -629,7 +715,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
             case EnemiesManager.TypeOfEnemy.TurretBurst:
                 var t = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as EnemyTurretBehaviour;
                 t.SetPosition(sp.transform.position).SetType(EnemiesManager.TypeOfEnemy.TurretBurst).gameObject.SetActive(true);
-                if (sp.parent != null) {
+                if (sp.parent != null)
+                {
                     t.transform.SetParent(sp.parent);
                 }
                 _allTurretsActives.Add(t);
@@ -639,7 +726,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
                 var tL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as EnemyTurretBehaviour;
                 tL.SetPosition(sp.transform.position).SetForward(sp.transform.forward).SetType(EnemiesManager.TypeOfEnemy.TurretLaser).gameObject.SetActive(true);
                 _allTurretsActives.Add(tL);
-                if (sp.parent != null) {
+                if (sp.parent != null)
+                {
                     tL.transform.SetParent(sp.parent);
                 }
                 break;
@@ -648,7 +736,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
                 var MTL = EnemiesManager.instance.giveMeTurretEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as EnemyTurretBehaviour;
                 MTL.SetPosition(sp.transform.position).SetForward(sp.transform.forward).SetType(EnemiesManager.TypeOfEnemy.MovingTurretLaser, sp.startTurretNode, sp.hasToHaveShield).gameObject.SetActive(true);
                 _allTurretsActives.Add(MTL);
-                if (sp.parent != null) {
+                if (sp.parent != null)
+                {
                     MTL.transform.SetParent(sp.parent);
                 }
                 break;
@@ -657,7 +746,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
                 var cu = EnemiesManager.instance.GiveMeCubeEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(0f).SetTimeAndRenderer().SetIffHasToDestroyToOpenSomething(sp.hasToDestroyToUnlockSomething, sp.idOfWall) as CubeEnemyBehaviour;
                 cu.SetTarget(EnemiesManager.instance.player.transform).SetPosition(sp.transform.position).gameObject.SetActive(true);
                 _allCubeActives.Add(cu);
-                if (sp.parent != null) {
+                if (sp.parent != null)
+                {
                     cu.transform.SetParent(sp.parent);
                 }
                 break;
@@ -670,20 +760,22 @@ public class SectionNode : MonoBehaviour , IPauseable {
         }
     }
 
-    public void SpawnEnemyAtPointNoCuentaParaTerminarNodoPeroTieneIntegracion(Vector3 spawnPoint, EnemiesManager.TypeOfEnemy type) {
+    public void SpawnEnemyAtPointNoCuentaParaTerminarNodoPeroTieneIntegracion(Vector3 spawnPoint, EnemiesManager.TypeOfEnemy type)
+    {
         var wave = SectionManager.WaveNumber.NoCuentaParaTerminarNodo;
-        switch (type) {
+        switch (type)
+        {
             case EnemiesManager.TypeOfEnemy.Normal:
-                    var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as NormalEnemyBehaviour;
-                    n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
-                    _allNormalActives.Add(n);
-                    break;
+                var n = EnemiesManager.instance.giveMeNormalEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as NormalEnemyBehaviour;
+                n.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
+                _allNormalActives.Add(n);
+                break;
 
-                case EnemiesManager.TypeOfEnemy.Charger:
-                    var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as ChargerEnemyBehaviour;
-                    c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
-                    _allChargerActives.Add(c);
-                    break;
+            case EnemiesManager.TypeOfEnemy.Charger:
+                var c = EnemiesManager.instance.giveMeChargerEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as ChargerEnemyBehaviour;
+                c.SetTarget(EnemiesManager.instance.player.transform).SetPosition(spawnPoint).gameObject.SetActive(true);
+                _allChargerActives.Add(c);
+                break;
 
             case EnemiesManager.TypeOfEnemy.MisilEnemy:
                 var m = EnemiesManager.instance.GiveMeMisilEnemy().SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer().SubscribeToIndicator().SetIffHasToDestroyToOpenSomething(false, 0) as MisilEnemy;
@@ -694,7 +786,8 @@ public class SectionNode : MonoBehaviour , IPauseable {
     }
 
 
-    void OnPowerUpDropped(params object [] paramss) {
+    void OnPowerUpDropped(params object[] paramss)
+    {
         if (id == 0) LootTableManager.instance.SetDefaultProbavility();
 
         var go = (GameObject)paramss[1];
@@ -702,7 +795,7 @@ public class SectionNode : MonoBehaviour , IPauseable {
         if ((SectionNode)paramss[0] != this || isBossNode && !spawnGreenEnemiesInBossNode)
             return;
 
-        var pos = Utility.RandomVector3InRadiusCountingBoundariesInRectDirection(go.transform.position,radiusToSetPowerUpChaser,objectToDetectConnectingNodes);
+        var pos = Utility.RandomVector3InRadiusCountingBoundariesInRectDirection(go.transform.position, radiusToSetPowerUpChaser, objectToDetectConnectingNodes);
 
         onGizmosSafeZoneChaser = pos;
 
@@ -711,30 +804,35 @@ public class SectionNode : MonoBehaviour , IPauseable {
         var pUC = EnemiesManager.instance.GiveMeChaserEnemy().SetActualNode(this).SetActualWave(SectionManager.WaveNumber.Trigger).SetIntegration(timeBetweenWaves).SetTimeAndRenderer() as PowerUpChaserEnemy;
         pUC.SetStart().SetPosition(pos).gameObject.SetActive(true);
 
-        _allChasersActives.Add(pUC); 
+        _allChasersActives.Add(pUC);
     }
 
-    public void SpawnMiniBoss(Vector3 pos, SectionManager.WaveNumber wave) {
+    public void SpawnMiniBoss(Vector3 pos, SectionManager.WaveNumber wave)
+    {
         _enemiesRemaining++;
 
-        var mB = Instantiate(EnemiesManager.instance.miniBossPrefab, new Vector3(pos.x,pos.y-1f,pos.z), Quaternion.Euler(Utility.SetYInVector3( EnemiesManager.instance.player.transform.position,pos.y) - pos))
+        var mB = Instantiate(EnemiesManager.instance.miniBossPrefab, new Vector3(pos.x, pos.y - 1f, pos.z), Quaternion.Euler(Utility.SetYInVector3(EnemiesManager.instance.player.transform.position, pos.y) - pos))
                                      .GetComponent<AbstractEnemy>();
-        mB.SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves ).SetTimeAndRenderer();//deberia ser trigger la wave
+        mB.SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer();//deberia ser trigger la wave
         _allMiniBoss.Add(mB as MiniBossBehaviour);
     }
 
-    public void SetEnemiesRemaining() {
+    public void SetEnemiesRemaining()
+    {
         _enemiesRemaining = _allSpawns.Length;
         _enemiesRemaining += _allQuantityInMultiEnemySpawners;
-    } 
+    }
 
-    public MapNode GetClosestMapNode(Vector3 pos) {
+    public MapNode GetClosestMapNode(Vector3 pos)
+    {
         MapNode t = null;
         float returnMNDistance = float.MaxValue;
-        foreach (var mN in _allMapNodes) { 
+        foreach (var mN in _allMapNodes)
+        {
             var distanceFromActualMN = Vector3.Distance(mN.transform.position, pos);
-            
-            if (distanceFromActualMN < returnMNDistance) {
+
+            if (distanceFromActualMN < returnMNDistance)
+            {
                 t = mN;
                 returnMNDistance = distanceFromActualMN;
             }
@@ -745,9 +843,10 @@ public class SectionNode : MonoBehaviour , IPauseable {
         return t;
     }
 
-    public bool sectionHasMapNodes { get { return _allMapNodes.Length > 0; } } 
+    public bool sectionHasMapNodes { get { return _allMapNodes.Length > 0; } }
 
-    void OnDrawGizmos() { 
+    void OnDrawGizmos()
+    {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(onGizmosSafeZoneChaser, radiusToSetPowerUpChaser);
     }

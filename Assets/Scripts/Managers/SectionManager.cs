@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SectionManager : MonoBehaviour , IPauseable {
+public class SectionManager : MonoBehaviour, IPauseable
+{
     public SectionNode actualNode;
     public static SectionManager instance { get; private set; }
 
@@ -19,9 +20,9 @@ public class SectionManager : MonoBehaviour , IPauseable {
     public float timeAfterWinning = 2f;
     public float timeAfterLosing = 2f;
 
-    float _enemiesMultiplator = 1f; 
+    float _enemiesMultiplator = 1f;
 
-    public float EnemiesMultiplicator { get { return _enemiesMultiplator; } } 
+    public float EnemiesMultiplicator { get { return _enemiesMultiplator; } }
 
     public float timeSplicingQuoteForSectionRoutine = 0.001f;
     public GameObject debug;
@@ -38,7 +39,8 @@ public class SectionManager : MonoBehaviour , IPauseable {
         if (instance == null)
             instance = this;
     }
-    void Start() {
+    void Start()
+    {
         if (Configuration.instance.dificulty == Configuration.Dificulty.Easy)
         {
             Constants.ENEMIES_NORMAL_MULTIPLICATOR = 0.8f;
@@ -51,24 +53,22 @@ public class SectionManager : MonoBehaviour , IPauseable {
         {
             Constants.ENEMIES_NORMAL_MULTIPLICATOR = 1.2f;
         }
-        EventManager.instance.AddEvent(Constants.ENEMY_DEAD);
-        EventManager.instance.AddEvent(Constants.PLAYER_DEAD);
-        EventManager.instance.AddEvent(Constants.SLOW_TIME);
-        EventManager.instance.AddEvent(Constants.BERSERK);
-        EventManager.instance.AddEvent(Constants.STOP_BERSERK);
 
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, AtPlayerDead);
         EventManager.instance.SubscribeEvent(Constants.SLOW_TIME, AtSlowTime);
         EventManager.instance.SubscribeEvent(Constants.BERSERK, AtBerserk);
         EventManager.instance.SubscribeEvent(Constants.STOP_BERSERK, AtStopBerserk);
         EventManager.instance.SubscribeEvent(Constants.GAME_OVER, OnGameOver);
+        EventManager.instance.SubscribeEvent(Constants.GO_TO_LEVEL_COMPLETE_SCENE, OnGoToLevelComplete);
+        EventManager.instance.SubscribeEvent(Constants.GO_TO_GAME_COMPLETE_SCENE, OnGoToGameComplete);
 
         EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque);
 
         //para que no me rompa las bolas
 
         int nodeNumber = Configuration.instance.node;
-        if (Configuration.instance.node >= 0) {
+        if (Configuration.instance.node >= 0)
+        {
 
             actualNode = GameObject.Find("SectionNode" + nodeNumber).GetComponent<SectionNode>();
         }
@@ -77,7 +77,8 @@ public class SectionManager : MonoBehaviour , IPauseable {
 
         actualNode.SpawnPlayerInSpawnPoint(EnemiesManager.instance.player);
 
-        if(Configuration.instance != null) { 
+        if (Configuration.instance != null)
+        {
             if (Configuration.instance.Multiplayer())
             {
                 actualNode.SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
@@ -91,80 +92,96 @@ public class SectionManager : MonoBehaviour , IPauseable {
         StartCoroutine(SectionsRoutine());
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.T)) {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
             //EventManager.instance.ExecuteEvent(Constants.SLOW_TIME);
             //actualNode.SpawnEnemyAtPoint(new Vector3(), EnemiesManager.TypeOfEnemy.Normal);
         }
     }
 
-    void AtBerserk(params object[] param) {
+    void AtBerserk(params object[] param)
+    {
         _enemiesMultiplator = enemiesMultiplicatorOnBerserk;
         //Debug.Log("berserk");
     }
 
-    void AtStopBerserk(params object[] param) {
+    void AtStopBerserk(params object[] param)
+    {
         _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR;
         //Debug.Log("stop");
     }
 
-    void AtSlowTime(params object[] param) { 
+    void AtSlowTime(params object[] param)
+    {
         _enemiesMultiplator = enemiesMultiplicatorOnSlow;
-        StartCoroutine(slowRoutine()); 
+        StartCoroutine(slowRoutine());
     }
 
-    IEnumerator slowRoutine() {
+    IEnumerator slowRoutine()
+    {
         yield return new WaitForSeconds(slowDuration);
         while (_paused)
             yield return null;
-        _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR; 
+        _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR;
     }
 
-    void AtPlayerDead(params object[] param) {
+    void AtPlayerDead(params object[] param)
+    {
         _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR;
         StartCoroutine(RestartSectionRoutine());
     }
 
-    IEnumerator RestartSectionRoutine() {
-        if (actualNode != null) {
+    IEnumerator RestartSectionRoutine()
+    {
+        if (actualNode != null)
+        {
             EventManager.instance.ExecuteEvent(Constants.STARTED_SECTION_solo_escucha_camera_iTween_noseporque);
             yield return new WaitForSeconds(timeToRestartAfterPlayerDead);
             while (_paused)
                 yield return null;
 
             actualNode.RestartSection();
-         
+
             actualNode.SetEnemiesRemaining();
         }
     }
 
-    IEnumerator SectionsRoutine() {
-        while (actualNode != null) {
-            object[] conteiner = new object[1];
+    IEnumerator SectionsRoutine()
+    {
+        while (actualNode != null)
+        {
+            object[] conteiner = new object[2];
             conteiner[0] = "out";
-            EventManager.instance.ExecuteEvent(Constants.START_SECTION,conteiner);
+            conteiner[1] = actualNode;
+            EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
             yield return new WaitForSeconds(0.6f);
             while (_paused)
                 yield return null;
             actualNode.SpawnEnemyAtStart();
-            EventManager.instance.ExecuteEvent(Constants.BLACK_SCREEN); 
-            yield return new WaitForSeconds(waitTimeForStartNode-0.6f);
+            EventManager.instance.ExecuteEvent(Constants.BLACK_SCREEN);
+            yield return new WaitForSeconds(waitTimeForStartNode - 0.6f);
             while (_paused)
                 yield return null;
 
-            if (actualNode.isBossNode) {
+            if (actualNode.isBossNode)
+            {
                 EventManager.instance.ExecuteEvent(Constants.CAMERA_ON_BOSS);
                 EnemiesManager.instance.player.transform.position = actualNode.playerSpawnPoint.position;
                 EnemiesManager.instance.player.gameObject.SetActive(true);
 
-                if (Configuration.instance != null) { 
-                    if (Configuration.instance.Multiplayer()) {
+                if (Configuration.instance != null)
+                {
+                    if (Configuration.instance.Multiplayer())
+                    {
                         EnemiesManager.instance.player2.transform.position = actualNode.playerSpawnPoint.position + new Vector3(3, 0, 0);
                         EnemiesManager.instance.player2.gameObject.SetActive(true);
                     }
                 }
-                conteiner = new object[1];
+                conteiner = new object[2];
                 conteiner[0] = "in";
+                conteiner[1] = actualNode;
                 EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
                 actualNode.SetBoss();
 
@@ -173,38 +190,47 @@ public class SectionManager : MonoBehaviour , IPauseable {
                 while (_paused)
                     yield return null;
 
-                while (actualNode.BossAlive) {
+                while (actualNode.BossAlive)
+                {
                     yield return null;
                 }
             }
-            else {
-                if (TutorialBehaviour.instance!=null && TutorialBehaviour.instance.IsTutorialNode) { 
+            else
+            {
+                if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
+                {
                     //EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_ACTIVATED);
                     EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_MOVE);
                 }
 
-                if (!actualNode.wavesStartAtTrigger) {
+                if (!actualNode.wavesStartAtTrigger)
+                {
                     actualNode.StartNodeRoutine();
                 }
                 EnemiesManager.instance.player.transform.position = actualNode.playerSpawnPoint.position;
                 EnemiesManager.instance.player.gameObject.SetActive(true);
 
-                if(Configuration.instance != null) { 
-                    if (Configuration.instance.Multiplayer()) {
+                if (Configuration.instance != null)
+                {
+                    if (Configuration.instance.Multiplayer())
+                    {
                         EnemiesManager.instance.player2.transform.position = actualNode.playerSpawnPoint.position + new Vector3(3, 0, 0);
                         EnemiesManager.instance.player2.gameObject.SetActive(true);
                     }
                 }
-                conteiner = new object[1];
+                conteiner = new object[2];
                 conteiner[0] = "in";
+                conteiner[1] = actualNode;
                 EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
                 actualNode.SetEnemiesRemaining();
 
                 var wait = new WaitForEndOfFrame();
-                var start = Time.realtimeSinceStartup; 
-                while (!actualNode.SectionCleared) {
+                var start = Time.realtimeSinceStartup;
+                while (!actualNode.SectionCleared)
+                {
                     //Debug.Log(Time.realtimeSinceStartup - start + " arre "+ timeSplicingQuoteForSectionRoutine);
-                    if (Time.realtimeSinceStartup - start > timeSplicingQuoteForSectionRoutine) {
+                    if (Time.realtimeSinceStartup - start > timeSplicingQuoteForSectionRoutine)
+                    {
                         yield return wait;
                         while (_paused)
                             yield return null;
@@ -221,7 +247,8 @@ public class SectionManager : MonoBehaviour , IPauseable {
             }
             actualNode = actualNode.next;
             EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
-            if(actualNode!=null && actualNode.next != null) {
+            if (actualNode != null && actualNode.next != null)
+            {
                 EventManager.instance.ExecuteEvent(Constants.SOUND_FADE_IN);
             }
         }
@@ -234,25 +261,33 @@ public class SectionManager : MonoBehaviour , IPauseable {
         StartCoroutine(WinRoutine());
     }
 
-    IEnumerator WinRoutine() {
+    IEnumerator WinRoutine()
+    {
         SoundManager.instance.Victory();
         yield return new WaitForSeconds(timeAfterWinning);
         while (_paused)
             yield return null;
-        if (Configuration.instance.lvl == 1)
-        {
-            SceneManager.LoadScene("LvlComplete");
-        }
-        else {
-            SceneManager.LoadScene("VictoryScene");
-        }
+
+        EventManager.instance.ExecuteEvent(Constants.WIN_LEVEL);
     }
 
-    private void OnGameOver(object[] parameterContainer) {
+    private void OnGoToGameComplete(object[] parameterContainer)
+    {
+        SceneManager.LoadScene("VictoryScene");
+    }
+
+    private void OnGoToLevelComplete(object[] parameterContainer)
+    {
+        SceneManager.LoadScene("LvlComplete");
+    }
+
+    private void OnGameOver(object[] parameterContainer)
+    {
         StartCoroutine(LoseRoutine());
     }
 
-    IEnumerator LoseRoutine() {
+    IEnumerator LoseRoutine()
+    {
         SoundManager.instance.GameOver();
         yield return new WaitForSeconds(timeAfterLosing);
         while (_paused)
@@ -260,11 +295,13 @@ public class SectionManager : MonoBehaviour , IPauseable {
         SceneManager.LoadScene("GameOverScene");
     }
 
-    void OnDestroy() {
+    void OnDestroy()
+    {
         EventManager.instance.DeleteEvent(Constants.ENEMY_DEAD);
     }
 
-    public enum WaveNumber {
+    public enum WaveNumber
+    {
         First,
         Second,
         Third,
