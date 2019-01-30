@@ -43,6 +43,7 @@ class SaveData
     public Data[] scoresAndNames;
 }
 
+[Serializable]
 public class Data
 {
     public int score;

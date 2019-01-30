@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class RankManager : MonoBehaviour {
 
-    public GameObject rankManagerPanel;
+    public GameObject rankPanel;
     public GameObject scorePanel;
     public GameObject setNameForScorePanel;
     public Text scoreInSetNamePanel; //el score para mostrar mientras se settea el nombre
@@ -17,6 +17,8 @@ public class RankManager : MonoBehaviour {
     public Text[] numberRankTexts; // los 10 textos del numero en posision del ranking
     public Text[] aliasTexts; //los 10 textos de las 3 letras de los duenios del score
 
+    public float timeToChangeCharInPanel = 1f;
+
     [Header("esto es para saber cuantos textos hay que poner en el editor")]
     public int maxScoresToShow = 10;
 
@@ -24,6 +26,7 @@ public class RankManager : MonoBehaviour {
     bool _canGoToWinScreen = false;
 
     int _currentIndexSelected = 0;
+    float _timerToChangeCharInPanel = 15f;
     Data _actualData;
     Data[] _allRanks;
 
@@ -35,7 +38,7 @@ public class RankManager : MonoBehaviour {
 
     private void OnWinLevel(object[] parameterContainer)
     {
-        rankManagerPanel.SetActive(true);
+        rankPanel.SetActive(true);
         EventManager.instance.ExecuteEvent(Constants.PAUSE_OR_UNPAUSE);
         DoShit();
     }
@@ -44,7 +47,7 @@ public class RankManager : MonoBehaviour {
     {
         var points = FindObjectOfType<PointsManager>().CurrentPoints;
         _allRanks = SavingAndLoading.LoadRanks(SceneManager.GetActiveScene().name);
-        if(_allRanks.Length > 0) //preguntamos si esta vacio la data cargada, significa que no hay scores guardados
+        if(_allRanks != null && _allRanks.Length > 0) //preguntamos si esta vacio la data cargada, significa que no hay scores guardados
         {
             if(_allRanks.Length >= maxScoresToShow) //preguntamos si esta lleno el array para mostrar de data
             {
@@ -89,7 +92,10 @@ public class RankManager : MonoBehaviour {
 
     void SetPanelForScores(Data actualData = null) //aca es para mostrar una vez que se seteo el score nuevo o cuando el score no es mayor a cualquiera de los guardados
     {
-        var listToSave = _allRanks.ToList();
+        var listToSave = new List<Data>();
+
+        if (_allRanks != null)
+            listToSave = _allRanks.ToList();
 
         if (actualData != null)
         {
@@ -109,9 +115,18 @@ public class RankManager : MonoBehaviour {
 
         for (int i = 0; i < maxScoresToShow; i++)
         {
-            scoreTexts[i].text = listToSave[i].score.ToString();
-            aliasTexts[i].text = listToSave[i].name;
-            numberRankTexts[i].text = (i + 1).ToString();
+            if(i >= listToSave.Count)
+            {
+                scoreTexts[i].text = "";
+                aliasTexts[i].text = "";
+                numberRankTexts[i].text = "";
+            }
+            else
+            {
+                scoreTexts[i].text = listToSave[i].score.ToString();
+                aliasTexts[i].text = listToSave[i].name;
+                numberRankTexts[i].text = (i + 1).ToString();
+            }
         }
 
         _canGoToWinScreen = true;
@@ -140,17 +155,14 @@ public class RankManager : MonoBehaviour {
         if (!_canChangeName)
             return;
 
+        _timerToChangeCharInPanel += Time.deltaTime;
+
+        if (_timerToChangeCharInPanel < timeToChangeCharInPanel)
+            return;
+
         var inputVer = Input.GetAxisRaw("VerticalMouse");
         var inputHor = Input.GetAxisRaw("HorizontalMouse");
-
-        for (int i = 0; i < nameCharsInPanel.Length; i++)
-        {
-            if (i == _currentIndexSelected)
-                nameCharsInPanel[_currentIndexSelected].color = Color.yellow;
-            else
-                nameCharsInPanel[_currentIndexSelected].color = Color.white;
-        }
-
+       
         if (inputVer != 0)
         {
             if (inputVer > 0)
@@ -161,6 +173,7 @@ public class RankManager : MonoBehaviour {
             {
                 nameCharsInPanel[_currentIndexSelected].text = incrementCharacter(nameCharsInPanel[_currentIndexSelected].text[0], false).ToString();
             }
+            _timerToChangeCharInPanel = 0;
         }
         else if (inputHor != 0)
         {
@@ -180,16 +193,26 @@ public class RankManager : MonoBehaviour {
                     _currentIndexSelected = 0;
                 }
             }
+            _timerToChangeCharInPanel = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        for (int i = 0; i < nameCharsInPanel.Length; i++)
+        {
+            if (i == _currentIndexSelected)
+                nameCharsInPanel[i].color = Color.yellow;
+            else
+                nameCharsInPanel[i].color = Color.white;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             _currentIndexSelected = 0;
             _canChangeName = false;
+            setNameForScorePanel.SetActive(false);
             _actualData.name = "";
             foreach (var c in nameCharsInPanel)
             {
-                _actualData.name = _actualData.name + c.ToString();
+                _actualData.name = _actualData.name + c.text;
             }
             SetPanelForScores(_actualData);
         }
