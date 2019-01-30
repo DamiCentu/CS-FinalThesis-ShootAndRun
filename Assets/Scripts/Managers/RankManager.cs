@@ -102,7 +102,7 @@ public class RankManager : MonoBehaviour {
             listToSave.Add(actualData);
         }
 
-        listToSave.OrderByDescending(data => data.score).ToList();
+        listToSave = listToSave.OrderByDescending(x => x.score).ToList();
 
         while(listToSave.Count > maxScoresToShow)
         {

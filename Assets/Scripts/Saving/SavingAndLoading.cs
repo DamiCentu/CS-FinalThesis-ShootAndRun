@@ -25,7 +25,7 @@ public static class SavingAndLoading {
     {
         var saveData = new SaveData();
 
-        if (File.Exists(Application.persistentDataPath + PLAYER_INFO_PATH))
+        if (File.Exists(Application.persistentDataPath + PLAYER_INFO_PATH + "_" + levelName + EXTENTION_PATH))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + PLAYER_INFO_PATH + "_" + levelName + EXTENTION_PATH , FileMode.Open);
