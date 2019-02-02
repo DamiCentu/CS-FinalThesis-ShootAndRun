@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Flocking : Steering , IPauseable {
 
 
     [Header("Flocking")]
+    int f = 0;
+    private Transform oldTarget;
 	public float neighborhoodRadius = 10f;
 	public float separationRadius = 2f;
 	public float alignmentMult = 1f;
@@ -95,8 +98,24 @@ public class Flocking : Steering , IPauseable {
         ApplyForces();
 	}
 
-	int f = 0;
-	override protected void OnDrawGizmos() {
+    internal void SetTarget(GameObject gameObject)
+    {
+
+        if (target != null) {
+            oldTarget = target;
+        }
+        target = gameObject.transform;
+        print("player pos" + oldTarget.position);
+        print("target pos" + target.position);
+    }
+
+    internal void RestoreTarget()
+    {
+        ResetForces();
+        target = oldTarget;
+    }
+
+    override protected void OnDrawGizmos() {
 		base.OnDrawGizmos();
 
 		if(!drawFlockingGizmos)

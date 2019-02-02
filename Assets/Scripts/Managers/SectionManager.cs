@@ -13,7 +13,7 @@ public class SectionManager : MonoBehaviour, IPauseable
     public float waitTimeForStartNode = 1f;
     public float timeToRestartAfterPlayerDead = 2f;
 
-    public float enemiesMultiplicatorOnSlow = .0f;
+    public float enemiesMultiplicatorOnSlow = 0.50f;
     public float slowDuration = 2f;
     public int percentageOfEnemysToBerserk = 5;
     public float enemiesMultiplicatorOnBerserk = 1.3f;

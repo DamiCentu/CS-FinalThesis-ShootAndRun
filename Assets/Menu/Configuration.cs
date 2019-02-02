@@ -15,6 +15,9 @@ public class Configuration : MonoBehaviour {
     public int lvl=1;
     public int node = -1;
     public bool activeDebugMode = false;
+    public enum PlayerSpecial { DumbMine, Slow, Bomb }
+    public PlayerSpecial special;
+
     
     public int Credits { get { return GetCreditsAmount(); } }
 
@@ -32,6 +35,21 @@ public class Configuration : MonoBehaviour {
 
     public void SetDebugMode(bool b) {
         activeDebugMode = b;
+    }
+
+    public void SetSpecialMine( )
+    {
+        special = PlayerSpecial.DumbMine;
+    }
+
+    public void SetSpecialBomb()
+    {
+        special = PlayerSpecial.Bomb;
+    }
+
+    public void SetSpecialSlow()
+    {
+        special = PlayerSpecial.Slow;
     }
 
     public  void SetSinglePlayer() {

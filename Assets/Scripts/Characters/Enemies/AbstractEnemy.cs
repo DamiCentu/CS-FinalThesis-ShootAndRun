@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,8 @@ public abstract class AbstractEnemy : MonoBehaviour, IOffScreen {
         _eIntegration.SetReintergration(timeToReintergrate); 
         return this; 
     }
+
+
 
     public AbstractEnemy SubscribeToIndicator() {
         OffScreenIndicatorManager.instance.SubscribeIOffScreen(this);

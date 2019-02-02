@@ -16,6 +16,9 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     private Rigidbody _rb;
     public IShootable primaryGun;
     public IShootable specialGun;
+    public IShootable specialGunMineDummy;
+    public IShootable specialGunSlowTime;
+    public IShootable specialGunBomb;
     public Transform shootPosition;
 
     internal List<Timer> timers = new List<Timer>();
@@ -78,12 +81,12 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         _anim.enabled = !v;
     }
 
-    void Start () {
-        _rb=this.GetComponent<Rigidbody>();
-        EventManager.instance.SubscribeEvent("GetShield", powerUpManager.EnableShield);
-        EventManager.instance.SubscribeEvent(Constants.START_SECTION, Portal);
-        EventManager.instance.SubscribeEvent("PlayerDead",Die);
-        EventManager.instance.SubscribeEvent(Constants.START_BOSS_DEAD,BossFinished);
+    void Start ()
+    {
+        _rb = this.GetComponent<Rigidbody>();
+        SetEvents();
+
+        SetSpecial();
 
         _isInvulnerable = false;
         timerToUlt = ultTimer;
@@ -92,8 +95,30 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         object[] container = new object[1];
         container[0] = false;
         EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
-        _meshRends =  GetComponentsInChildren<Renderer>();
+        _meshRends = GetComponentsInChildren<Renderer>();
         ult = Configuration.instance.playerUlt;
+    }
+
+    private void SetEvents()
+    {
+        EventManager.instance.SubscribeEvent("GetShield", powerUpManager.EnableShield);
+        EventManager.instance.SubscribeEvent(Constants.START_SECTION, Portal);
+        EventManager.instance.SubscribeEvent("PlayerDead", Die);
+        EventManager.instance.SubscribeEvent(Constants.START_BOSS_DEAD, BossFinished);
+    }
+
+    private void SetSpecial()
+    {
+        if (Configuration.instance.special == Configuration.PlayerSpecial.DumbMine) {
+            specialGun = specialGunMineDummy;
+        }
+        else if (Configuration.instance.special == Configuration.PlayerSpecial.Bomb)
+        {
+            specialGun = specialGunBomb;
+        }
+        else {
+            specialGun = specialGunSlowTime;
+        }
     }
 
     private void BossFinished(object[] parameterContainer)

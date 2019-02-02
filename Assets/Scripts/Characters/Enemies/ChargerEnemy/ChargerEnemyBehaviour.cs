@@ -28,7 +28,7 @@ public class ChargerEnemyBehaviour : AbstractEnemy, IHittable, IPauseable {
 
     public void OnHit(int damage) {
         _hitsRemaining -= damage;
-
+        
         AbstractOnHitWhiteAction();
 
         if (_hitsRemaining <= 0) {
