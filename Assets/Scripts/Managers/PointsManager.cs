@@ -8,6 +8,7 @@ public class PointsManager : MonoBehaviour {
     public PointsScriptableObject pointsSO;
 
     int _currentPoints = 0;
+    int _currentPointsInSection = 0;
 
     int _enemiesInRowComboToMultiply = 0; // esto es la cantidad de enemigos que hay que matar para que se pueda usar el multiplicador
     int _enemyInRowCount = 0; //estos son los enemigos que voy matando a menos que se me pase el tiempo
@@ -37,6 +38,7 @@ public class PointsManager : MonoBehaviour {
     private void OnBossDestroyed(object[] parameterContainer)
     {
         _currentPoints += pointsSO.bossEnemyPoints;
+        _currentPointsInSection += pointsSO.bossEnemyPoints;
         EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
     }
 
@@ -45,6 +47,7 @@ public class PointsManager : MonoBehaviour {
         if((string)param[1] == "isPlayer")
         {
             _currentPoints += pointsSO.pickPowerUp;
+            _currentPointsInSection += pointsSO.pickPowerUp;
             EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
             EventManager.instance.ExecuteEvent(Constants.UI_NOTIFICATION_TEXT_UPDATE, new object[] { "power up picked! +" + pointsSO.pickPowerUp.ToString() });
         }
@@ -55,6 +58,7 @@ public class PointsManager : MonoBehaviour {
         var node = (SectionNode)param[1];
         if ((string)param[0] == "in")
         {
+            _currentPointsInSection = 0;
             if(_currentNode != node)
             {
                 _playerDied = false;
@@ -67,6 +71,7 @@ public class PointsManager : MonoBehaviour {
             if (!_playerDied)
             {
                 _currentPoints += pointsSO.noDieInSectionPoints;
+                _currentPointsInSection += pointsSO.noDieInSectionPoints;
                 EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
                 EventManager.instance.ExecuteEvent(Constants.UI_NOTIFICATION_TEXT_UPDATE, new object[] { "No death section! +" + pointsSO.noDieInSectionPoints.ToString() });
             }
@@ -76,6 +81,10 @@ public class PointsManager : MonoBehaviour {
     private void OnPlayerDead(object[] parameterContainer)
     {
         _playerDied = true;
+        _currentPoints -= _currentPointsInSection;
+        _currentMultiplier = pointsSO.baseAcumulativeMultiplier;
+        EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
+        EventManager.instance.ExecuteEvent(Constants.UI_NOTIFICATION_TEXT_UPDATE, new object[] { "Points in section lost! -" + _currentPointsInSection });
     }
 
     void Update ()
@@ -108,7 +117,10 @@ public class PointsManager : MonoBehaviour {
 
             UpdateCurrentMultiplier();
 
-            _currentPoints += Mathf.RoundToInt(GetEnemyPoints((AbstractEnemy)param[2]) * _currentMultiplier);
+            var pointsToSum = Mathf.RoundToInt(GetEnemyPoints((AbstractEnemy)param[2]) * _currentMultiplier);
+
+            _currentPoints += pointsToSum;
+            _currentPointsInSection += pointsToSum;
 
             EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
         }

@@ -6,15 +6,20 @@ using UnityEngine.UI;
 
 public class ContinueBehaviour : MonoBehaviour {
     public int creditTime = 15;
+    public float waitOnCountdownTime = 1f;
     public GameObject panel;
     public Text timeText;
     public Text creditText;
 
     int _currentTime = 0;
 
+    bool _canPressAnyKey = false;
+    WaitForSeconds _waitOnCountdown;
+
 	void Start ()
     {
         EventManager.instance.SubscribeEvent(Constants.CREDIT_LOSED, OnCreditLosed);
+        _waitOnCountdown = new WaitForSeconds(waitOnCountdownTime);
     }
 
     private void OnCreditLosed(object[] param)
@@ -28,18 +33,22 @@ public class ContinueBehaviour : MonoBehaviour {
         panel.SetActive(true);
         _currentTime = creditTime;
         creditText.text = "Credits: " + currentCredits.ToString();
+        timeText.text = _currentTime.ToString();
+        yield return _waitOnCountdown;
+        _canPressAnyKey = true;
         while (_currentTime > 0)
         {
             timeText.text = _currentTime.ToString();
-            yield return new WaitForSeconds(1.0f);
+            yield return _waitOnCountdown;
             _currentTime--;
         }
     }
     
     void Update ()
     {
-		if(Input.anyKeyDown && panel.activeSelf)
+		if(_canPressAnyKey && Input.anyKeyDown && panel.activeSelf)
         {
+            _canPressAnyKey = false;
             panel.SetActive(false);
             EventManager.instance.ExecuteEvent(Constants.PAUSE_OR_UNPAUSE);
         }

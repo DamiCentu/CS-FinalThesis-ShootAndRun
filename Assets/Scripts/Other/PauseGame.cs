@@ -63,53 +63,59 @@ public class PauseGame : MonoBehaviour {
 
     void Pause(bool v, IPauseable[] _allPauseables) {
         foreach (var p in _allPauseables) {
-            p.OnPauseChange(v);
+            if (p != null)
+                p.OnPauseChange(v);
         }
     }
 
-     void Pause(bool v, ParticleSystem[] _allParticles) {
-        if(v) { 
+     void Pause(bool pause, ParticleSystem[] _allParticles) {
+        if(pause) { 
             foreach (var p in _allParticles) {
-                if (p != null)
+                if (p)
                     p.Pause();
             }
         }
         else {
             foreach (var p in _allParticles) {
-                if(p!=null)
+                if(p)
                   p.Play();
             }
         }
     }
 
-    void Pause(bool v, TrailRenderer[] _allTrails) {
+    void Pause(bool pause, TrailRenderer[] _allTrails) {
         foreach (var p in _allTrails) {
-            p.enabled = !v;
+            if (p)
+                p.enabled = !pause;
         }
     }
 
     void Pause(bool v, LineRenderer[] _allLines) {
         foreach (var p in _allLines) {
-            p.enabled = !v;
+            if (p)
+                p.enabled = !v;
         }
     }
 
     void Pause(bool v, AudioSource[] _allAudioSources) {
         if(v) { 
             foreach (var p in _allAudioSources) {
-                p.Pause();
+                if (p)
+                    p.Pause();
             }
         }
         else {
             foreach (var p in _allAudioSources) {
-                p.UnPause();
+                if (p)
+                    p.UnPause();
             }
         }
     }
 
     void Pause(bool v, Animator[] _allAnimators) {
         foreach (var p in _allAnimators) {
-            p.enabled = !v;
+            if(p)
+                p.enabled = !v;
         }
     }
 }
