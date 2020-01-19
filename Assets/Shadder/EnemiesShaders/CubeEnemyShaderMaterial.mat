@@ -63,5 +63,5 @@ Material:
     - _Brillo: 3
     - _Cutoff: 0.5
     - __dirty: 0
-    - _reintegrateValue: 1.94
+    - _reintegrateValue: 0
     m_Colors: []

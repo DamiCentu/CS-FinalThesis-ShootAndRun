@@ -1259,8 +1259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6b5590c0cec3543a591048c1df8bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reintegrateMaxValue: 2
-  lerpMaxValue: 1.5
+  reintegrateMaxValue: 1
+  lerpMaxValue: 0.5
   GOToDesactivate: {fileID: 1243963578953514}
   hudImage: {fileID: 114928588256434046}
   speedToRotateImage: 60

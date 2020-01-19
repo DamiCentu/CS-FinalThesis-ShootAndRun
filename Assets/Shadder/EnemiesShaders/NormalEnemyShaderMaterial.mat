@@ -27,7 +27,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AO:
-        m_Texture: {fileID: 2800000, guid: ba6b8f52a35aef745b5103f31f268d88, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _enemigo1_DefaultMaterial_AlbedoTransparency:
@@ -58,7 +58,7 @@ Material:
     - _Float2: 0.73
     - _Float3: 0.68
     - __dirty: 0
-    - _reintegrateValue: 2
+    - _reintegrateValue: 0
     m_Colors:
     - _Color0: {r: 1, g: 0, b: 0, a: 0}
     - _Color1: {r: 1, g: 1, b: 0, a: 0}

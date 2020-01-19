@@ -716,14 +716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6b5590c0cec3543a591048c1df8bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reintegrateMaxValue: 2
-  lerpMaxValue: 1.5
+  reintegrateMaxValue: 1
+  lerpMaxValue: 0.5
   GOToDesactivate: {fileID: 1357747008429588}
   hudImage: {fileID: 114826526226944126}
   speedToRotateImage: 60
   tiltingTime: 0.05
   integrationParticles: {fileID: 198871680659854370}
-  imageOffset: {x: 0, y: 0, z: 0}
 --- !u!135 &135867885667093318
 SphereCollider:
   m_ObjectHideFlags: 1

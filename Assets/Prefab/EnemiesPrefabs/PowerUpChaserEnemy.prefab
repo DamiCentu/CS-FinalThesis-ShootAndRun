@@ -645,7 +645,6 @@ MonoBehaviour:
   parentOfArrows: {fileID: 224986273206427992}
   distBetweenArrows: 0.5
   arrowsScale: 0.02
-  yPosOfArrows: -0.45
   tiltingTime: 0.05
 --- !u!114 &114329818916916854
 MonoBehaviour:
@@ -752,14 +751,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6b5590c0cec3543a591048c1df8bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reintegrateMaxValue: 2
-  lerpMaxValue: 1.5
+  reintegrateMaxValue: 1
+  lerpMaxValue: 0.5
   GOToDesactivate: {fileID: 1515751310070354}
   hudImage: {fileID: 114910133131956394}
   speedToRotateImage: 60
   tiltingTime: 0.05
   integrationParticles: {fileID: 198710989332642364}
-  imageOffset: {x: 0, y: 0, z: 0}
 --- !u!135 &135302157975719260
 SphereCollider:
   m_ObjectHideFlags: 1
