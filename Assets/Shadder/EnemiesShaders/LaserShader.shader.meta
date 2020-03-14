@@ -1,13 +1,11 @@
 fileFormatVersion: 2
 guid: 16dd2e5cda6dbf347897e0ec53ffa3cd
-timeCreated: 1539625038
+timeCreated: 1579456524
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _LightningBoltConical: {fileID: 2800000, guid: b8d13b6288314e3499c8ee294aafe3a3,
-      type: 3}
-  - _TextureSample0: {fileID: 2800000, guid: b8d13b6288314e3499c8ee294aafe3a3, type: 3}
+  - _laser: {fileID: 2800000, guid: edba7690bc27ed246be2d4086a0672cc, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

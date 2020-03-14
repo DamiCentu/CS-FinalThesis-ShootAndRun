@@ -47,7 +47,7 @@ Material:
     - _Brillo: 3
     - _Cutoff: 0.5
     - _Float0: 20
-    - __dirty: 0
+    - __dirty: 1
     - _reintegrateValue: 0
     m_Colors:
     - _Color0: {r: 1, g: 1, b: 0, a: 0}
