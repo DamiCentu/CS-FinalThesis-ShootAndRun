@@ -19,6 +19,8 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
 
     Collider _col;
 
+    Light[] _lights;
+
     float _timeToReintegrate = 0f;
     float _timer = 0f;
     float _tiltingTimer = 0; 
@@ -49,8 +51,11 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
 
     public bool LoadingNotComplete { get { return _reintergrate; } }
 
-    public void SetReintergration(float timeToReintegrate) { 
-        if(_skinnedRends == null)
+    public void SetReintergration(float timeToReintegrate) {
+
+        EnableLightsIfPosible(false);
+
+        if (_skinnedRends == null)
             _skinnedRends = GetComponentsInChildren<SkinnedMeshRenderer>();
        
         if(_skinnedRends == null)
@@ -91,7 +96,9 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
             _reintergrate = false;
             SetValue(_meshRends, reintegrateMaxValue);
             SetValue(_skinnedRends, reintegrateMaxValue); 
-            _col.enabled = true; 
+            _col.enabled = true;
+
+            EnableLightsIfPosible(true);
 
             StartCoroutine(FinishedReintegrationRoutine());
         }
@@ -147,7 +154,22 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
                 yield return null;
             ActivateOrDeactivateIntegration(false);
         }
+
         yield return null;
+    }
+
+    void EnableLightsIfPosible(bool value)
+    {
+        if(_lights == null)
+            _lights = GetComponentsInChildren<Light>();
+
+        if (_lights.Length == 0)
+            return;
+
+        foreach (var lightInChild in _lights)
+        {
+            lightInChild.gameObject.SetActive(value);
+        }
     }
 
     void ActivateOrDeactivateIntegration(bool b) { 
