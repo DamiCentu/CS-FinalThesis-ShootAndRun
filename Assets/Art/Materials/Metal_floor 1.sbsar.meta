@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a0dfa6ec9bf0bdf4fa6f840a759392e5
-timeCreated: 1585690578
+timeCreated: 1585693154
 licenseType: Free
 SubstanceImporter:
   externalObjects: {}
@@ -307,7 +307,7 @@ SubstanceImporter:
       texEnvs:
       - _BumpMap:
           texture: {instanceID: 0}
-          scale: {x: 3.5, y: 3}
+          scale: {x: 3.5, y: 3.5}
           offset: {x: 0, y: 0}
       - _DetailAlbedoMap:
           texture: {instanceID: 0}
@@ -331,7 +331,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _MetallicGlossMap:
           texture: {instanceID: 0}
-          scale: {x: 3.5, y: 3}
+          scale: {x: 3.5, y: 3.5}
           offset: {x: 0, y: 0}
       - _OcclusionMap:
           texture: {instanceID: 0}
@@ -339,7 +339,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _ParallaxMap:
           texture: {instanceID: 0}
-          scale: {x: 3.5, y: 3}
+          scale: {x: 3.5, y: 3.5}
           offset: {x: 0, y: 0}
       floats:
       - _BumpScale: 1
@@ -439,7 +439,7 @@ SubstanceImporter:
       texEnvs:
       - _BumpMap:
           texture: {instanceID: 0}
-          scale: {x: 2.7, y: 3}
+          scale: {x: 2.7, y: 2.7}
           offset: {x: 0, y: 0}
       - _DetailAlbedoMap:
           texture: {instanceID: 0}
@@ -463,7 +463,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _MetallicGlossMap:
           texture: {instanceID: 0}
-          scale: {x: 2.7, y: 3}
+          scale: {x: 2.7, y: 2.7}
           offset: {x: 0, y: 0}
       - _OcclusionMap:
           texture: {instanceID: 0}
@@ -471,7 +471,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _ParallaxMap:
           texture: {instanceID: 0}
-          scale: {x: 2.7, y: 3}
+          scale: {x: 2.7, y: 2.7}
           offset: {x: 0, y: 0}
       floats:
       - _BumpScale: 1
