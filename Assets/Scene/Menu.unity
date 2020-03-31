@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.156
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.000957503, g: 0.002815978, b: 0.03463473, a: 0.156}
+  m_IndirectSpecularColor: {r: 0.00007411014, g: 0.00021795495, b: 0.0026807068, a: 0.156}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2302,7 +2302,7 @@ ReflectionProbe:
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1
-  m_RefreshMode: 1
+  m_RefreshMode: 0
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
@@ -7054,7 +7054,7 @@ ReflectionProbe:
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1
-  m_RefreshMode: 1
+  m_RefreshMode: 0
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
@@ -10252,7 +10252,7 @@ ReflectionProbe:
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1
-  m_RefreshMode: 1
+  m_RefreshMode: 0
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
@@ -15182,7 +15182,7 @@ MonoBehaviour:
   lvl: 1
   node: -1
   activeDebugMode: 0
-  special: 0
+  special: 2
   playerUlt: 1
   playerInmortal: 0
 --- !u!224 &1018073542
@@ -18147,7 +18147,7 @@ ReflectionProbe:
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1
-  m_RefreshMode: 1
+  m_RefreshMode: 0
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0

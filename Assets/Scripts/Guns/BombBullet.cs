@@ -9,6 +9,9 @@ public class BombBullet : IBullet , IPauseable {
 	Vector3 posOfCol = new Vector3();
 	bool _canDrawGizmo;
     private float timerd;
+
+    public string SecondaryBombExplosionParticlesName = "SecondaryBombExplosionParticles";
+
     public ParticleSystem DestroyParticle1;
     public ParticleSystem DestroyParticle2;
 
@@ -17,6 +20,7 @@ public class BombBullet : IBullet , IPauseable {
     private string DestroyParticle1Name;
     private string DestroyParticleName= "explo digital";
     private GameObject DestroyParticle;
+    private GameObject destroyParticleSizeOfExplotion;
 
     public void OnPauseChange(bool v)
     {
@@ -69,7 +73,9 @@ public class BombBullet : IBullet , IPauseable {
                Destroy(DestroyParticle2.gameObject,3);*/
 
             DestroyParticle = Instantiate((GameObject)Resources.Load(DestroyParticleName), this.transform.position, this.transform.rotation);
-
+            destroyParticleSizeOfExplotion = Instantiate((GameObject)Resources.Load(SecondaryBombExplosionParticlesName), this.transform.position, this.transform.rotation);
+            destroyParticleSizeOfExplotion.GetComponentInChildren<SecondaryBulletExplosion>().Radius = radius;
+           
             Destroy(DestroyParticle.gameObject,3);
             Destroy(this.gameObject);
         }
@@ -83,10 +89,9 @@ public class BombBullet : IBullet , IPauseable {
     */
 	private void OnDrawGizmos()
 	{
-		if (_canDrawGizmo) { 
 			Gizmos.color = Color.blue;
 			Gizmos.DrawWireSphere(posOfCol, radius);
-		}
+		
 	}
 
 }
