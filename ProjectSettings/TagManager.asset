@@ -32,7 +32,7 @@ TagManager:
   - WallHittable
   - TriggerSpawner
   - MeshQueAfectaLaLuzDelPlayer
-  - 
+  - CheckerToDesaroyEnemies
   - 
   - 
   - 

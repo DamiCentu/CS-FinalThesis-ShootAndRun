@@ -57,7 +57,8 @@ public class Missile: MonoBehaviour , IPauseable
     private void OnTriggerEnter(Collider c)
     {
         //print("asd");
-        if ((hitLayers & 1 << c.gameObject.layer) == 1 << c.gameObject.layer)
+        
+        if (Utility.IsInLayerMask(c.gameObject.layer, hitLayers))
         {
             Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius, hitLayers, QueryTriggerInteraction.Collide);
             foreach (Collider item in hitColliders)
@@ -71,7 +72,7 @@ public class Missile: MonoBehaviour , IPauseable
     private void OnTriggerStay(Collider c)
     {
         //print("asd");
-        if ((hitLayers & 1 << c.gameObject.layer) == 1 << c.gameObject.layer)
+        if (Utility.IsInLayerMask(c.gameObject.layer, hitLayers))
         {
             IHittable ihittable = c.gameObject.GetComponent<IHittable>();
             if (ihittable != null)

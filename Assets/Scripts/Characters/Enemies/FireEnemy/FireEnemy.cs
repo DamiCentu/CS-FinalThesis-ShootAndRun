@@ -34,7 +34,7 @@ public class FireEnemy : AbstractEnemy, IHittable, IPauseable {
         if (Physics.Raycast(transform.position, direct, direct.magnitude, maskThatBlockVisionToPlayer))
             return;
         direct.y = 0;
-        damagePath.SpawnDirection(this.transform.position + new Vector3(0f,1,0f), direct.normalized, speed);
+        damagePath.SpawnDirection(this.transform.position + new Vector3(0f,0.5f,0f), direct.normalized, speed);
     }
 
     private void Update() {
