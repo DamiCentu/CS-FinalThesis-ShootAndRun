@@ -559,7 +559,7 @@ public class SectionNode : MonoBehaviour, IPauseable
     {
         if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
         {
-            LootTableManager.instance.SetTutoProbavility();
+            LootTableManager.instance.SetTutoProbability();
             EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_SHOOT);
         }
         _currentTimeBetweenDelayedSpawn = 0;

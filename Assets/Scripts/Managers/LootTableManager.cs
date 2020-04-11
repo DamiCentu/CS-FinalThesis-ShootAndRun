@@ -222,7 +222,7 @@ public class LootTableManager : MonoBehaviour {
     public void SetDefaultProbavility() {
         probability = defaultProbability;
     }
-    public void SetTutoProbavility()
+    public void SetTutoProbability()
     {
         probability = 1;
     }

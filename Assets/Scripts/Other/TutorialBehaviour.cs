@@ -27,7 +27,7 @@ public class TutorialBehaviour : MonoBehaviour {
 
     IEnumerator defaultProbRoutine() {
         yield return new WaitForSeconds(1f);
-        LootTableManager.instance.SetTutoProbavility();
+        LootTableManager.instance.SetTutoProbability();
     }
 
     public void FirstEnemyKIlled() {
