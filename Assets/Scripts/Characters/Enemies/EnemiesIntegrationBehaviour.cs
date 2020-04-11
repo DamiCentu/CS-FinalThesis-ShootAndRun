@@ -108,6 +108,8 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
         if (hudImage == null)
             return;
 
+        hudImage.transform.position = new Vector3(transform.position.x, EnemiesManager.instance.IntegrationImageYOffset, transform.position.z);
+
         _tiltingTimer += Time.deltaTime;
         if(_tiltingTimer > tiltingTime) {
             if (hudImage.enabled) {
