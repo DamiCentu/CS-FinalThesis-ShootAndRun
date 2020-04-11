@@ -811,9 +811,10 @@ public class SectionNode : MonoBehaviour, IPauseable
     {
         _enemiesRemaining++;
 
-        var mB = Instantiate(EnemiesManager.instance.miniBossPrefab, new Vector3(pos.x, pos.y - 1f, pos.z), Quaternion.Euler(Utility.SetYInVector3(EnemiesManager.instance.player.transform.position, pos.y) - pos))
+        var mB = Instantiate(EnemiesManager.instance.miniBossPrefab, new Vector3(pos.x,pos.y - 1, pos.z), Quaternion.identity)
                                      .GetComponent<AbstractEnemy>();
         mB.SetActualNode(this).SetActualWave(wave).SetIntegration(timeBetweenWaves).SetTimeAndRenderer();//deberia ser trigger la wave
+        mB.transform.forward = Utility.SetYInVector3(EnemiesManager.instance.player.transform.position, pos.y) - pos;
         _allMiniBoss.Add(mB as MiniBossBehaviour);
     }
 

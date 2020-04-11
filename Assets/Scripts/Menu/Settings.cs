@@ -61,10 +61,26 @@ public class Settings : MonoBehaviour
             StartCoroutine(LoadAsync(Constants.LEVEL_2_NAME));
         }
     }
+
     public void NextLvl()
     {
         Configuration.instance.NextLvl();
         StartCoroutine(LoadAsync(Constants.LEVEL_2_NAME));
+    }
+
+    public void SetLowGraphics()
+    {
+        QualitySettings.SetQualityLevel(0);
+    }
+
+    public void SetMediumGraphics()
+    {
+        QualitySettings.SetQualityLevel(2);
+    }
+
+    public void SetHighGraphics()
+    {
+        QualitySettings.SetQualityLevel(5);
     }
 
     IEnumerator LoadAsync(string name)

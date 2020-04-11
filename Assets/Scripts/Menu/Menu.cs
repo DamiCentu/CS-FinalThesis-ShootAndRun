@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour {
     public GameObject menuObjects;
     public GameObject settingsObjects;
     public GameObject ultObject;
+    public GameObject qualitySettingsObjects;
     public static Menu instance;
     public GameObject cheatMode;
     public GameObject easyDescription;
@@ -25,6 +26,7 @@ public class Menu : MonoBehaviour {
         ultObject.SetActive(false);
         menuObjects.SetActive(true);
         cheatMode.SetActive(false);
+        qualitySettingsObjects.SetActive(false);
     }
 
     public void OpenSttings() {
@@ -32,6 +34,7 @@ public class Menu : MonoBehaviour {
         settingsObjects.SetActive(true);
         ultObject.SetActive(false);
         cheatMode.SetActive(false);
+        qualitySettingsObjects.SetActive(false);
     }
     public void OpenUlt()
     {
@@ -39,7 +42,18 @@ public class Menu : MonoBehaviour {
         settingsObjects.SetActive(false);
         ultObject.SetActive(true);
         cheatMode.SetActive(false);
+        qualitySettingsObjects.SetActive(false);
     }
+
+    public void OpenQualitySettingsPannel()
+    {
+        qualitySettingsObjects.SetActive(true);
+        menuObjects.SetActive(false);
+        settingsObjects.SetActive(false);
+        ultObject.SetActive(false);
+        cheatMode.SetActive(false);
+    }
+
     public void CloseGame() {
         Application.Quit(); 
     }
@@ -63,6 +77,11 @@ public class Menu : MonoBehaviour {
     {
         Configuration.instance.SetLvl2();
         OpenSttings();
+    }
+
+    public void QualitySettingsPannel()
+    {
+        OpenQualitySettingsPannel();
     }
 
     public void Update()
