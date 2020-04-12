@@ -143,6 +143,8 @@ public class Player : MonoBehaviour, IHittable , IPauseable
             _rb.velocity = new Vector3(0, 0, 0);
             return;
         }
+    
+        RefreshTimersUlt();
 
         if (spawned)
         {
@@ -186,7 +188,6 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
     private void TryUlt()
     {
-        RefreshTimersUlt();
 
         if (CanUlt())
         {

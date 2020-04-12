@@ -78,14 +78,10 @@ public class SkillsUI : MonoBehaviour {
         float timer = (float)parameterContainer[0];
         float maxTime = (float)parameterContainer[1];
 
-        if (timer <= 0)
-        {
-           
-        }
-        else {
+        
             ultimateActivated.enabled = true;
             RefreshImage(timer, maxTime, ultimateActivated);
-        }
+        
     }
 
     private void TimeLeftUlting(object[] parameterContainer)
