@@ -126,10 +126,6 @@ public class Configuration : MonoBehaviour {
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Menu");
-        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SetUltBerserker();

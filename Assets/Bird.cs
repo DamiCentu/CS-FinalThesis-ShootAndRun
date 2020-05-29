@@ -37,7 +37,7 @@ public class Bird : MonoBehaviour , IPauseable {
             return;
 
         _distanceTraveled += speed * Time.deltaTime;
-        if (_distanceTraveled > maxDistance) {
+        if (_distanceTraveled > maxDistance * UnityEngine.Random.Range(0.8f, 1.2f)) {
             _distanceTraveled = 0;
         }
 

@@ -4,114 +4,97 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour {
-
-    public GameObject menuObjects;
-    public GameObject settingsObjects;
-    public GameObject ultObject;
-    public GameObject qualitySettingsObjects;
+    
     public static Menu instance;
     public GameObject cheatMode;
-    public GameObject easyDescription;
-    public GameObject meduimDescription;
-    public GameObject hardDescription;
-
 
     void Start () {
-        OpenMenu();
         instance = this;
-    }
-
-    public void OpenMenu() {
-        settingsObjects.SetActive(false);
-        ultObject.SetActive(false);
-        menuObjects.SetActive(true);
-        cheatMode.SetActive(false);
-        qualitySettingsObjects.SetActive(false);
-    }
-
-    public void OpenSttings() {
-        menuObjects.SetActive(false);
-        settingsObjects.SetActive(true);
-        ultObject.SetActive(false);
-        cheatMode.SetActive(false);
-        qualitySettingsObjects.SetActive(false);
-    }
-    public void OpenUlt()
-    {
-        menuObjects.SetActive(false);
-        settingsObjects.SetActive(false);
-        ultObject.SetActive(true);
-        cheatMode.SetActive(false);
-        qualitySettingsObjects.SetActive(false);
-    }
-
-    public void OpenQualitySettingsPannel()
-    {
-        qualitySettingsObjects.SetActive(true);
-        menuObjects.SetActive(false);
-        settingsObjects.SetActive(false);
-        ultObject.SetActive(false);
-        cheatMode.SetActive(false);
     }
 
     public void CloseGame() {
         Application.Quit(); 
     }
 
-    public void SetSinglePlayer() {
+    public void SetSinglePlayer(Waypoint waypoint) {
         Configuration.instance.SetSinglePlayer();
-        OpenSttings();
+
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
     }
 
-    public void SetTwoPlayer() {
+    public void SetTwoPlayer(Waypoint waypoint) {
         Configuration.instance.SetTwoPlayer();
-        OpenSttings();
+
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
     }
-    public void SetLvl1()
+    public void SetLvl1(Waypoint waypoint)
     {
         Configuration.instance.SetLvl1();
-        OpenSttings();
+
+        if(waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
+    }
+
+    public void GoToUltimates(Waypoint waypoint)
+    {
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
+    }
+
+    public void GoToMainMenu(Waypoint waypoint)
+    {
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
+    }
+
+    public void GoToSettings(Waypoint waypoint)
+    {
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
     }
 
     public void SetLvl2()
     {
         Configuration.instance.SetLvl2();
-        OpenSttings();
+        //OpenSttings();
     }
 
-    public void QualitySettingsPannel()
+    public void QualitySettingsPannel(Waypoint waypoint)
     {
-        OpenQualitySettingsPannel();
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)&& menuObjects.activeSelf) {
+        if (Input.GetKeyDown(KeyCode.C)) {
             cheatMode.SetActive(true);
 
         }
     }
 
     public void Seccion1_1 (){
-        SetLvl1();
+        SetLvl1(null);
         Configuration.instance.SetNode(1);
     }
 
     public void Seccion1_2()
     {
-        SetLvl1();
+        SetLvl1(null);
         Configuration.instance.SetNode(2);
     }
 
     public void Seccion1_3()
     {
-        SetLvl1();
+        SetLvl1(null);
         Configuration.instance.SetNode(3);
     }
 
     public void Seccion1_4()
     {
-        SetLvl1();
+        SetLvl1(null);
         Configuration.instance.SetNode(4);
     }
 
@@ -152,36 +135,4 @@ public class Menu : MonoBehaviour {
     {
         Configuration.instance.SetDebugMode(false);
     }
-
-    public void ShowEasyDescription() {
-        easyDescription.SetActive(true);
-    }
-
-    public void HideEasyDescription()
-    {
-        easyDescription.SetActive(false);
-    }
-
-    public void ShowMediumDescription()
-    {
-        meduimDescription.SetActive(true);
-    }
-
-    public void HideMediumDescription()
-    {
-        meduimDescription.SetActive(false);
-    }
-
-    public void ShowHardDescription()
-    {
-        hardDescription.SetActive(true);
-    }
-
-    public void HideHardDescription()
-    {
-        hardDescription.SetActive(false);
-    }
-    /* public void PlayTutorial() {
-         SceneManager.LoadScene("Tutorial");
-     }*/
 }

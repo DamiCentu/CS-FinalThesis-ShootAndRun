@@ -136,7 +136,7 @@ public class RankManager : MonoBehaviour {
     {
         if(_canGoToWinScreen)
         {
-            if(SceneManager.GetActiveScene().name == Constants.LEVEL_2_NAME)
+            if(SceneManager.GetActiveScene().name == Constants.LEVEL_2_SCENE_NAME)
             {
                 if(Input.anyKeyDown)
                 {

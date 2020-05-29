@@ -3,8 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour {
+    public GameObject Canvas2d;
+    public GameObject PauseMenu;
+
+    public GameObject[] SettingsPanel;
+    public GameObject[] MainPausePanel;
+
     bool pause = false;
 
     LineRenderer[] _lineRends;
@@ -13,9 +20,23 @@ public class PauseGame : MonoBehaviour {
     ParticleSystem[] _particlesSys;
     AudioSource[] _audioSources;
 
+    bool _canPauseManually = false;
+
     void Start()
     {
         EventManager.instance.SubscribeEvent(Constants.PAUSE_OR_UNPAUSE, OnPauseOrUnpause);
+        EventManager.instance.SubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
+        EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerCanMove);
+    }
+
+    private void OnPlayerCanMove(object[] parameterContainer)
+    {
+        _canPauseManually = true;
+    }
+
+    private void OnPlayerDead(object[] parameterContainer)
+    {
+        
     }
 
     void OnPauseOrUnpause(object[] param)
@@ -27,13 +48,13 @@ public class PauseGame : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (_canPauseManually && Input.GetKeyDown(KeyCode.Escape))
         {
-            AllPauses();
+            AllPauses(false, true);
         } 
     }
 
-    void AllPauses(bool playerIsAboutToBeDestroyed = false)
+    void AllPauses(bool playerIsAboutToBeDestroyed = false, bool fromInput = false)
     {
         if (!pause)
         {
@@ -59,6 +80,58 @@ public class PauseGame : MonoBehaviour {
         Pause(pause, _lineRends);
         Pause(pause, _animators);
         Pause(pause, _audioSources);
+
+        if(fromInput)
+        {
+            if (pause)
+            {
+                PauseMenu.SetActive(true);
+                Canvas2d.SetActive(false);
+            }
+            else
+            {
+                PauseMenu.SetActive(false);
+                Canvas2d.SetActive(true);
+                OnBackToMainPanel();
+            }
+        }
+       
+    }
+
+    public void OnMainMenu()
+    {
+        SceneManager.LoadScene(Constants.MENU_SCENE_NAME);
+    }
+
+    public void OnResume()
+    {
+        AllPauses(false, true);
+    }
+
+    public void OnSettings()
+    {
+        foreach (var item in MainPausePanel)
+        {
+            item.SetActive(false);
+        }
+
+        foreach (var item in SettingsPanel)
+        {
+            item.SetActive(true);
+        }
+    }
+
+    public void OnBackToMainPanel()
+    {
+        foreach (var item in MainPausePanel)
+        {
+            item.SetActive(true);
+        }
+
+        foreach (var item in SettingsPanel)
+        {
+            item.SetActive(false);
+        }
     }
 
     void Pause(bool v, IPauseable[] _allPauseables) {

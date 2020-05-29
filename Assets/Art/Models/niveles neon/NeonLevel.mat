@@ -9,7 +9,7 @@ Material:
   m_Name: NeonLevel
   m_Shader: {fileID: 4800000, guid: 7b5c97285e5362c47a9642e0762afeed, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -33,7 +33,7 @@ Material:
     m_Floats:
     - _Brillo: 2.04
     - _Float0: 1
-    - _Float3: 0
+    - _Float3: 0.8
     - _Speed: 1.25
     - __dirty: 0
     - _metallic: 0.9811869

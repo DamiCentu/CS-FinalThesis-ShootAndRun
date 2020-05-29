@@ -86,14 +86,13 @@ public class Constants : MonoBehaviour
 
     public const string WIN_LEVEL = "win_level";
 
-    public const string LEVEL_1_NAME = "nivelPrueba";
-    public const string LEVEL_2_NAME = "Scene2";
+    public const string LEVEL_1_SCENE_NAME = "nivelPrueba";
+    public const string LEVEL_2_SCENE_NAME = "Scene2";
+    public const string MENU_SCENE_NAME = "Menu";
 
     public const string GO_TO_LEVEL_COMPLETE_SCENE = "goToLevelCompleteScene";
     public const string GO_TO_GAME_COMPLETE_SCENE = "goToGameCompleteScene";
 
-
-    //public const string SOUND_BOSS_EXPLOTION = "boss_explotion";
-
-
+    public const string MENU_CAMERA_NAVIGATE = "menuCameraNavigate";
+    public const string MENU_BUTTON_CLICKED = "menuButtonClicked";
 }

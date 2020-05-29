@@ -16,22 +16,16 @@ public class Settings : MonoBehaviour
     public void SetEasy()
     {
         Configuration.instance.SetEasy();
-        Menu.instance.OpenUlt();
-        Menu.instance.HideEasyDescription();
     }
 
     public void SetHard()
     {
         Configuration.instance.SetHard();
-        Menu.instance.OpenUlt();
-        Menu.instance.HideHardDescription();
     }
 
     public void SetMedium()
     {
         Configuration.instance.SetMedium();
-        Menu.instance.OpenUlt();
-        Menu.instance.HideMediumDescription();
     }
     public void SetBerseker()
     {
@@ -54,18 +48,18 @@ public class Settings : MonoBehaviour
     {
         if (Configuration.instance.lvl == 1)
         {
-            StartCoroutine(LoadAsync(Constants.LEVEL_1_NAME));
+            StartCoroutine(LoadAsync(Constants.LEVEL_1_SCENE_NAME));
         }
         else
         {
-            StartCoroutine(LoadAsync(Constants.LEVEL_2_NAME));
+            StartCoroutine(LoadAsync(Constants.LEVEL_2_SCENE_NAME));
         }
     }
 
     public void NextLvl()
     {
         Configuration.instance.NextLvl();
-        StartCoroutine(LoadAsync(Constants.LEVEL_2_NAME));
+        StartCoroutine(LoadAsync(Constants.LEVEL_2_SCENE_NAME));
     }
 
     public void SetLowGraphics()
@@ -86,6 +80,9 @@ public class Settings : MonoBehaviour
     IEnumerator LoadAsync(string name)
     {
         splash.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
+
         AsyncOperation async = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
         async.allowSceneActivation = false;
         while (!async.isDone)
