@@ -21,8 +21,22 @@ public class SectionManager : MonoBehaviour, IPauseable
     public float timeAfterLosing = 2f;
 
     float _enemiesMultiplator = 1f;
+    bool _berserkTime;
 
     public float EnemiesMultiplicator { get { return _enemiesMultiplator; } }
+
+    public bool BerserkTime
+    {
+        get
+        {
+            return _berserkTime;
+        }
+
+        set
+        {
+            _berserkTime = value;
+        }
+    }
 
     public float timeSplicingQuoteForSectionRoutine = 0.001f;
     public GameObject debug;
@@ -104,12 +118,14 @@ public class SectionManager : MonoBehaviour, IPauseable
     void AtBerserk(params object[] param)
     {
         _enemiesMultiplator = enemiesMultiplicatorOnBerserk;
+        BerserkTime = true;
         //Debug.Log("berserk");
     }
 
     void AtStopBerserk(params object[] param)
     {
         _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR;
+        BerserkTime = false;
         //Debug.Log("stop");
     }
 

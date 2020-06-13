@@ -79,8 +79,8 @@ public class SkillsUI : MonoBehaviour {
         float maxTime = (float)parameterContainer[1];
 
         
-            ultimateActivated.enabled = true;
-            RefreshImage(timer, maxTime, ultimateActivated);
+        ultimateActivated.enabled = true;
+        RefreshImage(timer, maxTime, ultimateActivated);
         
     }
 

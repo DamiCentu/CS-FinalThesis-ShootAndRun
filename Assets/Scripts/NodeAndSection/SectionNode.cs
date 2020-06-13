@@ -275,7 +275,7 @@ public class SectionNode : MonoBehaviour, IPauseable
 
                 if (Utility.CalcPercentage(_enemiesRemaining, _allSpawns.Length) < SectionManager.instance.percentageOfEnemysToBerserk)
                 {
-                    //              EventManager.instance.ExecuteEvent(Constants.BERSERK);
+                    EventManager.instance.ExecuteEvent(Constants.BERSERK);
                 }
             }
 

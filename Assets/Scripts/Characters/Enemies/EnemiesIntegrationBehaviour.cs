@@ -18,6 +18,7 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
     MeshRenderer[] _meshRends;
 
     Collider _col;
+    OnBerserkBehaviour _berserkBehaviour;
 
     Light[] _lights;
 
@@ -99,6 +100,7 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
             _col.enabled = true;
 
             EnableLightsIfPosible(true);
+            checkBerserk();
 
             StartCoroutine(FinishedReintegrationRoutine());
         }
@@ -172,6 +174,17 @@ public class EnemiesIntegrationBehaviour : MonoBehaviour , IPauseable {
         {
             lightInChild.gameObject.SetActive(value);
         }
+    }
+
+    void checkBerserk()
+    {
+        if (_berserkBehaviour == null)
+            _berserkBehaviour = GetComponent<OnBerserkBehaviour>();
+
+        if (_berserkBehaviour == null)
+            return;
+
+        _berserkBehaviour.CheckBerserk();
     }
 
     void ActivateOrDeactivateIntegration(bool b) { 

@@ -20,7 +20,10 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Brillo: 2
-    - __dirty: 0
+    - __dirty: 1
+    - _length: 10
+    - _max: 1
+    - _offset: 40
     m_Colors:
     - _Emission: {r: 0, g: 1, b: 0, a: 0}
-    - _Tint: {r: 0.43522558, g: 0.009731843, b: 0.44117647, a: 0}
+    - _Tint: {r: 0.43522555, g: 0.009731843, b: 0.44117644, a: 0}
