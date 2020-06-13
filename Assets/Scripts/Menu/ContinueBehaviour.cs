@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ContinueBehaviour : MonoBehaviour {
     public int creditTime = 15;
@@ -42,14 +43,31 @@ public class ContinueBehaviour : MonoBehaviour {
             yield return _waitOnCountdown;
             _currentTime--;
         }
+
+        if(_currentTime <= 0)
+        {
+            StartCoroutine(LoseRoutine());
+            timeText.text = 0.ToString();
+        }
     }
-    
+
+    IEnumerator LoseRoutine()
+    {
+        SoundManager.instance.GameOver();
+
+        yield return new WaitForSeconds(2);
+
+        SceneManager.LoadScene("GameOverScene");
+    }
+
+
     void Update ()
     {
 		if(_canPressAnyKey && Input.anyKeyDown && panel.activeSelf)
         {
             _canPressAnyKey = false;
             panel.SetActive(false);
+            StopAllCoroutines();
             EventManager.instance.ExecuteEvent(Constants.PAUSE_OR_UNPAUSE);
         }
 	}

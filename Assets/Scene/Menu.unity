@@ -1085,6 +1085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &28173686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,6 +3000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 2042333273}
   radius: 1
+  speedMultiplier: 1
 --- !u!4 &87764887
 Transform:
   m_ObjectHideFlags: 0
@@ -3868,6 +3870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &117999518
 GameObject:
   m_ObjectHideFlags: 0
@@ -8541,6 +8544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 291349551}
   radius: 1
+  speedMultiplier: 2
 --- !u!1 &279768580 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
@@ -8715,6 +8719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!4 &291349552
 Transform:
   m_ObjectHideFlags: 0
@@ -14493,7 +14498,7 @@ GameObject:
   - component: {fileID: 473470261}
   - component: {fileID: 473470260}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16605,6 +16610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 1806466718}
   radius: 1
+  speedMultiplier: 2
 --- !u!1 &518888281
 GameObject:
   m_ObjectHideFlags: 0
@@ -19351,6 +19357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 26732284}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &678596707
 GameObject:
   m_ObjectHideFlags: 0
@@ -25258,6 +25265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 2142184339}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &850887529
 GameObject:
   m_ObjectHideFlags: 0
@@ -27401,6 +27409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 666165872}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &923855814
 GameObject:
   m_ObjectHideFlags: 0
@@ -40655,6 +40664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 1411502485}
   radius: 1
+  speedMultiplier: 1
 --- !u!4 &1393148014
 Transform:
   m_ObjectHideFlags: 0
@@ -40847,6 +40857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &1401304166
 GameObject:
   m_ObjectHideFlags: 0
@@ -41286,6 +41297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!4 &1411502486
 Transform:
   m_ObjectHideFlags: 0
@@ -42170,6 +42182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &1444517670
 GameObject:
   m_ObjectHideFlags: 0
@@ -42808,6 +42821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 1399313575}
   radius: 1
+  speedMultiplier: 2
 --- !u!1 &1461176060
 GameObject:
   m_ObjectHideFlags: 0
@@ -47417,6 +47431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 87764886}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &1584228410
 GameObject:
   m_ObjectHideFlags: 0
@@ -53947,6 +53962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 1393148013}
   radius: 1
+  speedMultiplier: 1
 --- !u!4 &1806466719
 Transform:
   m_ObjectHideFlags: 0
@@ -54836,6 +54852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 922414570}
   radius: 1
+  speedMultiplier: 2
 --- !u!1 &1837096473
 GameObject:
   m_ObjectHideFlags: 0
@@ -60269,6 +60286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 0}
   radius: 1
+  speedMultiplier: 1
 --- !u!4 &2042333274
 Transform:
   m_ObjectHideFlags: 0
@@ -62741,6 +62759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 1440431318}
   radius: 1
+  speedMultiplier: 1
 --- !u!1 &2142244505
 GameObject:
   m_ObjectHideFlags: 0

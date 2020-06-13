@@ -6,6 +6,7 @@ public class Waypoint : MonoBehaviour {
 
     public Waypoint next;
     public float radius;
+    public float speedMultiplier = 1;
 
     public bool IsNear(Vector3 position)
     {

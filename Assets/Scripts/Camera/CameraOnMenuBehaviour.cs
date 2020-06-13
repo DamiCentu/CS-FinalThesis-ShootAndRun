@@ -23,6 +23,7 @@ public class CameraOnMenuBehaviour : MonoBehaviour {
     private float _startTime;
     private float _journeyLength;
     private bool _traveling;
+    private float _multiplier;
 
     bool _firstTimeTransitionDone = false;
 
@@ -39,8 +40,11 @@ public class CameraOnMenuBehaviour : MonoBehaviour {
     private void OnNavigateTo(object[] parameterContainer)
     {
         var waypoint = (Waypoint)parameterContainer[0];
+
         if (waypoint == null || _traveling)
             return;
+
+        _multiplier = waypoint.speedMultiplier;
 
         _traveling = true;
 
@@ -61,7 +65,7 @@ public class CameraOnMenuBehaviour : MonoBehaviour {
         if (_currentWP == null)
             return;
 
-        float distCovered = (Time.time - _startTime) * movementSpeed * rotationSpeed;
+        float distCovered = (Time.time - _startTime) * movementSpeed * _multiplier * rotationSpeed;
         float fractionOfJourney = distCovered / _journeyLength;
 
         var movement = _currentWP.IsNear(transform.position) ?
@@ -145,7 +149,7 @@ public class CameraOnMenuBehaviour : MonoBehaviour {
     {
         var toWaypoint = _currentWP.transform.position - transform.position;
         var direction = toWaypoint.normalized;
-        var movementDelta = direction * movementSpeed * Time.deltaTime;
+        var movementDelta = direction * movementSpeed * _multiplier * Time.deltaTime;
 
         return movementDelta.sqrMagnitude > toWaypoint.sqrMagnitude ? toWaypoint : movementDelta;
     }
@@ -160,13 +164,13 @@ public class CameraOnMenuBehaviour : MonoBehaviour {
         if (_currentWP.next == null)
         {
             _bezierEnd = currWaypointPosition;
-            _bezierSpeed = movementSpeed / _currentWP.radius;
+            _bezierSpeed = movementSpeed * _multiplier / _currentWP.radius;
         }
         else
         {
             var nextWaypointPosition = _currentWP.next.transform.position;
             _bezierEnd = currWaypointPosition + (nextWaypointPosition - currWaypointPosition).normalized * _currentWP.radius;
-            _bezierSpeed = movementSpeed / _currentWP.radius * 0.5f;
+            _bezierSpeed = movementSpeed * _multiplier / _currentWP.radius * 0.5f;
         }
     }
 

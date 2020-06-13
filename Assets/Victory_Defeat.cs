@@ -7,7 +7,6 @@ public class Victory_Defeat : MonoBehaviour {
 
     public void Continue()
     {
-        print("hola");
         SceneManager.LoadScene("Menu");
     }
 

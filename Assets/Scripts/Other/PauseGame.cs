@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,9 @@ public class PauseGame : MonoBehaviour {
 
     public GameObject[] SettingsPanel;
     public GameObject[] MainPausePanel;
+
+    public GameObject loadingSplash;
+    public Image loadingSlider;
 
     bool pause = false;
 
@@ -27,6 +31,12 @@ public class PauseGame : MonoBehaviour {
         EventManager.instance.SubscribeEvent(Constants.PAUSE_OR_UNPAUSE, OnPauseOrUnpause);
         EventManager.instance.SubscribeEvent(Constants.PLAYER_CAN_MOVE, OnPlayerCanMove);
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerCanMove);
+        EventManager.instance.SubscribeEvent(Constants.WIN_LEVEL, OnWinLevel);
+    }
+
+    private void OnWinLevel(object[] parameterContainer)
+    {
+        _canPauseManually = false;
     }
 
     private void OnPlayerCanMove(object[] parameterContainer)
@@ -63,7 +73,7 @@ public class PauseGame : MonoBehaviour {
             _lineRends = FindObjectsOfType<LineRenderer>().Where(x => x.gameObject.activeSelf && x.enabled).ToArray();
             //_trailRends = FindObjectsOfType<TrailRenderer>().Where(x => x.gameObject.activeSelf && x.enabled).ToArray();
             _animators = FindObjectsOfType<Animator>().Where(x => x.gameObject.activeSelf && x.enabled).ToArray();
-            _audioSources = FindObjectsOfType<AudioSource>().Where(x => x.gameObject.activeSelf && x.enabled && x.isPlaying).ToArray();
+            _audioSources = FindObjectsOfType<AudioSource>().Where(x => x.gameObject.activeSelf && x.enabled && x.isPlaying && x.gameObject.name != "Backgound").ToArray();
         }
         else
         {
@@ -100,7 +110,29 @@ public class PauseGame : MonoBehaviour {
 
     public void OnMainMenu()
     {
-        SceneManager.LoadScene(Constants.MENU_SCENE_NAME);
+        StartCoroutine(LoadAsync(Constants.MENU_SCENE_NAME));
+    }
+
+    IEnumerator LoadAsync(string name)
+    {
+        Canvas2d.SetActive(true);
+        loadingSplash.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
+
+        AsyncOperation async = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+        async.allowSceneActivation = false;
+        while (!async.isDone)
+        {
+            var progress = Mathf.Clamp01(async.progress / 0.9f);
+            loadingSlider.fillAmount = progress;
+
+            if (async.progress >= 0.3f)
+                yield return new WaitForSeconds(0.2f);
+
+            if (async.progress >= 0.9f)
+                async.allowSceneActivation = true;
+        }
     }
 
     public void OnResume()
