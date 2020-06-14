@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class SecondaryBulletExplosion : MonoBehaviour {
 
-    public float speed = 3;
+    public float speed = 50;
+    public float speedShrink = 75;
     public GameObject parent;
     public GameObject lightGO;
+    public Transform Mesh;
 
     private ParticleSystem _radiusParticleSystem;
     private float _radius;
 
     private float _currentRadius;
     private bool _endRoutinePlayed;
+    private bool _haveToShrink;
 
     public float Radius
     {
@@ -33,9 +36,28 @@ public class SecondaryBulletExplosion : MonoBehaviour {
 
 	void Update () {
         var shape = _radiusParticleSystem.shape;
-        if (shape.normalOffset < _radius)
+
+        if(_haveToShrink)
         {
-            shape.normalOffset += speed * Time.deltaTime;
+            if (Mesh.localScale.x > 0)
+            {
+                var newScale = Mesh.localScale.x - (speedShrink * Time.deltaTime);
+                shape.scale = new Vector3(newScale, newScale, newScale);
+                Mesh.localScale = new Vector3(newScale, newScale, newScale);
+            }
+            else
+            {
+                Destroy(parent);
+            }
+
+            return;
+        }
+
+        if (Mesh.localScale.x / 2 < _radius)
+        {
+            var newScale = Mesh.localScale.x + (speed * Time.deltaTime);
+            shape.scale = new Vector3(newScale, newScale, newScale);
+            Mesh.localScale = new Vector3(newScale, newScale, newScale);
         }
         else
         {
@@ -49,9 +71,13 @@ public class SecondaryBulletExplosion : MonoBehaviour {
 
     IEnumerator endRoutine()
     {
-        yield return new WaitForSeconds(1);
-        _radiusParticleSystem.Stop();
-        lightGO.SetActive(false);
-        Destroy(parent, 3);
+        yield return new WaitForSeconds(0.3f);
+        _haveToShrink = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, 5);
     }
 }

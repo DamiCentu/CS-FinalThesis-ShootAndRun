@@ -24,6 +24,6 @@ Material:
     - _Scale: 1.56
     - _Scanlines: 20.14
     - _Speed: 6.1
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
-    - _Tint: {r: 0.01978808, g: 0.7881565, b: 0.89705884, a: 0}
+    - _Tint: {r: 0.01978808, g: 0.7881565, b: 0.8970588, a: 0}

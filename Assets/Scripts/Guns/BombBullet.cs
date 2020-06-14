@@ -76,7 +76,7 @@ public class BombBullet : IBullet , IPauseable {
             destroyParticleSizeOfExplotion = Instantiate((GameObject)Resources.Load(SecondaryBombExplosionParticlesName), this.transform.position, this.transform.rotation);
             destroyParticleSizeOfExplotion.GetComponentInChildren<SecondaryBulletExplosion>().Radius = radius;
            
-            Destroy(DestroyParticle.gameObject,3);
+            Destroy(DestroyParticle.gameObject,1);
             Destroy(this.gameObject);
         }
 	}

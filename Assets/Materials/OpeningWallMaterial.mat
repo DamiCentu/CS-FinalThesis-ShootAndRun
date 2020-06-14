@@ -71,8 +71,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Float0: 4.63
+    - _Float0: -0.5
     - _Float1: 6.49
+    - _Float2: 0.7
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -88,7 +89,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _fuerza: 0
-    - _time: 0
+    - _time: -2
     m_Colors:
     - _Color: {r: 1, g: 0.1544118, b: 0.1544118, a: 1}
     - _Color0: {r: 0.17479455, g: 0.24741979, b: 0.3897059, a: 0}

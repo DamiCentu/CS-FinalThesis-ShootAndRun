@@ -20,7 +20,7 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Brillo: 2
-    - __dirty: 1
+    - __dirty: 0
     - _length: 10
     - _max: 1
     - _offset: 40

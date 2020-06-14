@@ -38,13 +38,13 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
         if (!_isOn) {
             //print("aparezco");
             col.enabled = true;
-            rend.material.SetFloat("_time", 6); 
+            rend.material.SetFloat("_time", 1); 
           
-            while (rend.material.GetFloat("_time") > 0) {
+            while (rend.material.GetFloat("_time") > -2) {
                 //print("aparezco");
-                var time = Mathf.Clamp(rend.material.GetFloat("_time") - 0.2f,0,10);
+                var time = rend.material.GetFloat("_time") - 0.03f;
                 rend.material.SetFloat("_time", time);
-                yield return new WaitForSeconds(.05f);
+                yield return new WaitForEndOfFrame();
                 if (_pause)
                     yield return null;
             }
@@ -56,15 +56,15 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
     IEnumerator Disolve()
     {
         if (_isOn) {
-            rend.material.SetFloat("_time", 0);
+            rend.material.SetFloat("_time", -2);
          
-            while (rend.material.GetFloat("_time") < 6)
+            while (rend.material.GetFloat("_time") < 1)
             {
                 //print("desaparezco");
-                var time = Mathf.Clamp(rend.material.GetFloat("_time") + 0.2f, 0, 10);
+                var time = rend.material.GetFloat("_time") + 0.03f;
                 //print("time");
                 rend.material.SetFloat("_time", time);
-                yield return new WaitForSeconds(.05f);
+                yield return new WaitForEndOfFrame();
                 if (_pause)
                     yield return null;
             }
