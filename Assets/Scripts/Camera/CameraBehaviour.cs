@@ -97,10 +97,10 @@ public class CameraBehaviour : MonoBehaviour , IPauseable {
 
     void OnPlayerDead(params object[] param) {
         _shakeCountdown = playerDeadShakeDuration;
-        Kino.AnalogGlitch aGlitch = this.gameObject.GetComponent<Kino.AnalogGlitch>();
+        AnalogGlitch aGlitch = this.gameObject.GetComponent<AnalogGlitch>();
         aGlitch.scanLineJitter = scanLine;
         aGlitch.colorDrift = colorDrift;
-        Kino.DigitalGlitch glitch = this.gameObject.GetComponent<Kino.DigitalGlitch>();
+        DigitalGlitch glitch = this.gameObject.GetComponent<DigitalGlitch>();
         glitch.intensity = digitalGlitchIntensity;
         StartCoroutine(ShakeRoutine());
     } 
@@ -125,10 +125,10 @@ public class CameraBehaviour : MonoBehaviour , IPauseable {
         while (_paused)
             yield return null;
 
-        Kino.AnalogGlitch aGlitch = this.gameObject.GetComponent<Kino.AnalogGlitch>();
+        AnalogGlitch aGlitch = this.gameObject.GetComponent<AnalogGlitch>();
         aGlitch.scanLineJitter = 0;
         aGlitch.colorDrift = 0;
-        Kino.DigitalGlitch glitch = this.gameObject.GetComponent<Kino.DigitalGlitch>();
+        DigitalGlitch glitch = this.gameObject.GetComponent<DigitalGlitch>();
         glitch.intensity = 0;
     } 
 }

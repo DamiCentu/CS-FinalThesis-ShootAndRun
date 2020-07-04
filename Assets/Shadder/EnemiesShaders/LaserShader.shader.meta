@@ -1,11 +1,10 @@
 fileFormatVersion: 2
 guid: 16dd2e5cda6dbf347897e0ec53ffa3cd
-timeCreated: 1579456524
+timeCreated: 1593875186
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
-  defaultTextures:
-  - _laser: {fileID: 2800000, guid: edba7690bc27ed246be2d4086a0672cc, type: 3}
+  defaultTextures: []
   userData: 
   assetBundleName: 
   assetBundleVariant: 

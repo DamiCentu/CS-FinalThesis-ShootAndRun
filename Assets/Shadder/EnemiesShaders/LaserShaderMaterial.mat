@@ -26,6 +26,22 @@ Material:
         m_Texture: {fileID: 2800000, guid: b8d13b6288314e3499c8ee294aafe3a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 09f070c55755b0b48bf8cda8ae67a7fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 172ccf4c916e2dc4581a34c70875fed7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 7f1cd443fabe3b34ab368f436b25ebf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: 172ccf4c916e2dc4581a34c70875fed7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _laser:
         m_Texture: {fileID: 2800000, guid: edba7690bc27ed246be2d4086a0672cc, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -36,8 +52,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Bias: 0.01
+    - _Brigthness: 50
+    - _ChromaticAberration: 0.1
     - _Cutoff: 0.5
-    - _Float0: 1.59
+    - _EdgesSmoothStrength: 2
+    - _Float0: 50
     - _Float1: 0.64
     - _Float2: 0.01
     - _Float3: 0
@@ -45,7 +64,14 @@ Material:
     - _Scale: 0.49
     - _Speed: 0.84
     - __dirty: 0
+    - _noiseStrength: 1
     m_Colors:
+    - _COlor: {r: 1, g: 0, b: 0, a: 0}
     - _LaserColor: {r: 1, g: 0, b: 0, a: 0}
     - _SpeedPanner: {r: -2.32, g: 4.36, b: 0, a: 0}
     - _Vector0: {r: -3, g: -4.8, b: 0, a: 0}
+    - _Vector3: {r: 8, g: 0, b: 0, a: 0}
+    - _Vector4: {r: 1.96, g: 0, b: 0, a: 0}
+    - _Vector5: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector6: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _noiseSpeed: {r: 8, g: 0, b: 0, a: 0}
