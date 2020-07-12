@@ -5,6 +5,8 @@ using UnityEngine;
 public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IPauseable {
 
     public int id = 0;
+    public bool destroyAtEnd = false;
+
     Renderer rend;
     Collider col;
 
@@ -21,6 +23,9 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
         if (col == null || rend == null) return;
         if (v)
         {
+            if (destroyAtEnd)
+                rend.enabled = true;
+
             StartCoroutine("Appear");
         }
         else {
@@ -70,6 +75,8 @@ public class WallThatDestroysWhenPlayerKillsEnemiesBehaviour : MonoBehaviour, IP
             }
             col.enabled = false;
             _isOn = false;
+            if (destroyAtEnd)
+                rend.enabled = false;
         }
         yield return null;
     }
