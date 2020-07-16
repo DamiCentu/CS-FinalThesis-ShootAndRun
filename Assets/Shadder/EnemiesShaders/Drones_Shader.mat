@@ -9,7 +9,7 @@ Material:
   m_Name: Drones_Shader
   m_Shader: {fileID: 4800000, guid: 2b8b9ba61e745e0418e01da35a66811f, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,5 +19,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _Float0: 9.93
     - __dirty: 0
     m_Colors: []
