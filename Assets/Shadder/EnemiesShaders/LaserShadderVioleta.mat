@@ -62,11 +62,29 @@ Material:
         m_Texture: {fileID: 2800000, guid: b8d13b6288314e3499c8ee294aafe3a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 09f070c55755b0b48bf8cda8ae67a7fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 7f1cd443fabe3b34ab368f436b25ebf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: 172ccf4c916e2dc4581a34c70875fed7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Brigthness: 30
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgesSmoothStrength: 2
     - _Float0: 3.52
     - _Float1: 1.2
     - _Float2: 0.39
@@ -83,9 +101,15 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
+    - _noiseStrength: 4
     m_Colors:
+    - _COlor: {r: 0, g: 1, b: 0.42068958, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LaserColor: {r: 1, g: 0, b: 0.8896551, a: 0}
     - _SpeedPanner: {r: -2.34, g: -4.5, b: 0, a: 0}
     - _Vector0: {r: -3, g: -4.8, b: 0, a: 0}
+    - _Vector3: {r: 0, g: 10, b: 0, a: 0}
+    - _Vector5: {r: 2, g: 2, b: 0, a: 0}
+    - _Vector6: {r: 0, g: 10, b: 0, a: 0}
+    - _noiseSpeed: {r: 0, g: 10, b: 0, a: 0}
