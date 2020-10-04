@@ -30,51 +30,51 @@ public class SectionNode : MonoBehaviour, IPauseable
     public bool waveDelayedSpawn = false;
     public SectionManager.WaveNumber waveNumber;
     public float timeBetweenDelayedSpawn = 0.4f;
-    float _currentTimeBetweenDelayedSpawn = 0f;
+    protected float _currentTimeBetweenDelayedSpawn = 0f;
 
-    Vector3 onGizmosSafeZoneChaser = new Vector3(1000f, 1000f, 1000f);
+    protected Vector3 onGizmosSafeZoneChaser = new Vector3(1000f, 1000f, 1000f);
 
-    EnemySpawner[] _allSpawns;
-    EnemySpawnerAtBeginningOfNode[] _allSpawnsThatNotAffectEndOfNode;
-    MultiEnemySpawner[] _allMultiSpawns;
-    PropsBehaviour[] _allProps;
+    protected EnemySpawner[] _allSpawns;
+    protected EnemySpawnerAtBeginningOfNode[] _allSpawnsThatNotAffectEndOfNode;
+    protected MultiEnemySpawner[] _allMultiSpawns;
+    protected PropsBehaviour[] _allProps;
 
-    MapNode[] _allMapNodes;
+    protected MapNode[] _allMapNodes;
 
-    Dictionary<SectionManager.WaveNumber, List<EnemySpawner>> _dicSpawn = new Dictionary<SectionManager.WaveNumber, List<EnemySpawner>>();
-    Dictionary<SectionManager.WaveNumber, int> _dicQuantityInWave = new Dictionary<SectionManager.WaveNumber, int>();
+    protected Dictionary<SectionManager.WaveNumber, List<EnemySpawner>> _dicSpawn = new Dictionary<SectionManager.WaveNumber, List<EnemySpawner>>();
+    protected Dictionary<SectionManager.WaveNumber, int> _dicQuantityInWave = new Dictionary<SectionManager.WaveNumber, int>();
 
-    List<NormalEnemyBehaviour> _allNormalActives = new List<NormalEnemyBehaviour>();
-    List<ChargerEnemyBehaviour> _allChargerActives = new List<ChargerEnemyBehaviour>();
-    List<EnemyTurretBehaviour> _allTurretsActives = new List<EnemyTurretBehaviour>();
-    List<PowerUpChaserEnemy> _allChasersActives = new List<PowerUpChaserEnemy>();
-    List<MiniBossBehaviour> _allMiniBoss = new List<MiniBossBehaviour>();
-    List<CubeEnemyBehaviour> _allCubeActives = new List<CubeEnemyBehaviour>();
-    List<MisilEnemy> _allMisilEnemiesActive = new List<MisilEnemy>();
-    List<FireEnemy> _allFireEnemiesActive = new List<FireEnemy>();
+    protected List<NormalEnemyBehaviour> _allNormalActives = new List<NormalEnemyBehaviour>();
+    protected List<ChargerEnemyBehaviour> _allChargerActives = new List<ChargerEnemyBehaviour>();
+    protected List<EnemyTurretBehaviour> _allTurretsActives = new List<EnemyTurretBehaviour>();
+    protected List<PowerUpChaserEnemy> _allChasersActives = new List<PowerUpChaserEnemy>();
+    protected List<MiniBossBehaviour> _allMiniBoss = new List<MiniBossBehaviour>();
+    protected List<CubeEnemyBehaviour> _allCubeActives = new List<CubeEnemyBehaviour>();
+    protected List<MisilEnemy> _allMisilEnemiesActive = new List<MisilEnemy>();
+    protected List<FireEnemy> _allFireEnemiesActive = new List<FireEnemy>();
 
-    WaitForSeconds _waitBetweenWaves;
-    WaitForSeconds _waitBetweenSpawns;
+    protected WaitForSeconds _waitBetweenWaves;
+    protected WaitForSeconds _waitBetweenSpawns;
 
-    Dictionary<int, int> _quantityPerIDDictionary = new Dictionary<int, int>();
-    WallThatDestroysWhenPlayerKillsEnemiesBehaviour[] _allWallsThatHaveToUnlockDestroying;
+    protected Dictionary<int, int> _quantityPerIDDictionary = new Dictionary<int, int>();
+    protected WallThatDestroysWhenPlayerKillsEnemiesBehaviour[] _allWallsThatHaveToUnlockDestroying;
 
-    int _enemiesRemaining = 0;
-    int _allQuantityInMultiEnemySpawners = 0;
-    bool _bossAlive = true;
+    protected int _enemiesRemaining = 0;
+    protected int _allQuantityInMultiEnemySpawners = 0;
+    protected bool _bossAlive = true;
 
-    int timesDead = 0;
+    protected int timesDead = 0;
     public bool spawnGreenEnemiesInBossNode = true;
 
 
-    Boss bossOnScreen;
-    BossSerpent bossSerpentLeftOnScreen;
+    protected Boss bossOnScreen;
+    protected BossSerpent bossSerpentLeftOnScreen;
     BossSerpent bossSerpentRightOnScreen;
     public int timesDeadTillPowerHelp = 3;
 
     public bool BossAlive { get { return _bossAlive; } }
 
-    bool _paused;
+    protected bool _paused;
     public void OnPauseChange(bool v)
     {
         _paused = v;
@@ -92,7 +92,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    IEnumerator BossRoutine()
+    protected IEnumerator BossRoutine()
     {
 
         yield return _waitBetweenWaves;
@@ -105,7 +105,7 @@ public class SectionNode : MonoBehaviour, IPauseable
     }
 
 
-    IEnumerator BossSerpentsRoutine()
+    protected IEnumerator BossSerpentsRoutine()
     {
 
         yield return _waitBetweenWaves;
@@ -135,6 +135,7 @@ public class SectionNode : MonoBehaviour, IPauseable
     }
     void Start()
     {
+        print("section node start");
         _dicSpawn.Add(SectionManager.WaveNumber.First, new List<EnemySpawner>());
         _dicSpawn.Add(SectionManager.WaveNumber.Second, new List<EnemySpawner>());
         _dicSpawn.Add(SectionManager.WaveNumber.Third, new List<EnemySpawner>());
@@ -183,7 +184,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         SetQuantityToDestroyToUnlockSomething();
     }
 
-    void OnBossDestroyed(params object[] param)
+    protected void OnBossDestroyed(params object[] param)
     {
         _bossAlive = false;
         StopAllEnemies();
@@ -198,7 +199,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    void SetQuantityToDestroyToUnlockSomething()
+    protected void SetQuantityToDestroyToUnlockSomething()
     {
         if (_allWallsThatHaveToUnlockDestroying.Length == 0)
             return;
@@ -262,7 +263,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    void OnEnemyDead(params object[] param)
+    protected void OnEnemyDead(params object[] param)
     {
         if ((SectionNode)param[1] == this)
         {
@@ -349,7 +350,7 @@ public class SectionNode : MonoBehaviour, IPauseable
     }
 
     //la idea es vaciar todo cuando se reinicia y se termina una seccion, asi no le pega nada cuaando la gana
-    void StopAllEnemies()
+    protected void StopAllEnemies()
     {
         OffScreenIndicatorManager.instance.CleanIndicators();
         StopAllCoroutines();
@@ -423,8 +424,8 @@ public class SectionNode : MonoBehaviour, IPauseable
                 SpawnPlayerInSpawnPoint(EnemiesManager.instance.player2);
             }
         }
-        object[] conteiner = new object[2];
-        conteiner[0] = "in";
+        object[] conteiner = new object[2]; // container
+        conteiner[0] = "in"; 
         conteiner[1] = this;
         EventManager.instance.ExecuteEvent(Constants.START_SECTION, conteiner);
 
@@ -492,7 +493,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         _currentTimeBetweenDelayedSpawn = 0;
     }
 
-    private void DropIfNeededPowerUpHelp(Vector3 position)
+    protected void DropIfNeededPowerUpHelp(Vector3 position)
     {
 
         Vector3 spawnPosition = position + new Vector3(0, 0, 4f);
@@ -514,7 +515,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         StartCoroutine(MultipleSpawnTriggerRoutine(quantity, sp));
     }
 
-    IEnumerator MultipleSpawnTriggerRoutine(int quantity, MultiEnemySpawner sp)
+    protected IEnumerator MultipleSpawnTriggerRoutine(int quantity, MultiEnemySpawner sp)
     {
         yield return _waitBetweenWaves;
         while (_paused)
@@ -540,7 +541,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         StartCoroutine(TriggerRoutine(allTriggerSpawners));
     }
 
-    IEnumerator TriggerRoutine(EnemySpawner[] allTriggerSpawners)
+    protected IEnumerator TriggerRoutine(EnemySpawner[] allTriggerSpawners)
     {
         yield return _waitBetweenWaves;
         while (_paused)
@@ -555,7 +556,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    IEnumerator WavesNodeRoutine()
+    protected IEnumerator WavesNodeRoutine()
     {
         if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
         {
@@ -611,7 +612,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    void SetWaves(SectionManager.WaveNumber wave)
+    protected void SetWaves(SectionManager.WaveNumber wave)
     {
         SoundManager.instance.PlaySpawnEnemy();
         if (!_dicSpawn.ContainsKey(wave))
@@ -627,7 +628,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    IEnumerator SpawnEnemy(EnemySpawner sP, SectionManager.WaveNumber wave)
+    protected IEnumerator SpawnEnemy(EnemySpawner sP, SectionManager.WaveNumber wave)
     {
         if (waveDelayedSpawn && wave == waveNumber)
         {
@@ -786,7 +787,7 @@ public class SectionNode : MonoBehaviour, IPauseable
     }
 
 
-    void OnPowerUpDropped(params object[] paramss)
+    protected void OnPowerUpDropped(params object[] paramss)
     {
         if (id == 0) LootTableManager.instance.SetDefaultProbavility();
 
@@ -846,7 +847,7 @@ public class SectionNode : MonoBehaviour, IPauseable
 
     public bool sectionHasMapNodes { get { return _allMapNodes.Length > 0; } }
 
-    void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(onGizmosSafeZoneChaser, radiusToSetPowerUpChaser);

@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Configuration : MonoBehaviour {
+    public enum Mode { Normal, RogueLike}
+    public Mode mode = Mode.Normal;
+
     public enum Dificulty { Easy, Medium, Hard };
     public Dificulty dificulty= Dificulty.Easy;
     public enum PlayersQuantity { One, Two };

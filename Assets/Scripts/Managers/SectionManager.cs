@@ -81,11 +81,19 @@ public class SectionManager : MonoBehaviour, IPauseable
         //para que no me rompa las bolas
 
         int nodeNumber = Configuration.instance.node;
+        print("Configuration.instance.node " + Configuration.instance.node);
         if (Configuration.instance.node >= 0)
         {
-
-            actualNode = GameObject.Find("SectionNode" + nodeNumber).GetComponent<SectionNode>();
+            if (Configuration.instance.mode == Configuration.Mode.Normal)
+            {
+                actualNode = GameObject.Find("SectionNode" + nodeNumber).GetComponent<SectionNode>();
+            }
+            else {
+                actualNode = GameObject.Find("SectionNode" + nodeNumber).GetComponent<SectionNodeRoguelike>();
+            }
+        
         }
+
         if (actualNode == null)
             return;
 
