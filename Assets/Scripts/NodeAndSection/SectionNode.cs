@@ -121,7 +121,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         bossSerpentRightOnScreen.gameObject.SetActive(true);
     }
 
-    public bool SectionCleared
+    public virtual bool SectionCleared
     {
         get
         {
