@@ -30,19 +30,38 @@ public class Settings : MonoBehaviour
     public void SetBerseker()
     {
         Configuration.instance.SetUltBerserker();
-        StartGame();
+        //StartGame();
     }
 
     public void SetScatter()
     {
         Configuration.instance.SetUltScatter();
-        StartGame();
+        //StartGame();
     }
     public void SetSpawnMinions()
     {
         Configuration.instance.SetSpawnMinions();
+        //StartGame();
+    }
+
+    public void SetBomb()
+    {
+        Configuration.instance.SetSpecialBomb();
         StartGame();
     }
+
+    public void SetMine()
+    {
+        Configuration.instance.SetSpecialMine();
+        StartGame();
+    }
+    public void SetSlow()
+    {
+        Configuration.instance.SetSpecialBomb();
+        StartGame();
+    }
+
+
 
     void StartGame()
     {

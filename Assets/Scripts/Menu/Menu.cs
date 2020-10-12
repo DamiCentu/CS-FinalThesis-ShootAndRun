@@ -43,6 +43,12 @@ public class Menu : MonoBehaviour {
             EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
     }
 
+    public void GoToSpecial(Waypoint waypoint)
+    {
+        if (waypoint != null)
+            EventManager.instance.ExecuteEvent(Constants.MENU_CAMERA_NAVIGATE, new object[] { waypoint });
+    }
+
     public void GoToMainMenu(Waypoint waypoint)
     {
         if (waypoint != null)
