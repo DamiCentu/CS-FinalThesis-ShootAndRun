@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SectionNodeRoguelike : SectionNode {
 
+    public List<GameObject> phases;
+    public int currentPhases=0;
     public override bool SectionCleared
     {
         get
@@ -15,43 +17,9 @@ public class SectionNodeRoguelike : SectionNode {
     }
     void Start () {
         print("section node start");
-        _dicSpawn.Add(SectionManager.WaveNumber.First, new List<EnemySpawner>());
-        _dicSpawn.Add(SectionManager.WaveNumber.Second, new List<EnemySpawner>());
-        _dicSpawn.Add(SectionManager.WaveNumber.Third, new List<EnemySpawner>());
-
-        _dicQuantityInWave.Add(SectionManager.WaveNumber.First, 0);
-        _dicQuantityInWave.Add(SectionManager.WaveNumber.Second, 0);
-        _dicQuantityInWave.Add(SectionManager.WaveNumber.Third, 0);
-
-        _allSpawns = transform.GetComponentsInChildren<EnemySpawner>();
-
-        _allSpawnsThatNotAffectEndOfNode = transform.GetComponentsInChildren<EnemySpawnerAtBeginningOfNode>();
-
-        _allMultiSpawns = transform.GetComponentsInChildren<MultiEnemySpawner>();
-
-        _allProps = transform.GetComponentsInChildren<PropsBehaviour>();
-
-        _allMapNodes = transform.GetComponentsInChildren<MapNode>();
-
-
-        foreach (var m in _allMultiSpawns)
-        {
-            _allQuantityInMultiEnemySpawners += m.quantityOfEnemies;
-        }
+        AddSpawns();
 
         Utility.ConnectMapNodes(_allMapNodes, objectToDetectConnectingNodes);
-
-        foreach (var spawn in _allSpawns)
-        {
-            if (_dicSpawn.ContainsKey(spawn.waveOfSpawn))
-            {
-                if (spawn.triggerSpawn)
-                    continue;
-                else
-                    _dicSpawn[spawn.waveOfSpawn].Add(spawn);
-            }
-        }
-
         _waitBetweenWaves = new WaitForSeconds(timeBetweenWaves);
         _waitBetweenSpawns = new WaitForSeconds(timeBetweenSpawns);
 
@@ -174,7 +142,10 @@ public class SectionNodeRoguelike : SectionNode {
         _allCubeActives.Clear();
         _allMisilEnemiesActive.Clear();
         _allFireEnemiesActive.Clear();
+        StopAllCoroutines();
 
+
+        currentPhases++;
         AddSpawns();
         object[] conteiner = new object[2]; // container
         conteiner[0] = "in"; 
@@ -194,10 +165,9 @@ public class SectionNodeRoguelike : SectionNode {
 
 
     void AddSpawns() {
-        StopAllCoroutines();
+
         _dicSpawn = new Dictionary<SectionManager.WaveNumber, List<EnemySpawner>>();
         _dicQuantityInWave = new Dictionary<SectionManager.WaveNumber, int>();
-
         _dicSpawn.Add(SectionManager.WaveNumber.First, new List<EnemySpawner>());
         _dicSpawn.Add(SectionManager.WaveNumber.Second, new List<EnemySpawner>());
         _dicSpawn.Add(SectionManager.WaveNumber.Third, new List<EnemySpawner>());
@@ -205,6 +175,21 @@ public class SectionNodeRoguelike : SectionNode {
         _dicQuantityInWave.Add(SectionManager.WaveNumber.First, 0);
         _dicQuantityInWave.Add(SectionManager.WaveNumber.Second, 0);
         _dicQuantityInWave.Add(SectionManager.WaveNumber.Third, 0);
+
+
+        GameObject curPhaseGO = phases[currentPhases];
+        _allSpawns = curPhaseGO.transform.GetComponentsInChildren<EnemySpawner>();
+        _allSpawnsThatNotAffectEndOfNode = curPhaseGO.transform.GetComponentsInChildren<EnemySpawnerAtBeginningOfNode>();
+        _allMultiSpawns = curPhaseGO.transform.GetComponentsInChildren<MultiEnemySpawner>();
+        _allProps = curPhaseGO.transform.GetComponentsInChildren<PropsBehaviour>();
+        _allMapNodes = curPhaseGO.transform.GetComponentsInChildren<MapNode>();
+
+
+        foreach (var m in _allMultiSpawns)
+        {
+            _allQuantityInMultiEnemySpawners += m.quantityOfEnemies;
+        }
+
 
 
         foreach (var spawn in _allSpawns)
