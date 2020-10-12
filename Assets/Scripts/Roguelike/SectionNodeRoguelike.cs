@@ -67,9 +67,7 @@ public class SectionNodeRoguelike : SectionNode {
     protected override IEnumerator WavesNodeRoutine()
     {
         while (true) {
-            ResetTimeBetweenWaves(SectionManager.WaveNumber.First);
-            ResetTimeBetweenWaves(SectionManager.WaveNumber.Second);
-            ResetTimeBetweenWaves(SectionManager.WaveNumber.Third);
+
             _currentTimeBetweenDelayedSpawn = 0;
             SetWaves(SectionManager.WaveNumber.First);
             yield return _waitBetweenWaves;
@@ -102,24 +100,54 @@ public class SectionNodeRoguelike : SectionNode {
 
             while (_dicQuantityInWave[SectionManager.WaveNumber.Third] > 0)
                 yield return null;
+            //ResetBetweenPhases();
+            yield return _waitBetweenWaves;
             NextStageSection();
+
 
         }
       
 
     }
 
-    private void ResetTimeBetweenWaves(SectionManager.WaveNumber wave )
-    {
-        foreach (var spawnPoint in _dicSpawn[wave])
-        {
-            if (spawnPoint.waveOfSpawn != wave || spawnPoint.triggerSpawn)
-                return;
-            _dicQuantityInWave[wave]=0;
+    private void ResetBetweenPhases() {
 
-            //StartCoroutine(SpawnEnemy(spawnPoint, wave));
+        OffScreenIndicatorManager.instance.CleanIndicators();
+        StopAllCoroutines();
+
+        EventManager.instance.ExecuteEvent(Constants.STOP_BERSERK);
+
+        EnemyBulletManager.instance.ReturnAllBullets();
+
+        _dicQuantityInWave[SectionManager.WaveNumber.First] = 0;
+        _dicQuantityInWave[SectionManager.WaveNumber.Second] = 0;
+        _dicQuantityInWave[SectionManager.WaveNumber.Third] = 0;
+
+        foreach (var e in _allFireEnemiesActive)
+        {
+            e.Stop();
         }
+
+        Utility.DeactivateList(_allNormalActives);
+        Utility.DeactivateList(_allChargerActives);
+        Utility.DeactivateList(_allTurretsActives);
+        Utility.DeactivateList(_allChasersActives);
+        Utility.DeactivateList(_allCubeActives);
+        Utility.DeactivateList(_allMisilEnemiesActive);
+        Utility.DeactivateList(_allFireEnemiesActive);
+
+        _allNormalActives.Clear();
+        _allChargerActives.Clear();
+        _allTurretsActives.Clear();
+        _allChasersActives.Clear();
+        _allCubeActives.Clear();
+        _allMisilEnemiesActive.Clear();
+        _allFireEnemiesActive.Clear();
+
+        Utility.DestroyAllInAndClearList(_allMiniBoss);
     }
+
+
 
   
 
@@ -131,7 +159,23 @@ public class SectionNodeRoguelike : SectionNode {
     
     public void NextStageSection()
     {
+        Utility.DeactivateList(_allNormalActives);
+        Utility.DeactivateList(_allChargerActives);
+        Utility.DeactivateList(_allTurretsActives);
+        Utility.DeactivateList(_allChasersActives);
+        Utility.DeactivateList(_allCubeActives);
+        Utility.DeactivateList(_allMisilEnemiesActive);
+        Utility.DeactivateList(_allFireEnemiesActive);
 
+        _allNormalActives.Clear();
+        _allChargerActives.Clear();
+        _allTurretsActives.Clear();
+        _allChasersActives.Clear();
+        _allCubeActives.Clear();
+        _allMisilEnemiesActive.Clear();
+        _allFireEnemiesActive.Clear();
+
+        AddSpawns();
         object[] conteiner = new object[2]; // container
         conteiner[0] = "in"; 
         conteiner[1] = this;
@@ -149,26 +193,33 @@ public class SectionNodeRoguelike : SectionNode {
     }
 
 
+    void AddSpawns() {
+        StopAllCoroutines();
+        _dicSpawn = new Dictionary<SectionManager.WaveNumber, List<EnemySpawner>>();
+        _dicQuantityInWave = new Dictionary<SectionManager.WaveNumber, int>();
+
+        _dicSpawn.Add(SectionManager.WaveNumber.First, new List<EnemySpawner>());
+        _dicSpawn.Add(SectionManager.WaveNumber.Second, new List<EnemySpawner>());
+        _dicSpawn.Add(SectionManager.WaveNumber.Third, new List<EnemySpawner>());
+
+        _dicQuantityInWave.Add(SectionManager.WaveNumber.First, 0);
+        _dicQuantityInWave.Add(SectionManager.WaveNumber.Second, 0);
+        _dicQuantityInWave.Add(SectionManager.WaveNumber.Third, 0);
 
 
-
-
-    protected void SetWaves(SectionManager.WaveNumber wave)
-    {
-        SoundManager.instance.PlaySpawnEnemy();
-        if (!_dicSpawn.ContainsKey(wave))
-            return;
-     //   if (_dicQuantityInWave[wave] == 3) _dicQuantityInWave[wave] = 0;
-
-        foreach (var spawnPoint in _dicSpawn[wave])
+        foreach (var spawn in _allSpawns)
         {
-            if (spawnPoint.waveOfSpawn != wave || spawnPoint.triggerSpawn)
-                return;
-            _dicQuantityInWave[wave]++;
-
-            StartCoroutine(SpawnEnemy(spawnPoint, wave));
+            if (_dicSpawn.ContainsKey(spawn.waveOfSpawn))
+            {
+                if (spawn.triggerSpawn)
+                    continue;
+                else
+                    _dicSpawn[spawn.waveOfSpawn].Add(spawn);
+            }
         }
     }
+
+
 
 
 
