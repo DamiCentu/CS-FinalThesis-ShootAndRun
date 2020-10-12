@@ -556,7 +556,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    protected IEnumerator WavesNodeRoutine()
+    protected virtual IEnumerator WavesNodeRoutine()
     {
         if (TutorialBehaviour.instance != null && TutorialBehaviour.instance.IsTutorialNode)
         {
