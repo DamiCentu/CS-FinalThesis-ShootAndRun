@@ -9833,7 +9833,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34843135}
-        m_MethodName: SetScatter
+        m_MethodName: SetSlow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13062,7 +13062,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34843135}
-        m_MethodName: SetBerseker
+        m_MethodName: SetBomb
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19665,8 +19665,8 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 580230336}
-  m_LocalRotation: {x: -0, y: 0.9767416, z: -0, w: -0.21441971}
-  m_LocalPosition: {x: 241.85138, y: 0, z: 277.27448}
+  m_LocalRotation: {x: -0, y: 0.99799335, z: -0, w: 0.06331865}
+  m_LocalPosition: {x: 241.85138, y: 28.5, z: 277.27448}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 1143186907}
@@ -19676,7 +19676,7 @@ Transform:
   - {fileID: 1821112091}
   m_Father: {fileID: 1946030220}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 204.76299, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 172.73901, z: 0}
 --- !u!1 &586130558
 GameObject:
   m_ObjectHideFlags: 0
@@ -27710,8 +27710,8 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 859177358}
-  m_LocalRotation: {x: -0, y: 0.99900603, z: -0, w: 0.0445756}
-  m_LocalPosition: {x: 247.6, y: 22.36, z: 446.4}
+  m_LocalRotation: {x: -0, y: 0.82951725, z: -0, w: 0.5584811}
+  m_LocalPosition: {x: 158.9, y: 57.3, z: 247.4}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 213972415}
@@ -27721,7 +27721,7 @@ Transform:
   - {fileID: 323383482}
   m_Father: {fileID: 1946030220}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 174.89001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 112.09801, z: 0}
 --- !u!1 &860876373
 GameObject:
   m_ObjectHideFlags: 0
@@ -41120,7 +41120,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34843135}
-        m_MethodName: SetScatter
+        m_MethodName: SetSlow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47864,7 +47864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1517801429
 Transform:
   m_ObjectHideFlags: 0
@@ -47873,7 +47873,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1517801428}
   m_LocalRotation: {x: -0, y: 0.66832435, z: -0, w: 0.74387}
-  m_LocalPosition: {x: 169.6, y: 22.36, z: 135.01}
+  m_LocalPosition: {x: 261.5, y: 22.36, z: 188.1}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 1627719299}
@@ -54234,7 +54234,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34843135}
-        m_MethodName: SetSpawnMinions
+        m_MethodName: SetMine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -55132,7 +55132,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705363314}
   m_LocalRotation: {x: -0, y: 0.49613714, z: -0, w: 0.8682442}
-  m_LocalPosition: {x: 22.724068, y: 0, z: 108.19673}
+  m_LocalPosition: {x: -17, y: 0, z: 177}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 383153595}
@@ -58187,7 +58187,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34843135}
-        m_MethodName: SetBerseker
+        m_MethodName: SetBomb
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -60731,7 +60731,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34843135}
-        m_MethodName: SetSpawnMinions
+        m_MethodName: SetMine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
