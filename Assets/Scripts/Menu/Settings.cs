@@ -61,7 +61,12 @@ public class Settings : MonoBehaviour
         StartGame();
     }
 
-
+    public void SetRoguelikeMode()
+    {
+        Configuration.instance.mode=Configuration.Mode.RogueLike;
+        Configuration.instance.node = 1;
+        StartGame();
+    }
 
     void StartGame()
     {

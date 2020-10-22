@@ -193,6 +193,7 @@ public class SectionNode : MonoBehaviour, IPauseable
     //Spawnea en el en todos los spawns que no afecten en el final del nodo y setea la cantidad de enemigos para desbloquear algo
     public void SpawnEnemyAtStart()
     {
+        if (Configuration.instance.mode == Configuration.Mode.RogueLike) return;
         foreach (var sP in _allSpawnsThatNotAffectEndOfNode)
         {
             SpawnEnemyAtPointAtStartNoCuentaParaTerminarNodo(sP);

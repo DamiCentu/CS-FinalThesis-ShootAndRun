@@ -22330,12 +22330,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 34843136}
-        m_MethodName: SetLvl1
-        m_Mode: 2
+      - m_Target: {fileID: 34843135}
+        m_MethodName: SetRoguelikeMode
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 848553614}
-          m_ObjectArgumentAssemblyTypeName: Waypoint, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
