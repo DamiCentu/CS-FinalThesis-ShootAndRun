@@ -88,6 +88,7 @@ public class Constants : MonoBehaviour
 
     public const string LEVEL_1_SCENE_NAME = "nivelPrueba";
     public const string LEVEL_2_SCENE_NAME = "Scene2";
+    public const string LEVEL_ROGUELIKE_SCENE_NAME = "prueba";
     public const string MENU_SCENE_NAME = "Menu";
 
     public const string GO_TO_LEVEL_COMPLETE_SCENE = "goToLevelCompleteScene";

@@ -65,14 +65,23 @@ public class Settings : MonoBehaviour
 
     void StartGame()
     {
-        if (Configuration.instance.lvl == 1)
-        {
-            StartCoroutine(LoadAsync(Constants.LEVEL_1_SCENE_NAME));
+        if (Configuration.Mode.RogueLike == Configuration.instance.mode) {
+            StartCoroutine(LoadAsync(Constants.LEVEL_ROGUELIKE_SCENE_NAME));
         }
         else
         {
-            StartCoroutine(LoadAsync(Constants.LEVEL_2_SCENE_NAME));
+            if (Configuration.instance.lvl == 1)
+            {
+                StartCoroutine(LoadAsync(Constants.LEVEL_1_SCENE_NAME));
+            }
+            else
+            {
+                StartCoroutine(LoadAsync(Constants.LEVEL_2_SCENE_NAME));
+            }
+
         }
+
+
     }
 
     public void NextLvl()

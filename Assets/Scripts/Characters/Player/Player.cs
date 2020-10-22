@@ -41,7 +41,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     public int dashCount = 1;
     public int MaxDashCount = 1;
     
-    public enum Ults { SlowTime, Berserker,Scatter,Spawn}
+    public enum Ults { SlowTime, Berserker,Scatter,Spawn,None}
     public Ults ult;
     public bool _gotShield= false;
     public GameObject shield;
@@ -88,6 +88,8 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
         SetSpecial();
 
+
+    
         _isInvulnerable = false;
         timerToUlt = ultTimer;
         _anim = this.GetComponent<Animator>();
@@ -97,6 +99,12 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
         _meshRends = GetComponentsInChildren<Renderer>();
         ult = Configuration.instance.playerUlt;
+        if (Configuration.instance.mode == Configuration.Mode.RogueLike)
+        {
+            ult = Player.Ults.None;
+
+        }
+
     }
 
     private void SetEvents()
