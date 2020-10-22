@@ -8,6 +8,7 @@ public class SectionNodeRoguelike : SectionNode {
     public List<GameObject> phases;
     public int currentPhases=0;
     public override bool SectionCleared
+
     {
         get
         {
@@ -15,6 +16,8 @@ public class SectionNodeRoguelike : SectionNode {
             return false;
         }
     }
+    bool shouldShowRogueLikeUI = false;
+
     void Start () {
         print("section node start");
         AddSpawns();
@@ -70,12 +73,23 @@ public class SectionNodeRoguelike : SectionNode {
                 yield return null;
             //ResetBetweenPhases();
             yield return _waitBetweenWaves;
+            ShowRogueLikeUI(1);
+            shouldShowRogueLikeUI = true;
+            while (shouldShowRogueLikeUI){
+                yield return new WaitForSeconds(1);
+            }
+
             NextStageSection();
 
 
         }
       
 
+    }
+
+    private void ShowRogueLikeUI(int v)
+    {
+        throw new NotImplementedException();
     }
 
     private void ResetBetweenPhases() {

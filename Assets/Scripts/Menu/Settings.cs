@@ -57,7 +57,7 @@ public class Settings : MonoBehaviour
     }
     public void SetSlow()
     {
-        Configuration.instance.SetSpecialBomb();
+        Configuration.instance.SetSpecialSlow();
         StartGame();
     }
 
