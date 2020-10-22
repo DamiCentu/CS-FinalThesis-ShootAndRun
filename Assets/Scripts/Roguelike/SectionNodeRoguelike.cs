@@ -20,6 +20,7 @@ public class SectionNodeRoguelike : SectionNode {
 
     void Start () {
         print("section node start");
+        LootTableManager.instance.SetRoguelikeProbability();
         AddSpawns();
 
         Utility.ConnectMapNodes(_allMapNodes, objectToDetectConnectingNodes);
@@ -89,7 +90,7 @@ public class SectionNodeRoguelike : SectionNode {
 
     private void ShowRogueLikeUI(int v)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     private void ResetBetweenPhases() {

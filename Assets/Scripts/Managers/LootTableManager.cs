@@ -226,4 +226,9 @@ public class LootTableManager : MonoBehaviour {
     {
         probability = 1;
     }
+
+    public void SetRoguelikeProbability()
+    {
+        probability = 0;
+    }
 }
