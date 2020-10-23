@@ -8,7 +8,7 @@ public class Mine : IShootable {
     public GameObject prefabMine;
     bool mineSet= false;
     GameObject mine;
-    public float radius = 30;
+    public float radius;
     public LayerMask hittableLayer;
     public float timeToBoom = 2;
     Timer timer;
@@ -21,7 +21,9 @@ public class Mine : IShootable {
     public override void Shoot(Transform shootPosition, Vector3 forward)
     {
         mine = Instantiate(prefabMine, shootPosition.transform.position, Quaternion.Euler(forward));
-        mine.GetComponent<MineBullet>().Boom();
+        var bullet = mine.GetComponent<MineBullet>();
+        bullet.SetRadius(radius);
+        bullet.Boom();
         /*   if (mineSet) {
                mine.GetComponent<MineBullet>().Boom();
                mineSet = false;

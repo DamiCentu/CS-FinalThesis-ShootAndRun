@@ -6,7 +6,7 @@ using System.Linq;
 
 public class MineBullet : MonoBehaviour {
 
-    public float radius=20;
+    public float radius;
     public LayerMask hittableLayer;
     public float timeToBoom=2;
     Timer timer;
@@ -15,6 +15,10 @@ public class MineBullet : MonoBehaviour {
     private float waitTime=2;
     private List<AbstractEnemy> enemiesToAffects;
     private float minDistance=3.5f;
+
+    public void SetRadius(float newRadius) {
+        radius = newRadius;
+    }
 
     public void Boom()
     {
