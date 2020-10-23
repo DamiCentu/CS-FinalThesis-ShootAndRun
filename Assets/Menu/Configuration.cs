@@ -113,6 +113,7 @@ public class Configuration : MonoBehaviour {
 
 
     public int GetCreditsAmount() {
+        if (mode == Mode.RogueLike) return 1;
         if (dificulty == Dificulty.Easy) {
             return creditsEasy;
         }

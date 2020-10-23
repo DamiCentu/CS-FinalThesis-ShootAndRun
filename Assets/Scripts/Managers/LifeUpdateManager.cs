@@ -19,7 +19,7 @@ public class LifeUpdateManager : MonoBehaviour {
 	void Start () {
         _currentCredits = Configuration.instance.GetCreditsAmount(); 
         _currentLifes = maxLifes;
-
+        if (Configuration.instance.mode ==Configuration.Mode.RogueLike) _currentLifes = 1;
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead); 
         StartCoroutine(UpdateRoutine());
     }

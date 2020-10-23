@@ -561,6 +561,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
             if (_gotShield)
             {
                 powerUpManager.DisableShield();
+                
                 return;
             }
             EventManager.instance.ExecuteEvent(Constants.PLAYER_DEAD);
@@ -581,6 +582,10 @@ public class Player : MonoBehaviour, IHittable , IPauseable
 
     }
 
+    public void RogueGetRandomPowerUP() {
+        powerUpManager.ExtraDash();
+    }
+
     IEnumerator Integrate()
     {
         float timer = -1;
@@ -596,7 +601,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     private void Portal(object[] parameterContainer)
     {
 
-        //FLOR ESTA FUNCION(portal) SE EJECTUTA 2 VECES Y HACE QUE EL EVENTO DENTRO DE FinishSpawn() SE EJECUTE 2 VECES
+        //FLOR ESTA FUNCI(portal) SE EJECTUTA 2 VECES Y HACE QUE EL EVENTO DENTRO DE FinishSpawn() SE EJECUTE 2 VECES
         //GENERANDO EL PROBLEMA DE SPAWN ESE DE LA TORRETA QUE SE ESTA MOVIENDO
         //LO QUE PASA ES LO SIGUIENTE: EN SECTIONMANAGER LLAMAS 2 VECES ESTO, LA PRIMERA AUNQUE PAREZCA RARO, 
         //LO ESTAS USANDO PARA QUE APAREZCA EL PORTAL CUANDO TERMINA LA SECCION, (OLVIDATE DE DENTRO DE IF BOSS NODE)

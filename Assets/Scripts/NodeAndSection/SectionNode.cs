@@ -613,7 +613,7 @@ public class SectionNode : MonoBehaviour, IPauseable
         }
     }
 
-    protected void SetWaves(SectionManager.WaveNumber wave)
+    protected virtual void SetWaves(SectionManager.WaveNumber wave)
     {
         SoundManager.instance.PlaySpawnEnemy();
         if (!_dicSpawn.ContainsKey(wave))

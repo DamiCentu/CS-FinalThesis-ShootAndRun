@@ -69,6 +69,12 @@ public class LootTableManager : MonoBehaviour {
         EventManager.instance.AddEvent(Constants.POWER_UP_DROPED);
         EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, ShouldDropPowerUp);
         EventManager.instance.SubscribeEvent(Constants.POWER_UP_PICKED, OnPowerUpPicked);
+
+    }
+
+    private void OnPowerUpGain(object[] parameterContainer)
+    {
+        throw new NotImplementedException();
     }
 
     private void SetDefaultProbability()

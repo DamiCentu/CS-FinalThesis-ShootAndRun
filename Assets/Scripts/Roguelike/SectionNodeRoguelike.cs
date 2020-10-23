@@ -7,16 +7,20 @@ public class SectionNodeRoguelike : SectionNode {
 
     public List<GameObject> phases;
     public int currentPhases=0;
+    public List<int> enemiesPerPhases;
+    public List<int> pointsPerPhases;
+    int curWave=0;
+    public GameObject roguelikeUI;
+    public List<GameObject> PlayUI;
     public override bool SectionCleared
 
     {
         get
         {
-
             return false;
         }
     }
-    bool shouldShowRogueLikeUI = false;
+    public bool shouldShowRogueLikeUI = false;
 
     void Start () {
         print("section node start");
@@ -38,7 +42,7 @@ public class SectionNodeRoguelike : SectionNode {
 
     protected override IEnumerator WavesNodeRoutine()
     {
-        while (true) {
+        while (curWave != enemiesPerPhases.Count) {
 
             _currentTimeBetweenDelayedSpawn = 0;
             SetWaves(SectionManager.WaveNumber.First);
@@ -50,12 +54,13 @@ public class SectionNodeRoguelike : SectionNode {
             while (_dicQuantityInWave[SectionManager.WaveNumber.First] > 0)
                 yield return null;
             _currentTimeBetweenDelayedSpawn = 0;
+            curWave += 1;
             SetWaves(SectionManager.WaveNumber.Second);
             yield return _waitBetweenWaves;
 
             while (_paused)
                 yield return null;
-
+            
             while (_dicQuantityInWave[SectionManager.WaveNumber.Second] > 0)
                 yield return null;
 
@@ -64,6 +69,7 @@ public class SectionNodeRoguelike : SectionNode {
                 EventManager.instance.ExecuteEvent(Constants.UI_TUTORIAL_CHANGE, UIManager.TUTORIAL_ULTIMATE);
             }
             _currentTimeBetweenDelayedSpawn = 0;
+            curWave += 1;
             SetWaves(SectionManager.WaveNumber.Third);
             yield return _waitBetweenWaves;
 
@@ -73,24 +79,50 @@ public class SectionNodeRoguelike : SectionNode {
             while (_dicQuantityInWave[SectionManager.WaveNumber.Third] > 0)
                 yield return null;
             //ResetBetweenPhases();
-            yield return _waitBetweenWaves;
-            ShowRogueLikeUI(1);
+            yield return new WaitForSeconds(2);
+            ShowRogueLikeUI(true,1);
             shouldShowRogueLikeUI = true;
-            while (shouldShowRogueLikeUI){
-                yield return new WaitForSeconds(1);
-            }
-
+          //  while (shouldShowRogueLikeUI){
+                yield return new WaitForSeconds(5);
+            //    }
+            FindObjectOfType<Player>().RogueGetRandomPowerUP();
+            ShowRogueLikeUI(false, -1);
+            curWave += 1;
             NextStageSection();
-
-
         }
-      
-
     }
 
-    private void ShowRogueLikeUI(int v)
+    protected override void SetWaves(SectionManager.WaveNumber wave)
     {
-        //throw new NotImplementedException();
+
+        SoundManager.instance.PlaySpawnEnemy();
+        if (!_dicSpawn.ContainsKey(wave))
+            return;
+        var takenPos= new List<int>();
+        EnemySpawner spawnPoint;
+        for (int i = 0; i < enemiesPerPhases[curWave]; i++)
+        {
+            int indexSpawn = UnityEngine.Random.Range(0, _dicSpawn[wave].Count - 1);
+            while (takenPos.Contains(indexSpawn)) {
+                indexSpawn = UnityEngine.Random.Range(0, _dicSpawn[wave].Count - 1);
+            }
+            takenPos.Add(indexSpawn);
+            spawnPoint = _dicSpawn[wave][indexSpawn];
+            _dicQuantityInWave[wave]++;
+            StartCoroutine(SpawnEnemy(spawnPoint, wave));
+        }
+
+    }
+    
+
+    private void ShowRogueLikeUI(bool value, int phase)
+    {
+        foreach (var item in PlayUI)
+        {
+            item.SetActive(!value);
+        }
+        roguelikeUI.SetActive(value);
+        if (value) roguelikeUI.GetComponent<RogueLikeUI>().SetPhase(phase);
     }
 
     private void ResetBetweenPhases() {
