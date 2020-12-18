@@ -145,9 +145,12 @@ public class SectionManager : MonoBehaviour, IPauseable
 
     IEnumerator slowRoutine()
     {
+        var g = Camera.main.GetComponent<slowPostProcess>();
+        Camera.main.GetComponent<slowPostProcess>().enabled = !g.enabled;
         yield return new WaitForSeconds(slowDuration);
         while (_paused)
             yield return null;
+        Camera.main.GetComponent<slowPostProcess>().enabled = !g.enabled;
         _enemiesMultiplator = Constants.ENEMIES_NORMAL_MULTIPLICATOR;
     }
 

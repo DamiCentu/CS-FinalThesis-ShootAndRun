@@ -9,7 +9,6 @@ public class MyPostProcessingManager : MonoBehaviour {
     public Material BerserkMaterial;
     public Material NoShaderMaterial;
     public Material ScatterMaterial;
-
     Material _material;
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -19,4 +18,6 @@ public class MyPostProcessingManager : MonoBehaviour {
 
         Graphics.Blit(source, destination, NoShaderMaterial);
     }
+
+
 }

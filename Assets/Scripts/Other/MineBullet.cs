@@ -22,9 +22,9 @@ public class MineBullet : MonoBehaviour {
 
     public void Boom()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius, hittableLayer, QueryTriggerInteraction.Collide);
+        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius*3, hittableLayer, QueryTriggerInteraction.Collide);
         enemiesToAffects = FindClosestEnemies(hitColliders);
-
+        
         foreach (var e in enemiesToAffects) {
             e.GetComponent<Flocking>().SetTarget(this.gameObject);
         }
