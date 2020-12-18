@@ -12,7 +12,7 @@ public class MineBullet : MonoBehaviour {
     Timer timer;
     public int damage = 3;
     private int maxNumber=5;
-    private float waitTime=2;
+    public float waitTime=2;
     private List<AbstractEnemy> enemiesToAffects;
     private float minDistance=3.5f;
 

@@ -17,13 +17,15 @@ public class Mine : IShootable {
     private float waitTime = 2;
     private List<AbstractEnemy> enemiesToAffects;
     private float minDistance = 5;
+    MineBullet bullet; 
 
     public override void Shoot(Transform shootPosition, Vector3 forward)
     {
         mine = Instantiate(prefabMine, shootPosition.transform.position, Quaternion.Euler(forward));
-        var bullet = mine.GetComponent<MineBullet>();
+         bullet = mine.GetComponent<MineBullet>();
         bullet.SetRadius(radius);
         bullet.Boom();
+        StartCoroutine("StartBoom");
         /*   if (mineSet) {
                mine.GetComponent<MineBullet>().Boom();
                mineSet = false;
@@ -36,6 +38,14 @@ public class Mine : IShootable {
                mine.transform.forward = forward;
                mineSet = true;
            }*/
+
+    }
+
+    private IEnumerator StartBoom()
+    {
+
+        yield return new WaitForSeconds(bullet.waitTime);
+        GetComponentInChildren<AudioSource>().Play();
 
     }
 }

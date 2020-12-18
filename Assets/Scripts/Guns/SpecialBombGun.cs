@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpecialBombGun : IShootable {
     public GameObject prefabBombBullet;
+    GameObject b;
     public override void Shoot(Transform shootPosition, Vector3 forward)
     {
         //print("asd");
@@ -11,9 +12,14 @@ public class SpecialBombGun : IShootable {
         {
             _timer = cooldown;
             //print("holu");
-            GameObject b =Instantiate(prefabBombBullet, shootPosition.transform.position, Quaternion.Euler(forward));
+             b =Instantiate(prefabBombBullet, shootPosition.transform.position, Quaternion.Euler(forward));
             b.transform.forward = forward;
         }
 
+
     }
+
+
 }
+
+

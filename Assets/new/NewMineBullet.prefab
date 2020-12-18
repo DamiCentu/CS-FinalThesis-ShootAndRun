@@ -103,6 +103,7 @@ MonoBehaviour:
     m_Bits: 4096
   timeToBoom: 1
   damage: 15
+  waitTime: 2
 --- !u!114 &114583417521787112
 MonoBehaviour:
   m_ObjectHideFlags: 1

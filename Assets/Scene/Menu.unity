@@ -3877,7 +3877,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5500009
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13215,6 +13215,7 @@ GameObject:
   - component: {fileID: 384365670}
   - component: {fileID: 384365669}
   - component: {fileID: 384365668}
+  - component: {fileID: 384365671}
   m_Layer: 5
   m_Name: VidImage
   m_TagString: Untagged
@@ -13230,7 +13231,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 384365666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00006484985}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 5.180889, y: 2.8330774, z: 2.5756013}
   m_Children: []
   m_Father: {fileID: 1804149438}
@@ -13314,7 +13315,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 8400000, guid: f6803f046f7acf04d81617ba187bf74f, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -13328,6 +13329,39 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 384365666}
+--- !u!328 &384365671
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 384365666}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 073d058e150d63041b92874e86262190, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: f6803f046f7acf04d81617ba187bf74f, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 1
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
 --- !u!1 &384749962
 GameObject:
   m_ObjectHideFlags: 0
@@ -14665,7 +14699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 684.60004, y: -285.10986}
+  m_AnchoredPosition: {x: 684.60004, y: -210}
   m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &436073919
@@ -15480,7 +15514,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.878
+      value: 3.32
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20864,9 +20898,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- deploy bait -
+  m_Text: '
 
-    - kill near enemies -
+    - kill nearBY enemies -
 
 '
 --- !u!222 &620042873
@@ -22173,7 +22207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &681139936
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23900,7 +23934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 684.60004, y: -393.60986}
+  m_AnchoredPosition: {x: 684.60004, y: -319}
   m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727168835
@@ -28597,7 +28631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 865767044}
   m_Layer: 5
-  m_Name: Drone
+  m_Name: mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41693,6 +41727,7 @@ GameObject:
   - component: {fileID: 1306978583}
   - component: {fileID: 1306978582}
   - component: {fileID: 1306978581}
+  - component: {fileID: 1306978584}
   m_Layer: 5
   m_Name: VidImage
   m_TagString: Untagged
@@ -41792,7 +41827,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 8400000, guid: ccd5489bc5288f44f866d33e34c0ab8c, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -41806,6 +41841,39 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1306978579}
+--- !u!328 &1306978584
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1306978579}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: a535d923c7430864ab20f50815ea5914, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: ccd5489bc5288f44f866d33e34c0ab8c, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 1
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
 --- !u!1 &1307740993
 GameObject:
   m_ObjectHideFlags: 0
@@ -49371,7 +49439,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_IsActive
@@ -54423,7 +54491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669301269}
   m_Layer: 5
-  m_Name: scatter
+  m_Name: slow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56099,7 +56167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 684.6, y: -61.004944}
+  m_AnchoredPosition: {x: 684.6, y: -116}
   m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1715700877
@@ -58078,18 +58146,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: acf3b960bb73f82428db22a29aa4e01f, type: 3}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 80
+    m_MinSize: 1
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Campaign
+  m_Text: PLAY
 --- !u!222 &1776552501
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58823,7 +58891,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1804149437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 33.799934}
+  m_LocalPosition: {x: 0, y: 0, z: 33}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
   - {fileID: 384365667}
@@ -61450,6 +61518,7 @@ GameObject:
   - component: {fileID: 1875718101}
   - component: {fileID: 1875718100}
   - component: {fileID: 1875718099}
+  - component: {fileID: 1875718102}
   m_Layer: 5
   m_Name: VidImage
   m_TagString: Untagged
@@ -61549,7 +61618,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 8400000, guid: 279154c650cc8a946992463746fe51a1, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -61563,6 +61632,39 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875718097}
+--- !u!328 &1875718102
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1875718097}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 32beaeeaedc282945bb37d2ddb80c3c3, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 279154c650cc8a946992463746fe51a1, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 1
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
 --- !u!1 &1875874227
 GameObject:
   m_ObjectHideFlags: 0
@@ -64900,7 +65002,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6580007
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_LocalPosition.z
