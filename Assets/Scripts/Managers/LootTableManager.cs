@@ -34,9 +34,9 @@ public class LootTableManager : MonoBehaviour {
         SetDefaultProbability();
 
         SubscribeEvents();
+        InitializePowerupAvailability();
         ConfigurePowerUps();
         probability = 1;
-
 
         if (Configuration.instance.lvl == 2)
         {
@@ -56,10 +56,10 @@ public class LootTableManager : MonoBehaviour {
         powerUps.Add(doubleShoot.gameObject);
         powerUps.Add(extraDash.gameObject);
         powerUps.Add(shield.gameObject);
+        print("ConfigurePowerUps," + availablePowerupDropQuantities.Count);
         foreach (var item in availablePowerupDropQuantities)
         {
             totalPowerUps += item;
-            availablePowerupDropQuantities.Add(0);
         }
         totalPowerAvailable = totalPowerUps;
     }
@@ -97,13 +97,7 @@ public class LootTableManager : MonoBehaviour {
 
     private void UpdatePowerUpQuantity(object[] parameterContainer)
     {
-        if (availablePowerupDropQuantities.Count < 4)
-        {
-            availablePowerupDropQuantities.Add(0);
-            availablePowerupDropQuantities.Add(0);
-            availablePowerupDropQuantities.Add(0);
-            availablePowerupDropQuantities.Add(0);
-        }
+        InitializePowerupAvailability();
         availablePowerupDropQuantities[0] = 3 - (int)parameterContainer[0];
         availablePowerupDropQuantities[1] = 2 - (int)parameterContainer[1];
         availablePowerupDropQuantities[2] = 4 - (int)parameterContainer[2];
@@ -116,6 +110,17 @@ public class LootTableManager : MonoBehaviour {
         ));
         totalPowerAvailable = availablePowerupDropQuantities[0] + availablePowerupDropQuantities[1] + availablePowerupDropQuantities[2] + availablePowerupDropQuantities[3];
         //print("powerUPsAvailable :" + totalPowerAvailable + cantidades[0] + cantidades[1] + cantidades[2] + cantidades[3]);
+    }
+
+    private void InitializePowerupAvailability()
+    {
+        if (availablePowerupDropQuantities.Count < 4)
+        {
+            availablePowerupDropQuantities.Add(0);
+            availablePowerupDropQuantities.Add(0);
+            availablePowerupDropQuantities.Add(0);
+            availablePowerupDropQuantities.Add(0);
+        }
     }
 
     private void ShouldDropPowerUp(object[] parameterContainer) {//[3] son para saber si tiene que hacer particulas

@@ -8,6 +8,8 @@ public class PowerUpDoubleShoot : IPowerUp {
 
     void OnTriggerEnter(Collider other)
     {
+        EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
+        ///
         Player p = other.GetComponent<Player>();
         if (p != null) {
             object[] container = new object[1];
