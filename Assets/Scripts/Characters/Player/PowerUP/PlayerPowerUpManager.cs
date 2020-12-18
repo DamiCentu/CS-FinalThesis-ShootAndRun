@@ -48,7 +48,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
                 AddRange();
                 break;
         }
-                    RecalculatePowerUp();
+        RecalculatePowerUp();
     }
     private void ChangePrimaryWeapon(IShootable weapon)
     {

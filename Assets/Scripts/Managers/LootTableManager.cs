@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LootTableManager : MonoBehaviour {
@@ -9,7 +10,7 @@ public class LootTableManager : MonoBehaviour {
     public PowerUpExtraDash extraDash;
     public PowerUpMoreRange range;
     public Shield shield;
-    public List<int> cantidades;
+    public List<int> availablePowerupDropQuantities = new List<int>();
     public List<GameObject> powerUps;
     private float probability=0.2f;
     public float easyDefaultProbability = 0.15f;
@@ -55,9 +56,10 @@ public class LootTableManager : MonoBehaviour {
         powerUps.Add(doubleShoot.gameObject);
         powerUps.Add(extraDash.gameObject);
         powerUps.Add(shield.gameObject);
-        foreach (var item in cantidades)
+        foreach (var item in availablePowerupDropQuantities)
         {
             totalPowerUps += item;
+            availablePowerupDropQuantities.Add(0);
         }
         totalPowerAvailable = totalPowerUps;
     }
@@ -95,11 +97,24 @@ public class LootTableManager : MonoBehaviour {
 
     private void UpdatePowerUpQuantity(object[] parameterContainer)
     {
-        cantidades[0] = 3 - (int)parameterContainer[0];
-        cantidades[1] = 2 - (int)parameterContainer[1];
-        cantidades[2] = 4 - (int)parameterContainer[2];
-        cantidades[3] = 1 - (int)parameterContainer[3];
-        totalPowerAvailable = cantidades[0] + cantidades[1] + cantidades[2] + cantidades[3];
+        if (availablePowerupDropQuantities.Count < 4)
+        {
+            availablePowerupDropQuantities.Add(0);
+            availablePowerupDropQuantities.Add(0);
+            availablePowerupDropQuantities.Add(0);
+            availablePowerupDropQuantities.Add(0);
+        }
+        availablePowerupDropQuantities[0] = 3 - (int)parameterContainer[0];
+        availablePowerupDropQuantities[1] = 2 - (int)parameterContainer[1];
+        availablePowerupDropQuantities[2] = 4 - (int)parameterContainer[2];
+        availablePowerupDropQuantities[3] = 1 - (int)parameterContainer[3];
+        print(String.Format("{0}, {1}, {2}, {3}",
+            availablePowerupDropQuantities[0],
+            availablePowerupDropQuantities[1],
+            availablePowerupDropQuantities[2],
+            availablePowerupDropQuantities[3]
+        ));
+        totalPowerAvailable = availablePowerupDropQuantities[0] + availablePowerupDropQuantities[1] + availablePowerupDropQuantities[2] + availablePowerupDropQuantities[3];
         //print("powerUPsAvailable :" + totalPowerAvailable + cantidades[0] + cantidades[1] + cantidades[2] + cantidades[3]);
     }
 
@@ -112,6 +127,22 @@ public class LootTableManager : MonoBehaviour {
         Vector3 position = a.transform.position;
 
         var dirToPlayer = EnemiesManager.instance.player.transform.position - position;
+
+        // if primer tutorial
+        // drop power up
+
+        if (TutorialBehaviour.instance != null)
+        {
+            print("tutorial behaviour is online");
+            if (!TutorialBehaviour.instance.isFirstEnemyKilled)
+            {
+                print("first enemy not killed");
+                bool dropped = DropPowerUp(position, true, a);
+                print("dropped? " + dropped.ToString());
+                return;
+            }
+        }
+
 
         if( Physics.Raycast(position, dirToPlayer, dirToPlayer.magnitude, objectToDetectOnSpawnPowerUp)) {
             if( TutorialBehaviour.instance != null) {
@@ -133,7 +164,7 @@ public class LootTableManager : MonoBehaviour {
         }
     }
 
-    internal void DropPowerUp(Vector3 position, bool withChaser, AbstractEnemy a=null)
+    internal bool DropPowerUp(Vector3 position, bool withChaser, AbstractEnemy a=null)
     {
         int typeOfPowerup = TypeOfRandomPowerup();
         //print("typeOfPowerup" + typeOfPowerup);
@@ -143,32 +174,38 @@ public class LootTableManager : MonoBehaviour {
             if (withChaser)
             {
                 EventManager.instance.ExecuteEvent(Constants.POWER_UP_DROPED, new object[] { a.GetCurrentSectionNode, go });
+                return true;
             }
         }
+        return false;
     }
 
     public int TypeOfRandomPowerup()
     {
-        float random = UnityEngine.Random.Range(0f, 1f);
-        float lastProb = 0;
-        for (int i = 0; i < cantidades.Count; i++)
+        var availablePowerupsList = new List<int>();
+        for (int i = 0; i < availablePowerupDropQuantities.Count; i++)
         {
-            float value = lastProb + ((float)cantidades[i] / totalPowerUps);
-            if (random <= value)
+            for (int j = 0; j < availablePowerupDropQuantities[i]; j++)
             {
-                return i;
+                availablePowerupsList.Add(i);
             }
-            lastProb = value;
         }
 
-        return -1;
+        if (availablePowerupsList.Count == 0)
+        {
+            return -1;
+        }
+
+        int index = (new System.Random()).Next(availablePowerupsList.Count);
+
+        return availablePowerupsList[index];
     }
 
     public GameObject InstantiatePowerUp(Vector3 position, int i)
     {
         var go = Instantiate(powerUps[i], position, this.transform.rotation);
         go.SetActive(true);
-        cantidades[i]--;
+        availablePowerupDropQuantities[i]--;
         totalPowerAvailable--;
         _allGamePowerUps.Add(go);
         return go;

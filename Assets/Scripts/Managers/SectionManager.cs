@@ -172,6 +172,8 @@ public class SectionManager : MonoBehaviour, IPauseable
             actualNode.RestartSection();
 
             actualNode.SetEnemiesRemaining();
+
+            EnemiesManager.instance.player.GetComponent<Player>().powerUpManager.RecalculatePowerUp();
         }
     }
 
