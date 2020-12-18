@@ -24,9 +24,9 @@ public class PlayerPowerUpManager : MonoBehaviour {
             player.MaxDashCount++;
             PowerUpExtraDashNUmber++;
             player.RefreshDashUI();
-            RecalculatePowerUp();
-        }
 
+        }
+        RecalculatePowerUp();
     }
 
     private void SoulRecover(object[] parameterContainer)
