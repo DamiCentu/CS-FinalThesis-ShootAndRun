@@ -123,9 +123,7 @@ public class LootTableManager : MonoBehaviour {
             return;
 
         AbstractEnemy a = (AbstractEnemy)parameterContainer[2];
-
         Vector3 position = a.transform.position;
-
         var dirToPlayer = EnemiesManager.instance.player.transform.position - position;
 
         // if primer tutorial
@@ -154,11 +152,13 @@ public class LootTableManager : MonoBehaviour {
                 return;
             }
         }
-
+        print("antes de imprimir");
         if (0 != totalPowerAvailable) { //si no agarre todos lso power ups
+            print("es distinto de 0 total power Available");
             float random = UnityEngine.Random.Range(0f, 1f);
             if (random <= probability)
             {
+                print("dropped? " + random+ " probability "+  probability);
                 DropPowerUp(position,true,a);
             }
         }
