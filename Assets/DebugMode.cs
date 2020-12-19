@@ -30,11 +30,13 @@ public class DebugMode : MonoBehaviour {
         powerUpManager.AddRange();
         powerUpManager.AddRange();
         powerUpManager.EnableShield(new object[1]);
-        powerUpManager.RecalculatePowerUp();
+
         Player p = FindObjectOfType<Player>();
         object[] container = new object[1];
         container[0] = PrimaryWeaponManager.instance.GetNextPowerUp(p.primaryGun);
         EventManager.instance.ExecuteEvent("UpgradeWeapon", container);
+
+        powerUpManager.RecalculatePowerUp();
     }
 
 

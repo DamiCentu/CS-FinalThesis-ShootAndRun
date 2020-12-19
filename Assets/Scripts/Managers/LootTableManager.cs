@@ -98,7 +98,7 @@ public class LootTableManager : MonoBehaviour {
     private void UpdatePowerUpQuantity(object[] parameterContainer)
     {
         InitializePowerupAvailability();
-        availablePowerupDropQuantities[0] = 3 - (int)parameterContainer[0];
+        availablePowerupDropQuantities[0] = 2 - (int)parameterContainer[0];
         availablePowerupDropQuantities[1] = 2 - (int)parameterContainer[1];
         availablePowerupDropQuantities[2] = 4 - (int)parameterContainer[2];
         availablePowerupDropQuantities[3] = 1 - (int)parameterContainer[3];
@@ -167,6 +167,12 @@ public class LootTableManager : MonoBehaviour {
                 DropPowerUp(position,true,a);
             }
         }
+        print(String.Format("{0}, {1}, {2}, {3}",
+            availablePowerupDropQuantities[0],
+            availablePowerupDropQuantities[1],
+            availablePowerupDropQuantities[2],
+            availablePowerupDropQuantities[3]
+));
     }
 
     internal bool DropPowerUp(Vector3 position, bool withChaser, AbstractEnemy a=null)
@@ -190,6 +196,7 @@ public class LootTableManager : MonoBehaviour {
         var availablePowerupsList = new List<int>();
         for (int i = 0; i < availablePowerupDropQuantities.Count; i++)
         {
+            if (availablePowerupDropQuantities[i] <= 0) continue;
             for (int j = 0; j < availablePowerupDropQuantities[i]; j++)
             {
                 availablePowerupsList.Add(i);
