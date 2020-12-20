@@ -91,8 +91,8 @@ Material:
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.231, g: 0.231, b: 0.231, a: 1}
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0.08823532, g: 0.08823532, b: 0.08823532, a: 1}
+    - _EmissionColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _HitWorldPos: {r: -4.21, g: 0.56, b: 4.18, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
