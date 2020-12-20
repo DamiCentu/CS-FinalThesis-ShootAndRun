@@ -13,6 +13,8 @@ public class AchivementManager : MonoBehaviour {
     List<string> allAchivements= new List<string> { "No Deads", "LVL 1 Complete", "LVL 2 Complete", "Better, Faster, Stronger" };
     List<string> activeAchivements = new List<string> { "No Deads", "LVL 1 Complete", "LVL 2 Complete" };
     AchivementsUI achivementsUI;
+    public bool reset=false;
+  
 
 
     void Start()
@@ -21,14 +23,23 @@ public class AchivementManager : MonoBehaviour {
         achivementsUI = FindObjectOfType<AchivementsUI>();
         EventManager.instance.SubscribeEvent("ObtainAchivements", ObtainAchivements);
         //LoadAchivements();
-        SaveAchivements();
+        LoadAchivements();
         print(activeAchivements[0]);
+    }
+
+    private void Update()
+    {
+        if (reset) {
+            activeAchivements = new List<string>();
+            SaveAchivements();
+        }
     }
 
     private void ObtainAchivements(object[] parameterContainer)
     {
         string achivement = (string)parameterContainer[0];
         if (!activeAchivements.Contains(achivement)) {
+            if (activeAchivements.Count == 0) activeAchivements = new List<string>();
             activeAchivements.Add(achivement);
             achivementsUI.ShowEvent(achivement);
             SaveAchivements();
@@ -54,7 +65,7 @@ public class AchivementManager : MonoBehaviour {
         string jsonString = JsonConvert.SerializeObject(activeAchivements, Formatting.Indented);
         File.WriteAllText(getAchivementJson(), jsonString);
 
-        LoadAchivements();
+        ;
     }
 
     private static string getAchivementJson()

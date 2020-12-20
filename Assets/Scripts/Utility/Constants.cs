@@ -96,4 +96,12 @@ public class Constants : MonoBehaviour
 
     public const string MENU_CAMERA_NAVIGATE = "menuCameraNavigate";
     public const string MENU_BUTTON_CLICKED = "menuButtonClicked";
+
+
+    public const string ACHIVEMENT_NO_DEATH = "UI_ACHIVEMENT_NO_DEATH";
+    public static string ACHIVEMENT_MINI_BOSS_DEFEAT = "ACHIVEMENT_MINI_BOSS_DEFEAT";
+    public static string ACHIVEMENT_DASH_DASH_DASH = "ACHIVEMENT_DASH_DASH_DASH";
+
+
+    public static string ACHIVEMENT_DASH_DASH_DASH { get; internal set; }
 }

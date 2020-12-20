@@ -74,6 +74,7 @@ public class PointsManager : MonoBehaviour {
                 _currentPointsInSection += pointsSO.noDieInSectionPoints;
                 EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
                 EventManager.instance.ExecuteEvent(Constants.UI_NOTIFICATION_TEXT_UPDATE, new object[] { "No death section! +" + pointsSO.noDieInSectionPoints.ToString() });
+                EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_NO_DEATH, new object[] { });
             }
         }
     }
@@ -162,11 +163,14 @@ public class PointsManager : MonoBehaviour {
         }
         else if (enemy is PowerUpChaserEnemy)
         {
+
             return pointsSO.powerUpChaserPoints;
         }
         else if (enemy is MiniBossBehaviour)
         {
+            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_MINI_BOSS_DEFEAT, new object[] { });
             return pointsSO.minibossPointsPoints;
+
         }
         else if (enemy is CubeEnemyBehaviour)
         {

@@ -9,7 +9,7 @@ public class AchivementsUI : MonoBehaviour {
     public Image panel;
     public float fadeTime;
     public float showTime;
-
+    public Coroutine corutine;
 
     private void Start()
     {
@@ -26,7 +26,9 @@ public class AchivementsUI : MonoBehaviour {
 	}
 
     public void ShowEvent(string eventName) {
-        StartCoroutine(ShowEventCorutine(eventName));
+        if(corutine!=null)
+            StopCoroutine(corutine);
+        corutine= StartCoroutine(ShowEventCorutine(eventName));
     }
 
     IEnumerator ShowEventCorutine(string eventName)

@@ -39,6 +39,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     public AnimationCurve dashMovement;
     private Vector3 dashDirection;
     public int dashCount = 1;
+    public int dashTotalCount = 0;
     public int MaxDashCount = 1;
     
     public enum Ults { SlowTime, Berserker,Scatter,Spawn,None}
@@ -99,6 +100,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         EventManager.instance.ExecuteEvent(Constants.SHOW_SKILL_UI, container);
         _meshRends = GetComponentsInChildren<Renderer>();
         ult = Configuration.instance.playerUlt;
+        dashTotalCount = 0;
         if (Configuration.instance.mode == Configuration.Mode.RogueLike)
         {
             ult = Player.Ults.None;
@@ -471,6 +473,11 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         _timeDashing = 0;
         dashDirection = direction;
         dashCount--;
+        dashTotalCount++;
+        if (dashTotalCount > 20) {
+            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_DASH_DASH_DASH, new object[] { });
+        }
+
         RefreshDashUI();
     }
 
