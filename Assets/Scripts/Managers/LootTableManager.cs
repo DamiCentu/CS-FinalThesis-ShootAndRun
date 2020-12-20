@@ -225,6 +225,7 @@ public class LootTableManager : MonoBehaviour {
 
     void OnPowerUpPicked(params object[] param) {
         var go = (GameObject)param[0];
+        print(go.name);
         if (_allGamePowerUps.Contains(go)) { 
             _allGamePowerUps.Remove(go);
             Destroy(go);

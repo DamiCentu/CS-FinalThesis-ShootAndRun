@@ -19,6 +19,7 @@ public class PointsManager : MonoBehaviour {
     bool _playerDied = false;
     bool _canDispatchEvent = false;
 
+    int countEnemiesDead = 0;
     SectionNode _currentNode;
 
     public int CurrentPoints { get { return _currentPoints; } }
@@ -33,6 +34,7 @@ public class PointsManager : MonoBehaviour {
 
         _enemiesInRowComboToMultiply = pointsSO.baseEnemiesInRowComboToMultiply;
         _currentMultiplier = pointsSO.baseAcumulativeMultiplier;
+        countEnemiesDead = 0;
     }
 
     private void OnBossDestroyed(object[] parameterContainer)
@@ -124,6 +126,10 @@ public class PointsManager : MonoBehaviour {
             _currentPointsInSection += pointsToSum;
 
             EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
+            countEnemiesDead++;
+            if (countEnemiesDead == 100) {
+                EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_100_ENEMIES_DEAD, new object[] { });
+            }
         }
     }
 

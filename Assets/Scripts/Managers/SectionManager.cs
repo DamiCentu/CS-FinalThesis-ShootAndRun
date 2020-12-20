@@ -268,6 +268,7 @@ public class SectionManager : MonoBehaviour, IPauseable
                     //yield return null;
                 }
                 SoundManager.instance.StageComplete();
+                EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_FIRST_STAGE_COMPLETE, new object[] { });
                 InfoManager.instance.CountDown(waitTimeForNextNodeSectionWhenFinish);
                 yield return new WaitForSeconds(waitTimeForNextNodeSectionWhenFinish);
                 while (_paused)
@@ -286,7 +287,12 @@ public class SectionManager : MonoBehaviour, IPauseable
         //    TutorialBehaviour.instance.EndTutorial();
         //}
         // throw new System.Exception("GAMEOVER");
-
+        if (Configuration.instance.lvl == 1) {
+            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_LVL1_COMPLETE, new object[] { });
+        }
+        else if (Configuration.instance.lvl == 2) {
+            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_LVL2_COMPLETE, new object[] { });
+        }
         StartCoroutine(WinRoutine());
     }
 

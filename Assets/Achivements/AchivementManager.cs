@@ -10,8 +10,10 @@ using UnityEngine;
 [System.Serializable]
 public class AchivementManager : MonoBehaviour {
 
-    List<string> allAchivements= new List<string> { "No Deads", "LVL 1 Complete", "LVL 2 Complete", "Better, Faster, Stronger" };
-    List<string> activeAchivements = new List<string> { "No Deads", "LVL 1 Complete", "LVL 2 Complete" };
+    List<string> allAchivements= new List<string> { "UI_ACHIVEMENT_NO_DEATH", "ACHIVEMENT_MINI_BOSS_DEFEAT", "ACHIVEMENT_DASH_DASH_DASH", "ACHIVEMENT_LVL2_COMPLETE", "ACHIVEMENT_LVL1_COMPLETE", "ACHIVEMENT_FIRST_STAGE_COMPLETE","ACHIVEMENT_UPGRADE_WEAPON", "ACHIVEMENT_POWER_UP_RECOVER", "ACHIVEMENT_MORE_RANGE", "ACHIVEMENT_SHIELD","ACHIVEMENT_CLOSE_DEATH","ACHIVEMENT_EXTRA_DASH", "ACHIVEMENT_100_ENEMIES_DEAD" };
+    List<string> activeAchivements = new List<string>();
+
+
     AchivementsUI achivementsUI;
     public bool reset=false;
   
@@ -19,12 +21,39 @@ public class AchivementManager : MonoBehaviour {
 
     void Start()
     {
-        activeAchivements.Add("hols");
         achivementsUI = FindObjectOfType<AchivementsUI>();
-        EventManager.instance.SubscribeEvent("ObtainAchivements", ObtainAchivements);
+        EventManager.instance.SubscribeEvent("UI_ACHIVEMENT_NO_DEATH", x => ObtainAchivements("Not Today"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_ACHIVEMENT_MINI_BOSS_DEFEAT", x => ObtainAchivements("Elite Dead"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_EXTRA_DASH", x=>ObtainAchivements("Faster"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_DASH_DASH_DASH", x=>ObtainAchivements("DASH, DASH, DASH"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_LVL2_COMPLETE", x=>ObtainAchivements("LVL 2 complete"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_LVL1_COMPLETE", x=>ObtainAchivements("LVL 1 complete"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_UPGRADE_WEAPON", x=>ObtainAchivements("MORE BULLETS"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_POWER_UP_RECOVER", x=>ObtainAchivements("Power up recover"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_MORE_RANGE", x=>ObtainAchivements("Far away"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_SHIELD", x=>ObtainAchivements("She protect"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_CLOSE_DEATH", x=>ObtainAchivements("Almost Dead"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_100_ENEMIES_DEAD", x=>ObtainAchivements("100 enemies dead"));
+
+
         //LoadAchivements();
         LoadAchivements();
         print(activeAchivements[0]);
+    }
+
+    private void ACHIVEMENT_EXTRA_DASH(object[] parameterContainer)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ObtainAchivementsMINI_BOSS_DEFEAT(object[] parameterContainer)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ObtainAchivementsUnTouchable(object[] parameterContainer)
+    {
+        throw new NotImplementedException();
     }
 
     private void Update()
@@ -35,9 +64,8 @@ public class AchivementManager : MonoBehaviour {
         }
     }
 
-    private void ObtainAchivements(object[] parameterContainer)
+    private void ObtainAchivements(string achivement)
     {
-        string achivement = (string)parameterContainer[0];
         if (!activeAchivements.Contains(achivement)) {
             if (activeAchivements.Count == 0) activeAchivements = new List<string>();
             activeAchivements.Add(achivement);

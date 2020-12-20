@@ -31,6 +31,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     private void SoulRecover(object[] parameterContainer)
     {
+        EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_POWER_UP_RECOVER, new object[] { });
         PowerUp p = (PowerUp)parameterContainer[0];
         switch (p)
         {
@@ -64,6 +65,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
         {
             SoundManager.instance.PlayQuadraShoot();
         }
+        EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_UPGRADE_WEAPON, new object[] { });
         InfoManager.instance.Info("Double Shoot");
         PowerUpDoubleShootNumber++;
         ChangePrimaryWeapon((IShootable)parameterContainer[0]);
@@ -78,6 +80,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     public void UpdateRange(object[] parameterContainer)
     {
+
         if ((int)parameterContainer[0]>0) {
             SoundManager.instance.PlayHigherRange();
         }
@@ -94,6 +97,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     public void AddRange()
     {
+        EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_MORE_RANGE, new object[] { });
         SoundManager.instance.PlayHigherRange();
         InfoManager.instance.Info("Higher Range");
         PowerUpRangeNumber++;
@@ -105,6 +109,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
     
     public void EnableShield(object[] parameterContainer)
     {
+        EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_SHIELD, new object[] { });
         SoundManager.instance.PlayShield();
         InfoManager.instance.Info("Shield");
         player._gotShield = true;
@@ -115,6 +120,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     public void DisableShield()
     {
+        EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_CLOSE_DEATH, new object[] { });
         PowerUpShieldNumber--;
         player._gotShield = false;
         player.shield.gameObject.SetActive(false);
@@ -131,6 +137,7 @@ public class PlayerPowerUpManager : MonoBehaviour {
 
     public void ExtraDash()
     {
+        EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_EXTRA_DASH, new object[] { });
         SoundManager.instance.PlayExtraDash();
         InfoManager.instance.Info("Extra Dash");
         player.MaxDashCount++;
