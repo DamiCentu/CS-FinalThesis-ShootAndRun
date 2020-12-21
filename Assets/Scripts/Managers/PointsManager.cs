@@ -83,6 +83,7 @@ public class PointsManager : MonoBehaviour {
 
     private void OnPlayerDead(object[] parameterContainer)
     {
+        countEnemiesDead = 0;
         _playerDied = true;
         _currentPoints -= _currentPointsInSection;
         _currentMultiplier = pointsSO.baseAcumulativeMultiplier;

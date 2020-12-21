@@ -287,11 +287,14 @@ public class SectionManager : MonoBehaviour, IPauseable
         //    TutorialBehaviour.instance.EndTutorial();
         //}
         // throw new System.Exception("GAMEOVER");
-        if (Configuration.instance.lvl == 1) {
-            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_LVL1_COMPLETE, new object[] { });
-        }
-        else if (Configuration.instance.lvl == 2) {
-            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_LVL2_COMPLETE, new object[] { });
+
+        if (Configuration.instance.lvl == 2) {
+            if (Configuration.instance.dificulty== Configuration.Dificulty.Easy)
+                EventManager.instance.ExecuteEvent("ACHIVEMENT_EASY_COMPLETE", new object[] { });
+            else if (Configuration.instance.dificulty == Configuration.Dificulty.Medium)
+                EventManager.instance.ExecuteEvent("ACHIVEMENT_MEDIUM_COMPLETE", new object[] { });
+            else if (Configuration.instance.dificulty == Configuration.Dificulty.Hard)
+                EventManager.instance.ExecuteEvent("ACHIVEMENT_HARD_COMPLETE", new object[] { });
         }
         StartCoroutine(WinRoutine());
     }

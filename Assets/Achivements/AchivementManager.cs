@@ -11,7 +11,6 @@ using UnityEngine;
 public class AchivementManager : MonoBehaviour {
 
 //    List<string> allAchivements= new List<string> { "UI_ACHIVEMENT_NO_DEATH", "ACHIVEMENT_MINI_BOSS_DEFEAT", "ACHIVEMENT_DASH_DASH_DASH", "ACHIVEMENT_LVL2_COMPLETE", "ACHIVEMENT_LVL1_COMPLETE", "ACHIVEMENT_FIRST_STAGE_COMPLETE","ACHIVEMENT_UPGRADE_WEAPON", "ACHIVEMENT_POWER_UP_RECOVER", "ACHIVEMENT_MORE_RANGE", "ACHIVEMENT_SHIELD","ACHIVEMENT_CLOSE_DEATH","ACHIVEMENT_EXTRA_DASH", "ACHIVEMENT_100_ENEMIES_DEAD" };
-    List<string> allAchivements = new List<string> { "UI_ACHIVEMENT_NO_DEATH", "ACHIVEMENT_MINI_BOSS_DEFEAT", "ACHIVEMENT_DASH_DASH_DASH", "ACHIVEMENT_LVL2_COMPLETE", "ACHIVEMENT_LVL1_COMPLETE", "ACHIVEMENT_FIRST_STAGE_COMPLETE", "ACHIVEMENT_UPGRADE_WEAPON", "ACHIVEMENT_POWER_UP_RECOVER", "ACHIVEMENT_100_ENEMIES_DEAD" };
 
     List<string> activeAchivements = new List<string>();
     AchivementsUI achivementsUI;
@@ -23,18 +22,18 @@ public class AchivementManager : MonoBehaviour {
     {
         achivementsUI = FindObjectOfType<AchivementsUI>();
         EventManager.instance.SubscribeEvent("UI_ACHIVEMENT_NO_DEATH", x => ObtainAchivements("Not Today"));
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_ACHIVEMENT_MINI_BOSS_DEFEAT", x => ObtainAchivements("No Elite"));
-        //EventManager.instance.SubscribeEvent("ACHIVEMENT_EXTRA_DASH", x=>ObtainAchivements("Faster"));
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_DASH_DASH_DASH", x=>ObtainAchivements("Dash Dash"));//AUMENTAR A 50
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_CLOSE_DEATH", x=>ObtainAchivements("Almost"));
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_100_ENEMIES_DEAD", x=>ObtainAchivements("100"));
-
-
-
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_FRENESI", x => ObtainAchivements("Frenesi")); //TODO CAMBIARRR
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_DASH_DASH_DASH", x=>ObtainAchivements("Dash Dash"));//
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_100_ENEMIES_DEAD", x => ObtainAchivements("100"));
+         EventManager.instance.SubscribeEvent("ACHIVEMENT_ACHIVEMENT_MINI_BOSS_DEFEAT", x => ObtainAchivements("No Elite"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_EASY_COMPLETE", x => ObtainAchivements("Easy"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_MEDIUM_COMPLETE", x => ObtainAchivements("Medium"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_HARD_COMPLETE", x => ObtainAchivements("Hard"));
+
+
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_CLOSE_DEATH", x=>ObtainAchivements("Almost"));
+
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_FRENESI", x => ObtainAchivements("Frenesi")); //TODO CAMBIARRR
+
 
         //LoadAchivements();
         LoadAchivements();

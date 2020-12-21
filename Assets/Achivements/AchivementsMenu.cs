@@ -126,7 +126,7 @@ public class AchivementsMenu : MonoBehaviour {
     public void NoElite()
     {
         if (actives.Contains("No Elite"))
-            description.text = "Win level 1 without having an Elite";
+            description.text = "Kill an Elite enemie";
         else description.text = "??????????????";
 
     }
