@@ -27,6 +27,8 @@ public class SoundManager : MonoBehaviour {
     public AudioSource gameOver;
     public AudioSource stageComplete;
     public AudioSource quadraShoot;
+    public AudioSource mine;
+    public AudioSource slow;
 
     void Awake()
     {
@@ -54,6 +56,14 @@ public class SoundManager : MonoBehaviour {
         portalFadeLoop.Stop();
         portalFadeOut.Play();
         //StartCoroutine(VolumeEffectRoutine(portalFadeOut, false));
+    }
+
+    public void PlayMine() {
+        mine.Play();
+    }
+
+    public void PlaySlow() {
+        slow.Play();
     }
 
     internal void PlayQuadraShoot()

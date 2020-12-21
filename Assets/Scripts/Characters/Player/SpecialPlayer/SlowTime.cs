@@ -10,7 +10,7 @@ public class SlowTime : IShootable {
 
     public override void Shoot(Transform shootPosition, Vector3 forward)
     {
-        GetComponentInChildren<AudioSource>().Play();
+        SoundManager.instance.PlaySlow();
 
         print("slow!!!");
         EventManager.instance.ExecuteEvent(Constants.SLOW_TIME);

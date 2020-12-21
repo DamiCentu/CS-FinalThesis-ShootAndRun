@@ -45,7 +45,7 @@ public class Mine : IShootable {
     {
 
         yield return new WaitForSeconds(bullet.waitTime);
-        GetComponentInChildren<AudioSource>().Play();
+        SoundManager.instance.PlayMine();
 
     }
 }
