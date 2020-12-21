@@ -899,7 +899,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1155,7 +1155,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1612,7 +1612,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3313,7 +3313,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3386,7 +3386,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4118,7 +4118,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4879,11 +4879,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (5)
@@ -5969,7 +5969,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7455,7 +7455,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7707,7 +7707,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7928,7 +7928,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9519,7 +9519,7 @@ GameObject:
   - component: {fileID: 226630788}
   - component: {fileID: 226630787}
   m_Layer: 5
-  m_Name: Low
+  m_Name: Not Today
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9612,6 +9612,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: NotTodayActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -9691,18 +9702,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &226630790
@@ -10160,11 +10160,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (8)
@@ -11861,7 +11861,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13778,7 +13778,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16373,7 +16373,7 @@ GameObject:
   - component: {fileID: 398176026}
   - component: {fileID: 398176025}
   m_Layer: 5
-  m_Name: Low (1)
+  m_Name: DASH DASH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16466,6 +16466,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: DashDashActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -16545,18 +16556,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &398176028
@@ -19207,7 +19207,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20160,11 +20160,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (4)
@@ -21808,7 +21808,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22414,7 +22414,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22487,7 +22487,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24872,7 +24872,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29670,7 +29670,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -30474,7 +30474,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -31729,7 +31729,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32341,7 +32341,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32756,11 +32756,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (3)
@@ -32850,7 +32850,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -34656,11 +34656,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton
@@ -34942,7 +34942,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36271,7 +36271,7 @@ GameObject:
   - component: {fileID: 907390780}
   - component: {fileID: 907390779}
   m_Layer: 5
-  m_Name: Low (4)
+  m_Name: NO ELite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36364,6 +36364,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: NoElitective
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -36443,18 +36454,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &907390782
@@ -38592,7 +38592,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40454,11 +40454,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (1)
@@ -41575,7 +41575,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -42985,7 +42985,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -43767,7 +43767,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44240,7 +44240,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -45131,7 +45131,7 @@ GameObject:
   - component: {fileID: 1177608668}
   - component: {fileID: 1177608667}
   m_Layer: 5
-  m_Name: Low (7)
+  m_Name: Hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45224,6 +45224,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: HardActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -45303,18 +45314,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1177608670
@@ -45561,7 +45561,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -46710,7 +46710,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47925,7 +47925,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48116,7 +48116,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48158,7 +48158,7 @@ GameObject:
   - component: {fileID: 1262467339}
   - component: {fileID: 1262467338}
   m_Layer: 5
-  m_Name: Low (5)
+  m_Name: Frenesi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48251,6 +48251,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: FrenesiActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -48330,18 +48341,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1262467341
@@ -48500,7 +48500,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48650,7 +48650,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -48994,7 +48994,7 @@ GameObject:
   - component: {fileID: 1279600674}
   - component: {fileID: 1279600673}
   m_Layer: 5
-  m_Name: Low (8)
+  m_Name: Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49087,6 +49087,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: MediumActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -49166,18 +49177,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1279600676
@@ -51584,7 +51584,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -52952,7 +52952,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -53766,7 +53766,7 @@ GameObject:
   - component: {fileID: 1388685530}
   - component: {fileID: 1388685529}
   m_Layer: 5
-  m_Name: Low (6)
+  m_Name: Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53859,6 +53859,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: EasyActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -53938,18 +53949,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1388685532
@@ -55251,7 +55251,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -56615,7 +56615,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -57595,7 +57595,7 @@ GameObject:
   - component: {fileID: 1475379717}
   - component: {fileID: 1475379716}
   m_Layer: 5
-  m_Name: Low (2)
+  m_Name: Almost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57688,6 +57688,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: AlmostActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -57767,18 +57778,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1475379719
@@ -58549,11 +58549,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (2)
@@ -58744,7 +58744,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -59137,7 +59137,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -59579,7 +59579,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -59727,7 +59727,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -61395,7 +61395,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -62194,7 +62194,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -63792,7 +63792,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -63940,7 +63940,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -64199,7 +64199,7 @@ GameObject:
   - component: {fileID: 1609791282}
   - component: {fileID: 1609791281}
   m_Layer: 5
-  m_Name: QualitySettings (1)
+  m_Name: Achivement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64265,14 +64265,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 99450452}
   description: {fileID: 1053877121}
-  nO_DEATH: {fileID: 0}
-  mINI_BOSS_DEFEAT: {fileID: 0}
-  dASH: {fileID: 0}
-  lVL_2: {fileID: 0}
-  lVL_1: {fileID: 0}
+  nO_DEATH: {fileID: 226630785}
+  frenesi: {fileID: 0}
+  noElite: {fileID: 907390777}
+  a100: {fileID: 2083170836}
+  dashDash: {fileID: 398176023}
+  medium: {fileID: 1279600671}
+  easy: {fileID: 1388685527}
+  hard: {fileID: 1177608665}
   rECOVER: {fileID: 0}
-  almost: {fileID: 0}
-  enemies100: {fileID: 0}
+  almost: {fileID: 1475379714}
+  active: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
 --- !u!1 &1614512052
 GameObject:
   m_ObjectHideFlags: 0
@@ -66255,7 +66258,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66332,7 +66335,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66480,7 +66483,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68193,7 +68196,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69187,7 +69190,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69951,7 +69954,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70024,7 +70027,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70128,7 +70131,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70765,7 +70768,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -73435,11 +73438,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (6)
@@ -73756,7 +73759,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76063,11 +76066,11 @@ Prefab:
     - target: {fileID: 2300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 2300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+      objectReference: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
     - target: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
       propertyPath: m_Name
       value: marcoLowButton (7)
@@ -76921,7 +76924,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -78182,7 +78185,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  m_Material: {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -79392,7 +79395,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81805,7 +81808,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82472,7 +82475,7 @@ GameObject:
   - component: {fileID: 2083170839}
   - component: {fileID: 2083170838}
   m_Layer: 5
-  m_Name: Low (3)
+  m_Name: 100
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82565,6 +82568,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: A100Active
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -82644,18 +82658,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 34843135}
-        m_MethodName: SetLowGraphics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &2083170841
@@ -82921,7 +82924,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83025,7 +83028,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83640,7 +83643,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4869aa87e7a8466408936c4e09f19f43, type: 2}
+  - {fileID: 2100000, guid: aefc6d878a19b9a41b9ca9959f823ba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
