@@ -55,6 +55,10 @@ public class ScatterUlt : MonoBehaviour , IPauseable {
         
         for (int i = 0; i < amount - 1; i++)
         {
+            if (balls.Count < i + 1)
+            {
+                break;
+            }
             Vector3 dir = balls[i + 1].transform.position - balls[i].transform.position;
             float dis = Vector3.Distance(balls[i].transform.position, balls[i+1].transform.position);
             //Debug.Log(dir);
