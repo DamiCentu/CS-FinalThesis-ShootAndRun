@@ -28,6 +28,14 @@ public class AchivementsMenu : MonoBehaviour {
         achivements = GetComponent<AchivementManager>();
         actives = achivements.ActiveAchivements();
         NotTodayActive();
+        DashDashActive();
+        FrenesiActive();
+        NoElitective();
+        A100Active();
+        MediumActive();
+        EasyActive();
+        HardActive();
+        AlmostActive();
 
 
     }
