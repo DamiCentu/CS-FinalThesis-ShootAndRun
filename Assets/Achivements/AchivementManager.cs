@@ -26,16 +26,12 @@ public class AchivementManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent("ACHIVEMENT_ACHIVEMENT_MINI_BOSS_DEFEAT", x => ObtainAchivements("No Elite"));
         //EventManager.instance.SubscribeEvent("ACHIVEMENT_EXTRA_DASH", x=>ObtainAchivements("Faster"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_DASH_DASH_DASH", x=>ObtainAchivements("Dash Dash"));//AUMENTAR A 50
-
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_LVL1_COMPLETE", x=>ObtainAchivements("LVL 1 complete"));
-        //EventManager.instance.SubscribeEvent("ACHIVEMENT_UPGRADE_WEAPON", x=>ObtainAchivements("MORE BULLETS"));
-        EventManager.instance.SubscribeEvent("ACHIVEMENT_FRENESI", x=>ObtainAchivements("Frenesi")); //TODO CAMBIARRR
-        //EventManager.instance.SubscribeEvent("ACHIVEMENT_MORE_RANGE", x=>ObtainAchivements("Far away"));
-        //EventManager.instance.SubscribeEvent("ACHIVEMENT_SHIELD", x=>ObtainAchivements("She protect"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_CLOSE_DEATH", x=>ObtainAchivements("Almost"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_100_ENEMIES_DEAD", x=>ObtainAchivements("100"));
 
 
+
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_FRENESI", x => ObtainAchivements("Frenesi")); //TODO CAMBIARRR
         EventManager.instance.SubscribeEvent("ACHIVEMENT_EASY_COMPLETE", x => ObtainAchivements("Easy"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_MEDIUM_COMPLETE", x => ObtainAchivements("Medium"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_HARD_COMPLETE", x => ObtainAchivements("Hard"));

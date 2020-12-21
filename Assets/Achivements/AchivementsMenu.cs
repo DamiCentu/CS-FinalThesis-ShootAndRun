@@ -61,7 +61,7 @@ public class AchivementsMenu : MonoBehaviour {
     }
     public void Frenesi()
     {
-        if (actives.Contains("Not Today"))
+        if (actives.Contains("Frenesi"))
             description.text = "Kill 20 enemies in 5 seconds";
         else description.text = "??????????????";
 
@@ -70,7 +70,7 @@ public class AchivementsMenu : MonoBehaviour {
     }
     public void NoElite()
     {
-        if (actives.Contains("Not Today"))
+        if (actives.Contains("No Elite"))
             description.text = "Win level 1 without having an Elite";
         else description.text = "??????????????";
 
@@ -79,7 +79,7 @@ public class AchivementsMenu : MonoBehaviour {
     }
     public void Easy()
     {
-        if (actives.Contains("Not Today"))
+        if (actives.Contains("Easy"))
             description.text = "Win the game in Easy Mode";
         else description.text = "??????????????";
 
@@ -89,7 +89,7 @@ public class AchivementsMenu : MonoBehaviour {
 
     public void Medium()
     {
-        if (actives.Contains("Not Today"))
+        if (actives.Contains("Medium"))
             description.text = "Win the game in Medium Mode";
         else description.text = "??????????????";
 
@@ -97,7 +97,7 @@ public class AchivementsMenu : MonoBehaviour {
     }
     public void Hard()
     {
-        if (actives.Contains("Not Today"))
+        if (actives.Contains("Hard"))
             description.text = "Win the game in Hard Mode";
         else description.text = "??????????????";
 
