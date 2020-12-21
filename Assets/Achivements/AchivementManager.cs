@@ -76,8 +76,6 @@ public class AchivementManager : MonoBehaviour {
         print(getAchivementJson());
         string jsonString = JsonConvert.SerializeObject(activeAchivements, Formatting.Indented);
         File.WriteAllText(getAchivementJson(), jsonString);
-
-        ;
     }
 
     private static string getAchivementJson()

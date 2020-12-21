@@ -19,6 +19,8 @@ public class PointsManager : MonoBehaviour {
     bool _playerDied = false;
     bool _canDispatchEvent = false;
 
+    List<DateTime> enemyKillTimes;
+
     int countEnemiesDead = 0;
     SectionNode _currentNode;
 
@@ -26,6 +28,7 @@ public class PointsManager : MonoBehaviour {
 
     void Start ()
     {
+        enemyKillTimes = new List<DateTime>();
         EventManager.instance.SubscribeEvent(Constants.PLAYER_DEAD, OnPlayerDead);
         EventManager.instance.SubscribeEvent(Constants.ENEMY_DEAD, OnEnemyDead);
         EventManager.instance.SubscribeEvent(Constants.START_SECTION, OnStartOrEndSection);
@@ -130,6 +133,30 @@ public class PointsManager : MonoBehaviour {
             countEnemiesDead++;
             if (countEnemiesDead == 100) {
                 EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_100_ENEMIES_DEAD, new object[] { });
+            }
+
+            enemyKillTimes.Add(DateTime.Now);
+
+            CheckForFrenesiAchievement();
+        }
+    }
+
+    private void CheckForFrenesiAchievement()
+    {
+        var killCount = 15;
+        var secCount = 3;
+        var c = enemyKillTimes.Count;
+        if (c >= killCount)
+        {
+            var oldestKill = enemyKillTimes[c - 1];
+            var recentKill = enemyKillTimes[c - killCount];
+            var killTimeDiff = Math.Abs((recentKill - oldestKill).TotalSeconds);
+
+            print(String.Format("rec {0} old {1}, {2}", recentKill, oldestKill, killTimeDiff));
+
+            if (killTimeDiff < secCount)
+            {
+                EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_FRENESI, new object[] { });
             }
         }
     }

@@ -114,7 +114,7 @@ public class AchivementsMenu : MonoBehaviour {
     public void Frenesi()
     {
         if (actives.Contains("Frenesi"))
-            description.text = "Kill 20 enemies in 5 seconds";
+            description.text = "Kill 15 enemies in 3 seconds";
         else description.text = "??????????????";
     }
 

@@ -108,6 +108,7 @@ public class Constants : MonoBehaviour
     public const string ACHIVEMENT_POWER_UP_RECOVER = "ACHIVEMENT_POWER_UP_RECOVER";
     public const string ACHIVEMENT_MORE_RANGE = "ACHIVEMENT_MORE_RANGE";
     public const string ACHIVEMENT_SHIELD = "ACHIVEMENT_SHIELD";
+    public const string ACHIVEMENT_FRENESI = "ACHIVEMENT_FRENESI";
     public const string ACHIVEMENT_CLOSE_DEATH = "ACHIVEMENT_CLOSE_DEATH";
     public const string ACHIVEMENT_EXTRA_DASH = "ACHIVEMENT_EXTRA_DASH";
     public const string ACHIVEMENT_100_ENEMIES_DEAD = "ACHIVEMENT_100_ENEMIES_DEAD";
