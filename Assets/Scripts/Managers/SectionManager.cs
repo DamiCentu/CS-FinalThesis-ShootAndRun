@@ -267,6 +267,9 @@ public class SectionManager : MonoBehaviour, IPauseable
                     }
                     //yield return null;
                 }
+                if (EnemiesManager.instance.player.GetComponent<Player>().achivementAlmost) {
+                    EventManager.instance.ExecuteEvent("ACHIVEMENT_CLOSE_DEATH", new object[] { });
+                }
                 SoundManager.instance.StageComplete();
                 EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_FIRST_STAGE_COMPLETE, new object[] { });
                 InfoManager.instance.CountDown(waitTimeForNextNodeSectionWhenFinish);

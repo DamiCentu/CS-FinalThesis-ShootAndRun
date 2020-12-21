@@ -76,6 +76,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
     private bool portalOut;
     private bool portalIn;
     private bool bossFinished=false;
+    public bool achivementAlmost= false;
 
     public void OnPauseChange(bool v) {
         _paused = v;
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         SetEvents();
 
         SetSpecial();
-
+        achivementAlmost = false;
 
     
         _isInvulnerable = false;
@@ -568,10 +569,11 @@ public class Player : MonoBehaviour, IHittable , IPauseable
             if (_gotShield)
             {
                 powerUpManager.DisableShield();
-                
+                achivementAlmost = true;
                 return;
             }
             EventManager.instance.ExecuteEvent(Constants.PLAYER_DEAD);
+            achivementAlmost = false;
             isDead = true;
             object[] container = new object[1];
             container[0] = false;

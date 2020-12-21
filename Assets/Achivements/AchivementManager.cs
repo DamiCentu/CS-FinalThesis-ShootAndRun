@@ -28,9 +28,9 @@ public class AchivementManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent("ACHIVEMENT_EASY_COMPLETE", x => ObtainAchivements("Easy"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_MEDIUM_COMPLETE", x => ObtainAchivements("Medium"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_HARD_COMPLETE", x => ObtainAchivements("Hard"));
-
-
         EventManager.instance.SubscribeEvent("ACHIVEMENT_CLOSE_DEATH", x=>ObtainAchivements("Almost"));
+
+
 
         EventManager.instance.SubscribeEvent("ACHIVEMENT_FRENESI", x => ObtainAchivements("Frenesi")); //TODO CAMBIARRR
 
