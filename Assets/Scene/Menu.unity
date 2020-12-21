@@ -4307,6 +4307,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 93652539}
   m_Mesh: {fileID: 4300044, guid: 63615ab32cafae44cbb7c5e4ab6d85cb, type: 3}
+--- !u!1 &93942718 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 832956821}
 --- !u!1 &94230616
 GameObject:
   m_ObjectHideFlags: 0
@@ -4569,7 +4573,7 @@ GameObject:
   - component: {fileID: 99450453}
   - component: {fileID: 99450452}
   m_Layer: 5
-  m_Name: QualityText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8887,7 +8891,7 @@ RectTransform:
   - {fileID: 510127727}
   - {fileID: 1433021450}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9535,7 +9539,7 @@ RectTransform:
   - {fileID: 750228456}
   - {fileID: 674883726}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9569,6 +9573,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: NotToday
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -9586,14 +9601,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 226630788}
-          m_MethodName: ClickAction
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: Nothing
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9603,6 +9612,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -9620,7 +9635,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 750228457}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 1470891352}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -16378,7 +16393,7 @@ RectTransform:
   - {fileID: 1954679344}
   - {fileID: 2116282595}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16412,6 +16427,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: DashDash
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -16429,14 +16455,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 398176026}
-          m_MethodName: ClickAction
+        - m_Target: {fileID: 1609791282}
+          m_MethodName: Nothing
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -16446,6 +16466,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -16463,7 +16489,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 1954679345}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 510061659}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -21580,6 +21606,10 @@ Transform:
   m_Father: {fileID: 821643181}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &510061659 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 1051220846}
 --- !u!1 &510127726
 GameObject:
   m_ObjectHideFlags: 0
@@ -23852,6 +23882,10 @@ Transform:
   m_Father: {fileID: 1388050882}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &580028051 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 240294686}
 --- !u!1 &580230336
 GameObject:
   m_ObjectHideFlags: 0
@@ -24250,7 +24284,7 @@ RectTransform:
   - {fileID: 1323017697}
   - {fileID: 1311817429}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28732,6 +28766,10 @@ Transform:
   m_Father: {fileID: 738816764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &737195804 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 1837149638}
 --- !u!1 &738657746
 GameObject:
   m_ObjectHideFlags: 0
@@ -36253,7 +36291,7 @@ RectTransform:
   - {fileID: 1913944323}
   - {fileID: 885203881}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36309,18 +36347,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 907390780}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -36338,7 +36365,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 1913944324}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 1807264376}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -39078,6 +39105,10 @@ Transform:
   m_Father: {fileID: 259254231}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1018072642 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 1892399101}
 --- !u!1 &1018073540
 GameObject:
   m_ObjectHideFlags: 0
@@ -40531,7 +40562,7 @@ GameObject:
   - component: {fileID: 1053877122}
   - component: {fileID: 1053877121}
   m_Layer: 5
-  m_Name: QualityText (1)
+  m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40549,12 +40580,12 @@ RectTransform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 15
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.999977, y: 87.518295}
-  m_SizeDelta: {x: -1220, y: -980}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -24.99997, y: 47}
+  m_SizeDelta: {x: 1446.07, y: 187.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1053877121
 MonoBehaviour:
@@ -40568,7 +40599,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d922da75b71502742be604f42e48d87b, type: 2}
+  m_Material: {fileID: 2100000, guid: 22b74431720392645b68f0589aad4423, type: 2}
   m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -40582,14 +40613,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 55
+    m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Achivements
+  m_Text: 
 --- !u!222 &1053877122
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44032,6 +44063,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1144889431}
   m_Mesh: {fileID: 4300000, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+--- !u!1 &1147064550 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 486330792}
 --- !u!1 &1147578448
 GameObject:
   m_ObjectHideFlags: 0
@@ -45094,7 +45129,7 @@ RectTransform:
   - {fileID: 1268652116}
   - {fileID: 1966596596}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -45150,18 +45185,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1177608668}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -45179,7 +45203,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 1268652117}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 1018072642}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -48110,7 +48134,7 @@ RectTransform:
   - {fileID: 833531253}
   - {fileID: 331003264}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -48166,18 +48190,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1262467339}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -48195,7 +48208,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 833531254}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 93942718}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -48935,7 +48948,7 @@ RectTransform:
   - {fileID: 1497006891}
   - {fileID: 471093351}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -48991,18 +49004,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1279600674}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -49020,7 +49022,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 1497006892}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 737195804}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -53696,7 +53698,7 @@ RectTransform:
   - {fileID: 1763862817}
   - {fileID: 600845521}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -53752,18 +53754,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1388685530}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -53781,7 +53772,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 1763862818}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 580028051}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -54048,7 +54039,7 @@ RectTransform:
   - {fileID: 666457060}
   - {fileID: 501457164}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -57476,6 +57467,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1469427039}
+--- !u!1 &1470891352 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 882448745}
 --- !u!1 &1475379714
 GameObject:
   m_ObjectHideFlags: 0
@@ -57510,7 +57505,7 @@ RectTransform:
   - {fileID: 1117006282}
   - {fileID: 1742585552}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -57566,18 +57561,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1475379717}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -57595,7 +57579,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 1117006283}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 1665588729}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3
@@ -57647,7 +57631,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
@@ -64103,6 +64087,7 @@ RectTransform:
   - {fileID: 29723767}
   - {fileID: 1865707565}
   - {fileID: 99450451}
+  - {fileID: 1053877120}
   - {fileID: 218152168}
   - {fileID: 588300692}
   - {fileID: 226630786}
@@ -64115,7 +64100,6 @@ RectTransform:
   - {fileID: 1388685528}
   - {fileID: 1177608666}
   - {fileID: 1279600672}
-  - {fileID: 1053877120}
   m_Father: {fileID: 473470263}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64147,8 +64131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b1675f8744eb447a1fd23354223139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 0}
-  description: {fileID: 0}
+  title: {fileID: 99450452}
+  description: {fileID: 1053877121}
   nO_DEATH: {fileID: 0}
   mINI_BOSS_DEFEAT: {fileID: 0}
   dASH: {fileID: 0}
@@ -66167,6 +66151,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1662192294}
   m_Mesh: {fileID: 4300002, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+--- !u!1 &1665588729 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 1495502074}
 --- !u!1 &1666860177
 GameObject:
   m_ObjectHideFlags: 0
@@ -72153,6 +72141,10 @@ Transform:
   m_Father: {fileID: 1445104327}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -12.6710005, z: 0}
+--- !u!1 &1807264376 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ab8b4eb48c4505a4e979f6659efa2674, type: 3}
+  m_PrefabInternal: {fileID: 107749392}
 --- !u!1 &1810514013
 GameObject:
   m_ObjectHideFlags: 0
@@ -82368,7 +82360,7 @@ RectTransform:
   - {fileID: 765921996}
   - {fileID: 5547787}
   m_Father: {fileID: 1609791280}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -82424,18 +82416,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2083170839}
-          m_MethodName: ClickAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -82453,7 +82434,7 @@ MonoBehaviour:
   TextsToChangeMaterial:
   - {fileID: 765921997}
   ParentOfMeshRendererersToChangeMaterial:
-  - {fileID: 1817199398}
+  - {fileID: 1147064550}
   maxTiltTime: 0.2
   minTiltTime: 0.1
   tiltTimes: 3

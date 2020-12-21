@@ -474,7 +474,7 @@ public class Player : MonoBehaviour, IHittable , IPauseable
         dashDirection = direction;
         dashCount--;
         dashTotalCount++;
-        if (dashTotalCount > 20) {
+        if (dashTotalCount == 50) {
             EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_DASH_DASH_DASH, new object[] { });
         }
 
