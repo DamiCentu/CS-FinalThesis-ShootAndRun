@@ -37,7 +37,6 @@ public class AchivementManager : MonoBehaviour {
 
         //LoadAchivements();
         LoadAchivements();
-        print(activeAchivements[0]);
     }
 
 
