@@ -136,6 +136,7 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
 
     public void DeleteAll()
     {
+        this.ResetBossLife();
         actualAction.DeleteAll();
     }
 
@@ -180,9 +181,18 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
 
     public void UpdateBossLife()
     {
-
         object[] container = new object[3];
         container[0] = life;
+        container[1] = maxLife;
+        container[2] = numberBoss;
+        EventManager.instance.ExecuteEvent(Constants.UPDATE_BOSS_LIFE, container);
+    }
+
+
+    public void ResetBossLife()
+    {
+        object[] container = new object[3];
+        container[0] = maxLife;
         container[1] = maxLife;
         container[2] = numberBoss;
         EventManager.instance.ExecuteEvent(Constants.UPDATE_BOSS_LIFE, container);
@@ -247,6 +257,4 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
             action.Upgrade();
         }
     }
-
-
 }

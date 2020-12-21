@@ -147,6 +147,7 @@ public class BossSerpent : AbstractBoss,IHittable {
 
     internal void Destroy()
     {
+        this.ResetBossLife();
         this.DeleteAll();
         EventManager.instance.UnsubscribeEvent("EvolveBoss2", SetEvolve);
         Destroy(this.gameObject);

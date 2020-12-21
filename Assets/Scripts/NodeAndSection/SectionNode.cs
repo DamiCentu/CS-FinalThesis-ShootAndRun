@@ -101,6 +101,7 @@ public class SectionNode : MonoBehaviour, IPauseable
 
         bossOnScreen = Instantiate(EnemiesManager.instance.bossPrefab, _allSpawns[0].transform.position, _allSpawns[0].transform.rotation).GetComponent<Boss>();
         bossOnScreen.GetComponent<AbstractEnemy>().SetTimeAndRenderer().SetActualNode(this);
+        bossOnScreen.ResetBossLife();
         bossOnScreen.gameObject.SetActive(true);
     }
 
