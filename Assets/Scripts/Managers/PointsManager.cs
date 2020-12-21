@@ -80,7 +80,7 @@ public class PointsManager : MonoBehaviour {
                 EventManager.instance.ExecuteEvent(Constants.UI_POINTS_UPDATE, new object[] { _currentPoints, _currentMultiplier });
                 EventManager.instance.ExecuteEvent(Constants.UI_NOTIFICATION_TEXT_UPDATE, new object[] { "No death section! +" + pointsSO.noDieInSectionPoints.ToString() });
 
-                if (node.id != 0 && node.id != 1)
+                if (node.id != 0)
                 {
                     EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_NO_DEATH, new object[] { });
                 }
