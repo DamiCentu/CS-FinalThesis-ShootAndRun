@@ -58,10 +58,22 @@ public class PauseGame : MonoBehaviour {
     }
 
     void Update() {
+
+        //print(String.Format("pause is {0}", pause));
         if (_canPauseManually && Input.GetKeyDown(KeyCode.Escape))
         {
+            print(String.Format("GetKeyDown pause is {0}", pause));
             AllPauses(false, true);
-        } 
+        }
+
+        if (!pause)
+        {
+            if (DateTime.Now.Second % 5 == 0)
+            {
+                //print(String.Format("timer pause is {0}", pause));
+                Pause(false, FindObjectsOfType<MonoBehaviour>().Where(x => x.gameObject.activeSelf).OfType<IPauseable>().ToArray());
+            }
+        }
     }
 
     void AllPauses(bool playerIsAboutToBeDestroyed = false, bool fromInput = false)

@@ -125,17 +125,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc10572c0cbe0d4dad4ac6c3b93ab51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitsCanTake: 3
-  distanceToShoot: 30
-  timeToWaitBetweenShots: 3
-  timeDelayInBurst: 0.15
-  shotsInBurst: 3
-  shotSpawn: {fileID: 4082670447072374}
+  hitsCanTakeLaser: 20
   laserMaxDistance: 100
   maskToCollide:
     serializedVersion: 2
     m_Bits: 1280
+  sparksParticleS: {fileID: 0}
+  hitsCanTakeMovingLaser: 10
+  movingLaserMaxDistance: 100
+  startWaypointForMovingLaser: {fileID: 0}
+  speedOfLerp: 3
+  timeToWaitToInteract: 3
+  hitsCanTakeBurst: 5
+  distanceToShoot: 30
+  timeToWaitBetweenShots: 3
+  timeDelayInBurst: 0.15
+  shotsInBurst: 3
   transformToRotate: {fileID: 0}
+  timeToStartShootingBurst: 1
+  shotSpawn: {fileID: 4082670447072374}
+  shieldGO: {fileID: 0}
 --- !u!120 &120316372423511542
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -231,7 +240,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1247479595425198}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

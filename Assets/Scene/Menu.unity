@@ -64266,7 +64266,7 @@ MonoBehaviour:
   title: {fileID: 99450452}
   description: {fileID: 1053877121}
   nO_DEATH: {fileID: 226630785}
-  frenesi: {fileID: 0}
+  frenesi: {fileID: 1262467336}
   noElite: {fileID: 907390777}
   a100: {fileID: 2083170836}
   dashDash: {fileID: 398176023}

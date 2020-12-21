@@ -49,6 +49,11 @@ public class EnemyTurretBehaviour : AbstractEnemy, IHittable, IPauseable {
         if (paused)
             return;
 
+        if (_currentTypeOfTurret == null)
+        {
+            DeactivateEverything();
+        }
+
         if (_eIntegration != null && !_eIntegration.LoadingNotComplete || _actualWave == SectionManager.WaveNumber.NoCuentaParaTerminarNodo)
             _currentTypeOfTurret.OnUpdate();
     }

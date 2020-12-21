@@ -152,7 +152,7 @@ public class PointsManager : MonoBehaviour {
             var recentKill = enemyKillTimes[c - killCount];
             var killTimeDiff = Math.Abs((recentKill - oldestKill).TotalSeconds);
 
-            print(String.Format("rec {0} old {1}, {2}", recentKill, oldestKill, killTimeDiff));
+            //print(String.Format("rec {0} old {1}, {2}", recentKill, oldestKill, killTimeDiff));
 
             if (killTimeDiff < secCount)
             {
