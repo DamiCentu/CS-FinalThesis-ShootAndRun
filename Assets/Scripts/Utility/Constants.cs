@@ -99,7 +99,7 @@ public class Constants : MonoBehaviour
 
 
     public const string ACHIVEMENT_NO_DEATH = "UI_ACHIVEMENT_NO_DEATH";
-    public const string ACHIVEMENT_MINI_BOSS_DEFEAT = "ACHIVEMENT_MINI_BOSS_DEFEAT";
+    public const string ACHIVEMENT_NO_ELITE = "ACHIVEMENT_NO_ELITE";
     public const string ACHIVEMENT_DASH_DASH_DASH = "ACHIVEMENT_DASH_DASH_DASH";
     public const string ACHIVEMENT_LVL2_COMPLETE = "ACHIVEMENT_LVL2_COMPLETE";
     public const string ACHIVEMENT_LVL1_COMPLETE = "ACHIVEMENT_LVL1_COMPLETE";

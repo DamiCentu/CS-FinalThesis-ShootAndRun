@@ -24,7 +24,7 @@ public class AchivementManager : MonoBehaviour {
         EventManager.instance.SubscribeEvent("UI_ACHIVEMENT_NO_DEATH", x => ObtainAchivements("Not Today"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_DASH_DASH_DASH", x=>ObtainAchivements("Dash Dash"));//
         EventManager.instance.SubscribeEvent("ACHIVEMENT_100_ENEMIES_DEAD", x => ObtainAchivements("100"));
-         EventManager.instance.SubscribeEvent("ACHIVEMENT_ACHIVEMENT_MINI_BOSS_DEFEAT", x => ObtainAchivements("No Elite"));
+        EventManager.instance.SubscribeEvent("ACHIVEMENT_NO_ELITE", x => ObtainAchivements("No Elite"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_EASY_COMPLETE", x => ObtainAchivements("Easy"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_MEDIUM_COMPLETE", x => ObtainAchivements("Medium"));
         EventManager.instance.SubscribeEvent("ACHIVEMENT_HARD_COMPLETE", x => ObtainAchivements("Hard"));

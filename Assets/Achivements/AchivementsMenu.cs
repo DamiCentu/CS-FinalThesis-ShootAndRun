@@ -36,8 +36,6 @@ public class AchivementsMenu : MonoBehaviour {
         EasyActive();
         HardActive();
         AlmostActive();
-
-
     }
 
     public void NotTodayActive() {

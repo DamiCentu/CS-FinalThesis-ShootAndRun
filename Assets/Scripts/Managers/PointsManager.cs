@@ -175,7 +175,7 @@ public class PointsManager : MonoBehaviour {
         }
         else if (enemy is MiniBossBehaviour)
         {
-            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_MINI_BOSS_DEFEAT, new object[] { });
+            EventManager.instance.ExecuteEvent(Constants.ACHIVEMENT_NO_ELITE, new object[] { });
             return pointsSO.minibossPointsPoints;
 
         }
