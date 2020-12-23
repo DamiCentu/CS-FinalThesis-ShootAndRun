@@ -112,6 +112,7 @@ public class BossSerpent : AbstractBoss,IHittable {
             if (life <= 0 && !dead) {
                 dead = true;
                 actualAction.Finish(this);
+                //ResetBossLife();
                 Destroy();
                 //this.gameObject.SetActive(false);
                 EventManager.instance.ExecuteEvent("EvolveBoss2");
