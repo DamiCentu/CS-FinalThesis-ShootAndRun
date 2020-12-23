@@ -29,6 +29,7 @@ public class RankManager : MonoBehaviour {
     float _timerToChangeCharInPanel = 15f;
     Data _actualData;
     Data[] _allRanks;
+    public bool reset;
 
     void Start ()
     {
@@ -134,6 +135,20 @@ public class RankManager : MonoBehaviour {
 
     void Update()
     {
+        if (reset) {
+            foreach (var item in scoreTexts)
+            {
+                item.text = string.Empty;
+            }
+            foreach (var item in aliasTexts)
+            {
+                item.text = string.Empty;
+            }
+            foreach (var item in numberRankTexts)
+            {
+                item.text = string.Empty;
+            }
+        }
         if(_canGoToWinScreen)
         {
             if(SceneManager.GetActiveScene().name == Constants.LEVEL_2_SCENE_NAME)
