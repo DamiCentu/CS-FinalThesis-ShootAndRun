@@ -47,7 +47,10 @@ public class UIManager : MonoBehaviour, IPauseable {
 
     void Start() {
         EventManager.instance.SubscribeEvent(Constants.UPDATE_BOSS_LIFE, UpdateBossLife);
-        EventManager.instance.SubscribeEvent(Constants.UI_UPDATE_PLAYER_LIFE, OnUpdatePlayerLife);
+
+
+
+    EventManager.instance.SubscribeEvent(Constants.UI_UPDATE_PLAYER_LIFE, OnUpdatePlayerLife);
         EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_RESTART, OnTutorialRestart);
         EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_CHANGE, OnTutorialChange);
         EventManager.instance.SubscribeEvent(Constants.UI_TUTORIAL_DEACTIVATED, OnTutorialDeactivated);
@@ -65,6 +68,11 @@ public class UIManager : MonoBehaviour, IPauseable {
 
         _waitToDisapearTutoText = new WaitForSeconds(timeToDisapearTutoText);
         _waitBetweenTextInfoPoints = new WaitForSeconds(timeToShowPointsInfoText);
+    }
+
+    private void Hide(object[] parameterContainer)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnNotificationTextUpdate(object[] param)
@@ -166,30 +174,33 @@ public class UIManager : MonoBehaviour, IPauseable {
         int life = (int)parameterContainer[0];
         int maxLife = (int)parameterContainer[1];
         int numberBoss = (int)parameterContainer[2];
+        bool active= (bool)parameterContainer[3];
+
 
         if (numberBoss == 0)
         {
-            UpdateLifeBarBoss(life, maxLife, bossLife0);
+            UpdateLifeBarBoss(life, maxLife, bossLife0,active);
 
         }
         else if (numberBoss == 1)
         {
 
-            UpdateLifeBarBoss(life, maxLife, bossLife1);
+            UpdateLifeBarBoss(life, maxLife, bossLife1,active);
         }
 
         else
         {
-            UpdateLifeBarBoss(life, maxLife, bossLife2);
+            UpdateLifeBarBoss(life, maxLife, bossLife2,active);
 
         }
     }
 
-    private void UpdateLifeBarBoss(int life, int maxLife, SimpleHealthBar bossLife)
+    private void UpdateLifeBarBoss(int life, int maxLife, SimpleHealthBar bossLife, bool active)
     {
         if (life > 0)
         {
-            bossLife.transform.parent.gameObject.SetActive(true);
+            //bossLife.transform.parent.gameObject.SetActive(true);
+            bossLife.transform.parent.gameObject.SetActive(active);
             bossLife.UpdateBar(life, maxLife);
             if (life < (float)maxLife / 4)
             {

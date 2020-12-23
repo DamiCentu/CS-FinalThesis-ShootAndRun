@@ -181,22 +181,24 @@ public abstract class AbstractBoss : AbstractEnemy , IPauseable
 
     public void UpdateBossLife()
     {
-        object[] container = new object[3];
+        object[] container = new object[4];
         container[0] = life;
         container[1] = maxLife;
         container[2] = numberBoss;
+        container[3] = true;
         EventManager.instance.ExecuteEvent(Constants.UPDATE_BOSS_LIFE, container);
-    }
+     }
 
 
     public void ResetBossLife()
     {
-        object[] container = new object[3];
+        object[] container = new object[4];
         container[0] = maxLife;
         container[1] = maxLife;
         container[2] = numberBoss;
+        container[3] = false;
         EventManager.instance.ExecuteEvent(Constants.UPDATE_BOSS_LIFE, container);
-    }
+     }
 
     protected void ChangeStageIfNeeded()
     {

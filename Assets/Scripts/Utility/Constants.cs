@@ -115,6 +115,6 @@ public class Constants : MonoBehaviour
 
 
 
-
-
+    public const string SHOW_BOOS_LIFE = "SHOW_BOOS_LIFE";
+    public const string HIDE_BOOS_LIFE = "HIDE_BOOS_LIFE";
 }
